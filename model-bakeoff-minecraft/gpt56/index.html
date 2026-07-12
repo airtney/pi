@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#79b7e7">
+  <title>方块世界 · Mini Minecraft</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div id="game"></div>
+
+  <div id="hud" aria-hidden="true">
+    <div class="brand">方块世界 <span>生存模式</span></div>
+    <div class="tips">
+      <b>WASD</b> 移动　<b>空格</b> 跳跃　<b>Shift</b> 疾跑<br>
+      <b>左键</b> 挖掘　<b>右键</b> 放置　<b>1–4</b> 选方块
+    </div>
+    <div id="coordinates">XYZ 0 / 0 / 0</div>
+    <div id="crosshair"><i></i><i></i></div>
+    <div id="target-label"></div>
+
+    <div class="survival">
+      <div class="hearts">♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥</div>
+      <div class="hunger">◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆</div>
+    </div>
+
+    <div id="hotbar" role="list" aria-label="快捷栏">
+      <div class="slot selected" data-slot="1">
+        <span class="key">1</span><span class="block grass"></span><small>草方块</small>
+      </div>
+      <div class="slot" data-slot="2">
+        <span class="key">2</span><span class="block dirt"></span><small>泥土</small>
+      </div>
+      <div class="slot" data-slot="3">
+        <span class="key">3</span><span class="block stone"></span><small>石头</small>
+      </div>
+      <div class="slot" data-slot="4">
+        <span class="key">4</span><span class="block log"></span><small>橡木</small>
+      </div>
+    </div>
+  </div>
+
+  <div id="start-screen">
+    <div class="panel">
+      <div class="grass-cube"><span></span></div>
+      <p class="eyebrow">MINI VOXEL SANDBOX</p>
+      <h1>方块世界</h1>
+      <p id="start-copy">探索山丘与树林，挖掘并搭建属于你的世界。</p>
+      <button id="start-button" type="button">进入世界</button>
+      <p class="hint">点击后锁定鼠标 · 按 ESC 暂停</p>
+    </div>
+  </div>
+
+  <div id="loading">正在生成世界…</div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

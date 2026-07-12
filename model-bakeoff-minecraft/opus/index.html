@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>迷你我的世界 · Mini Minecraft</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="crosshair">+</div>
+
+  <div id="hotbar">
+    <div class="slot" data-slot="0"><span class="icon" id="icon-0"></span><span class="name">草方块</span><span class="key">1</span></div>
+    <div class="slot" data-slot="1"><span class="icon" id="icon-1"></span><span class="name">泥土</span><span class="key">2</span></div>
+    <div class="slot" data-slot="2"><span class="icon" id="icon-2"></span><span class="name">石头</span><span class="key">3</span></div>
+    <div class="slot" data-slot="3"><span class="icon" id="icon-3"></span><span class="name">木头</span><span class="key">4</span></div>
+  </div>
+
+  <div id="overlay">
+    <div class="panel">
+      <h1>迷你我的世界</h1>
+      <p>点击开始游戏</p>
+      <ul>
+        <li><b>WASD</b> 移动 · <b>空格</b> 跳跃 · <b>鼠标</b> 转视角</li>
+        <li><b>左键</b> 破坏方块 · <b>右键</b> 放置方块</li>
+        <li><b>1-4</b> 或滚轮 切换方块 · <b>Esc</b> 释放鼠标</li>
+      </ul>
+      <button id="startBtn">开始游戏</button>
+    </div>
+  </div>
+
+  <div id="loading">加载中…</div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

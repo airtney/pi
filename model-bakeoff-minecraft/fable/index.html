@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>迷你我的世界 · Mini Minecraft</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="game"></div>
+
+  <!-- 开始遮罩 -->
+  <div id="overlay">
+    <div class="panel">
+      <h1>迷你我的世界</h1>
+      <p class="subtitle">Three.js 体素沙盒 · 无需安装，点击即玩</p>
+      <button id="play-btn">点击开始（锁定鼠标）</button>
+      <div class="help">
+        <div><b>WASD</b> 移动 &nbsp;·&nbsp; <b>鼠标</b> 视角 &nbsp;·&nbsp; <b>空格</b> 跳跃 &nbsp;·&nbsp; <b>Shift</b> 疾跑</div>
+        <div><b>左键</b> 破坏方块 &nbsp;·&nbsp; <b>右键</b> 放置方块</div>
+        <div><b>1-4 / 滚轮</b> 切换方块（草地 / 泥土 / 石头 / 木头）&nbsp;·&nbsp; <b>Esc</b> 暂停</div>
+      </div>
+      <p id="load-status">正在加载 Three.js…</p>
+    </div>
+  </div>
+
+  <!-- 游戏内 HUD -->
+  <div id="hud" class="hidden">
+    <div id="crosshair"><span></span><span></span></div>
+    <div id="topbar">
+      <span id="pos">XYZ: -</span>
+      <span id="fps">- FPS</span>
+    </div>
+    <div id="hotbar-wrap">
+      <div id="block-name"></div>
+      <div id="hotbar"></div>
+    </div>
+  </div>
+  <div id="water-tint" class="hidden"></div>
+
+  <!-- 游戏逻辑（普通脚本，挂在 window.MC 上） -->
+  <script src="textures.js"></script>
+  <script src="world.js"></script>
+  <script src="player.js"></script>
+  <script src="app.js"></script>
+
+  <!-- 从 CDN 加载 Three.js r160+（ES Module），然后启动游戏 -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module">
+    const statusEl = document.getElementById('load-status');
+    try {
+      const [THREE, { PointerLockControls }] = await Promise.all([
+        import('three'),
+        import('three/addons/controls/PointerLockControls.js'),
+      ]);
+      statusEl.textContent = 'Three.js r' + THREE.REVISION + ' 已就绪';
+      window.MC.start(THREE, PointerLockControls);
+    } catch (err) {
+      statusEl.textContent = '加载失败：' + err.message + '（请检查网络连接后刷新）';
+      statusEl.classList.add('error');
+      console.error(err);
+    }
+  </script>
+</body>
+</html>

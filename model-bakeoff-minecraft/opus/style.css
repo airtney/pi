@@ -1,0 +1,130 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #87ceeb;
+  font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+  user-select: none;
+}
+
+canvas { display: block; }
+
+/* 十字准星 */
+#crosshair {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 1;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* 热键栏 */
+#hotbar {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 8px;
+  z-index: 10;
+}
+
+.slot {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border: 3px solid rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.slot.active {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.slot .icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.slot .name { font-size: 11px; margin-top: 4px; }
+
+.slot .key {
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+/* 开始遮罩 */
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+#overlay.hidden { display: none; }
+
+.panel {
+  background: rgba(20, 20, 25, 0.92);
+  color: #eee;
+  padding: 32px 40px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 460px;
+}
+
+.panel h1 { font-size: 30px; margin-bottom: 10px; }
+.panel p { margin-bottom: 16px; opacity: 0.85; }
+.panel ul { text-align: left; list-style: none; margin-bottom: 22px; line-height: 1.9; font-size: 14px; }
+.panel b { color: #7ec850; }
+
+#startBtn {
+  padding: 12px 34px;
+  font-size: 18px;
+  color: #fff;
+  background: #5b8f3a;
+  border: 2px solid #7ec850;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#startBtn:hover { background: #6ba645; }
+
+#loading {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: #fff;
+  background: #87ceeb;
+  z-index: 30;
+}
+
+#loading.hidden { display: none; }

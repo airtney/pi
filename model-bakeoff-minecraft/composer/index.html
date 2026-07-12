@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>迷你我的世界</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="overlay">
+    <h1>迷你我的世界</h1>
+    <p>点击画面开始游戏</p>
+    <ul>
+      <li><kbd>W A S D</kbd> 移动 · 空格 跳跃</li>
+      <li>鼠标 视角 · 左键 破坏 · 右键 放置</li>
+      <li><kbd>1</kbd>–<kbd>4</kbd> 切换方块</li>
+    </ul>
+  </div>
+
+  <div id="hud" class="hidden">
+    <div id="crosshair"></div>
+    <div id="hotbar">
+      <div class="slot active" data-slot="0"><span class="icon grass"></span><kbd>1</kbd></div>
+      <div class="slot" data-slot="1"><span class="icon dirt"></span><kbd>2</kbd></div>
+      <div class="slot" data-slot="2"><span class="icon stone"></span><kbd>3</kbd></div>
+      <div class="slot" data-slot="3"><span class="icon wood"></span><kbd>4</kbd></div>
+    </div>
+    <div id="hint">左键破坏 · 右键放置</div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
