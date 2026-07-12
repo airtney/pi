@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>迷你我的世界</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="blocker">
+    <div id="menu">
+      <h1>迷你我的世界</h1>
+      <p>点击开始游戏</p>
+      <ul>
+        <li>WASD 移动 · 空格跳跃 · 鼠标视角</li>
+        <li>左键破坏 · 右键放置</li>
+        <li>数字键 1–4 切换方块</li>
+      </ul>
+    </div>
+  </div>
+  <div id="crosshair"></div>
+  <div id="hotbar">
+    <div class="slot selected" data-slot="1"><span class="key">1</span><span class="label">草方块</span></div>
+    <div class="slot" data-slot="2"><span class="key">2</span><span class="label">泥土</span></div>
+    <div class="slot" data-slot="3"><span class="key">3</span><span class="label">石头</span></div>
+    <div class="slot" data-slot="4"><span class="key">4</span><span class="label">木头</span></div>
+  </div>
+  <div id="hint">Esc 释放鼠标</div>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

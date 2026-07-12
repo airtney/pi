@@ -1,0 +1,187 @@
+/* 迷你我的世界 —— 样式 */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  user-select: none;
+}
+
+#game, #game canvas { position: absolute; inset: 0; display: block; }
+
+.hidden { display: none !important; }
+
+/* ---------- 开始遮罩 ---------- */
+#overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(rgba(10, 20, 35, 0.55), rgba(10, 20, 35, 0.75));
+  backdrop-filter: blur(2px);
+}
+
+.panel {
+  text-align: center;
+  color: #fff;
+  padding: 40px 56px;
+  background: rgba(20, 26, 34, 0.86);
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
+  max-width: 620px;
+}
+
+.panel h1 {
+  font-size: 42px;
+  letter-spacing: 4px;
+  text-shadow: 3px 3px 0 #3a3a3a;
+  margin-bottom: 6px;
+}
+
+.panel .subtitle {
+  color: #9fd08c;
+  margin-bottom: 26px;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+#play-btn {
+  font-size: 20px;
+  padding: 14px 44px;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(#6fbf4c, #529339);
+  border: 2px solid #2f5a20;
+  border-radius: 6px;
+  box-shadow: 0 4px 0 #2f5a20;
+  transition: transform 0.06s, box-shadow 0.06s;
+}
+#play-btn:hover { filter: brightness(1.08); }
+#play-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #2f5a20; }
+
+.help {
+  margin-top: 26px;
+  font-size: 14px;
+  line-height: 2;
+  color: #cfd8dc;
+}
+.help b {
+  color: #ffe082;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 4px;
+  padding: 1px 7px;
+  font-family: Consolas, monospace;
+}
+
+#load-status { margin-top: 20px; font-size: 12px; color: #8fa3ad; }
+#load-status.error { color: #ff8a80; }
+
+/* ---------- HUD ---------- */
+#hud { position: absolute; inset: 0; z-index: 10; pointer-events: none; }
+
+/* 十字准星 */
+#crosshair {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 22px;
+  height: 22px;
+  mix-blend-mode: difference;
+}
+#crosshair span { position: absolute; background: #fff; }
+#crosshair span:nth-child(1) {
+  left: 50%; top: 0; width: 2px; height: 100%;
+  transform: translateX(-50%);
+}
+#crosshair span:nth-child(2) {
+  top: 50%; left: 0; height: 2px; width: 100%;
+  transform: translateY(-50%);
+}
+
+#topbar {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  display: flex;
+  gap: 16px;
+  color: #fff;
+  font-size: 13px;
+  font-family: Consolas, monospace;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+}
+
+/* ---------- 热键栏 ---------- */
+#hotbar-wrap {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+#block-name {
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 8px;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+  letter-spacing: 2px;
+}
+
+#hotbar {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 6px;
+}
+
+.slot {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.35);
+}
+.slot.active {
+  border-color: #fff;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.55), inset 0 0 8px rgba(255, 255, 255, 0.25);
+}
+
+.slot-icon {
+  width: 38px;
+  height: 38px;
+  image-rendering: pixelated;
+}
+
+.slot-key {
+  position: absolute;
+  top: 1px;
+  left: 4px;
+  font-size: 11px;
+  color: #fff;
+  text-shadow: 1px 1px 0 #000;
+  font-family: Consolas, monospace;
+}
+
+/* ---------- 水下滤镜 ---------- */
+#water-tint {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: rgba(24, 70, 160, 0.35);
+}
