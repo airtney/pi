@@ -160,3 +160,12 @@ Attribution:
 ## User Override
 
 If the user's instructions conflict with any rule in this document, ask for explicit confirmation before overriding. Only then execute their instructions.
+
+## Cursor Cloud specific instructions
+
+- Node: the repo requires Node `>=22.19.0`, but the VM's default `node` (`/exec-daemon/node`) is 22.14.0. `~/.bashrc` pins nvm's 22.19.0 ahead of it, so login shells (and the tmux sessions described above) get the right version. If a shell reports 22.14.0, run `source ~/.bashrc` (or `nvm use 22.19.0`) before `npm`/`node` commands.
+- Startup update script runs `npm ci --ignore-scripts` (dependency refresh only; keeps `package-lock.json` clean, unlike `npm install`). It does not build. Built `packages/*/dist` from setup persists in the snapshot.
+- Tests require a build first. The extension-discovery/loader tests import the compiled `packages/*/dist/*` (jiti resolves workspace aliases to `dist/`), so run `npm run build` before `./test.sh`/`npm test` after any change to a package's `src`. Skipping the build causes ~80 extension tests to fail with "Cannot find package .../dist/index.js". `npm run check` does not need a build.
+- Running the app: `./pi-test.sh` (works from any directory; `--no-env` strips API keys). It needs a provider credential to have any models: set an env var like `ANTHROPIC_API_KEY`/`OPENAI_API_KEY`/`GEMINI_API_KEY` (see `packages/coding-agent/docs/providers.md`) or use `/login` in the TUI. With no credentials, `--list-models` reports "No models available".
+- `fd` and `ripgrep` are auto-provisioned on demand by the find/grep tools (downloaded to `~/.pi`); no need to apt-install them despite the CI workflow doing so.
+- `npm run build` fetches live provider model lists and rewrites `packages/ai/src/**/*.models.ts` and `image-models.generated.ts`; discard those unless you intend to commit a model-metadata update.
