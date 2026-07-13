@@ -160,3 +160,15 @@ Attribution:
 ## User Override
 
 If the user's instructions conflict with any rule in this document, ask for explicit confirmation before overriding. Only then execute their instructions.
+
+## Cursor Cloud specific instructions
+
+Standard commands are already documented above and in `README.md`/`package.json` (`npm ci --ignore-scripts`, `npm run build`, `npm run check`, `./test.sh`, `./pi-test.sh`). Only the non-obvious cloud caveats are below.
+
+- Node: the base `/exec-daemon/node` is v22.14.0, which is below the repo's `engines` floor (`>=22.19.0`). nvm provides v22.23.1 with `default -> 22`; login/interactive shells source `~/.bashrc` and pick it up automatically. If `node --version` ever shows 22.14.x in a plain (non-login) shell, run `nvm use 22` before building/testing.
+- `npm run build` regenerates `packages/ai/src/providers/*.models.ts` and `packages/ai/src/image-models.generated.ts` from live provider APIs over the network. This produces unrelated diffs on a clean tree; revert them (`git checkout -- <paths>`) before committing unless you are intentionally updating model metadata.
+- No LLM provider credentials are present by default. A real agent turn needs either a provider key (env var such as `ANTHROPIC_API_KEY`/`OPENAI_API_KEY`/`GEMINI_API_KEY`, or `/login` writing `~/.pi/agent/auth.json`) or a local model. The default provider is `google`, so a bare `./pi-test.sh -p ...` will hang without credentials.
+- Local end-to-end testing without a provider key: Ollama is installed with models `qwen2.5:1.5b` and `qwen2.5:3b`, and `~/.pi/agent/models.json` is preconfigured for an `ollama` provider. There is no systemd, so start the server yourself: `ollama serve &` (listens on 127.0.0.1:11434). Then run `./pi-test.sh --model ollama/qwen2.5:3b [-p "..."]` (no `--api-key` needed; the models.json placeholder suffices).
+- The subagent example extension is installed user-level (`~/.pi/agent/extensions/subagent` symlinks into `packages/coding-agent/examples/extensions/subagent`), with user-level agents `worker` (full tools, can recursively call `subagent`), `scout`, and `coordinator` in `~/.pi/agent/agents/`, all pointed at `ollama/qwen2.5:3b`. Nested subagent runs (main -> worker -> scout) are verified working; note the small local models follow delegation instructions unreliably, so phrase delegation tasks imperatively.
+- Ollama backend gotcha: this VM is Sapphire Rapids (AMX). Ollama auto-selects the `sapphirerapids` ggml CPU backend, which segfaults during model warmup. It was disabled by renaming `/usr/local/lib/ollama/libggml-cpu-sapphirerapids.so` to `*.disabled` so it falls back to an AVX-512 backend. If an Ollama upgrade restores that file and inference starts segfaulting, disable it again.
+- Headless `-p` output: piping `./pi-test.sh -p ...` straight into `tail`/`head` can look like it hangs; redirect to a file and read that instead.
