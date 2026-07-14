@@ -3,6 +3,11 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  // Static HTML export: the site is a single prerendered marketing page, and
+  // plain static files are the most reliable thing to serve through the Cloud
+  // Agent port-forwarding proxy (no RSC streaming, no `Vary: rsc` handling,
+  // no long `s-maxage` cache headers from the Next server).
+  output: "export",
   // This subproject lives inside a larger monorepo; pin the tracing root to
   // this directory so Next.js does not pick up the parent lockfile.
   outputFileTracingRoot: path.join(__dirname),
@@ -17,9 +22,9 @@ const nextConfig: NextConfig = {
     "*.cursorapp.com",
   ],
   images: {
-    // Local assets only; avatars/fonts were mirrored from the cursor.com CDN
-    // into /public during reconstruction, so no remote patterns are needed.
-    formats: ["image/avif", "image/webp"],
+    // Required with `output: "export"`: there is no image optimization server,
+    // so <Image> renders plain <img> tags pointing at the /public originals.
+    unoptimized: true,
   },
 };
 
