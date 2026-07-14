@@ -21,6 +21,7 @@ CS.createBot = function (THREE, map, name, team) {
     hp: 100, armor: 0, money: 800,
     kills: 0, deaths: 0, assists: 0,
     hasBomb: false,
+    hasKit: false,   // CT 拆弹钳（拆包时间减半）
     crouching: false,
     speedFactor: 0,
     blindUntil: 0,   // 被闪光弹致盲
@@ -37,7 +38,7 @@ CS.createBot = function (THREE, map, name, team) {
     strafeDir: 1, strafeT: 0,
     repathT: 0,
     weapon: null,        // {def, magAmmo, reloading, reloadEnd}
-    grenades: { he: 0, smoke: 0, flash: 0 },
+    grenades: { he: 0, smoke: 0, flash: 0, fire: 0 },
     actionT: 0,          // 安放/拆除进度
     guardT: 0,
   };
@@ -233,10 +234,22 @@ CS.createBot = function (THREE, map, name, team) {
     }
   }
 
+  // 无线电（只有玩家队友的语音会显示在 HUD 上）
+  function sayRadio(ctx, text, ping) {
+    if (!CS.hud || !CS.hud.radio || bot.team !== ctx.playerTeam) return;
+    if (ctx.now < (bot._radioCd || 0)) return;
+    bot._radioCd = ctx.now + 9;
+    CS.hud.radio(bot.name, text, ping ? { x: bot.pos.x, z: bot.pos.z } : null);
+    CS.audio.radioChirp();
+  }
+
+  let curCtx = null; // 当前帧的更新上下文（decideObjective 内发无线电用）
+
   // ============ 主更新 ============
-  // ctx: {characters, round, effects, onDamage, listenerPos, now}
+  // ctx: {characters, round, effects, onDamage, listenerPos, playerTeam, now}
   bot.update = function (dt, ctx) {
     if (!bot.alive) return;
+    curCtx = ctx;
     const now = ctx.now, round = ctx.round;
 
     // 冻结（购买时间）
@@ -252,6 +265,7 @@ CS.createBot = function (THREE, map, name, team) {
 
     // ---- 状态决策 ----
     if (enemy && bot.state !== "plant" && bot.state !== "defuse") {
+      if (bot.state !== "combat") sayRadio(ctx, "发现敌人！", true);
       bot.state = "combat";
     } else if (bot.state === "combat" && (!bot.target || !bot.target.alive || now - bot.lastSeen > 2.5)) {
       bot.target = null;
@@ -333,12 +347,36 @@ CS.createBot = function (THREE, map, name, team) {
         bot.vel.x *= 0.5; bot.vel.z *= 0.5;
         if (!round.bombPlanted) { bot.state = "idle"; bot.actionT = 0; break; }
         bot.actionT += dt;
-        if (bot.actionT >= 6) {
+        if (bot.actionT >= (bot.hasKit ? 3 : 6)) { // 拆弹钳减半
           bot.actionT = 0;
           round.botDefuse(bot);
           bot.state = "guard"; bot.guardT = 3;
         }
         break;
+      }
+    }
+
+    // ---- 火焰回避：着火就逃，路上有火就等（除非情况紧急） ----
+    if (CS.grenades && CS.grenades.activeFires() > 0) {
+      const desperate =
+        (bot.team === "CT" && round.bombPlanted && round.bombTimer < 16) ||
+        (bot.hasBomb && !round.bombPlanted && round.timer < 25);
+      if (!desperate) {
+        if (CS.grenades.pointInFire(bot.pos.x, bot.pos.z, bot.pos.y)) {
+          const f = CS.grenades.nearestFire(bot.pos.x, bot.pos.z);
+          if (f) {
+            const dx = bot.pos.x - f.x, dz = bot.pos.z - f.z, d = Math.hypot(dx, dz) || 1;
+            bot.vel.x = (dx / d) * 7.2;
+            bot.vel.z = (dz / d) * 7.2;
+            if (bot.state === "plant" || bot.state === "defuse") { bot.state = "idle"; bot.actionT = 0; }
+          }
+        } else if (bot.state === "seek") {
+          const sp = Math.hypot(bot.vel.x, bot.vel.z);
+          if (sp > 0.5 &&
+              CS.grenades.pointInFire(bot.pos.x + (bot.vel.x / sp) * 1.7, bot.pos.z + (bot.vel.z / sp) * 1.7, bot.pos.y)) {
+            bot.vel.x *= 0.05; bot.vel.z *= 0.05; // 在火边等火灭
+          }
+        }
       }
     }
 
@@ -409,6 +447,7 @@ CS.createBot = function (THREE, map, name, team) {
           setGoal(map.nearestWaypoint(carrier.pos).name);
         } else if (heardFight && Math.random() < 0.45) {
           setGoal(map.nearestWaypoint(ev).name);
+          if (curCtx) sayRadio(curCtx, "听到枪声，赶去支援", false);
         } else {
           bot._laneI = ((bot._laneI === undefined ? -1 : bot._laneI) + 1) % bot._lane.length;
           setGoal(bot._lane[bot._laneI]);
@@ -440,6 +479,7 @@ CS.createBot = function (THREE, map, name, team) {
         if (heardFight && Math.random() < 0.4) {
           setGoal(map.nearestWaypoint(ev).name);
           bot.state = "seek";
+          if (curCtx) sayRadio(curCtx, "听到枪声，回防支援", false);
         } else if (Math.random() < (nearSite ? 0.6 : 0.25)) {
           bot.state = "guard";
           bot.guardT = (nearSite ? 4 : 2) + Math.random() * 4;
@@ -484,6 +524,13 @@ CS.createBot = function (THREE, map, name, team) {
       bot._nadeCd = now + 8;
       CS.grenades.throwAt("flash", bot.eyePos(),
         { x: target.pos.x, y: target.pos.y + 1, z: target.pos.z }, bot);
+    } else if (bot.grenades.fire > 0 && dist > 8 && dist < 22 && Math.random() < 0.22) {
+      // 朝敌人脚下丢火封走位
+      bot.grenades.fire--;
+      bot._nadeCd = now + 10;
+      CS.grenades.throwAt("fire", bot.eyePos(),
+        { x: target.pos.x, y: target.pos.y, z: target.pos.z }, bot,
+        bot.team === "T" ? "molotov" : "incendiary");
     } else if (bot.grenades.he > 0 && dist > 9 && dist < 28 && Math.random() < 0.3) {
       bot.grenades.he--;
       bot._nadeCd = now + 9;
@@ -518,7 +565,12 @@ CS.createBot = function (THREE, map, name, team) {
       bot.money -= 650;
       bot.armor = 100;
     }
-    // 道具购买：有余钱才买，闪光 > HE > 烟雾
+    // CT 优先买拆弹钳（拆包时间减半）
+    if (bot.team === "CT" && !bot.hasKit && bot.money >= 1000 && Math.random() < 0.7) {
+      bot.money -= 400;
+      bot.hasKit = true;
+    }
+    // 道具购买：有余钱才买，闪光 > HE > 火焰 > 烟雾
     if (bot.money >= 900 && bot.grenades.flash < 1 && Math.random() < 0.55) {
       bot.money -= 200;
       bot.grenades.flash = 1;
@@ -526,6 +578,11 @@ CS.createBot = function (THREE, map, name, team) {
     if (bot.money >= 1000 && bot.grenades.he < 1 && Math.random() < 0.5) {
       bot.money -= 300;
       bot.grenades.he = 1;
+    }
+    const firePrice = bot.team === "T" ? 400 : 600;
+    if (bot.money >= 1200 + firePrice && bot.grenades.fire < 1 && Math.random() < 0.35) {
+      bot.money -= firePrice;
+      bot.grenades.fire = 1;
     }
     if (bot.money >= 1100 && bot.grenades.smoke < 1 && Math.random() < 0.35) {
       bot.money -= 300;

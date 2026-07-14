@@ -60,10 +60,22 @@ CS.WEAPONS = {
     mag: 1, reserve: 0, reloadTime: 0,
     spread: 0, moveSpread: 0, recoil: 0, hsMult: 1,
   },
+  molotov: {
+    id: "molotov", name: "燃烧瓶", tag: "molotov", slot: 4, grenade: true, nadeType: "fire",
+    dmg: 28, rpm: 60, price: 400, auto: false,
+    mag: 1, reserve: 0, reloadTime: 0,
+    spread: 0, moveSpread: 0, recoil: 0, hsMult: 1, fireColor: 0xff6a18,
+  },
+  incendiary: {
+    id: "incendiary", name: "燃烧弹", tag: "incgrenade", slot: 4, grenade: true, nadeType: "fire",
+    dmg: 28, rpm: 60, price: 600, auto: false,
+    mag: 1, reserve: 0, reloadTime: 0,
+    spread: 0, moveSpread: 0, recoil: 0, hsMult: 1, fireColor: 0xff8a30,
+  },
 };
 
-CS.NADE_ORDER = ["he", "flash", "smoke"];
-CS.NADE_WEAPON = { he: "hegrenade", flash: "flashbang", smoke: "smokegrenade" };
+CS.NADE_ORDER = ["he", "flash", "smoke", "fire"];
+CS.NADE_WEAPON = { he: "hegrenade", flash: "flashbang", smoke: "smokegrenade", fire: "molotov" };
 
 // ============ 确定性喷射弹道（AK/M4 压枪模式） ============
 // 每发子弹相对准星的固定偏移 [yawOff, pitchOff]（弧度），前几发精准，
@@ -188,8 +200,9 @@ CS.createWeaponSystem = function (THREE, ctx) {
     scoped: false,
     lastShotTime: -99,
     _recoilAccum: 0,
-    grenades: { he: 0, smoke: 0, flash: 0 },
+    grenades: { he: 0, smoke: 0, flash: 0, fire: 0 },
     grenadeSel: "he",
+    fireId: "molotov", // 当前火焰弹种类（T 燃烧瓶 / CT 燃烧弹）
     _sprayIdx: 0,
   };
 
@@ -200,7 +213,8 @@ CS.createWeaponSystem = function (THREE, ctx) {
 
   // 槽位 4 的"伪武器"实例：magAmmo 显示当前雷种剩余数量
   const grenadeInst = { def: CS.WEAPONS.hegrenade, magAmmo: 0, reserveAmmo: 0, reloading: false, reloadEnd: 0 };
-  function grenadeTotal() { return sys.grenades.he + sys.grenades.smoke + sys.grenades.flash; }
+  function grenadeTotal() { return sys.grenades.he + sys.grenades.smoke + sys.grenades.flash + sys.grenades.fire; }
+  function nadeWeaponId(type) { return type === "fire" ? sys.fireId : CS.NADE_WEAPON[type]; }
   // 循环到下一个持有的雷种（he → flash → smoke）
   function nextNade(t) {
     const order = CS.NADE_ORDER;
@@ -228,7 +242,9 @@ CS.createWeaponSystem = function (THREE, ctx) {
     sys.grenades.he = 0;
     sys.grenades.smoke = 0;
     sys.grenades.flash = 0;
+    sys.grenades.fire = 0;
     sys.grenadeSel = "he";
+    sys.fireId = player.team === "T" ? "molotov" : "incendiary";
     sys.current = 2;
     sys.scoped = false;
     sys._sprayIdx = 0;
@@ -237,7 +253,7 @@ CS.createWeaponSystem = function (THREE, ctx) {
   };
   sys.cur = function () {
     if (sys.current === 4) {
-      grenadeInst.def = CS.WEAPONS[CS.NADE_WEAPON[sys.grenadeSel]];
+      grenadeInst.def = CS.WEAPONS[nadeWeaponId(sys.grenadeSel)];
       grenadeInst.magAmmo = sys.grenades[sys.grenadeSel];
       return grenadeInst;
     }
@@ -310,7 +326,7 @@ CS.createWeaponSystem = function (THREE, ctx) {
     const dir = new THREE.Vector3(0, 0, -1).applyEuler(camera.rotation);
     const origin = player.eyePos().addScaledVector(dir, 0.35);
     const vel = dir.multiplyScalar(15.5).add(new THREE.Vector3(0, 3.5, 0));
-    CS.grenades.throw(type, origin, vel, player);
+    CS.grenades.throw(type, origin, vel, player, nadeWeaponId(type));
     CS.audio.throwPin();
     vmKick = Math.min(1, vmKick + 0.6);
     // 当前雷种投完：切下一种或回到枪械
@@ -331,14 +347,22 @@ CS.createWeaponSystem = function (THREE, ctx) {
     return true;
   }
 
-  // G 键快速投掷：优先 HE → 闪光 → 烟雾，不需要先切到槽位 4
+  // G 键快速投掷：优先 HE → 闪光 → 烟雾 → 火焰，不需要先切到槽位 4
   sys.quickThrow = function (now) {
     if (!player.alive) return;
     if (now - sys.lastShotTime < 0.8) return;
-    const type = sys.grenades.he > 0 ? "he" : sys.grenades.flash > 0 ? "flash" : sys.grenades.smoke > 0 ? "smoke" : null;
+    const type = ["he", "flash", "smoke", "fire"].find((t) => sys.grenades[t] > 0) || null;
     if (!type) return;
     sys.lastShotTime = now;
     doThrow(type);
+  };
+
+  // 投掷预览用：当前雷的出手点与初速（与 doThrow 完全一致）
+  sys.throwParams = function () {
+    const dir = new THREE.Vector3(0, 0, -1).applyEuler(camera.rotation);
+    const origin = player.eyePos().addScaledVector(dir, 0.35);
+    const vel = dir.multiplyScalar(15.5).add(new THREE.Vector3(0, 3.5, 0));
+    return { origin, vel };
   };
 
   // 当前扩散（站/蹲/移动/空中/开镜）
@@ -529,6 +553,15 @@ CS.createWeaponSystem = function (THREE, ctx) {
       cyl(0.03, 0.11, bladeMat, 0, -0.01, -0.05, g, 0);
       box(0.02, 0.025, 0.02, gunmetal, 0, 0.055, -0.05, g);
       box(0.008, 0.045, 0.025, gunmetal, 0.026, 0.04, -0.05, g);
+    } else if (id === "molotov") {
+      // 瓶身 + 瓶颈 + 布条
+      cyl(0.04, 0.1, new THREE.MeshLambertMaterial({ color: 0x6a8a4a, transparent: true, opacity: 0.85 }), 0, -0.02, -0.05, g, 0);
+      cyl(0.016, 0.06, new THREE.MeshLambertMaterial({ color: 0x5a7a3e }), 0, 0.055, -0.05, g, 0);
+      box(0.02, 0.05, 0.015, new THREE.MeshLambertMaterial({ color: 0xd8d0b8 }), 0.01, 0.1, -0.05, g);
+    } else if (id === "incendiary") {
+      cyl(0.035, 0.12, new THREE.MeshLambertMaterial({ color: 0xa03828 }), 0, -0.01, -0.05, g, 0);
+      box(0.02, 0.025, 0.02, gunmetal, 0, 0.06, -0.05, g);
+      box(0.008, 0.045, 0.025, bladeMat, 0.026, 0.045, -0.05, g);
     }
     return g;
   }

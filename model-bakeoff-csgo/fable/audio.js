@@ -52,11 +52,16 @@ CS.audio = (function () {
     o.start(); o.stop(c.currentTime + dur + 0.05);
   }
 
-  // 距离衰减系数
+  // 声音遮挡检测（app.js 注入：源与听者之间有墙 → true）
+  let occlusionTest = null;
+
+  // 距离衰减系数（含简易遮挡：隔墙声音闷且小）
   function attenuate(srcPos, listenerPos, refDist) {
     if (!srcPos || !listenerPos) return 1;
     const d = Math.hypot(srcPos.x - listenerPos.x, (srcPos.y || 0) - (listenerPos.y || 0), srcPos.z - listenerPos.z);
-    return Math.min(1, refDist / Math.max(refDist, d));
+    let a = Math.min(1, refDist / Math.max(refDist, d));
+    if (a > 0.03 && occlusionTest && occlusionTest(srcPos, listenerPos)) a *= 0.35;
+    return a;
   }
 
   const gunParams = {
@@ -79,6 +84,7 @@ CS.audio = (function () {
 
   return {
     unlock() { ensure(); },
+    setOcclusionTest(fn) { occlusionTest = fn; },
 
     gunshot(id) { gunshotScaled(id, 1); },
     gunshotAt(id, pos, listener) { gunshotScaled(id, attenuate(pos, listener, 9) * 0.9); },
@@ -141,6 +147,24 @@ CS.audio = (function () {
     flashRing(strength) {
       // 被闪后的耳鸣
       tone(3800, 0.16 * strength, 1.2 + strength, "sine", 3700);
+    },
+    fireIgniteAt(pos, listener) {
+      const a = attenuate(pos, listener, 12);
+      if (a < 0.06) return;
+      bang(0.45 * a, 0.5, 1400, 0.5, 1.2); // 呼的一声
+      bang(0.2 * a, 1.2, 600, 0.4, 1.6);
+    },
+    fireOutAt(pos, listener) {
+      const a = attenuate(pos, listener, 9);
+      if (a > 0.08) bang(0.2 * a, 0.5, 900, 0.4, 1.4); // 嗤——熄灭
+    },
+    fireCrackleAt(pos, listener) {
+      const a = attenuate(pos, listener, 7);
+      if (a > 0.1 && Math.random() < 0.6) bang(0.07 * a, 0.06, 900 + Math.random() * 1800, 1.2);
+    },
+    radioChirp() {
+      tone(1400, 0.06, 0.05, "square", 1400);
+      setTimeout(() => tone(1750, 0.05, 0.06, "square", 1750), 60);
     },
 
     bombBeep(urgent) { tone(urgent ? 2200 : 1900, urgent ? 0.3 : 0.2, 0.07, "square"); },

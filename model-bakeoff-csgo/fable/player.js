@@ -96,6 +96,7 @@ CS.createPlayer = function (THREE, map, camera) {
     alive: true,
     kills: 0, deaths: 0, assists: 0,
     hasBomb: false,
+    hasKit: false,
     lastFired: -99,
     name: "你",
     isHuman: true,

@@ -32,6 +32,7 @@
       <div>左键 开火 · 右键 AWP 开镜 · R 换弹 · 1/2/3/Q/滚轮 切枪</div>
       <div>4 投掷物 · G 快速投雷 · B 购买菜单 · Tab 计分板</div>
       <div>E 长按 安放 / 拆除 C4 · E 拾取地上的枪</div>
+      <div>Z/X/C 无线电 · 先到 4 回合半场换边 · CT 可买拆弹钳</div>
     </div>
     <div class="start-hint">选择阵营即开始（首回合 $800，先赢 8 回合者获胜）</div>
   </div>
@@ -98,13 +99,15 @@
   <div id="bomb-indicator" class="hidden">C4</div>
   <div id="carry-indicator" class="hidden">携带 C4 — 前往 A/B 点长按 E 安放</div>
 
-  <!-- 左下：雷达 + 血量 护甲 金钱 -->
+  <!-- 左下：无线电 + 雷达 + 血量 护甲 金钱 -->
+  <div id="radio-feed"></div>
   <div id="radar-wrap"><canvas id="radar" width="176" height="176"></canvas></div>
   <div id="bottom-left">
     <div id="money">$ 800</div>
     <div class="stat-row">
       <div class="stat"><span class="stat-icon hp-icon">+</span><span id="health-val">100</span></div>
       <div class="stat"><span class="stat-icon armor-icon">⛨</span><span id="armor-val">0</span></div>
+      <div class="stat hidden" id="kit-indicator"><span class="stat-icon kit-icon">✂</span><span>拆弹钳</span></div>
     </div>
   </div>
 
@@ -141,6 +144,7 @@
   <div class="match-end-inner">
     <h2 id="match-end-title">胜利</h2>
     <div id="match-end-score">8 : 5</div>
+    <div id="match-end-mvp"></div>
     <button id="btn-restart">重新开始</button>
   </div>
 </div>

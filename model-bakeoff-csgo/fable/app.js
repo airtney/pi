@@ -136,6 +136,43 @@ CS.boot = function (THREE) {
       d.ttl = DECAL_LIFE;
     }
 
+    // ---- 伤害数字池（命中点飘字） ----
+    const DMG_POOL = 12;
+    const dmgPool = [];
+    for (let i = 0; i < DMG_POOL; i++) {
+      const cnv = document.createElement("canvas");
+      cnv.width = 96; cnv.height = 48;
+      const tex = new THREE.CanvasTexture(cnv);
+      const sp = new THREE.Sprite(new THREE.SpriteMaterial({
+        map: tex, transparent: true, opacity: 0, depthTest: false,
+      }));
+      sp.scale.set(0.6, 0.3, 1);
+      sp.visible = false;
+      scene.add(sp);
+      dmgPool.push({ sprite: sp, cnv, tex, ttl: 0, max: 0.7 });
+    }
+    let dmgI = 0;
+
+    function damageNumber(pos, dmg, headshot) {
+      const d = dmgPool[dmgI];
+      dmgI = (dmgI + 1) % DMG_POOL;
+      const g2 = d.cnv.getContext("2d");
+      g2.clearRect(0, 0, 96, 48);
+      g2.font = "bold 30px Arial";
+      g2.textAlign = "center";
+      g2.lineWidth = 5;
+      g2.strokeStyle = "rgba(0,0,0,0.85)";
+      g2.fillStyle = headshot ? "#ffd24a" : "#f2ede0";
+      const txt = (headshot ? "✕" : "") + Math.round(dmg);
+      g2.strokeText(txt, 48, 34);
+      g2.fillText(txt, 48, 34);
+      d.tex.needsUpdate = true;
+      d.sprite.position.set(pos.x + (Math.random() - 0.5) * 0.3, pos.y, pos.z + (Math.random() - 0.5) * 0.3);
+      d.sprite.material.opacity = 1;
+      d.sprite.visible = true;
+      d.ttl = d.max;
+    }
+
     const muzzle = new THREE.PointLight(0xffc860, 0, 7, 2);
     camera.add(muzzle);
     muzzle.position.set(0.22, -0.16, -0.7);
@@ -214,6 +251,7 @@ CS.boot = function (THREE) {
         CS.hud.hitmarker(kill);
         if (kill) CS.audio.headshotDing(); else CS.audio.hitConfirm();
       },
+      damageNumber,
       update(dt) {
         if (muzzleT > 0) {
           muzzleT -= dt;
@@ -237,6 +275,13 @@ CS.boot = function (THREE) {
           d.ttl -= dt;
           if (d.ttl <= 0) { d.mesh.visible = false; continue; }
           if (d.ttl < 2) d.mesh.material.opacity = 0.8 * (d.ttl / 2); // 淡出
+        }
+        for (const d of dmgPool) {
+          if (d.ttl <= 0) continue;
+          d.ttl -= dt;
+          if (d.ttl <= 0) { d.sprite.visible = false; continue; }
+          d.sprite.position.y += dt * 0.9; // 上飘
+          d.sprite.material.opacity = Math.min(1, d.ttl / (d.max * 0.6));
         }
         for (let i = rings.length - 1; i >= 0; i--) {
           const s = rings[i];
@@ -268,6 +313,13 @@ CS.boot = function (THREE) {
       if (!victim._dmgLog) victim._dmgLog = new Map();
       victim._dmgLog.set(attacker, performance.now() / 1000);
     }
+    // 玩家造成的伤害：命中点飘伤害数字
+    if (attacker === player && victim !== player) {
+      effects.damageNumber(
+        { x: victim.pos.x, y: victim.pos.y + 1.75, z: victim.pos.z },
+        dmg, headshot
+      );
+    }
     if (victim === player) {
       CS.hud.updateHealth(player);
       CS.hud.damageFlash();
@@ -278,6 +330,7 @@ CS.boot = function (THREE) {
       if (victim === player) {
         player.alive = false;
         player.deaths++;
+        player._diedAt = performance.now() / 1000;
         CS.audio.death();
         CS.hud.spectate(true);
         CS.hud.progress(null, null);
@@ -324,6 +377,47 @@ CS.boot = function (THREE) {
   // ============ 迷你雷达 ============
   CS.hud.initRadar(map);
 
+  // ============ 声音遮挡（隔墙声音闷） ============
+  CS.audio.setOcclusionTest((src, lst) =>
+    CS.lineBlocked(
+      { x: src.x, y: (src.y || 0) + 1.2, z: src.z },
+      { x: lst.x, y: (lst.y || 0) + 0.6, z: lst.z },
+      map.colliders
+    )
+  );
+
+  // ============ 投掷弧线预览（手持投掷物时显示） ============
+  const ARC_MAX = 32;
+  const arcGeo = new THREE.BufferGeometry();
+  arcGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(ARC_MAX * 3), 3));
+  const arcLine = new THREE.Line(arcGeo, new THREE.LineDashedMaterial({
+    color: 0xe8f0c8, transparent: true, opacity: 0.45, dashSize: 0.35, gapSize: 0.25,
+  }));
+  arcLine.visible = false;
+  arcLine.frustumCulled = false;
+  scene.add(arcLine);
+  const arcPts = [];
+  let arcT = 0;
+
+  function updateArcPreview(dt) {
+    const show = player.alive && round.phase === "live" &&
+      weaponSys.current === 4 && weaponSys.cur().magAmmo > 0;
+    if (!show) { arcLine.visible = false; return; }
+    arcT += dt;
+    if (arcLine.visible && arcT < 0.05) return; // 20Hz 刷新足够
+    arcT = 0;
+    const p = weaponSys.throwParams();
+    const n = CS.grenades.simulateArc(p.origin, p.vel, arcPts, ARC_MAX);
+    const attr = arcGeo.attributes.position;
+    for (let i = 0; i < ARC_MAX; i++) {
+      const q = arcPts[Math.min(i, n - 1)];
+      attr.setXYZ(i, q.x, q.y, q.z);
+    }
+    attr.needsUpdate = true;
+    arcLine.computeLineDistances();
+    arcLine.visible = true;
+  }
+
   // ============ 输入 ============
   const state = { started: false, locked: false, useHeld: false, useTap: false, mouseDown: false };
 
@@ -351,8 +445,10 @@ CS.boot = function (THREE) {
       return;
     }
     if (CS.hud.buyMenuOpen) return;
-    if (e.button === 0) state.mouseDown = true;
-    else if (e.button === 2) weaponSys.toggleScope();
+    if (e.button === 0) {
+      if (!player.alive) { spect.idx++; return; } // 死亡观战：左键切换目标
+      state.mouseDown = true;
+    } else if (e.button === 2) weaponSys.toggleScope();
   });
   document.addEventListener("mouseup", (e) => {
     if (e.button === 0) state.mouseDown = false;
@@ -407,8 +503,21 @@ CS.boot = function (THREE) {
       case "KeyG":
         if (round.phase === "live") weaponSys.quickThrow(performance.now() / 1000);
         break;
+      case "KeyZ": sayRadio("跟我来！", false); break;
+      case "KeyX": sayRadio("需要支援！", true); break;
+      case "KeyC": sayRadio("这里有敌人！", true); break;
     }
   });
+
+  // 玩家无线电（1 秒冷却；X/C 在雷达标记自己位置）
+  let radioCd = 0;
+  function sayRadio(text, ping) {
+    const now = performance.now() / 1000;
+    if (now < radioCd) return;
+    radioCd = now + 1;
+    CS.hud.radio("你", text, ping ? { x: player.pos.x, z: player.pos.z } : null);
+    CS.audio.radioChirp();
+  }
   document.addEventListener("keyup", (e) => {
     player.keys[e.code] = false;
     if (e.code === "KeyE") state.useHeld = false;
@@ -475,6 +584,30 @@ CS.boot = function (THREE) {
     if (state.useTap) pickupItem(item);
   }
 
+  // ============ 死亡观战：跟随存活队友第一人称 ============
+  const spect = { idx: 0, name: null };
+
+  function updateSpectate(now) {
+    if (player.alive || round.matchOver) { spect.name = null; return; }
+    if (now - (player._diedAt || 0) < 1.4) return; // 先看 1.4 秒死亡镜头
+    const mates = [];
+    for (const ch of round.characters) {
+      if (ch !== player && ch.alive && ch.team === player.team) mates.push(ch);
+    }
+    if (!mates.length) {
+      // 没有存活队友：停在死亡视角
+      if (spect.name !== null) { spect.name = null; CS.hud.spectate(true); }
+      return;
+    }
+    const m = mates[spect.idx % mates.length];
+    if (spect.name !== m.name) {
+      spect.name = m.name;
+      CS.hud.spectate(true, m.name);
+    }
+    camera.position.set(m.pos.x, m.pos.y + 1.55, m.pos.z);
+    camera.rotation.set(0, m.yaw, 0);
+  }
+
   // ============ 雷达：敌人暴露判定（队友视野 / 最近开枪） ============
   function updateSpotted(now) {
     for (const ch of round.characters) {
@@ -498,7 +631,7 @@ CS.boot = function (THREE) {
     }
   }
 
-  CS.debug = { round, player, bots, map, weaponSys, state, grenades: CS.grenades, groundItems: CS.groundItems };
+  CS.debug = { round, player, bots, map, weaponSys, state, grenades: CS.grenades, groundItems: CS.groundItems, applyDamage, effects };
 
   // ============ 主循环 ============
   let lastT = performance.now() / 1000;
@@ -539,6 +672,7 @@ CS.boot = function (THREE) {
           round, effects,
           onDamage: applyDamage,
           listenerPos: player.pos,
+          playerTeam: player.team,
           now,
         };
         for (const b of bots) b.update(dt, botCtx);
@@ -549,9 +683,11 @@ CS.boot = function (THREE) {
         // 回合
         round.update(dt, { useHeld: state.useHeld });
 
-        // 武器拾取
+        // 武器拾取 / 投掷预览 / 死亡观战
         updatePickup();
         state.useTap = false;
+        updateArcPreview(dt);
+        updateSpectate(now);
 
         // 雷达（约 12Hz：含队友视野暴露判定）
         radarT += dt;

@@ -315,6 +315,37 @@ CS.createMap = function (THREE) {
   siteBeacon(sites.A, "A");
   siteBeacon(sites.B, "B");
 
+  // ============ 区域路牌（Dust2 点位辨识：中门 / 隧道 / 大道 / 小道） ============
+  function zoneLabel(text, sub, x, y, z) {
+    const cv = document.createElement("canvas");
+    cv.width = 256; cv.height = 96;
+    const g = cv.getContext("2d");
+    g.textAlign = "center";
+    g.font = "bold 40px Arial";
+    g.strokeStyle = "rgba(0,0,0,0.75)"; g.lineWidth = 7;
+    g.strokeText(text, 128, 42);
+    g.fillStyle = "rgba(235,228,205,0.95)";
+    g.fillText(text, 128, 42);
+    g.font = "20px Arial";
+    g.strokeStyle = "rgba(0,0,0,0.6)"; g.lineWidth = 4;
+    g.strokeText(sub, 128, 74);
+    g.fillStyle = "rgba(200,190,160,0.9)";
+    g.fillText(sub, 128, 74);
+    const t = new THREE.CanvasTexture(cv);
+    t.colorSpace = THREE.SRGBColorSpace;
+    const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: t, transparent: true, opacity: 0.62 }));
+    sp.scale.set(3.4, 1.27, 1);
+    sp.position.set(x, y, z);
+    group.add(sp);
+  }
+  zoneLabel("中门", "MID DOORS", 1, 3.7, -37);
+  zoneLabel("中路", "MID", 0, 3.3, 14);
+  zoneLabel("B 隧道", "TUNNELS", -45, 2.7, 12);
+  zoneLabel("A 大道", "LONG A", 45, 3.7, 20);
+  zoneLabel("A 小道", "SHORT", 17, 3.4, -30);
+  zoneLabel("B 门", "B DOORS", -24, 3.4, -30);
+  zoneLabel("A 坡道", "A RAMP", 44, 3.6, -29.5);
+
   // ============ 光照（沙漠午后：暖阳 + 沙色环境光） ============
   const hemi = new THREE.HemisphereLight(0xbdd2e8, 0x9a8055, 0.95);
   group.add(hemi);

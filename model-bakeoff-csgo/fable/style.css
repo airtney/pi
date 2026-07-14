@@ -175,6 +175,36 @@ body {
   padding: 3px 12px; border-radius: 3px;
 }
 
+/* ---- 无线电 ---- */
+#radio-feed {
+  position: absolute; left: 18px; bottom: 306px;
+  display: flex; flex-direction: column; gap: 3px;
+  font-size: 12.5px; pointer-events: none;
+}
+.radio-entry {
+  background: rgba(10, 10, 8, 0.65); padding: 3px 8px; border-radius: 2px;
+  color: #d5d1c4; max-width: 320px;
+  animation: radio-in 0.15s ease-out;
+}
+.radio-tag { color: #8fb56a; font-weight: 700; }
+.radio-name { color: #e6c05a; }
+@keyframes radio-in { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: none; } }
+
+/* ---- 拆弹钳图标 ---- */
+.kit-icon { color: #6fc0e8; }
+
+/* ---- MVP 领奖台 ---- */
+#match-end-mvp { margin: 14px 0 6px; display: flex; flex-direction: column; gap: 6px; }
+.mvp-row {
+  display: flex; gap: 12px; justify-content: center; align-items: baseline;
+  font-size: 15px; color: #cfcabc;
+}
+.mvp-row.mvp-top { font-size: 19px; font-weight: 700; }
+.mvp-medal {
+  color: #e6c05a; font-weight: 700; min-width: 42px; text-align: right;
+}
+.mvp-stat { color: #8b8878; font-size: 0.85em; }
+
 /* ---- 迷你雷达 ---- */
 #radar-wrap {
   position: absolute; left: 18px; bottom: 118px;

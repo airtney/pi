@@ -17,6 +17,7 @@ CS.hud = (function () {
     "buy-menu", "buy-items", "hitmarker", "damage-vignette", "flash-overlay",
     "scope-overlay", "fps-counter", "match-end-title", "match-end-score", "crosshair",
     "smoke-tint", "radar", "scoreboard", "sb-score", "sb-body", "pickup-hint",
+    "radio-feed", "kit-indicator", "match-end-mvp",
   ];
   ids.forEach((id) => (el[id] = $(id)));
 
@@ -122,7 +123,26 @@ CS.hud = (function () {
 
     bombIndicator(v) { el["bomb-indicator"].classList.toggle("hidden", !v); },
     carryIndicator(v) { el["carry-indicator"].classList.toggle("hidden", !v); },
-    spectate(v) { el["spectate-msg"].classList.toggle("hidden", !v); },
+    kit(v) { el["kit-indicator"].classList.toggle("hidden", !v); },
+    spectate(v, name) {
+      el["spectate-msg"].classList.toggle("hidden", !v);
+      if (v) setText("spectate-msg", name ? "观战: " + name + "（左键切换）" : "你已阵亡 — 观战至回合结束");
+    },
+
+    // ---- 无线电（队内语音条 + 雷达标点） ----
+    _radarPings: [],
+    radio(name, text, pingPos) {
+      const div = document.createElement("div");
+      div.className = "radio-entry";
+      div.innerHTML = '<span class="radio-tag">[无线电]</span> <span class="radio-name">' + name + "</span>：" + text;
+      el["radio-feed"].appendChild(div);
+      while (el["radio-feed"].children.length > 4) el["radio-feed"].removeChild(el["radio-feed"].firstChild);
+      setTimeout(() => { if (div.parentNode) div.parentNode.removeChild(div); }, 5000);
+      if (pingPos) {
+        hud._radarPings.push({ x: pingPos.x, z: pingPos.z, t: performance.now() / 1000 });
+        if (hud._radarPings.length > 4) hud._radarPings.shift();
+      }
+    },
     scope(v) {
       el["scope-overlay"].classList.toggle("hidden", !v);
       el["crosshair"].style.display = v ? "none" : "";
@@ -285,6 +305,20 @@ CS.hud = (function () {
         g.restore();
       }
 
+      // 无线电标点：扩散黄圈（2.5 秒）
+      const nowS = performance.now() / 1000;
+      for (let i = hud._radarPings.length - 1; i >= 0; i--) {
+        const ping = hud._radarPings[i];
+        const age = nowS - ping.t;
+        if (age > 2.5) { hud._radarPings.splice(i, 1); continue; }
+        const pr = 1 + (age % 0.9) * 5;
+        g.strokeStyle = "rgba(240,200,70," + (0.9 - age * 0.32).toFixed(2) + ")";
+        g.lineWidth = 0.7;
+        g.beginPath();
+        g.arc(ping.x, ping.z, pr, 0, Math.PI * 2);
+        g.stroke();
+      }
+
       // C4（已安放 = 闪烁红方块；被携带 = 橙点）
       if (bomb && bomb.planted) {
         if (Math.floor(performance.now() / 400) % 2 === 0) {
@@ -359,9 +393,23 @@ CS.hud = (function () {
       el["buy-menu"].classList.add("hidden");
     },
 
-    showMatchEnd(won, tScore, ctScore) {
+    showMatchEnd(won, tScore, ctScore, characters) {
       el["match-end-title"].textContent = won ? "胜利" : "失败";
       el["match-end-score"].textContent = tScore + " : " + ctScore;
+      // MVP 领奖台：按 击杀 > 助攻 排序取前三
+      if (characters && characters.length) {
+        const sorted = characters.slice().sort((a, b) => b.kills - a.kills || (b.assists || 0) - (a.assists || 0) || a.deaths - b.deaths);
+        const medals = ["MVP", "2nd", "3rd"];
+        let html = "";
+        sorted.slice(0, 3).forEach((c, i) => {
+          const cls = c.team === "T" ? "t-color" : "ct-color";
+          html += '<div class="mvp-row' + (i === 0 ? " mvp-top" : "") + '">' +
+            '<span class="mvp-medal">' + medals[i] + "</span>" +
+            '<span class="' + cls + '">' + c.name + "</span>" +
+            '<span class="mvp-stat">' + c.kills + " 杀 / " + (c.assists || 0) + " 助攻 / " + c.deaths + " 死</span></div>";
+        });
+        el["match-end-mvp"].innerHTML = html;
+      }
       el["match-end"].classList.remove("hidden");
     },
 

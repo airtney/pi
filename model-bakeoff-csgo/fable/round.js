@@ -24,6 +24,8 @@ CS.createRound = function (THREE, ctx) {
     matchOver: false,
     playerPlanting: 0,
     playerDefusing: 0,
+    halfDone: false,   // 已换过边
+    _pendingSwap: false,
   };
 
   // ============ C4 模型 ============
@@ -81,8 +83,44 @@ CS.createRound = function (THREE, ctx) {
     });
   }
 
+  // ============ 半场换边 ============
+  // 一方先拿到一半所需回合数（4/8）时触发：T↔CT 互换、比分随队伍互换、经济重置为手枪局
+  function swapSides() {
+    round.halfDone = true;
+    // 比分与连败随原班人马交换
+    const t = round.score.T; round.score.T = round.score.CT; round.score.CT = t;
+    round.lossStreak.T = 0; round.lossStreak.CT = 0;
+
+    player.team = player.team === "T" ? "CT" : "T";
+    const tNames = CS.BOT_NAMES.T.slice(), ctNames = CS.BOT_NAMES.CT.slice();
+    let ti = 0, ci = 0;
+    for (const b of bots) {
+      b.team = b.team === "T" ? "CT" : "T";
+      b.name = b.team === "T" ? tNames[ti++] : ctNames[ci++];
+      recolorBot(b);
+    }
+    // 手枪局经济：所有人重置
+    for (const ch of characters) {
+      ch.money = 800;
+      ch.armor = 0;
+      ch.hasKit = false;
+      ch._survived = false; // 强制重置武器
+      if (!ch.isHuman) { ch.grenades.he = 0; ch.grenades.smoke = 0; ch.grenades.flash = 0; ch.grenades.fire = 0; }
+    }
+    CS.hud.banner("换边", "阵营互换 — 手枪局重新开始", "", 4);
+    CS.hud.centerMsg(
+      player.team === "T" ? "下半场：你是恐怖分子 — 安放 C4 或歼灭 CT" : "下半场：你是反恐精英 — 守住炸弹点或歼灭 T",
+      4.5
+    );
+    CS.audio.roundStart();
+  }
+
   // ============ 回合开始 ============
   round.startRound = function () {
+    if (round._pendingSwap) {
+      round._pendingSwap = false;
+      swapSides();
+    }
     round.number++;
     round.phase = "buy";
     round.timer = BUY_TIME;
@@ -103,9 +141,11 @@ CS.createRound = function (THREE, ctx) {
       const list = map.spawns[ch.team];
       const sp = list[spawnIdx[ch.team]++ % list.length];
       ch.armor = ch._survived ? ch.armor : 0;
+      ch.hasKit = ch._survived ? ch.hasKit : false; // 拆弹钳阵亡即失去
       ch._dmgLog = null; // 助攻记录
       ch.spawnAt(sp);
     }
+    CS.hud.kit(player.team === "CT" && !!player.hasKit);
 
     // 武器保留/重置
     if (!player._survived) {
@@ -126,6 +166,7 @@ CS.createRound = function (THREE, ctx) {
         b.grenades.he = 0;
         b.grenades.smoke = 0;
         b.grenades.flash = 0;
+        b.grenades.fire = 0;
       }
       b.buyPhase();
     }
@@ -222,6 +263,11 @@ CS.createRound = function (THREE, ctx) {
     CS.hud.centerMsg("炸弹已安放在 " + siteKey + " 点！", 3);
     CS.audio.bombPlanted();
     if (planter === player) CS.hud.updateMoney(player);
+    else if (planter.team === player.team) {
+      // 队友 BOT 下包无线电
+      CS.hud.radio(planter.name, "包已下，守住 " + siteKey + " 点！", { x: planter.pos.x, z: planter.pos.z });
+      CS.audio.radioChirp();
+    }
     // 全体 BOT 改变目标
     for (const b of bots) if (b.alive) { b.state = "idle"; }
   }
@@ -288,6 +334,12 @@ CS.createRound = function (THREE, ctx) {
     CS.hud.updateScore(round.score.T, round.score.CT, round.number);
     CS.hud.progress(null, null);
 
+    // 半场：一方拿到一半所需回合数 → 下回合开始前换边
+    const HALF = Math.ceil(WIN_ROUNDS / 2);
+    if (!round.halfDone && round.score[winner] === HALF && round.score[winner] < WIN_ROUNDS) {
+      round._pendingSwap = true;
+    }
+
     const playerWon = player.team === winner;
     CS.hud.banner(
       winner === "T" ? "恐怖分子获胜" : "反恐精英获胜",
@@ -311,7 +363,7 @@ CS.createRound = function (THREE, ctx) {
     if (round.score[winner] >= WIN_ROUNDS) {
       round.matchOver = true;
       setTimeout(() => {
-        CS.hud.showMatchEnd(player.team === winner, round.score.T, round.score.CT);
+        CS.hud.showMatchEnd(player.team === winner, round.score.T, round.score.CT, characters);
         document.exitPointerLock && document.exitPointerLock();
       }, 2500);
     }
@@ -319,10 +371,12 @@ CS.createRound = function (THREE, ctx) {
 
   // ============ 购买 ============
   round.getBuyItems = function () {
-    const rifle = player.team === "T" ? CS.WEAPONS.ak47 : CS.WEAPONS.m4a4;
+    const isCT = player.team === "CT";
+    const rifle = isCT ? CS.WEAPONS.m4a4 : CS.WEAPONS.ak47;
+    const fire = isCT ? CS.WEAPONS.incendiary : CS.WEAPONS.molotov;
     const hasRifle = ctx.weaponSys.slots[1] && ctx.weaponSys.slots[1].def.id === rifle.id;
     const hasAwp = ctx.weaponSys.slots[1] && ctx.weaponSys.slots[1].def.id === "awp";
-    return [
+    const items = [
       {
         label: rifle.name + "（步枪）", price: rifle.price, owned: hasRifle,
         buy: () => buyWeapon(rifle.id),
@@ -340,6 +394,19 @@ CS.createRound = function (THREE, ctx) {
           done();
         },
       },
+    ];
+    if (isCT) {
+      items.push({
+        label: "拆弹钳（拆弹 6 秒 → 3 秒）", price: 400, owned: !!player.hasKit,
+        buy: () => {
+          if (!spend(400)) return;
+          player.hasKit = true;
+          CS.hud.kit(true);
+          done();
+        },
+      });
+    }
+    items.push(
       {
         label: "闪光弹（4 切换 / G 投掷）", price: 200, owned: ctx.weaponSys.grenades.flash >= 1,
         buy: () => {
@@ -353,6 +420,15 @@ CS.createRound = function (THREE, ctx) {
         buy: () => {
           if (!spend(300)) return;
           ctx.weaponSys.addGrenade("he");
+          done();
+        },
+      },
+      {
+        label: fire.name + "（落地成火，封路 7 秒）", price: fire.price, owned: ctx.weaponSys.grenades.fire >= 1,
+        buy: () => {
+          if (!spend(fire.price)) return;
+          ctx.weaponSys.fireId = fire.id;
+          ctx.weaponSys.addGrenade("fire");
           done();
         },
       },
@@ -375,8 +451,9 @@ CS.createRound = function (THREE, ctx) {
           CS.hud.updateAmmo(ctx.weaponSys.cur());
           done();
         },
-      },
-    ];
+      }
+    );
+    return items;
   };
   function spend(price) {
     if (round.phase !== "buy") { CS.audio.buyFail(); return false; }
@@ -453,12 +530,13 @@ CS.createRound = function (THREE, ctx) {
           CS.hud.progress(null, null);
         }
 
-        // ---- 玩家拆除 ----
+        // ---- 玩家拆除（拆弹钳减半） ----
         if (player.alive && player.team === "CT" && round.bombPlanted && input.useHeld && playerNearBomb()) {
+          const defTime = player.hasKit ? DEFUSE_TIME / 2 : DEFUSE_TIME;
           round.playerDefusing += dt;
-          CS.hud.progress("拆除炸弹中…", round.playerDefusing / DEFUSE_TIME);
+          CS.hud.progress(player.hasKit ? "拆除炸弹中…（拆弹钳）" : "拆除炸弹中…", round.playerDefusing / defTime);
           if (Math.floor(round.playerDefusing * 4) !== Math.floor((round.playerDefusing - dt) * 4)) CS.audio.defuseTick();
-          if (round.playerDefusing >= DEFUSE_TIME) {
+          if (round.playerDefusing >= defTime) {
             round.playerDefusing = 0;
             CS.hud.progress(null, null);
             defuseBomb(player);
