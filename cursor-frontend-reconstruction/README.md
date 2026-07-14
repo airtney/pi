@@ -1,69 +1,73 @@
-# cursor.com Homepage Reconstruction
+# Cursor 官网首页前端复刻 (cursor-frontend-reconstruction)
 
-An **educational reconstruction** of the [cursor.com](https://cursor.com/) homepage as a standalone Next.js project. This is not an official Cursor/Anysphere project and is not affiliated with them. All Cursor branding, product names, copy, and CDN-hosted imagery belong to Anysphere, Inc. Built purely to study the page's layout, design tokens, and component structure.
+对 [cursor.com](https://cursor.com) 营销首页的**前端逆向复刻**。使用 Next.js App
+Router + TypeScript + Tailwind 重建，作为一次教学性质的逆向工程练习：**不打包原站
+产物、不使用 iframe 嵌入、不复制任何服务端代码**,所有组件均依据公开的 HTML/CSS/JS
+手工重写。
 
-## Running
+完整的复刻方法论见 [`REPLICA_CONCEPT.md`](./REPLICA_CONCEPT.md),本文件是其配套的
+中文使用说明。
+
+## 技术栈
+
+- **Next.js 15 (App Router)** + React 19
+- **TypeScript**(严格模式)
+- **Tailwind CSS 3.4**,通过 `tailwind.config.ts` 映射从原站 CSS 提取的设计令牌
+- 真实字体 **CursorGothic**(无衬线) 与 **BerkeleyMono**(等宽),镜像自 cursor.com CDN
+
+## 快速开始
 
 ```bash
 npm install
-npm run dev    # http://localhost:3000
-npm run build  # production build
-npm run start  # serve production build
+npm run dev     # 启动开发服务器,访问 http://localhost:3000
+npm run build   # 生产构建
+npm run start   # 运行生产构建
 ```
 
-Requires Node.js 22+.
+## 目录结构
 
-## Stack
+```
+cursor-frontend-reconstruction/
+├── app/                      # App Router(位于项目根目录,非 src/app)
+│   ├── layout.tsx            # 根布局 + Header/Footer + 元数据
+│   ├── page.tsx              # 首页,组合 11 个区块
+│   ├── error.tsx             # 错误边界(复刻自模块 641852)
+│   └── globals.css           # 设计令牌 + 组件类(.btn/.container/.type-*)
+├── components/
+│   ├── Button.tsx            # Button/ButtonBlock/Actions/Shell 高亮(模块 634408)
+│   ├── ContextualDownloadButton.tsx  # 按平台自适应的下载按钮(模块 136952)
+│   ├── Header.tsx / Footer.tsx / CursorLogo.tsx
+│   ├── DemoWindow.tsx / Icons.tsx
+│   └── sections/             # 首页各区块
+├── lib/
+│   ├── platform.ts           # 平台/架构探测(模块 733812 / 942982 / 229207)
+│   ├── button.ts             # 按钮变体与对齐(模块 560817 / 861352)
+│   ├── gt-shim.ts            # gt-next useGT() 本地替身
+│   └── cn.ts                 # classnames 工具
+├── public/                   # 真实字体、头像、团队照片、favicon
+├── _artifacts/               # 抓取的原始产物(HTML/chunks/css/beautified)
+├── tailwind.config.ts        # 从 CSS 提取的主题令牌
+└── REPLICA_CONCEPT.md        # 复刻方法论
+```
 
-- Next.js 15 (App Router)
-- React 19
-- TypeScript
-- Tailwind CSS 3
+## 复刻要点
 
-## How it was built
+- **React Compiler 还原**:原站启用了 React Compiler,产物中充斥
+  `useMemoCache(n)` / `(0,r.c)(n)` 与 `react.memo_cache_sentinel` 守卫,已全部还原
+  为惯用的 `useState` / `useEffect` 与派生值。
+- **Turbopack 模块解析**:模块以 `<id>, (e) => {...}` 声明,导出用
+  `e.s(["Name", 0, fn], <id>)`,导入用 `e.i(<id>)`。据此定位关键模块 id 并映射到
+  组件(详见 `REPLICA_CONCEPT.md` 的模块对照表)。
+- **设计令牌**:`--color-theme-*`、`--text-*`、`--tracking-*`、`--spacing-g*/v*`
+  等均从 `_artifacts/css/*.css` 提取,浅色主题 `bg #f7f7f4 / fg #26251e`。
+- **i18n**:`gt-next` 的 `useGT()` 由 `lib/gt-shim.ts` 替换,仅保留 en-US 文案。
 
-1. Fetched `https://cursor.com/` and its CSS chunks (`/marketing-static/_next/static/chunks/*.css`) with `curl`.
-2. Extracted section structure, headings, nav/footer link trees, and image URLs from the server-rendered HTML.
-3. Extracted design tokens from the CSS custom properties (`--color-theme-*`, `--site-header-height`, type scale) and mapped them into `tailwind.config.ts` / `src/app/globals.css`.
-4. Rewrote everything as React components — no code, markup, or assets were copied from the original bundle.
+## 已知差距 / 非目标
 
-## Page structure
+- 原站的交互式产品演示(客户端 React 状态机)以**静态、视觉近似的窗口模型**呈现。
+- 客户 Logo 墙以**淡化文字标记**表示(原站为内联 SVG,而非通过 URL 引用),以避免
+  嵌入第三方商标素材。
+- 仅复刻 en-US 首页路由;其它页面(定价、文档等)仅在导航中保留链接。
 
-`src/app/page.tsx` composes, in original order:
-
-| Component | Original section |
-| --- | --- |
-| `Header` | Fixed nav: Product/Resources dropdowns, Enterprise, Pricing, Sign in, Contact sales, Download |
-| `Hero` | "Cursor is your coding agent for building ambitious software." + download CTAs + desktop/CLI demo |
-| `LogoCloud` | "Trusted every day by teams that build world-class software" |
-| `FeatureSections` | Agents / cloud agents / every tool / Automations feature blocks |
-| `Testimonials` | "The new way to build software." quote wall |
-| `Frontier` | "Stay on the frontier": models, codebase understanding, enterprise |
-| `Changelog` | Recent changelog entries |
-| `TeamSection` | Applied-research-team blurb + team photos |
-| `Highlights` | "Recent highlights" blog cards |
-| `CtaSection` | "Try Cursor now." |
-| `Footer` | Product/Resources/Company/Legal/Connect columns + legal bar |
-
-## Known differences from the original
-
-- **Fonts**: the original uses the proprietary `CursorGothic` and `Berkeley Mono` typefaces. This reconstruction substitutes **Inter** (sans) and **JetBrains Mono** (mono) from Google Fonts via `next/font`. Metrics and letterforms differ slightly (CursorGothic is a narrower grotesque; Berkeley Mono has more distinctive terminals).
-- **Hero demo**: the original hero embeds a fully interactive multi-window product demo (agent sidebar, editor, CLI, Mission Control) with animations. This is a static, hand-drawn approximation of its layout.
-- **Company logos**: the "trusted by" strip renders styled text wordmarks instead of the trademarked SVG logos.
-- **Cursor logo**: a simplified isometric-cube approximation drawn from scratch, not the original asset.
-- **Testimonials**: quotes are abridged excerpts of the public statements shown on the original page; one avatar (Jensen Huang) uses a generic placeholder because the original asset URL is not directly exposed.
-- **Images**: team photos, blog thumbnails, and avatars hot-link to the same public Vercel Blob CDN the original uses (`ptht05hbb1ssoooe.public.blob.vercel-storage.com`). If those URLs rot, swap in local files under `public/`.
-- **Light theme only**: the original supports light/dark via theme classes; dark-token values are defined in `tailwind.config.ts` (`theme-dark-*`) but no theme toggle is implemented (used only for the CLI window mock).
-- **Omitted**: analytics/GTM scripts, cookie banner, locale switcher behavior, marketing A/B logic, KaTeX/EB Garamond/Lato font faces (used by other routes), and page-load animations.
-
-## Design tokens (light theme, extracted from the original CSS)
-
-| Token | Value |
-| --- | --- |
-| Background | `#f7f7f4` |
-| Foreground | `#26251e` |
-| Accent | `#f54e00` |
-| Card | `#f2f1ed` (steps to `#e1e0db`) |
-| Success / error | `#1f8a65` / `#cf2d56` |
-| Header height | `52px` |
-| Base tracking | `0.005em` |
+> 本项目仅用于前端逆向工程的学习与研究。所有品牌、商标及文案版权归 Anysphere, Inc.
+> 所有。

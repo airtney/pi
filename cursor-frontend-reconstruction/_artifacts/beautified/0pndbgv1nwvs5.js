@@ -1,0 +1,1468 @@
+(globalThis.TURBOPACK || (globalThis.TURBOPACK = [])).push([
+  "object" == typeof document ? document.currentScript : void 0,
+  472768,
+  (e) => {
+    "use strict";
+    var t = e.i(612793),
+      s = e.i(94884);
+    let l = new Map([
+        [
+          "bold",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M216.49,104.49l-80,80a12,12,0,0,1-17,0l-80-80a12,12,0,0,1,17-17L128,159l71.51-71.52a12,12,0,0,1,17,17Z",
+            }),
+          ),
+        ],
+        [
+          "duotone",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", { d: "M208,96l-80,80L48,96Z", opacity: "0.2" }),
+            t.createElement("path", {
+              d: "M215.39,92.94A8,8,0,0,0,208,88H48a8,8,0,0,0-5.66,13.66l80,80a8,8,0,0,0,11.32,0l80-80A8,8,0,0,0,215.39,92.94ZM128,164.69,67.31,104H188.69Z",
+            }),
+          ),
+        ],
+        [
+          "fill",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,48,88H208a8,8,0,0,1,5.66,13.66Z",
+            }),
+          ),
+        ],
+        [
+          "light",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M212.24,100.24l-80,80a6,6,0,0,1-8.48,0l-80-80a6,6,0,0,1,8.48-8.48L128,167.51l75.76-75.75a6,6,0,0,1,8.48,8.48Z",
+            }),
+          ),
+        ],
+        [
+          "regular",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z",
+            }),
+          ),
+        ],
+        [
+          "thin",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M210.83,98.83l-80,80a4,4,0,0,1-5.66,0l-80-80a4,4,0,0,1,5.66-5.66L128,170.34l77.17-77.17a4,4,0,1,1,5.66,5.66Z",
+            }),
+          ),
+        ],
+      ]),
+      i = t.forwardRef((e, i) => t.createElement(s.default, { ref: i, ...e, weights: l }));
+    (i.displayName = "CaretDownIcon"), e.s(["CaretDown", 0, i], 472768);
+  },
+  686699,
+  (e) => {
+    "use strict";
+    var t = e.i(505278),
+      s = e.i(207849),
+      l = e.i(573772),
+      i = e.i(449008),
+      n = e.i(415730);
+    e.s([
+      "default",
+      0,
+      function (e) {
+        let r,
+          a,
+          o,
+          d,
+          c = (0, s.c)(14),
+          { items: u, activeFileId: h, onSelect: m, repoName: p } = e,
+          f = p || "Explorer";
+        if (
+          (c[0] !== f
+            ? ((r = (0, t.jsx)("div", {
+                className:
+                  "type-product-sm-medium text-theme-product-text-sec flex h-[30px] items-center px-3 uppercase",
+                children: f,
+              })),
+              (c[0] = f),
+              (c[1] = r))
+            : (r = c[1]),
+          c[2] !== h || c[3] !== u || c[4] !== m)
+        ) {
+          let e;
+          c[6] !== h || c[7] !== m
+            ? ((e = (e) => {
+                let s;
+                return (0, t.jsx)(
+                  "li",
+                  {
+                    children:
+                      ((s = e.id === h),
+                      (0, t.jsxs)("button", {
+                        type: "button",
+                        className: "flex w-full cursor-default items-center gap-1 px-3 text-left",
+                        style: {
+                          height: "28px",
+                          backgroundColor: s ? "var(--color-theme-card-hover-hex)" : void 0,
+                          outline: "none",
+                        },
+                        onMouseEnter: (e) => {
+                          s ||
+                            ((e.currentTarget.style.backgroundColor =
+                              "var(--color-theme-card-hover-hex)"),
+                            (e.currentTarget.style.borderLeftColor =
+                              "var(--color-theme-border-02)"));
+                        },
+                        onMouseLeave: (e) => {
+                          s ||
+                            ((e.currentTarget.style.backgroundColor = ""),
+                            (e.currentTarget.style.borderLeftColor = "transparent"));
+                        },
+                        onClick: () => "file" === e.type && m(e.id),
+                        "aria-current": s ? "page" : void 0,
+                        tabIndex: -1,
+                        children: [
+                          (0, t.jsx)("span", {
+                            className: "select-none",
+                            style: { paddingLeft: `${8 * (e.depth || 0)}px` },
+                            children:
+                              "folder" === e.type
+                                ? (0, t.jsx)(n.default, {
+                                    className: s
+                                      ? "text-theme-product-text"
+                                      : "text-theme-product-text-sec",
+                                  })
+                                : "browser" === e.type
+                                  ? (0, t.jsx)(l.Globe, {
+                                      size: 16,
+                                      className: s
+                                        ? "text-theme-product-text"
+                                        : "text-theme-product-text-sec",
+                                    })
+                                  : (0, t.jsx)(i.default, {
+                                      className: s
+                                        ? "text-theme-product-text"
+                                        : "text-theme-product-text-sec",
+                                    }),
+                          }),
+                          (0, t.jsx)("span", {
+                            className: "type-product-base truncate",
+                            style: {
+                              color: s
+                                ? "var(--color-theme-text)"
+                                : "var(--color-theme-product-text-sec)",
+                            },
+                            title: e.label,
+                            children: e.label,
+                          }),
+                        ],
+                      })),
+                  },
+                  e.id,
+                );
+              }),
+              (c[6] = h),
+              (c[7] = m),
+              (c[8] = e))
+            : (e = c[8]),
+            (a = u.map(e)),
+            (c[2] = h),
+            (c[3] = u),
+            (c[4] = m),
+            (c[5] = a);
+        } else a = c[5];
+        return (
+          c[9] !== a
+            ? ((o = (0, t.jsx)("ul", {
+                className:
+                  "thin-scrollbar text-theme-text/90 flex flex-1 flex-col overflow-auto pb-5.5 text-sm",
+                children: a,
+              })),
+              (c[9] = a),
+              (c[10] = o))
+            : (o = c[10]),
+          c[11] !== r || c[12] !== o
+            ? ((d = (0, t.jsxs)("aside", {
+                className:
+                  "bg-theme-product-chrome text-theme-text border-theme-border-02 flex h-full w-full flex-col",
+                children: [r, o],
+              })),
+              (c[11] = r),
+              (c[12] = o),
+              (c[13] = d))
+            : (d = c[13]),
+          d
+        );
+      },
+    ]);
+  },
+  39014,
+  (e) => {
+    "use strict";
+    var t = e.i(505278),
+      s = e.i(939843),
+      l = e.i(411318),
+      i = e.i(346140),
+      n = e.i(540796);
+    let r = (0, n.default)("chevron-down", [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]]),
+      a = (0, n.default)("chevron-up", [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]]);
+    var o = e.i(956347),
+      d = e.i(612793),
+      c = e.i(961327),
+      u = e.i(919473),
+      h = e.i(654011),
+      m = e.i(166843),
+      p = e.i(686699),
+      f = e.i(565182),
+      x = e.i(928402);
+    e.s(
+      [
+        "default",
+        0,
+        function ({
+          initialFiles: e,
+          showSidebar: n,
+          showEditor: b,
+          showChat: g,
+          showAgents: y,
+          showAgentsSidebarHeader: v = !0,
+          showEditorTabs: j = !0,
+          hideTabsForBrowser: w = !1,
+          showTabIcons: S = !0,
+          demoData: k,
+          scenario: N,
+          autoCycleScenarioKeys: C,
+          autoCycleIntervalMs: M,
+          autoCycleEnabled: F = !0,
+          autoCycleResetKey: A,
+          onScenarioChange: T,
+          reverseOrder: I,
+          diffViewMode: E = "diff",
+          onRequestDiffViewMode: L,
+          onRequestShowEditor: R,
+          onRequestSelectScenario: D,
+          shikiTheme: O,
+          disableSyntaxHighlighting: B = !1,
+          showLineNumbers: z = !1,
+          initialHighlightHtml: H,
+          mode: P,
+          embedded: W = !1,
+          layoutPreset: $,
+          settingsEventName: Z,
+          defaultMode: V,
+          defaultModel: G,
+        }) {
+          let K = (0, l.useMessages)(),
+            q = (0, d.useRef)(null),
+            { resolvedTheme: U } = (0, o.useTheme)(),
+            Q = (0, x.usePrefersReducedMotion)(),
+            [X, J] = (0, d.useState)(!1),
+            [Y, _] = (0, d.useState)(!1),
+            [ee, et] = (0, d.useState)(!1),
+            [es, el] = (0, d.useState)(null),
+            ei = (0, i.useGT)(),
+            [en, er] = (0, d.useState)(void 0),
+            [ea, eo] = (0, d.useState)(void 0),
+            [ed, ec] = (0, d.useState)(0),
+            [eu, eh] = (0, d.useState)(void 0),
+            [em, ep] = (0, d.useState)(N ?? "websiteBuilder"),
+            ef =
+              en ?? (em ? f.demoScenarios[em] : void 0) ?? (N ? f.demoScenarios[N] : void 0) ?? k,
+            ex = (0, d.useCallback)(
+              (e) => {
+                let t = f.demoScenarios[e];
+                ep(e), er(t), e1(!1), "agent" !== $ && eo(!0), ec((e) => e + 1), T?.(e);
+              },
+              [$, T],
+            ),
+            eb = (0, d.useRef)(!0),
+            eg = (0, d.useRef)(N),
+            ey = (0, d.useRef)(null),
+            ev = (0, d.useRef)(0),
+            ej = (0, d.useRef)(A);
+          (0, d.useEffect)(() => {
+            if (eb.current) {
+              eb.current = !1;
+              return;
+            }
+            N && N !== eg.current && ((eg.current = N), ex(N));
+          }, [N, ex]),
+            (0, d.useEffect)(() => {
+              void 0 !== A &&
+                A !== ej.current &&
+                ((ej.current = A),
+                (ev.current = 0),
+                ey.current && (clearTimeout(ey.current), (ey.current = null)),
+                C?.length && ex(C[0]));
+            }, [A, C, ex]),
+            (0, d.useEffect)(() => {
+              if (C?.length) {
+                if (!F) {
+                  ey.current && (clearTimeout(ey.current), (ey.current = null));
+                  return;
+                }
+                if (!(ev.current >= C.length))
+                  return (
+                    ey.current && clearTimeout(ey.current),
+                    (ey.current = setTimeout(() => {
+                      ev.current += 1;
+                      let e = ev.current % C.length,
+                        t = C[e];
+                      t && ex(t);
+                    }, M ?? 4500)),
+                    () => {
+                      ey.current && (clearTimeout(ey.current), (ey.current = null));
+                    }
+                  );
+              }
+            }, [F, M, C, ex, em]),
+            (0, d.useLayoutEffect)(() => {
+              J(!0);
+            }, []),
+            (0, d.useEffect)(() => {
+              let e = q.current;
+              if (!e || "u" < typeof IntersectionObserver) return;
+              let t = new IntersectionObserver(
+                (e) => {
+                  let t = e[0];
+                  _(!!(t && (t.isIntersecting || t.intersectionRatio > 0)));
+                },
+                { root: null, threshold: [0.15, 0.35] },
+              );
+              return t.observe(e), () => t.disconnect();
+            }, []),
+            (0, d.useEffect)(() => {
+              let e = q.current;
+              if (!e || "u" < typeof ResizeObserver) return;
+              let t = new ResizeObserver((t) => {
+                let s = t[0];
+                el(s?.contentRect?.width ?? e.getBoundingClientRect().width);
+              });
+              t.observe(e);
+              try {
+                let t = e.getBoundingClientRect().width;
+                t && el(t);
+              } catch {}
+              return () => t.disconnect();
+            }, []),
+            (0, d.useEffect)(() => {
+              Y && !ee && et(!0);
+            }, [Y, ee]);
+          let ew = (0, d.useMemo)(() => ef?.files || e || [], [ef?.files, e]),
+            [eS, ek] = (0, d.useState)(ew),
+            eN =
+              ef?.openFileIds ||
+              [
+                ew.find((e) => "components/CursorIDE.tsx" === e.name)?.id,
+                ew.find((e) => "components/Chat.tsx" === e.name)?.id,
+              ].filter(Boolean),
+            [eC, eM] = (0, d.useState)(eN),
+            eF =
+              ef?.activeFileId ||
+              ew.find((e) => "components/Chat.tsx" === e.name)?.id ||
+              ew[0]?.id ||
+              "",
+            [eA, eT] = (0, d.useState)(eF),
+            eI = (0, d.useMemo)(() => ef?.messages || [], [ef]),
+            [eE, eL] = (0, d.useState)(eI),
+            [eR, eD] = (0, d.useState)(!1),
+            eO = (0, d.useRef)(null),
+            [eB, ez] = (0, d.useState)(void 0),
+            [eH, eP] = (0, d.useState)(void 0),
+            [eW, e$] = (0, d.useState)(void 0),
+            [eZ, eV] = (0, d.useState)(void 0),
+            [eG, eK] = (0, d.useState)(void 0),
+            eq = (0, d.useMemo)(
+              () =>
+                Object.keys(f.demoScenarios).filter((e) => f.demoScenarios[e].showInAgentsSidebar),
+              [],
+            ),
+            eU = (0, d.useMemo)(
+              () =>
+                Q ? eq : ["autoComplete", "nextjsRouter", "cursorRules", "biotech", "mlPython"],
+              [Q, eq],
+            ),
+            eQ = (0, d.useMemo)(() => {
+              if (Q) {
+                let e = {};
+                return (
+                  eq.forEach((t, s) => {
+                    let l = f.demoScenarios[t];
+                    e[t] = {
+                      completedAtOffset: (s + 1) * 36e5,
+                      lastAssistant:
+                        K(
+                          l.messages.filter((e) => "assistant" === e.role).pop()?.text || "",
+                        )?.slice(0, 120) || "Completed",
+                      diffSummary: l.diffSummary,
+                    };
+                  }),
+                  e
+                );
+              }
+              return {
+                autoComplete: {
+                  completedAtOffset: 36e5,
+                  lastAssistant: ei(
+                    "Created Cursor IDE demo with file explorer and syntax highlighting",
+                  ),
+                  diffSummary: { added: 245, removed: 0 },
+                },
+                nextjsRouter: {
+                  completedAtOffset: 72e5,
+                  lastAssistant: ei("Set up Next.js App Router with dynamic routes and layouts"),
+                  diffSummary: { added: 189, removed: 15 },
+                },
+                cursorRules: {
+                  completedAtOffset: 18e5,
+                  lastAssistant: f.demoScenarios.cursorRules.chatTitle,
+                  diffSummary: f.demoScenarios.cursorRules.diffSummary,
+                },
+                biotech: {
+                  completedAtOffset: 27e5,
+                  lastAssistant: f.demoScenarios.biotech.chatTitle,
+                  diffSummary: f.demoScenarios.biotech.diffSummary,
+                },
+                mlPython: {
+                  completedAtOffset: 6e5,
+                  lastAssistant: f.demoScenarios.mlPython.chatTitle,
+                  diffSummary: f.demoScenarios.mlPython.diffSummary,
+                },
+              };
+            }, [Q, eq, ei, K]),
+            [eX, eJ] = (0, d.useState)(eU),
+            [eY, e_] = (0, d.useState)(eQ);
+          (0, d.useEffect)(() => {
+            eJ(eU), e_(eQ);
+          }, [eU, eQ]),
+            (0, d.useEffect)(() => {
+              if (!Z) return;
+              let e = () => eD((e) => !e);
+              return window.addEventListener(Z, e), () => window.removeEventListener(Z, e);
+            }, [Z]),
+            d.default.useEffect(() => {
+              ek(ew),
+                eM(
+                  ef?.openFileIds ||
+                    [
+                      ew.find((e) => "components/CursorIDE.tsx" === e.name)?.id,
+                      ew.find((e) => "components/Chat.tsx" === e.name)?.id,
+                    ].filter(Boolean),
+                ),
+                eT(
+                  ef?.activeFileId ||
+                    ew.find((e) => "components/Chat.tsx" === e.name)?.id ||
+                    ew[0]?.id ||
+                    "",
+                ),
+                eL(eI),
+                e1(!1);
+            }, [ef, ew, eI]);
+          let [e0, e1] = (0, d.useState)(!1),
+            [e2, e8] = (0, d.useState)({
+              currentFileIndex: 0,
+              filesReviewed: new Set(),
+              acceptedFiles: new Set(),
+              rejectedFiles: new Set(),
+            }),
+            e6 = (0, d.useMemo)(() => {
+              let e = new Set();
+              return (
+                eS.forEach((t) => {
+                  !(0, m.isBrowserFile)(t) &&
+                    t.content &&
+                    /^(?:\+|\-)/m.test(t.content) &&
+                    e.add(t.name);
+                }),
+                e
+              );
+            }, [eS]),
+            e4 = (0, d.useMemo)(() => {
+              let e = new Map(),
+                t = [];
+              return (
+                eS.forEach((s) => {
+                  let l = s.name.split("/"),
+                    i = "";
+                  l.forEach((n, r) => {
+                    i = i ? `${i}/${n}` : n;
+                    let a = r === l.length - 1;
+                    if (
+                      (a ||
+                        e.has(i) ||
+                        (t.push({ id: i, label: n, type: "folder", depth: r }), e.set(i, 1)),
+                      a)
+                    ) {
+                      let e = (0, m.isBrowserFile)(s) ? "browser" : "file";
+                      t.push({ id: s.id, label: n, type: e, depth: r });
+                    }
+                  });
+                }),
+                t
+              );
+            }, [eS]);
+          function e5(e) {
+            tg || (R ? R() : eo(!0)), eC.includes(e) || eM((t) => [...t, e]), eT(e);
+          }
+          let e3 = (0, d.useMemo)(() => {
+              let e = eu ?? P ?? { type: "agent" };
+              if (!Q) return e;
+              switch (e.type) {
+                case "agent":
+                  return { ...e, streamInitialMessages: !1 };
+                case "tab":
+                case "cmdk":
+                  return { ...e, autoplay: !1 };
+                case "diff-review":
+                  return { ...e, autoAccept: !1 };
+                default:
+                  return e;
+              }
+            }, [eu, P, Q]),
+            e7 = "tab" === e3.type,
+            e9 = "tab-static" === e3.type,
+            te = "diff-review" === e3.type,
+            tt = "agent" === e3.type && !!e3.streamInitialMessages,
+            ts = (0, d.useMemo)(
+              () =>
+                em ||
+                (ef
+                  ? Object.keys(f.demoScenarios).find((e) => ef.id === f.demoScenarios[e].id)
+                  : void 0),
+              [em, ef],
+            ),
+            tl = !!ts && eX.includes(ts),
+            ti = tt && ee && !tl,
+            tn = (0, d.useMemo)(() => {
+              if (e7 || te || e0 || (tl && e6.size > 0)) return "diff";
+              let e = eS.find((e) => e.id === eA);
+              return e && e6.has(e.name) ? "original" : E;
+            }, [e7, te, e0, tl, e6, eS, eA, E]),
+            tr = (0, d.useCallback)(
+              (e) => {
+                e1(!0), L?.("diff");
+                let t = Object.keys(f.demoScenarios).find((e) => ef?.id === f.demoScenarios[e].id);
+                if (t && !eX.includes(t)) {
+                  eJ((e) => (e.includes(t) ? e : [...e, t]));
+                  let e =
+                      K(
+                        [...(ef?.messages || [])].reverse().find((e) => "assistant" === e.role)
+                          ?.text || "",
+                      )?.slice(0, 120) || "",
+                    s = 0,
+                    l = 0;
+                  for (let e of eS)
+                    if (!(0, m.isBrowserFile)(e) && e.content)
+                      for (let t of e.content.split(/\r?\n/))
+                        t.startsWith("+") ? (s += 1) : t.startsWith("-") && (l += 1);
+                  e_((i) => ({
+                    ...i,
+                    [t]: {
+                      completedAtOffset: 0,
+                      lastAssistant: e,
+                      diffSummary: s > 0 || l > 0 ? { added: s, removed: l } : void 0,
+                    },
+                  }));
+                }
+              },
+              [L, ef, eX, eS, K],
+            );
+          function ta(e) {
+            eM((t) => t.filter((t) => t !== e)),
+              eA === e && eT(eC.find((t) => t !== e) || eS[0]?.id || "");
+          }
+          function to(e, t) {
+            ek((s) => s.map((s) => (s.id === e ? { ...s, content: t } : s)));
+          }
+          function td(e) {
+            try {
+              let e = Object.keys(f.demoScenarios).find((e) => ef?.id === f.demoScenarios[e].id);
+              e && eJ((t) => (t.includes(e) ? t : [...t, e]));
+            } catch {}
+            let t = { id: `u-${Math.random().toString(36).slice(2)}`, role: "user", text: e };
+            eL((e) => [...e, t]);
+            let s = {
+              id: `a-${Math.random().toString(36).slice(2)}`,
+              role: "assistant",
+              text: ei("To try Cursor Agent, [download Cursor]({link}).", {
+                link: "https://cursor.com/download",
+              }),
+            };
+            eL((e) => [...e, s]);
+          }
+          let tc = eC.map((e) => eS.find((t) => t.id === e)).filter(Boolean),
+            tu = { agents: 2, sidebar: 2, editor: 8, chat: 2.5 },
+            th = "agent" === $ || "ide" !== $,
+            tm = "agent" !== $,
+            tp = "agent" !== $,
+            tf = "agent" === $,
+            tx = "boolean" == typeof eB ? eB : "boolean" == typeof y ? y : th,
+            tb = "boolean" == typeof eH ? eH : "boolean" == typeof n ? n : tm,
+            tg = "boolean" == typeof ea ? ea : "boolean" == typeof b ? b : tp,
+            ty = "boolean" == typeof eW ? eW : "boolean" != typeof g || g,
+            tv = "boolean" == typeof eZ ? eZ : "boolean" == typeof I ? I : tf,
+            tj = es ?? 1 / 0,
+            tw = 220 + 140 * !!tb + 420 * !!ty,
+            tS = tx && !(tj < tw),
+            tk = tb && tj < 140 + 220 * !!tS + 420 * !!ty,
+            tN = tb && !tk,
+            tC = [];
+          function tM(e) {
+            return { flexGrow: tu[e], flexBasis: 0 };
+          }
+          tN && tC.push("sidebar"), tg && tC.push("editor"), ty && tC.push("chat");
+          let tF = "tab" === e3.type && !!e3.autoplay && Y,
+            tA = "cmdk" === e3.type && !!e3.autoplay && ee,
+            tT = "tab" === e3.type ? Math.max(300, e3.advanceMs ?? 800) : 800,
+            tI = "tab" === e3.type && !!e3.loop,
+            tE = "tab" === e3.type ? e3.startLine : void 0,
+            tL = z || ef?.showLineNumbers || !1,
+            tR = eG || O || (X ? ("dark" === U ? "cursor-dark" : "cursor-light") : void 0),
+            tD = (0, d.useMemo)(() => {
+              if (!j) return !1;
+              if (!w || "websiteBuilder" !== em) return !0;
+              let e = eS.find((e) => e.id === eA);
+              return e?.kind !== "browser";
+            }, [j, w, em, eS, eA]),
+            tO = tt && !ee,
+            tB = (0, d.useMemo)(() => eE.find((e) => "user" === e.role), [eE]),
+            tz = tO ? (tB ? [tB] : []) : eE;
+          return (0, t.jsxs)("div", {
+            ref: q,
+            className: W
+              ? "h-full min-h-0 w-full overflow-hidden relative"
+              : "bg-theme-product-chrome text-theme-text border-theme-border-02 h-[70vh] min-h-[480px] w-full overflow-hidden rounded-lg border relative",
+            children: [
+              (0, t.jsxs)("div", {
+                className: "flex h-full w-full",
+                children: [
+                  tS &&
+                    (0, t.jsx)("div", {
+                      className:
+                        "border-theme-border-02 h-full max-w-[320px] min-w-[220px] border-r",
+                      style: tM("agents"),
+                      children: (0, t.jsx)(c.default, {
+                        currentAgentTitle: ef?.chatTitle || ei("New Agent"),
+                        readyKeys: eX,
+                        readyMeta: eY,
+                        showHeader: v,
+                        onSelectScenario: (e) => {
+                          D ? D(e) : ex(e);
+                        },
+                      }),
+                    }),
+                  (0, t.jsxs)("div", {
+                    className: `flex h-full w-full ${tv ? "flex-row-reverse" : ""}`,
+                    style: { flexGrow: tu.sidebar + tu.editor + tu.chat, flexBasis: 0 },
+                    children: [
+                      tN &&
+                        (0, t.jsx)("div", {
+                          className: "h-full max-w-[170px] min-w-[140px] overflow-hidden",
+                          style: tM("sidebar"),
+                          children: (0, t.jsx)(p.default, {
+                            items: e4,
+                            activeFileId: eA,
+                            onSelect: e5,
+                            repoName: ef?.repoName,
+                          }),
+                        }),
+                      tg &&
+                        (0, t.jsx)("div", {
+                          className: `border-theme-border-02 min-w-0 overflow-hidden ${tN ? (tv ? "border-r" : "border-l") : ""}`,
+                          style: tM("editor"),
+                          children: e9
+                            ? (0, t.jsx)(
+                                h.default,
+                                {
+                                  files: tc,
+                                  activeFileId: eA,
+                                  onChangeActive: eT,
+                                  onClose: ta,
+                                  onEditContent: to,
+                                  showTabs: tD,
+                                  showTabIcons: S,
+                                  diffViewMode: tn,
+                                  shikiTheme: tR,
+                                  disableSyntaxHighlighting: B,
+                                  showLineNumbers: tL,
+                                  initialHighlightHtml: H,
+                                  planModelLabel: G,
+                                  staticSuggestAfterLine:
+                                    "tab-static" === e3.type ? e3.suggestAfterLine : void 0,
+                                  staticMultiHighlight:
+                                    "tab-static" === e3.type ? e3.multiHighlight : void 0,
+                                  staticCaretLine: "tab-static" === e3.type ? e3.caretLine : void 0,
+                                  staticBottomPillLabel:
+                                    "tab-static" === e3.type ? e3.bottomPillLabel : void 0,
+                                  disableScroll: !0,
+                                },
+                                `editor-${ed}`,
+                              )
+                            : (0, t.jsx)(
+                                h.default,
+                                {
+                                  files: tc,
+                                  activeFileId: eA,
+                                  onChangeActive: eT,
+                                  onClose: ta,
+                                  onEditContent: to,
+                                  showTabs: tD,
+                                  showTabIcons: S,
+                                  diffViewMode: tn,
+                                  shikiTheme: tR,
+                                  disableSyntaxHighlighting: B,
+                                  showLineNumbers: tL,
+                                  initialHighlightHtml: H,
+                                  planModelLabel: G,
+                                  tabCompletionDemo: e7,
+                                  tabStartLine: tE,
+                                  autoplayTabCompletion: tF,
+                                  tabAdvanceMs: tT,
+                                  disableScroll: !0,
+                                  enableCmdkQuickChat: "cmdk" === e3.type,
+                                  cmdkPrefill: tB?.text,
+                                  cmdkAutopop: tA,
+                                  cmdkSelectLines:
+                                    "cmdk" === e3.type
+                                      ? (e3.selectLines ?? { start: 3, end: 7 })
+                                      : void 0,
+                                  cmdkSelectionDelay:
+                                    "cmdk" === e3.type ? (e3.selectionDelay ?? 800) : 800,
+                                  onAutoplayFinished: () => {
+                                    if ("tab" === e3.type && tI && Y)
+                                      try {
+                                        ek(ew);
+                                        let e =
+                                          ef?.openFileIds ||
+                                          [
+                                            ew.find((e) => "components/CursorIDE.tsx" === e.name)
+                                              ?.id,
+                                            ew.find((e) => "components/Chat.tsx" === e.name)?.id,
+                                          ].filter(Boolean);
+                                        eM(e);
+                                        let t =
+                                          ef?.activeFileId ||
+                                          ew.find((e) => "components/Chat.tsx" === e.name)?.id ||
+                                          ew[0]?.id ||
+                                          "";
+                                        eT(t), eL(eI), e1(!1);
+                                      } finally {
+                                        ec((e) => e + 1);
+                                      }
+                                  },
+                                  onCmdkSend: td,
+                                },
+                                `editor-${ed}`,
+                              ),
+                        }),
+                      ty &&
+                        (0, t.jsx)("div", {
+                          className: `border-theme-border-02 min-w-[340px] ${tg || tN ? (tv ? "border-r" : "border-l") : ""}`,
+                          style: tM("chat"),
+                          children: (0, t.jsx)(
+                            u.default,
+                            {
+                              messages: tz.map((e) => ({
+                                ...e,
+                                text: "code" === e.role ? e.text : K(e.text),
+                              })),
+                              onSend: td,
+                              streamInitialMessages: ti,
+                              title: ef?.chatTitle || ei("New Agent"),
+                              questions: ef?.questions,
+                              onInitialPlaybackDone: () => {
+                                if ("agent" !== e3.type) return;
+                                let e = Object.keys(f.demoScenarios).find(
+                                  (e) => ef?.id === f.demoScenarios[e].id,
+                                );
+                                if (!e) return;
+                                eJ((t) => (t.includes(e) ? t : [...t, e]));
+                                let t =
+                                    K(
+                                      [...(ef?.messages || [])]
+                                        .reverse()
+                                        .find((e) => "assistant" === e.role)?.text || "",
+                                    )?.slice(0, 120) || "",
+                                  s = 0,
+                                  l = 0;
+                                for (let e of eS)
+                                  if (!(0, m.isBrowserFile)(e) && e.content)
+                                    for (let t of e.content.split(/\r?\n/))
+                                      t.startsWith("+") ? (s += 1) : t.startsWith("-") && (l += 1);
+                                e_((i) => ({
+                                  ...i,
+                                  [e]: {
+                                    completedAtOffset: 0,
+                                    lastAssistant: t,
+                                    diffSummary: s > 0 || l > 0 ? { added: s, removed: l } : void 0,
+                                  },
+                                }));
+                              },
+                              onOpenFile: (e) => {
+                                let t = eS.find((t) => t.name === e || t.id === e);
+                                if (t) return void e5(t.id);
+                                let s = e.split("/").pop() || e,
+                                  l = eS.find((e) => e.name.endsWith(`/${s}`) || e.name === s);
+                                l && e5(l.id);
+                              },
+                              onCodeMessageVisible: tr,
+                              defaultMode: V ?? ef?.defaultMode,
+                              defaultModel: G,
+                            },
+                            `chat-${ed}`,
+                          ),
+                        }),
+                    ],
+                  }),
+                ],
+              }),
+              te &&
+                e6.size > 0 &&
+                (0, t.jsx)("div", {
+                  className: "absolute bottom-4 left-1/2 z-50 -translate-x-1/2",
+                  children: (0, t.jsxs)("div", {
+                    className:
+                      "bg-theme-card-hex border-theme-card-hover-border flex min-w-[280px] items-center justify-between gap-4 rounded-lg border p-1.5 shadow-xl backdrop-blur",
+                    children: [
+                      (0, t.jsx)("div", {
+                        className: "flex items-center gap-1.5",
+                        children: (0, t.jsxs)("div", {
+                          className: "flex items-center gap-1 pl-1",
+                          children: [
+                            (0, t.jsx)("button", {
+                              type: "button",
+                              className:
+                                "hover:bg-theme-bg-hover inline-flex h-4 w-4 items-center justify-center disabled:opacity-50",
+                              disabled: 0 === e2.currentFileIndex,
+                              onClick: () => {
+                                let e = Array.from(e6),
+                                  t = Math.max(0, e2.currentFileIndex - 1);
+                                e8((e) => ({ ...e, currentFileIndex: t }));
+                                let s = eS.find((s) => s.name === e[t]);
+                                s && e5(s.id);
+                              },
+                              children: (0, t.jsx)(a, { className: "text-theme-text-sec" }),
+                            }),
+                            (0, t.jsxs)("span", {
+                              className:
+                                "text-theme-text-sec type-product-base px-1 whitespace-nowrap",
+                              children: [e2.currentFileIndex + 1, " of", " ", e6.size],
+                            }),
+                            (0, t.jsx)("button", {
+                              type: "button",
+                              className:
+                                "hover:bg-theme-bg-hover inline-flex h-4 w-4 items-center justify-center disabled:opacity-50",
+                              disabled: e2.currentFileIndex >= e6.size - 1,
+                              onClick: () => {
+                                let e = Array.from(e6),
+                                  t = Math.min(e6.size - 1, e2.currentFileIndex + 1);
+                                e8((e) => ({ ...e, currentFileIndex: t }));
+                                let s = eS.find((s) => s.name === e[t]);
+                                s && e5(s.id);
+                              },
+                              children: (0, t.jsx)(r, { className: "text-theme-text-sec" }),
+                            }),
+                          ],
+                        }),
+                      }),
+                      (0, t.jsxs)("div", {
+                        className: "flex items-center gap-2",
+                        children: [
+                          (0, t.jsx)(i.T, {
+                            children: (0, t.jsx)("button", {
+                              type: "button",
+                              className:
+                                "text-theme-text-sec hover:text-theme-text type-product-base-medium rounded-md py-0.75 whitespace-nowrap",
+                              onClick: () => {
+                                ek((e) =>
+                                  e.map((e) => {
+                                    if (e6.has(e.name) && !(0, m.isBrowserFile)(e) && e.content) {
+                                      let t = e.content
+                                        .split("\n")
+                                        .filter((e) => !e.startsWith("+"))
+                                        .map((e) => (e.startsWith("-") ? e.substring(1) : e))
+                                        .join("\n");
+                                      return { ...e, content: t };
+                                    }
+                                    return e;
+                                  }),
+                                ),
+                                  e8({
+                                    currentFileIndex: 0,
+                                    filesReviewed: new Set(),
+                                    acceptedFiles: new Set(),
+                                    rejectedFiles: new Set(),
+                                  }),
+                                  L && L("final");
+                              },
+                              children: "Undo All",
+                            }),
+                          }),
+                          (0, t.jsx)(i.T, {
+                            children: (0, t.jsx)("button", {
+                              type: "button",
+                              className:
+                                "bg-theme-button-bg hover:bg-theme-button-hover-bg type-product-base-medium text-theme-button-text rounded px-2 py-0.75 whitespace-nowrap",
+                              onClick: () => {
+                                ek((e) =>
+                                  e.map((e) => {
+                                    if (e6.has(e.name) && !(0, m.isBrowserFile)(e) && e.content) {
+                                      let t = e.content
+                                        .split("\n")
+                                        .filter((e) => !e.startsWith("-"))
+                                        .map((e) => (e.startsWith("+") ? e.substring(1) : e))
+                                        .join("\n");
+                                      return { ...e, content: t };
+                                    }
+                                    return e;
+                                  }),
+                                ),
+                                  e8({
+                                    currentFileIndex: 0,
+                                    filesReviewed: new Set(),
+                                    acceptedFiles: new Set(),
+                                    rejectedFiles: new Set(),
+                                  }),
+                                  L && L("final");
+                              },
+                              children: "Keep All",
+                            }),
+                          }),
+                          e2.acceptedFiles.size + e2.rejectedFiles.size === e6.size &&
+                            (0, t.jsxs)(t.Fragment, {
+                              children: [
+                                (0, t.jsx)("div", { className: "bg-theme-border h-4 w-px" }),
+                                (0, t.jsx)(i.T, {
+                                  children: (0, t.jsx)("button", {
+                                    type: "button",
+                                    className:
+                                      "bg-theme-accent rounded-md px-3 py-1.5 text-sm font-medium whitespace-nowrap text-white hover:opacity-90",
+                                    onClick: () => {
+                                      ek((e) =>
+                                        e.map((e) => {
+                                          if (
+                                            e2.acceptedFiles.has(e.name) &&
+                                            !(0, m.isBrowserFile)(e) &&
+                                            e.content
+                                          ) {
+                                            let t = e.content
+                                              .split("\n")
+                                              .filter((e) => !e.startsWith("-"))
+                                              .map((e) => (e.startsWith("+") ? e.substring(1) : e))
+                                              .join("\n");
+                                            return { ...e, content: t };
+                                          }
+                                          if (
+                                            e2.rejectedFiles.has(e.name) &&
+                                            !(0, m.isBrowserFile)(e) &&
+                                            e.content
+                                          ) {
+                                            let t = e.content
+                                              .split("\n")
+                                              .filter((e) => !e.startsWith("+"))
+                                              .map((e) => (e.startsWith("-") ? e.substring(1) : e))
+                                              .join("\n");
+                                            return { ...e, content: t };
+                                          }
+                                          return e;
+                                        }),
+                                      ),
+                                        e8({
+                                          currentFileIndex: 0,
+                                          filesReviewed: new Set(),
+                                          acceptedFiles: new Set(),
+                                          rejectedFiles: new Set(),
+                                        }),
+                                        L && L("final");
+                                    },
+                                    children: "Apply Changes",
+                                  }),
+                                }),
+                              ],
+                            }),
+                        ],
+                      }),
+                    ],
+                  }),
+                }),
+              eR &&
+                (0, t.jsx)("div", {
+                  ref: eO,
+                  className:
+                    "bg-theme-card-hex text-theme-text border-theme-border-02 absolute top-3 right-3 z-[99999] w-[min(92vw,220px)] max-w-full overflow-hidden rounded-xl border shadow-2xl",
+                  children: (0, t.jsxs)("div", {
+                    className: "relative p-2 pt-10",
+                    children: [
+                      (0, t.jsx)(i.T, {
+                        children: (0, t.jsx)("div", {
+                          className: "absolute top-3 left-4 text-sm font-bold",
+                          children: "Demo Options",
+                        }),
+                      }),
+                      (0, t.jsx)("button", {
+                        type: "button",
+                        className:
+                          "text-theme-text-sec hover:bg-theme-bg-hover absolute top-2 right-2 inline-flex h-7 w-7 items-center justify-center rounded",
+                        onClick: () => eD(!1),
+                        children: (0, t.jsx)(s.XIcon, { size: 14 }),
+                      }),
+                      (0, t.jsxs)("ul", {
+                        role: "menu",
+                        className: "flex flex-col gap-1",
+                        children: [
+                          (0, t.jsx)("li", {
+                            className: "hover:bg-theme-bg-hover rounded px-2 py-1",
+                            children: (0, t.jsx)(i.T, {
+                              children: (0, t.jsxs)("select", {
+                                className:
+                                  "border-theme-border-02 w-full rounded border bg-transparent px-2 py-1 text-sm",
+                                value: tx ? "agent" : "ide",
+                                onChange: (e) => {
+                                  "agent" === e.target.value
+                                    ? (ez(!0), eP(!1), eo(!1), e$(!0), eV(!0))
+                                    : (ez(!1), eP(!0), eo(!0), e$(!0), eV(!1));
+                                },
+                                children: [
+                                  (0, t.jsx)("option", { value: "ide", children: "IDE Layout" }),
+                                  (0, t.jsx)("option", {
+                                    value: "agent",
+                                    children: "Agent Layout",
+                                  }),
+                                ],
+                              }),
+                            }),
+                          }),
+                          (0, t.jsx)("li", {
+                            className: "hover:bg-theme-bg-hover rounded px-2 py-1",
+                            children: (0, t.jsx)(i.T, {
+                              children: (0, t.jsxs)("select", {
+                                className:
+                                  "border-theme-border-02 w-full rounded border bg-transparent px-2 py-1 text-sm",
+                                value:
+                                  "tab" === e3.type
+                                    ? "tab"
+                                    : "cmdk" === e3.type
+                                      ? "cmdk"
+                                      : "diff-review" === e3.type
+                                        ? "diff-review"
+                                        : "agent",
+                                onChange: (e) => {
+                                  let t = e.target.value;
+                                  if ("tab" === t)
+                                    eh({
+                                      type: "tab",
+                                      autoplay: "tab" !== e3.type || !!e3.autoplay,
+                                      advanceMs: tT,
+                                      loop: "tab" === e3.type && !!e3.loop,
+                                    });
+                                  else if ("cmdk" === t)
+                                    eh({
+                                      type: "cmdk",
+                                      autoplay: "cmdk" !== e3.type || !!e3.autoplay,
+                                      selectLines: "cmdk" === e3.type ? e3.selectLines : void 0,
+                                      selectionDelay:
+                                        "cmdk" === e3.type ? e3.selectionDelay : void 0,
+                                    });
+                                  else if ("diff-review" === t) {
+                                    eh({ type: "diff-review", autoAccept: !1, acceptDelayMs: 3e3 }),
+                                      e8({
+                                        currentFileIndex: 0,
+                                        filesReviewed: new Set(),
+                                        acceptedFiles: new Set(),
+                                        rejectedFiles: new Set(),
+                                      });
+                                    let e = eS.find((e) => e6.has(e.name));
+                                    e && e5(e.id);
+                                  } else
+                                    eh({
+                                      type: "agent",
+                                      streamInitialMessages:
+                                        "agent" !== e3.type || !!e3.streamInitialMessages,
+                                    });
+                                  e1(!1);
+                                },
+                                children: [
+                                  (0, t.jsx)("option", { value: "agent", children: "Agent Demo" }),
+                                  (0, t.jsx)("option", { value: "tab", children: "Tab Demo" }),
+                                  (0, t.jsx)("option", { value: "cmdk", children: "Cmd+K Demo" }),
+                                  (0, t.jsx)("option", {
+                                    value: "diff-review",
+                                    children: "Diff Review",
+                                  }),
+                                ],
+                              }),
+                            }),
+                          }),
+                          (0, t.jsx)("li", {
+                            className: "hover:bg-theme-bg-hover rounded px-2 py-1",
+                            children: (0, t.jsxs)("select", {
+                              className:
+                                "border-theme-border-02 w-full rounded border bg-transparent px-2 py-1 text-sm",
+                              value: eG || (X && "dark" === U ? "github-dark" : "github-light"),
+                              onChange: (e) => eK(e.target.value),
+                              children: [
+                                (0, t.jsx)(i.T, {
+                                  children: (0, t.jsx)("option", {
+                                    value: X && "dark" === U ? "github-dark" : "github-light",
+                                    children: "Theme",
+                                  }),
+                                }),
+                                X && "dark" === U
+                                  ? (0, t.jsxs)(i.T, {
+                                      children: [
+                                        (0, t.jsx)("option", {
+                                          value: "github-dark",
+                                          children: "GitHub Dark",
+                                        }),
+                                        (0, t.jsx)("option", {
+                                          value: "dark-plus",
+                                          children: "Dark+ (VS Code)",
+                                        }),
+                                        (0, t.jsx)("option", { value: "nord", children: "Nord" }),
+                                        (0, t.jsx)("option", {
+                                          value: "rose-pine",
+                                          children: "Rosé Pine",
+                                        }),
+                                        (0, t.jsx)("option", {
+                                          value: "one-dark-pro",
+                                          children: "One Dark Pro",
+                                        }),
+                                        (0, t.jsx)("option", {
+                                          value: "dracula",
+                                          children: "Dracula",
+                                        }),
+                                        (0, t.jsx)("option", {
+                                          value: "monokai",
+                                          children: "Monokai",
+                                        }),
+                                        (0, t.jsx)("option", {
+                                          value: "vitesse-dark",
+                                          children: "Vitesse Dark",
+                                        }),
+                                        (0, t.jsx)("option", {
+                                          value: "min-dark",
+                                          children: "Min Dark",
+                                        }),
+                                        (0, t.jsx)("option", {
+                                          value: "solarized-dark",
+                                          children: "Solarized Dark",
+                                        }),
+                                      ],
+                                    })
+                                  : (0, t.jsxs)(i.T, {
+                                      children: [
+                                        (0, t.jsx)("option", {
+                                          value: "github-light",
+                                          children: "GitHub Light",
+                                        }),
+                                        (0, t.jsx)("option", {
+                                          value: "light-plus",
+                                          children: "Light+ (VS Code)",
+                                        }),
+                                        (0, t.jsx)("option", {
+                                          value: "vitesse-light",
+                                          children: "Vitesse Light",
+                                        }),
+                                        (0, t.jsx)("option", {
+                                          value: "min-light",
+                                          children: "Min Light",
+                                        }),
+                                        (0, t.jsx)("option", {
+                                          value: "solarized-light",
+                                          children: "Solarized Light",
+                                        }),
+                                      ],
+                                    }),
+                              ],
+                            }),
+                          }),
+                          (0, t.jsxs)(i.T, {
+                            children: [
+                              (0, t.jsx)("li", {
+                                className: "hover:bg-theme-bg-hover mt-1 rounded py-0.5 pr-2 pl-3",
+                                children: (0, t.jsxs)("label", {
+                                  className: "inline-flex w-full cursor-pointer items-center gap-2",
+                                  children: [
+                                    (0, t.jsx)("input", {
+                                      type: "checkbox",
+                                      checked: !!tx,
+                                      onChange: (e) => ez(e.target.checked),
+                                    }),
+                                    (0, t.jsx)("span", {
+                                      className: "text-sm",
+                                      children: "Agents",
+                                    }),
+                                  ],
+                                }),
+                              }),
+                              (0, t.jsx)("li", {
+                                className: "hover:bg-theme-bg-hover rounded py-0.5 pr-2 pl-3",
+                                children: (0, t.jsxs)("label", {
+                                  className: "inline-flex w-full cursor-pointer items-center gap-2",
+                                  children: [
+                                    (0, t.jsx)("input", {
+                                      type: "checkbox",
+                                      checked: !!tb,
+                                      onChange: (e) => eP(e.target.checked),
+                                    }),
+                                    (0, t.jsx)("span", {
+                                      className: "text-sm",
+                                      children: "Sidebar",
+                                    }),
+                                  ],
+                                }),
+                              }),
+                              (0, t.jsx)("li", {
+                                className: "hover:bg-theme-bg-hover rounded py-0.5 pr-2 pl-3",
+                                children: (0, t.jsxs)("label", {
+                                  className: "inline-flex w-full cursor-pointer items-center gap-2",
+                                  children: [
+                                    (0, t.jsx)("input", {
+                                      type: "checkbox",
+                                      checked: !!tg,
+                                      onChange: (e) => eo(e.target.checked),
+                                    }),
+                                    (0, t.jsx)("span", {
+                                      className: "text-sm",
+                                      children: "Editor",
+                                    }),
+                                  ],
+                                }),
+                              }),
+                              (0, t.jsx)("li", {
+                                className: "hover:bg-theme-bg-hover rounded py-0.5 pr-2 pl-3",
+                                children: (0, t.jsxs)("label", {
+                                  className: "inline-flex w-full cursor-pointer items-center gap-2",
+                                  children: [
+                                    (0, t.jsx)("input", {
+                                      type: "checkbox",
+                                      checked: !!ty,
+                                      onChange: (e) => e$(e.target.checked),
+                                    }),
+                                    (0, t.jsx)("span", { className: "text-sm", children: "Chat" }),
+                                  ],
+                                }),
+                              }),
+                              (0, t.jsx)("li", {
+                                className: "hover:bg-theme-bg-hover rounded py-0.5 pr-2 pl-3",
+                                children: (0, t.jsxs)("label", {
+                                  className: "inline-flex w-full cursor-pointer items-center gap-2",
+                                  children: [
+                                    (0, t.jsx)("input", {
+                                      type: "checkbox",
+                                      checked: !!tv,
+                                      onChange: (e) => eV(e.target.checked),
+                                    }),
+                                    (0, t.jsx)("span", {
+                                      className: "text-sm",
+                                      children: "Reverse layout",
+                                    }),
+                                  ],
+                                }),
+                              }),
+                            ],
+                          }),
+                          e7
+                            ? (0, t.jsxs)(t.Fragment, {
+                                children: [
+                                  (0, t.jsx)("li", {
+                                    className: "hover:bg-theme-bg-hover rounded py-0.5 pr-2 pl-3",
+                                    children: (0, t.jsx)(i.T, {
+                                      children: (0, t.jsxs)("label", {
+                                        className:
+                                          "inline-flex w-full cursor-pointer items-center gap-2",
+                                        children: [
+                                          (0, t.jsx)("input", {
+                                            type: "checkbox",
+                                            checked: !!tF,
+                                            onChange: (e) =>
+                                              eh((t) =>
+                                                t && "tab" === t.type
+                                                  ? { ...t, autoplay: e.target.checked }
+                                                  : "tab" === e3.type
+                                                    ? {
+                                                        type: "tab",
+                                                        autoplay: e.target.checked,
+                                                        advanceMs: tT,
+                                                        loop: tI,
+                                                      }
+                                                    : (t ?? {
+                                                        type: "tab",
+                                                        autoplay: e.target.checked,
+                                                        advanceMs: tT,
+                                                        loop: tI,
+                                                      }),
+                                              ),
+                                          }),
+                                          (0, t.jsx)("span", {
+                                            className: "text-sm",
+                                            children: "Autoplay",
+                                          }),
+                                        ],
+                                      }),
+                                    }),
+                                  }),
+                                  tF
+                                    ? (0, t.jsx)("li", {
+                                        className: "hover:bg-theme-bg-hover rounded px-2 py-1",
+                                        children: (0, t.jsxs)("select", {
+                                          className:
+                                            "border-theme-border-02 w-full rounded border bg-transparent px-2 py-1 text-sm",
+                                          value: String(tT),
+                                          onChange: (e) => {
+                                            let t = Math.min(
+                                              1500,
+                                              Math.max(200, Number(e.target.value) || 800),
+                                            );
+                                            eh((e) =>
+                                              e && "tab" === e.type
+                                                ? { ...e, advanceMs: t }
+                                                : "tab" === e3.type
+                                                  ? {
+                                                      type: "tab",
+                                                      autoplay: !!e3.autoplay,
+                                                      advanceMs: t,
+                                                      loop: tI,
+                                                    }
+                                                  : (e ?? {
+                                                      type: "tab",
+                                                      autoplay: !0,
+                                                      advanceMs: t,
+                                                      loop: tI,
+                                                    }),
+                                            );
+                                          },
+                                          children: [
+                                            (0, t.jsx)("option", {
+                                              value: "200",
+                                              children: (0, t.jsx)(i.Num, {
+                                                options: { style: "unit", unit: "millisecond" },
+                                                children: "200",
+                                              }),
+                                            }),
+                                            (0, t.jsx)("option", {
+                                              value: "300",
+                                              children: (0, t.jsx)(i.Num, {
+                                                options: { style: "unit", unit: "millisecond" },
+                                                children: "300",
+                                              }),
+                                            }),
+                                            (0, t.jsx)("option", {
+                                              value: "400",
+                                              children: (0, t.jsx)(i.Num, {
+                                                options: { style: "unit", unit: "millisecond" },
+                                                children: "400",
+                                              }),
+                                            }),
+                                            (0, t.jsx)("option", {
+                                              value: "500",
+                                              children: (0, t.jsx)(i.Num, {
+                                                options: { style: "unit", unit: "millisecond" },
+                                                children: "500",
+                                              }),
+                                            }),
+                                            (0, t.jsx)("option", {
+                                              value: "600",
+                                              children: (0, t.jsx)(i.Num, {
+                                                options: { style: "unit", unit: "millisecond" },
+                                                children: "600",
+                                              }),
+                                            }),
+                                            (0, t.jsx)("option", {
+                                              value: "800",
+                                              children: (0, t.jsx)(i.Num, {
+                                                options: { style: "unit", unit: "millisecond" },
+                                                children: "800",
+                                              }),
+                                            }),
+                                            (0, t.jsx)("option", {
+                                              value: "1000",
+                                              children: (0, t.jsx)(i.Num, {
+                                                options: { style: "unit", unit: "millisecond" },
+                                                children: "1000",
+                                              }),
+                                            }),
+                                            (0, t.jsx)("option", {
+                                              value: "1200",
+                                              children: (0, t.jsx)(i.Num, {
+                                                options: { style: "unit", unit: "millisecond" },
+                                                children: "1200",
+                                              }),
+                                            }),
+                                            (0, t.jsx)("option", {
+                                              value: "1500",
+                                              children: (0, t.jsx)(i.Num, {
+                                                options: { style: "unit", unit: "millisecond" },
+                                                children: "1500",
+                                              }),
+                                            }),
+                                          ],
+                                        }),
+                                      })
+                                    : null,
+                                  (0, t.jsx)("li", {
+                                    className: "hover:bg-theme-bg-hover rounded py-0.5 pr-2 pl-3",
+                                    children: (0, t.jsxs)("label", {
+                                      className:
+                                        "inline-flex w-full cursor-pointer items-center gap-2",
+                                      children: [
+                                        (0, t.jsx)("input", {
+                                          type: "checkbox",
+                                          checked: !!tI,
+                                          onChange: (e) =>
+                                            eh((t) =>
+                                              t && "tab" === t.type
+                                                ? { ...t, loop: e.target.checked }
+                                                : "tab" === e3.type
+                                                  ? {
+                                                      type: "tab",
+                                                      autoplay: !!e3.autoplay,
+                                                      advanceMs: tT,
+                                                      loop: e.target.checked,
+                                                    }
+                                                  : (t ?? {
+                                                      type: "tab",
+                                                      autoplay: !0,
+                                                      advanceMs: tT,
+                                                      loop: e.target.checked,
+                                                    }),
+                                            ),
+                                        }),
+                                        (0, t.jsx)(i.T, {
+                                          children: (0, t.jsx)("span", {
+                                            className: "text-sm",
+                                            children: "Loop",
+                                          }),
+                                        }),
+                                      ],
+                                    }),
+                                  }),
+                                ],
+                              })
+                            : null,
+                        ],
+                      }),
+                    ],
+                  }),
+                }),
+            ],
+          });
+        },
+      ],
+      39014,
+    );
+  },
+]);
