@@ -1,0 +1,24 @@
+{
+	"name": "cursor-frontend-reconstruction",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev -p 3000",
+		"build": "next build",
+		"start": "next start -p 3000"
+	},
+	"dependencies": {
+		"next": "15.5.20",
+		"react": "19.2.7",
+		"react-dom": "19.2.7"
+	},
+	"devDependencies": {
+		"@types/node": "22.19.19",
+		"@types/react": "19.2.17",
+		"@types/react-dom": "19.2.3",
+		"autoprefixer": "10.5.2",
+		"postcss": "8.5.19",
+		"tailwindcss": "3.4.19",
+		"typescript": "5.9.3"
+	}
+}
