@@ -178,8 +178,34 @@ CS.audio = (function () {
       bang(0.5, 0.6, 3000, 0.5);
     },
 
-    roundStart() { tone(880, 0.2, 0.1, "sine"); tone(1320, 0.18, 0.16, "sine"); },
+    // 回合开始：现代化双音上行 + 轻扫频（CS2 感）
+    roundStart() {
+      tone(660, 0.14, 0.08, "triangle");
+      setTimeout(() => tone(880, 0.16, 0.09, "triangle"), 90);
+      setTimeout(() => { tone(990, 0.12, 0.22, "sine", 1480); bang(0.05, 0.18, 5000, 0.6); }, 190);
+    },
+    // 冻结时间倒计时提示音（final = 开局音）
+    freezeBeep(final) {
+      if (final) { tone(1180, 0.16, 0.12, "square", 1180); tone(1770, 0.08, 0.12, "sine"); }
+      else tone(880, 0.12, 0.08, "square", 880);
+    },
     roundWin() { [660, 880, 1100].forEach((f, i) => setTimeout(() => tone(f, 0.22, 0.2, "sine"), i * 130)); },
     roundLose() { [500, 400, 300].forEach((f, i) => setTimeout(() => tone(f, 0.22, 0.24, "sawtooth"), i * 150)); },
+    // 回合结束定音：CT 冷色上行五度 / T 铜管感小三度，输家听到闷化版本
+    roundSting(winner, playerWon) {
+      const v = playerWon ? 1 : 0.55;
+      if (winner === "CT") {
+        [523, 784, 1046].forEach((f, i) => setTimeout(() => {
+          tone(f, 0.2 * v, 0.3, "sine");
+          tone(f * 0.5, 0.1 * v, 0.35, "triangle");
+        }, i * 140));
+      } else {
+        [392, 466, 587].forEach((f, i) => setTimeout(() => {
+          tone(f, 0.18 * v, 0.32, "sawtooth", f * 0.98);
+          tone(f, 0.1 * v, 0.3, "square");
+        }, i * 150));
+      }
+      if (!playerWon) setTimeout(() => tone(180, 0.16, 0.5, "sine", 120), 480);
+    },
   };
 })();

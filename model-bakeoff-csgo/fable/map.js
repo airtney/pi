@@ -346,6 +346,44 @@ CS.createMap = function (THREE) {
   zoneLabel("B 门", "B DOORS", -24, 3.4, -30);
   zoneLabel("A 坡道", "A RAMP", 44, 3.6, -29.5);
 
+  // ============ 廉价环境光遮蔽：墙根 / 箱底接触阴影（单次合批，乘法混合渐变） ============
+  {
+    const AOW = 0.65;   // 阴影带宽度（米）
+    const DARK = 0.58;  // 内缘乘数（越小越黑）
+    const pos = [], col = [], idx = [];
+    let vi = 0;
+    // 一条从墙脚(内缘,暗)向外(外缘,亮=不变)的水平渐变带
+    function aoQuad(ix1, iz1, ix2, iz2, ox1, oz1, ox2, oz2, y) {
+      pos.push(ix1, y, iz1, ix2, y, iz2, ox2, y, oz2, ox1, y, oz1);
+      col.push(DARK, DARK, DARK, DARK, DARK, DARK, 1, 1, 1, 1, 1, 1);
+      idx.push(vi, vi + 1, vi + 2, vi, vi + 2, vi + 3);
+      vi += 4;
+    }
+    for (const c of colliders) {
+      if (c.y1 > 0.5) continue;           // 悬空（顶棚/拱门）不投地面阴影
+      if (c.y2 - c.y1 < 1.2) continue;    // 矮台阶跳过
+      const y = 0.04 + (c.y1 > 0.01 ? c.y1 : 0);
+      aoQuad(c.x1, c.z2, c.x2, c.z2, c.x1, c.z2 + AOW, c.x2, c.z2 + AOW, y); // 南
+      aoQuad(c.x2, c.z1, c.x1, c.z1, c.x2, c.z1 - AOW, c.x1, c.z1 - AOW, y); // 北
+      aoQuad(c.x2, c.z2, c.x2, c.z1, c.x2 + AOW, c.z2, c.x2 + AOW, c.z1, y); // 东
+      aoQuad(c.x1, c.z1, c.x1, c.z2, c.x1 - AOW, c.z1, c.x1 - AOW, c.z2, y); // 西
+    }
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
+    geo.setAttribute("color", new THREE.Float32BufferAttribute(col, 3));
+    geo.setIndex(idx);
+    const ao = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({
+      vertexColors: true,
+      blending: THREE.MultiplyBlending,
+      transparent: true,
+      depthWrite: false,
+      fog: false,
+      toneMapped: false,
+    }));
+    ao.renderOrder = 1;
+    group.add(ao);
+  }
+
   // ============ 光照（沙漠午后：暖阳 + 沙色环境光） ============
   const hemi = new THREE.HemisphereLight(0xbdd2e8, 0x9a8055, 0.95);
   group.add(hemi);

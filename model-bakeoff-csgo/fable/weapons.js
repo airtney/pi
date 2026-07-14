@@ -485,11 +485,12 @@ CS.createWeaponSystem = function (THREE, ctx) {
   camera.add(vmGroup);
   let vmKick = 0, switchAnim = 0, bobT = 0;
 
-  const gunmetal = new THREE.MeshLambertMaterial({ color: 0x3a3a40 });
-  const gunDark = new THREE.MeshLambertMaterial({ color: 0x222226 });
-  const wood = new THREE.MeshLambertMaterial({ color: 0x6e4a28 });
-  const greenMat = new THREE.MeshLambertMaterial({ color: 0x3d4a30 });
-  const bladeMat = new THREE.MeshLambertMaterial({ color: 0x9aa4ac });
+  // CS2 感材质：更深的金属/聚合物，降低玩具感
+  const gunmetal = new THREE.MeshLambertMaterial({ color: 0x2b2d33 });
+  const gunDark = new THREE.MeshLambertMaterial({ color: 0x17181c });
+  const wood = new THREE.MeshLambertMaterial({ color: 0x54381e });
+  const greenMat = new THREE.MeshLambertMaterial({ color: 0x39412e });
+  const bladeMat = new THREE.MeshLambertMaterial({ color: 0x8a949c });
 
   function box(w, h, d, m, x, y, z, g) {
     const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), m);
@@ -576,6 +577,9 @@ CS.createWeaponSystem = function (THREE, ctx) {
   }
   rebuildViewModel();
 
+  // 视角转动时的武器滞后摆动（CS2 感的轻微 sway）
+  let swayYaw = 0, swayPitch = 0, prevYaw = 0, prevPitch = 0;
+
   function updateViewModel(now, dt) {
     vmKick = Math.max(0, vmKick - dt * 7);
     switchAnim = Math.max(0, switchAnim - dt);
@@ -587,6 +591,13 @@ CS.createWeaponSystem = function (THREE, ctx) {
     const bobX = Math.sin(bobT) * 0.008 * player.speedFactor;
     const bobY = -Math.abs(Math.cos(bobT)) * 0.008 * player.speedFactor;
 
+    // 鼠标转动 → 武器轻微滞后
+    const dYaw = player.yaw - prevYaw, dPitch = player.pitch - prevPitch;
+    prevYaw = player.yaw; prevPitch = player.pitch;
+    const k = Math.min(1, dt * 10);
+    swayYaw += (Math.max(-0.045, Math.min(0.045, dYaw * 1.6)) - swayYaw) * k;
+    swayPitch += (Math.max(-0.035, Math.min(0.035, dPitch * 1.4)) - swayPitch) * k;
+
     let reloadDip = 0;
     if (w && w.reloading) {
       const remain = w.reloadEnd - now;
@@ -596,11 +607,15 @@ CS.createWeaponSystem = function (THREE, ctx) {
     const switchDip = switchAnim > 0 ? switchAnim * 0.5 : 0;
 
     vmGroup.position.set(
-      0.22 + bobX,
-      -0.22 + bobY - reloadDip - switchDip + vmKick * 0.03,
+      0.22 + bobX + swayYaw * 0.35,
+      -0.22 + bobY - reloadDip - switchDip + vmKick * 0.03 - swayPitch * 0.3,
       -0.42 + vmKick * 0.1
     );
-    vmGroup.rotation.set(vmKick * 0.22 + reloadDip * 1.2, 0.06, 0);
+    vmGroup.rotation.set(
+      vmKick * 0.22 + reloadDip * 1.2 + swayPitch,
+      0.06 + swayYaw,
+      swayYaw * 0.35
+    );
     vmGroup.visible = !!w && player.alive && !(sys.scoped);
   }
 

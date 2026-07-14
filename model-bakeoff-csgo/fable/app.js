@@ -10,10 +10,13 @@ CS.boot = function (THREE) {
   renderer.setPixelRatio(Math.min(2, window.devicePixelRatio));
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  // CS2 感：电影级色调映射，画面更透亮不发闷
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.18;
 
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0xa7c4de);
-  scene.fog = new THREE.Fog(0xddd0ab, 65, 210); // 沙色远雾，配合天空穹顶
+  scene.background = new THREE.Color(0xa9c8e4);
+  scene.fog = new THREE.Fog(0xe4d9b8, 75, 235); // 沙色远雾（更亮更远，减少浑浊感）
 
 
   const BASE_FOV = 75, SCOPE_FOV = 20;
@@ -324,6 +327,14 @@ CS.boot = function (THREE) {
       CS.hud.updateHealth(player);
       CS.hud.damageFlash();
       CS.audio.damageTaken();
+      // 受击方向弧（相对准星朝向的屏幕角度，0=正前 顺时针）
+      if (attacker && attacker !== player) {
+        const vx = attacker.pos.x - player.pos.x, vz = attacker.pos.z - player.pos.z;
+        const fx = -Math.sin(player.yaw), fz = -Math.cos(player.yaw);
+        const rx = Math.cos(player.yaw), rz = -Math.sin(player.yaw);
+        const ang = Math.atan2(vx * rx + vz * rz, vx * fx + vz * fz) * 180 / Math.PI;
+        CS.hud.damageDir(ang);
+      }
     }
     if (victim.hp <= 0) {
       victim.hp = 0;
@@ -637,7 +648,7 @@ CS.boot = function (THREE) {
   let lastT = performance.now() / 1000;
   let fpsAcc = 0, fpsN = 0, fpsT = 0;
   let scopedPrev = false;
-  let radarT = 99, sbT = 0;
+  let radarT = 99, sbT = 0, hbT = 99;
 
   function frame() {
     requestAnimationFrame(frame);
@@ -708,6 +719,13 @@ CS.boot = function (THREE) {
             sbT = 0;
             CS.hud.renderScoreboard(round.characters, round.score);
           }
+        }
+
+        // 武器快捷栏（4Hz，内容不变不写 DOM）
+        hbT += dt;
+        if (hbT >= 0.25) {
+          hbT = 0;
+          CS.hud.hotbar(weaponSys);
         }
 
         // 开镜 FOV

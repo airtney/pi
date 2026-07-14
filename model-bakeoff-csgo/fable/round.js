@@ -71,16 +71,16 @@ CS.createRound = function (THREE, ctx) {
   };
 
   function recolorBot(b) {
-    const isT = b.team === "T";
-    const colors = [0xc8a078, isT ? 0x8a7448 : 0x33465e, isT ? 0x5c4d30 : 0x22303f, 0x2c2c30];
+    const TC = CS.TEAM_COLORS[b.team];
     b.mesh.children.forEach((mesh, i) => {
       if (!mesh.material) return;
-      // 0-1 腿, 2 躯干, 3-4 臂, 5 头, 6 帽, 7 枪
-      if (i <= 1) mesh.material.color.setHex(colors[2]);
-      else if (i === 2 || i === 3 || i === 4) mesh.material.color.setHex(colors[1]);
-      else if (i === 5) mesh.material.color.setHex(colors[0]);
-      else if (i === 6) mesh.material.color.setHex(isT ? colors[2] : colors[3]);
+      // 0-1 腿, 2 躯干, 3-4 臂, 5 头, 6 帽, 7 护目镜, 8 枪
+      if (i <= 1) mesh.material.color.setHex(TC.clothB);
+      else if (i === 2 || i === 3 || i === 4) mesh.material.color.setHex(TC.clothA);
+      else if (i === 5) mesh.material.color.setHex(TC.skin);
+      else if (i === 6) mesh.material.color.setHex(TC.head);
     });
+    if (b._visor) b._visor.material.color.setHex(TC.visor);
   }
 
   // ============ 半场换边 ============
@@ -347,7 +347,7 @@ CS.createRound = function (THREE, ctx) {
       winner === "T" ? "t-win" : "ct-win",
       4
     );
-    if (playerWon) CS.audio.roundWin(); else CS.audio.roundLose();
+    CS.audio.roundSting(winner, playerWon); // CT/T 不同风格的回合结束音
 
     // 经济结算
     round.lossStreak[winner] = 0;
@@ -378,15 +378,15 @@ CS.createRound = function (THREE, ctx) {
     const hasAwp = ctx.weaponSys.slots[1] && ctx.weaponSys.slots[1].def.id === "awp";
     const items = [
       {
-        label: rifle.name + "（步枪）", price: rifle.price, owned: hasRifle,
+        label: rifle.name + "（步枪）", price: rifle.price, owned: hasRifle, cat: "枪械",
         buy: () => buyWeapon(rifle.id),
       },
       {
-        label: "AWP（狙击枪）", price: CS.WEAPONS.awp.price, owned: hasAwp,
+        label: "AWP（狙击枪）", price: CS.WEAPONS.awp.price, owned: hasAwp, cat: "枪械",
         buy: () => buyWeapon("awp"),
       },
       {
-        label: "防弹衣 + 头盔", price: 650, owned: player.armor >= 100,
+        label: "防弹衣 + 头盔", price: 650, owned: player.armor >= 100, cat: "装备",
         buy: () => {
           if (!spend(650)) return;
           player.armor = 100;
@@ -397,7 +397,7 @@ CS.createRound = function (THREE, ctx) {
     ];
     if (isCT) {
       items.push({
-        label: "拆弹钳（拆弹 6 秒 → 3 秒）", price: 400, owned: !!player.hasKit,
+        label: "拆弹钳（拆弹 6 秒 → 3 秒）", price: 400, owned: !!player.hasKit, cat: "装备",
         buy: () => {
           if (!spend(400)) return;
           player.hasKit = true;
@@ -408,7 +408,7 @@ CS.createRound = function (THREE, ctx) {
     }
     items.push(
       {
-        label: "闪光弹（4 切换 / G 投掷）", price: 200, owned: ctx.weaponSys.grenades.flash >= 1,
+        label: "闪光弹（4 切换 / G 投掷）", price: 200, owned: ctx.weaponSys.grenades.flash >= 1, cat: "投掷物",
         buy: () => {
           if (!spend(200)) return;
           ctx.weaponSys.addGrenade("flash");
@@ -416,7 +416,7 @@ CS.createRound = function (THREE, ctx) {
         },
       },
       {
-        label: "HE 手雷（G 或 4 投掷）", price: 300, owned: ctx.weaponSys.grenades.he >= 1,
+        label: "HE 手雷（G 或 4 投掷）", price: 300, owned: ctx.weaponSys.grenades.he >= 1, cat: "投掷物",
         buy: () => {
           if (!spend(300)) return;
           ctx.weaponSys.addGrenade("he");
@@ -424,7 +424,7 @@ CS.createRound = function (THREE, ctx) {
         },
       },
       {
-        label: fire.name + "（落地成火，封路 7 秒）", price: fire.price, owned: ctx.weaponSys.grenades.fire >= 1,
+        label: fire.name + "（落地成火，封路 7 秒）", price: fire.price, owned: ctx.weaponSys.grenades.fire >= 1, cat: "投掷物",
         buy: () => {
           if (!spend(fire.price)) return;
           ctx.weaponSys.fireId = fire.id;
@@ -433,7 +433,7 @@ CS.createRound = function (THREE, ctx) {
         },
       },
       {
-        label: "烟雾弹（G 或 4 投掷）", price: 300, owned: ctx.weaponSys.grenades.smoke >= 1,
+        label: "烟雾弹（G 或 4 投掷）", price: 300, owned: ctx.weaponSys.grenades.smoke >= 1, cat: "投掷物",
         buy: () => {
           if (!spend(300)) return;
           ctx.weaponSys.addGrenade("smoke");
@@ -441,7 +441,7 @@ CS.createRound = function (THREE, ctx) {
         },
       },
       {
-        label: "补满弹药", price: 200, owned: false,
+        label: "补满弹药", price: 200, owned: false, cat: "装备",
         buy: () => {
           if (!spend(200)) return;
           for (const s of [1, 2]) {
@@ -489,16 +489,26 @@ CS.createRound = function (THREE, ctx) {
     if (round.matchOver) return;
 
     switch (round.phase) {
-      case "buy":
+      case "buy": {
         round.timer -= dt;
+        // 冻结时间最后 3 秒：大数字倒计时 + 提示音
+        const secLeft = Math.ceil(round.timer);
+        if (secLeft <= 3 && secLeft >= 1 && secLeft !== round._cdLast) {
+          round._cdLast = secLeft;
+          CS.hud.countdown(secLeft);
+          CS.audio.freezeBeep(false);
+        }
         if (round.timer <= 0) {
+          round._cdLast = 0;
           round.phase = "live";
           round.timer = ROUND_TIME;
           CS.hud.hideBuyMenu();
           CS.hud.centerMsg("对战开始！", 2);
+          CS.audio.freezeBeep(true);
           CS.audio.roundStart();
         }
         break;
+      }
 
       case "live":
         if (!round.bombPlanted) {

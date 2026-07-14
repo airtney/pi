@@ -48,6 +48,10 @@
 
 <!-- ============ HUD ============ -->
 <div id="hud" class="hidden">
+  <!-- 后期叠层（暗角 + 色彩分级） -->
+  <div id="post-grade"></div>
+  <div id="post-vignette"></div>
+
   <!-- 准星 -->
   <div id="crosshair">
     <div class="ch-line ch-top"></div>
@@ -58,6 +62,12 @@
   <div id="hitmarker" class="hidden">
     <div class="hm-line hm-1"></div><div class="hm-line hm-2"></div>
     <div class="hm-line hm-3"></div><div class="hm-line hm-4"></div>
+  </div>
+
+  <!-- 受击方向指示（边缘红弧） -->
+  <div id="dmg-dir">
+    <div class="dmg-arc"></div><div class="dmg-arc"></div>
+    <div class="dmg-arc"></div><div class="dmg-arc"></div>
   </div>
 
   <!-- AWP 瞄准镜 -->
@@ -89,10 +99,13 @@
   <div id="center-msg" class="hidden"></div>
   <div id="round-banner" class="hidden"><div id="banner-title"></div><div id="banner-sub"></div></div>
 
+  <!-- 冻结时间倒计时 -->
+  <div id="freeze-countdown"></div>
+
   <!-- 安放/拆除进度条 -->
   <div id="progress-wrap" class="hidden">
     <div id="progress-label">安放炸弹中…</div>
-    <div id="progress-bar"><div id="progress-fill"></div></div>
+    <div id="progress-bar"><div id="progress-fill"></div><div id="progress-pct"></div></div>
   </div>
 
   <!-- C4 状态 -->
@@ -105,10 +118,11 @@
   <div id="bottom-left">
     <div id="money">$ 800</div>
     <div class="stat-row">
-      <div class="stat"><span class="stat-icon hp-icon">+</span><span id="health-val">100</span></div>
-      <div class="stat"><span class="stat-icon armor-icon">⛨</span><span id="armor-val">0</span></div>
+      <div class="stat"><span class="stat-icon hp-icon">✚</span><span id="health-val">100</span></div>
+      <div class="stat"><span class="stat-icon armor-icon">▣</span><span id="armor-val">0</span></div>
       <div class="stat hidden" id="kit-indicator"><span class="stat-icon kit-icon">✂</span><span>拆弹钳</span></div>
     </div>
+    <div id="hp-bar"><div id="hp-bar-fill"></div></div>
   </div>
 
   <!-- 拾取提示 -->
@@ -120,7 +134,8 @@
     <div id="sb-body"></div>
   </div>
 
-  <!-- 右下：武器 弹药 -->
+  <!-- 右下：武器快捷栏 + 弹药 -->
+  <div id="hotbar"></div>
   <div id="bottom-right">
     <div id="weapon-name">GLOCK-18</div>
     <div id="ammo"><span id="ammo-mag">20</span><span id="ammo-sep">/</span><span id="ammo-reserve">120</span></div>

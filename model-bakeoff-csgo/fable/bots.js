@@ -7,6 +7,12 @@ CS.BOT_NAMES = {
   CT: ["Seal", "GIGN", "SAS", "FBI"],
 };
 
+// CS2 风格队伍配色（bots.js 建模与 round.js 换边重涂共用）
+CS.TEAM_COLORS = {
+  T:  { skin: 0xc8a078, clothA: 0x76683c, clothB: 0x4a422a, head: 0x3d3627, visor: 0x3d3627 },
+  CT: { skin: 0xc8a078, clothA: 0x3d5a78, clothB: 0x28394c, head: 0x1d2733, visor: 0x0e141c },
+};
+
 CS.createBot = function (THREE, map, name, team) {
   const bot = {
     name, team,
@@ -43,12 +49,15 @@ CS.createBot = function (THREE, map, name, team) {
     guardT: 0,
   };
 
-  // ============ 模型 ============
+  // ============ 模型（CS2 感：CT 蓝灰作战服 + 头盔护目镜 / T 橄榄棕 + 头巾） ============
   const isT = team === "T";
-  const skin = new THREE.MeshLambertMaterial({ color: 0xc8a078 });
-  const clothA = new THREE.MeshLambertMaterial({ color: isT ? 0x8a7448 : 0x33465e });
-  const clothB = new THREE.MeshLambertMaterial({ color: isT ? 0x5c4d30 : 0x22303f });
-  const gunMat = new THREE.MeshLambertMaterial({ color: 0x2c2c30 });
+  const TC = CS.TEAM_COLORS[team];
+  const skin = new THREE.MeshLambertMaterial({ color: TC.skin });
+  const clothA = new THREE.MeshLambertMaterial({ color: TC.clothA });
+  const clothB = new THREE.MeshLambertMaterial({ color: TC.clothB });
+  const headMat = new THREE.MeshLambertMaterial({ color: TC.head });
+  const visorMat = new THREE.MeshLambertMaterial({ color: TC.visor });
+  const gunMat = new THREE.MeshLambertMaterial({ color: 0x1e1f23 });
 
   const g = new THREE.Group();
   function part(w, h, d, m, x, y, z) {
@@ -64,12 +73,14 @@ CS.createBot = function (THREE, map, name, team) {
   const armL = part(0.14, 0.55, 0.16, clothA, -0.36, 1.12, 0);
   const armR = part(0.14, 0.55, 0.16, clothA, 0.36, 1.12, 0);
   const head = part(0.3, 0.3, 0.3, skin, 0, 1.62, 0);
-  if (isT) part(0.32, 0.1, 0.32, clothB, 0, 1.74, 0);              // T 头巾
-  else part(0.34, 0.14, 0.34, gunMat, 0, 1.72, 0);                 // CT 头盔
+  const hat = part(0.34, isT ? 0.1 : 0.16, 0.34, headMat, 0, isT ? 1.74 : 1.73, 0); // T 头巾 / CT 头盔
+  const visor = part(0.26, 0.07, 0.03, visorMat, 0, 1.66, -0.165); // CT 护目镜（T 重涂为头巾色）
   const gun = part(0.06, 0.08, 0.7, gunMat, 0.2, 1.25, -0.35);
   gun.rotation.x = 0.05;
   bot.mesh = g;
   bot.headMesh = head;
+  bot._visor = visor;
+  bot._hat = hat;
   bot._animParts = { legL, legR, armL, armR };
 
   bot.setWeapon = function (id) {

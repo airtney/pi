@@ -18,8 +18,11 @@ CS.hud = (function () {
     "scope-overlay", "fps-counter", "match-end-title", "match-end-score", "crosshair",
     "smoke-tint", "radar", "scoreboard", "sb-score", "sb-body", "pickup-hint",
     "radio-feed", "kit-indicator", "match-end-mvp",
+    "hp-bar-fill", "progress-pct", "freeze-countdown", "hotbar", "dmg-dir",
   ];
   ids.forEach((id) => (el[id] = $(id)));
+  const dmgArcs = el["dmg-dir"] ? Array.from(el["dmg-dir"].children) : [];
+  let dmgArcI = 0;
 
   let centerMsgTimer = 0, bannerTimer = 0, hitTimer = 0;
   // DOM 写入缓存：值不变则跳过（避免每帧触发样式/布局）
@@ -37,6 +40,8 @@ CS.hud = (function () {
       el["health-val"].textContent = Math.max(0, Math.ceil(p.hp));
       el["health-val"].classList.toggle("low", p.hp <= 30);
       el["armor-val"].textContent = Math.max(0, Math.ceil(p.armor));
+      el["hp-bar-fill"].style.width = Math.max(0, Math.min(100, p.hp)) + "%";
+      el["hp-bar-fill"].classList.toggle("low", p.hp <= 30);
     },
     updateMoney(p) {
       el["money"].textContent = "$ " + p.money;
@@ -117,7 +122,57 @@ CS.hud = (function () {
       } else {
         el["progress-wrap"].classList.remove("hidden");
         el["progress-label"].textContent = label;
-        el["progress-fill"].style.width = Math.min(100, frac * 100).toFixed(1) + "%";
+        const pct = Math.min(100, frac * 100);
+        el["progress-fill"].style.width = pct.toFixed(1) + "%";
+        setText("progress-pct", Math.floor(pct) + "%");
+      }
+    },
+
+    // ---- 冻结时间倒计时大数字 ----
+    countdown(n) {
+      const d = el["freeze-countdown"];
+      d.textContent = n;
+      d.classList.remove("pop");
+      void d.offsetWidth; // 重启动画
+      d.classList.add("pop");
+    },
+
+    // ---- 受击方向指示（angleDeg：0=正前，顺时针） ----
+    damageDir(angleDeg) {
+      const arc = dmgArcs[dmgArcI];
+      if (!arc) return;
+      dmgArcI = (dmgArcI + 1) % dmgArcs.length;
+      arc.style.transition = "none";
+      arc.style.transform = "rotate(" + angleDeg.toFixed(0) + "deg)";
+      arc.style.opacity = "1";
+      requestAnimationFrame(() => {
+        arc.style.transition = "opacity 0.75s ease-out";
+        arc.style.opacity = "0";
+      });
+    },
+
+    // ---- 武器快捷栏 ----
+    _hotbarHtml: "",
+    hotbar(sys) {
+      const cur = sys.current;
+      let html = "";
+      for (const s of [1, 2, 3]) {
+        const w = sys.slots[s];
+        if (!w) continue;
+        html += '<div class="hb-slot' + (cur === s ? " sel" : "") + '">' +
+          '<span class="hb-key">' + s + "</span>" +
+          '<span class="hb-name">' + w.def.name + "</span>" +
+          '<span class="hb-ammo">' + (w.def.melee ? "" : w.magAmmo) + "</span></div>";
+      }
+      const nades = sys.grenades.he + sys.grenades.flash + sys.grenades.smoke + sys.grenades.fire;
+      if (nades > 0) {
+        html += '<div class="hb-slot' + (cur === 4 ? " sel" : "") + '">' +
+          '<span class="hb-key">4</span><span class="hb-name">投掷物</span>' +
+          '<span class="hb-ammo">×' + nades + "</span></div>";
+      }
+      if (html !== hud._hotbarHtml) {
+        hud._hotbarHtml = html;
+        el["hotbar"].innerHTML = html;
       }
     },
 
@@ -346,10 +401,14 @@ CS.hud = (function () {
             dz = player.pos.z + (rz / d) * maxD;
           }
         }
-        g.fillStyle = friendly ? (player.team === "T" ? "#e0a83c" : "#6fa8dc") : "#ff4a3c";
+        // CS2 配色：CT 蓝白 / T 金橙 / 敌人红橙
+        g.fillStyle = friendly ? (player.team === "T" ? "#eab93d" : "#8ec3ff") : "#ff5040";
         g.beginPath();
         g.arc(dx, dz, 1.5, 0, Math.PI * 2);
         g.fill();
+        g.strokeStyle = "rgba(0,0,0,0.55)";
+        g.lineWidth = 0.4;
+        g.stroke();
       }
       g.restore();
 
@@ -370,23 +429,36 @@ CS.hud = (function () {
       g.stroke();
     },
 
-    // ---- 购买菜单 ----
+    // ---- 购买菜单（CS2：全屏分栏卡片；数字键编号保持全局顺序） ----
     buyMenuOpen: false,
     showBuyMenu(items, money) {
       hud.buyMenuOpen = true;
       el["buy-menu"].classList.remove("hidden");
       el["buy-items"].innerHTML = "";
+      // 按类别分栏（保留原数组下标 → 数字键）
+      const cols = new Map();
       items.forEach((it, i) => {
-        const div = document.createElement("div");
-        const afford = money >= it.price && !it.owned;
-        div.className = "buy-item" + (it.owned ? " owned" : "") + (!afford && !it.owned ? " cant-afford" : "");
-        div.innerHTML =
-          '<span class="buy-key">' + (i + 1) + "</span>" +
-          '<span class="buy-name">' + it.label + "</span>" +
-          '<span class="buy-price">' + (it.owned ? "已拥有" : "$" + it.price) + "</span>";
-        if (afford) div.addEventListener("click", () => it.buy());
-        el["buy-items"].appendChild(div);
+        const cat = it.cat || "装备";
+        if (!cols.has(cat)) cols.set(cat, []);
+        cols.get(cat).push({ it, i });
       });
+      for (const [cat, list] of cols) {
+        const colDiv = document.createElement("div");
+        colDiv.className = "buy-col";
+        colDiv.innerHTML = '<div class="buy-col-title">' + cat + "</div>";
+        for (const { it, i } of list) {
+          const div = document.createElement("div");
+          const afford = money >= it.price && !it.owned;
+          div.className = "buy-item" + (it.owned ? " owned" : "") + (!afford && !it.owned ? " cant-afford" : "");
+          div.innerHTML =
+            '<span class="buy-key">' + (i + 1) + "</span>" +
+            '<span class="buy-name">' + it.label + "</span>" +
+            '<span class="buy-price">' + (it.owned ? "已拥有" : "$" + it.price) + "</span>";
+          if (afford) div.addEventListener("click", () => it.buy());
+          colDiv.appendChild(div);
+        }
+        el["buy-items"].appendChild(colDiv);
+      }
     },
     hideBuyMenu() {
       hud.buyMenuOpen = false;
