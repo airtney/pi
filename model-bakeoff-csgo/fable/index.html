@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Counter-Strike 迷你复刻 — Three.js</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="game-canvas"></canvas>
+
+<!-- ============ 开始界面 ============ -->
+<div id="start-screen">
+  <div class="start-inner">
+    <h1>COUNTER-STRIKE</h1>
+    <div class="subtitle">迷你复刻 · Three.js 版 · Dust II 灵感地图</div>
+    <div class="team-select">
+      <button id="btn-join-t" class="team-btn t-btn">
+        <span class="team-tag">T</span>
+        <span class="team-name">恐怖分子</span>
+        <span class="team-desc">安放 C4 炸毁目标点</span>
+      </button>
+      <button id="btn-join-ct" class="team-btn ct-btn">
+        <span class="team-tag">CT</span>
+        <span class="team-name">反恐精英</span>
+        <span class="team-desc">歼灭对方或拆除 C4</span>
+      </button>
+    </div>
+    <div class="controls-help">
+      <div>WASD 移动 · 鼠标 视角 · 空格 跳 · Shift/Ctrl 蹲</div>
+      <div>左键 开火 · 右键 AWP 开镜 · R 换弹 · 1/2/3/Q/滚轮 切枪</div>
+      <div>4 投掷物 · G 快速投雷 · B 购买菜单 · Tab 计分板</div>
+      <div>E 长按 安放 / 拆除 C4 · E 拾取地上的枪</div>
+      <div>Z/X/C 无线电 · 先到 4 回合半场换边 · CT 可买拆弹钳</div>
+    </div>
+    <div class="start-hint">选择阵营即开始（首回合 $800，先赢 8 回合者获胜）</div>
+  </div>
+</div>
+
+<!-- ============ 暂停界面 ============ -->
+<div id="pause-screen" class="hidden">
+  <div class="pause-inner">
+    <h2>已暂停</h2>
+    <div>点击任意处继续（重新锁定鼠标）</div>
+  </div>
+</div>
+
+<!-- ============ HUD ============ -->
+<div id="hud" class="hidden">
+  <!-- 后期叠层（暗角 + 色彩分级） -->
+  <div id="post-grade"></div>
+  <div id="post-vignette"></div>
+
+  <!-- 准星 -->
+  <div id="crosshair">
+    <div class="ch-line ch-top"></div>
+    <div class="ch-line ch-bottom"></div>
+    <div class="ch-line ch-left"></div>
+    <div class="ch-line ch-right"></div>
+  </div>
+  <div id="hitmarker" class="hidden">
+    <div class="hm-line hm-1"></div><div class="hm-line hm-2"></div>
+    <div class="hm-line hm-3"></div><div class="hm-line hm-4"></div>
+  </div>
+
+  <!-- 受击方向指示（边缘红弧） -->
+  <div id="dmg-dir">
+    <div class="dmg-arc"></div><div class="dmg-arc"></div>
+    <div class="dmg-arc"></div><div class="dmg-arc"></div>
+  </div>
+
+  <!-- AWP 瞄准镜 -->
+  <div id="scope-overlay" class="hidden">
+    <div class="scope-cross-h"></div>
+    <div class="scope-cross-v"></div>
+  </div>
+
+  <!-- 受伤 / 爆炸闪屏 / 烟雾灰屏 -->
+  <div id="damage-vignette"></div>
+  <div id="smoke-tint"></div>
+  <div id="flash-overlay"></div>
+
+  <!-- 顶部：比分 + 计时 + 存活 -->
+  <div id="topbar">
+    <div id="score-t" class="score-box t-color"><span class="score-label">T</span><span id="score-t-val">0</span></div>
+    <div id="timer-box">
+      <div id="round-timer">1:55</div>
+      <div id="round-phase">购买时间</div>
+    </div>
+    <div id="score-ct" class="score-box ct-color"><span id="score-ct-val">0</span><span class="score-label">CT</span></div>
+  </div>
+  <div id="alive-row"><span id="alive-t" class="t-color">T 存活 3</span><span id="round-num">第 1 回合</span><span id="alive-ct" class="ct-color">CT 存活 3</span></div>
+
+  <!-- 击杀信息 -->
+  <div id="killfeed"></div>
+
+  <!-- 中央提示 -->
+  <div id="center-msg" class="hidden"></div>
+  <div id="round-banner" class="hidden"><div id="banner-title"></div><div id="banner-sub"></div></div>
+
+  <!-- 冻结时间倒计时 -->
+  <div id="freeze-countdown"></div>
+
+  <!-- 安放/拆除进度条 -->
+  <div id="progress-wrap" class="hidden">
+    <div id="progress-label">安放炸弹中…</div>
+    <div id="progress-bar"><div id="progress-fill"></div><div id="progress-pct"></div></div>
+  </div>
+
+  <!-- C4 状态 -->
+  <div id="bomb-indicator" class="hidden">C4</div>
+  <div id="carry-indicator" class="hidden">携带 C4 — 前往 A/B 点长按 E 安放</div>
+
+  <!-- 左下：无线电 + 雷达 + 血量 护甲 金钱 -->
+  <div id="radio-feed"></div>
+  <div id="radar-wrap"><canvas id="radar" width="176" height="176"></canvas></div>
+  <div id="bottom-left">
+    <div id="money">$ 800</div>
+    <div class="stat-row">
+      <div class="stat"><span class="stat-icon hp-icon">✚</span><span id="health-val">100</span></div>
+      <div class="stat"><span class="stat-icon armor-icon">▣</span><span id="armor-val">0</span></div>
+      <div class="stat hidden" id="kit-indicator"><span class="stat-icon kit-icon">✂</span><span>拆弹钳</span></div>
+    </div>
+    <div id="hp-bar"><div id="hp-bar-fill"></div></div>
+  </div>
+
+  <!-- 拾取提示 -->
+  <div id="pickup-hint" class="hidden"></div>
+
+  <!-- 计分板（按住 Tab） -->
+  <div id="scoreboard" class="hidden">
+    <div class="sb-title">计分板 <span id="sb-score"></span></div>
+    <div id="sb-body"></div>
+  </div>
+
+  <!-- 右下：武器快捷栏 + 弹药 -->
+  <div id="hotbar"></div>
+  <div id="bottom-right">
+    <div id="weapon-name">GLOCK-18</div>
+    <div id="ammo"><span id="ammo-mag">20</span><span id="ammo-sep">/</span><span id="ammo-reserve">120</span></div>
+  </div>
+
+  <!-- 观战提示 -->
+  <div id="spectate-msg" class="hidden">你已阵亡 — 观战至回合结束</div>
+
+  <!-- 购买菜单 -->
+  <div id="buy-menu" class="hidden">
+    <div class="buy-title">购买装备 <span class="buy-money" id="buy-money">$800</span></div>
+    <div id="buy-items"></div>
+    <div class="buy-hint">按数字键购买 · B / Esc 关闭</div>
+  </div>
+
+  <div id="fps-counter"></div>
+</div>
+
+<!-- ============ 比赛结束 ============ -->
+<div id="match-end" class="hidden">
+  <div class="match-end-inner">
+    <h2 id="match-end-title">胜利</h2>
+    <div id="match-end-score">8 : 5</div>
+    <div id="match-end-mvp"></div>
+    <button id="btn-restart">重新开始</button>
+  </div>
+</div>
+
+<!-- 游戏逻辑（普通脚本，挂在 window.CS 命名空间，file:// 直开可用） -->
+<script src="audio.js"></script>
+<script src="map.js"></script>
+<script src="player.js"></script>
+<script src="weapons.js"></script>
+<script src="grenades.js"></script>
+<script src="bots.js"></script>
+<script src="hud.js"></script>
+<script src="round.js"></script>
+<script src="app.js"></script>
+
+<!-- Three.js r169：importmap + ES Module，从 CDN 加载后启动游戏 -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js"
+  }
+}
+</script>
+<script type="module">
+  import * as THREE from "three";
+  window.CS.boot(THREE);
+</script>
+</body>
+</html>

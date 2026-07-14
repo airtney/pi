@@ -1,0 +1,147 @@
+{
+  "start_time": "2026-07-14T09:55:14.391Z",
+  "server": {
+    "url": "http://127.0.0.1:8765/",
+    "port": 8765,
+    "command": "python3 -m http.server 8765 --bind 127.0.0.1 (cwd: fable/)"
+  },
+  "team_chosen": "T（上半场恐怖分子，4 回合后半场换边变为 CT）",
+  "duration_sec": 687,
+  "final_score": {
+    "T": 8,
+    "CT": 1
+  },
+  "match_result": "失败（玩家所在队 1 : 8 落败，MVP: Pirate 14 杀）",
+  "score_progression": [
+    {
+      "round": 1,
+      "result": "反恐精英获胜",
+      "reason": "歼灭恐怖分子",
+      "score_after": {
+        "T": 0,
+        "CT": 1
+      },
+      "t_sec": 79.6
+    },
+    {
+      "round": 2,
+      "result": "反恐精英获胜",
+      "reason": "歼灭恐怖分子",
+      "score_after": {
+        "T": 0,
+        "CT": 2
+      },
+      "t_sec": 136.3
+    },
+    {
+      "round": 3,
+      "result": "反恐精英获胜",
+      "reason": "歼灭恐怖分子",
+      "score_after": {
+        "T": 0,
+        "CT": 3
+      },
+      "t_sec": 237
+    },
+    {
+      "round": 4,
+      "result": "反恐精英获胜",
+      "reason": "歼灭恐怖分子",
+      "score_after": {
+        "T": 0,
+        "CT": 4
+      },
+      "t_sec": 289.8
+    },
+    {
+      "round": 4,
+      "result": "换边",
+      "reason": "阵营互换 — 手枪局重新开始",
+      "score_after": {
+        "T": 4,
+        "CT": 0
+      },
+      "t_sec": 296.5
+    },
+    {
+      "round": 5,
+      "result": "反恐精英获胜",
+      "reason": "时间耗尽",
+      "score_after": {
+        "T": 4,
+        "CT": 1
+      },
+      "t_sec": 477
+    },
+    {
+      "round": 6,
+      "result": "恐怖分子获胜",
+      "reason": "歼灭反恐精英",
+      "score_after": {
+        "T": 5,
+        "CT": 1
+      },
+      "t_sec": 528.3
+    },
+    {
+      "round": 7,
+      "result": "恐怖分子获胜",
+      "reason": "歼灭反恐精英",
+      "score_after": {
+        "T": 6,
+        "CT": 1
+      },
+      "t_sec": 566.7
+    },
+    {
+      "round": 8,
+      "result": "恐怖分子获胜",
+      "reason": "歼灭反恐精英",
+      "score_after": {
+        "T": 7,
+        "CT": 1
+      },
+      "t_sec": 607.1
+    },
+    {
+      "round": 9,
+      "result": "恐怖分子获胜",
+      "reason": "歼灭反恐精英",
+      "score_after": {
+        "T": 8,
+        "CT": 1
+      },
+      "t_sec": 677.8
+    }
+  ],
+  "player_stats": {
+    "kills": 0,
+    "deaths": 9,
+    "note": "玩家槽位由脚本自动驾驶（寻路+索敌+下包），实力不敌 BOT，全部 9 回合阵亡；阵亡后录像自动切为观战队友第一人称，战斗过程仍完整可见"
+  },
+  "total_kill_events": 45,
+  "notable_events": [
+    "第 1-4 回合：玩家方 T 连输 4 回合（CT 歼灭），比分 0:4",
+    "第 4 回合后半场换边：比分随队伍带走变为 4:0（玩家改打 CT）",
+    "第 5 回合：时间耗尽 CT（原 T 班底）+1，此后对面 T 连续歼灭",
+    "第 9 回合：T 8:1 CT，比赛结束，MVP Pirate 14 杀 / 8 助攻 / 3 死"
+  ],
+  "tools_used": [
+    "google-chrome 148 --headless=new（--enable-unsafe-swiftshader 软件 WebGL 渲染）",
+    "Chrome DevTools Protocol（原生 WebSocket，无 puppeteer）：Page.startScreencast 逐帧抓图、Runtime.evaluate 注入自动驾驶脚本",
+    "autopilot.js：注入页面驱动人类玩家槽位（复用游戏路点图 Dijkstra 寻路、视线索敌、自动购买、C4 安放/拆除、卡住跳跃）",
+    "ffmpeg 6.1.1：concat demuxer 按真实帧时间戳合成 VP9 webm，tile 滤镜生成 storyboard",
+    "python3 http.server 8765 静态服务器（tmux 会话内）"
+  ],
+  "capture": {
+    "frames_captured": 7859,
+    "avg_capture_fps": 11.4,
+    "video": "match.webm 1280x634 VP9 24fps，时长 686.96 秒（帧间时长取自 screencast 真实时间戳，即实时回放）",
+    "stills": "frame-001.png … frame-024.png 等间隔取自整场比赛 + storyboard.jpg（4x6 拼图）+ match-end.png（终场结算画面）"
+  },
+  "success_notes": [
+    "3D 场景、HUD（比分/计时/血量/金钱/雷达/击杀信息流）全程可见，非空白画面",
+    "包含 9 个完整回合的战斗：交火、曳光、受伤红屏、击杀信息、换边横幅、终场 MVP 结算",
+    "游戏源代码未修改；唯一的游戏侧钩子是页面内置的 window.CS_DEBUG_NOLOCK 调试开关（无头环境无 PointerLock）"
+  ]
+}
