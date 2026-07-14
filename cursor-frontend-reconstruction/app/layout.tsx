@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./marketing-spacing.css";
+import "./product-theme.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
