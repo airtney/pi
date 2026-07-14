@@ -23,7 +23,7 @@ export function LogoGarden() {
         <h2 className="type-sm text-center text-theme-text-tertiary">
           Trusted every day by teams that build world-class software
         </h2>
-        <div className="logo-garden-responsive-8 mt-8 grid grid-cols-2 items-center justify-items-center gap-8 sm:grid-cols-4 md:grid-cols-8">
+		<div className="logo-garden-responsive-8 mt-8">
           {COMPANIES.map((name) => (
             <span
               key={name}

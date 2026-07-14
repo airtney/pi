@@ -84,12 +84,12 @@ export function Header() {
 
   return (
     <header
-      className="fixed inset-x-0 top-0 z-50 border-b border-theme-border bg-theme-bg/80 backdrop-blur"
+      className="bg-theme-bg px-g2 fixed top-0 left-0 z-50 w-full"
       style={{ height: "var(--site-header-height)" }}
     >
       <div className="container flex h-full items-center justify-between gap-g2">
         <div className="flex items-center gap-g2">
-          <Link href="/home" aria-label="Cursor" className="flex items-center text-theme-text">
+          <Link href="/" aria-label="Cursor" className="flex items-center text-theme-text">
             <CursorLogo />
           </Link>
           <nav className="hidden items-center gap-1 lg:flex">
