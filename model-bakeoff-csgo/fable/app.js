@@ -12,8 +12,9 @@ CS.boot = function (THREE) {
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x9fc4e0);
-  scene.fog = new THREE.Fog(0xc4d4dd, 60, 190);
+  scene.background = new THREE.Color(0xa7c4de);
+  scene.fog = new THREE.Fog(0xddd0ab, 65, 210); // 沙色远雾，配合天空穹顶
+
 
   const BASE_FOV = 75, SCOPE_FOV = 20;
   const camera = new THREE.PerspectiveCamera(BASE_FOV, window.innerWidth / window.innerHeight, 0.05, 400);
@@ -39,12 +40,101 @@ CS.boot = function (THREE) {
     b.mesh.visible = false;
   }
 
-  // ============ 特效 ============
+  // ============ 特效（对象池：曳光/火花/弹孔复用，避免每枪创建销毁） ============
   const effects = (function () {
-    const tracers = [], sparks = [], lights = [];
+    const lights = [], rings = [];
+
+    // ---- 曳光池 ----
+    const TRACER_POOL = 24;
+    const tracerPool = [];
+    for (let i = 0; i < TRACER_POOL; i++) {
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(6), 3));
+      const line = new THREE.Line(geo, new THREE.LineBasicMaterial({
+        color: 0xffd890, transparent: true, opacity: 0,
+      }));
+      line.visible = false;
+      line.frustumCulled = false;
+      scene.add(line);
+      tracerPool.push({ line, ttl: 0, max: 1 });
+    }
+    let tracerI = 0;
+
+    // ---- 火花池（击中墙/血液共用） ----
+    const SPARK_POOL = 90;
     const sparkGeo = new THREE.SphereGeometry(0.03, 4, 4);
-    const impactMat = new THREE.MeshBasicMaterial({ color: 0xd8c8a0 });
-    const bloodMat = new THREE.MeshBasicMaterial({ color: 0xa01818 });
+    const sparkPool = [];
+    for (let i = 0; i < SPARK_POOL; i++) {
+      const m = new THREE.Mesh(sparkGeo, new THREE.MeshBasicMaterial({ color: 0xffffff }));
+      m.visible = false;
+      scene.add(m);
+      sparkPool.push({ mesh: m, ttl: 0, vel: new THREE.Vector3() });
+    }
+    let sparkI = 0;
+
+    function spawnSparks(point, color, n, speed, dir) {
+      for (let i = 0; i < n; i++) {
+        const s = sparkPool[sparkI];
+        sparkI = (sparkI + 1) % SPARK_POOL;
+        s.mesh.visible = true;
+        s.mesh.material.color.setHex(color);
+        s.mesh.position.copy(point);
+        s.vel.set(
+          (Math.random() - 0.5) * speed,
+          Math.random() * speed * 0.8,
+          (Math.random() - 0.5) * speed
+        );
+        if (dir) s.vel.addScaledVector(dir, speed * 0.7); // 沿弹道方向喷溅
+        s.ttl = 0.35 + Math.random() * 0.25;
+      }
+    }
+
+    // ---- 弹孔池 ----
+    const DECAL_POOL = 48, DECAL_LIFE = 11;
+    const decalGeo = new THREE.CircleGeometry(0.055, 8);
+    const decalPool = [];
+    for (let i = 0; i < DECAL_POOL; i++) {
+      const m = new THREE.Mesh(decalGeo, new THREE.MeshBasicMaterial({
+        color: 0x181410, transparent: true, opacity: 0, depthWrite: false,
+      }));
+      m.visible = false;
+      scene.add(m);
+      decalPool.push({ mesh: m, ttl: 0 });
+    }
+    let decalI = 0;
+    const _dTmp = new THREE.Vector3();
+
+    // 命中点所在 AABB 面的法线（弹孔朝向）
+    function surfaceNormal(p, dir) {
+      const eps = 0.04;
+      for (const c of map.colliders) {
+        if (p.x > c.x1 - eps && p.x < c.x2 + eps && p.y > c.y1 - eps && p.y < c.y2 + eps &&
+            p.z > c.z1 - eps && p.z < c.z2 + eps) {
+          const faces = [
+            [Math.abs(p.x - c.x1), -1, 0, 0], [Math.abs(p.x - c.x2), 1, 0, 0],
+            [Math.abs(p.y - c.y1), 0, -1, 0], [Math.abs(p.y - c.y2), 0, 1, 0],
+            [Math.abs(p.z - c.z1), 0, 0, -1], [Math.abs(p.z - c.z2), 0, 0, 1],
+          ];
+          let best = faces[0];
+          for (const f of faces) if (f[0] < best[0]) best = f;
+          return _dTmp.set(best[1], best[2], best[3]);
+        }
+      }
+      if (p.y < 0.08) return _dTmp.set(0, 1, 0); // 地面
+      return dir ? _dTmp.set(-dir.x, -dir.y, -dir.z).normalize() : null;
+    }
+
+    function addDecal(point, dir) {
+      const n = surfaceNormal(point, dir);
+      if (!n) return;
+      const d = decalPool[decalI];
+      decalI = (decalI + 1) % DECAL_POOL;
+      d.mesh.visible = true;
+      d.mesh.position.set(point.x + n.x * 0.012, point.y + n.y * 0.012, point.z + n.z * 0.012);
+      d.mesh.lookAt(point.x + n.x, point.y + n.y, point.z + n.z);
+      d.mesh.material.opacity = 0.8;
+      d.ttl = DECAL_LIFE;
+    }
 
     const muzzle = new THREE.PointLight(0xffc860, 0, 7, 2);
     camera.add(muzzle);
@@ -57,33 +147,39 @@ CS.boot = function (THREE) {
     flashSprite.position.set(0.22, -0.17, -0.75);
     camera.add(flashSprite);
 
-    function spawnSparks(point, mat, n, speed) {
-      for (let i = 0; i < n; i++) {
-        const m = new THREE.Mesh(sparkGeo, mat);
-        m.position.copy(point);
-        m.userData.vel = new THREE.Vector3(
-          (Math.random() - 0.5) * speed,
-          Math.random() * speed * 0.8,
-          (Math.random() - 0.5) * speed
-        );
-        m.userData.ttl = 0.35 + Math.random() * 0.25;
-        scene.add(m);
-        sparks.push(m);
-      }
+    function addLight(pos, color, intensity, dist, ttl, yOff) {
+      const l = new THREE.PointLight(color, intensity, dist, 1.6);
+      l.position.copy(pos); l.position.y += yOff || 0.5;
+      l.userData.ttl = ttl;
+      l.userData.max = intensity;
+      scene.add(l);
+      lights.push(l);
+    }
+    function addRing(pos, color, size, ttl, grow) {
+      const ring = new THREE.Mesh(
+        new THREE.SphereGeometry(size, 10, 10),
+        new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.65 })
+      );
+      ring.position.copy(pos);
+      ring.userData.ttl = ttl;
+      ring.userData.grow = grow;
+      scene.add(ring);
+      rings.push(ring);
     }
 
     return {
       tracer(from, to, thick) {
-        const geo = new THREE.BufferGeometry().setFromPoints([
-          new THREE.Vector3(from.x, from.y - 0.06, from.z), to.clone(),
-        ]);
-        const mat = new THREE.LineBasicMaterial({
-          color: thick ? 0xcfe8ff : 0xffd890, transparent: true, opacity: 0.85,
-        });
-        const line = new THREE.Line(geo, mat);
-        line.userData.ttl = thick ? 0.14 : 0.07;
-        scene.add(line);
-        tracers.push(line);
+        const t = tracerPool[tracerI];
+        tracerI = (tracerI + 1) % TRACER_POOL;
+        const pos = t.line.geometry.attributes.position;
+        pos.setXYZ(0, from.x, from.y - 0.06, from.z);
+        pos.setXYZ(1, to.x, to.y, to.z);
+        pos.needsUpdate = true;
+        t.line.material.color.setHex(thick ? 0xcfe8ff : 0xffd890);
+        t.line.material.opacity = 0.85;
+        t.line.visible = true;
+        t.max = thick ? 0.14 : 0.07;
+        t.ttl = t.max;
       },
       muzzleFlash() {
         muzzle.intensity = 14;
@@ -91,43 +187,28 @@ CS.boot = function (THREE) {
         flashSprite.material.opacity = 0.9;
         flashSprite.rotation.z = Math.random() * Math.PI;
       },
-      impact(point) { spawnSparks(point, impactMat, 5, 2.5); },
-      blood(point) { spawnSparks(point, bloodMat, 8, 3); },
+      impact(point, dir) {
+        spawnSparks(point, 0xd8c8a0, 4, 2.5);
+        addDecal(point, dir);
+      },
+      blood(point, dir) {
+        spawnSparks(point, 0xa01818, 9, 3, dir);
+      },
       heExplosion(pos) {
-        spawnSparks(pos, impactMat, 18, 8);
-        spawnSparks(pos, new THREE.MeshBasicMaterial({ color: 0xff9030 }), 14, 6);
-        const l = new THREE.PointLight(0xffa040, 30, 26, 1.6);
-        l.position.copy(pos); l.position.y += 0.5;
-        l.userData.ttl = 0.35;
-        scene.add(l);
-        lights.push(l);
-        const ring = new THREE.Mesh(
-          new THREE.SphereGeometry(0.5, 10, 10),
-          new THREE.MeshBasicMaterial({ color: 0xffc060, transparent: true, opacity: 0.65 })
-        );
-        ring.position.copy(pos);
-        ring.userData.ttl = 0.3;
-        ring.userData.grow = 30;
-        scene.add(ring);
-        sparks.push(ring);
+        spawnSparks(pos, 0xd8c8a0, 16, 8);
+        spawnSparks(pos, 0xff9030, 12, 6);
+        addLight(pos, 0xffa040, 30, 26, 0.35);
+        addRing(pos, 0xffc060, 0.5, 0.3, 30);
+      },
+      flashPop(pos) {
+        addLight(pos, 0xffffff, 50, 34, 0.25, 0.3);
+        addRing(pos, 0xffffff, 0.4, 0.22, 42);
       },
       explosion(pos) {
-        spawnSparks(pos, impactMat, 40, 14);
-        spawnSparks(pos, new THREE.MeshBasicMaterial({ color: 0xff8020 }), 30, 10);
-        const l = new THREE.PointLight(0xffa040, 60, 60, 1.5);
-        l.position.copy(pos); l.position.y += 1;
-        l.userData.ttl = 0.6;
-        scene.add(l);
-        lights.push(l);
-        const ring = new THREE.Mesh(
-          new THREE.SphereGeometry(1, 12, 12),
-          new THREE.MeshBasicMaterial({ color: 0xffc060, transparent: true, opacity: 0.7 })
-        );
-        ring.position.copy(pos);
-        ring.userData.ttl = 0.5;
-        ring.userData.grow = 40;
-        scene.add(ring);
-        sparks.push(ring);
+        spawnSparks(pos, 0xd8c8a0, 34, 14);
+        spawnSparks(pos, 0xff8020, 26, 10);
+        addLight(pos, 0xffa040, 60, 60, 0.6, 1);
+        addRing(pos, 0xffc060, 1, 0.5, 40);
       },
       hitmarker(kill) {
         CS.hud.hitmarker(kill);
@@ -138,30 +219,34 @@ CS.boot = function (THREE) {
           muzzleT -= dt;
           if (muzzleT <= 0) { muzzle.intensity = 0; flashSprite.material.opacity = 0; }
         }
-        for (let i = tracers.length - 1; i >= 0; i--) {
-          const t = tracers[i];
-          t.userData.ttl -= dt;
-          t.material.opacity = Math.max(0, t.userData.ttl * 10);
-          if (t.userData.ttl <= 0) {
-            scene.remove(t); t.geometry.dispose(); t.material.dispose();
-            tracers.splice(i, 1);
-          }
+        for (const t of tracerPool) {
+          if (t.ttl <= 0) continue;
+          t.ttl -= dt;
+          if (t.ttl <= 0) { t.line.visible = false; continue; }
+          t.line.material.opacity = 0.85 * (t.ttl / t.max);
         }
-        for (let i = sparks.length - 1; i >= 0; i--) {
-          const s = sparks[i];
+        for (const s of sparkPool) {
+          if (s.ttl <= 0) continue;
+          s.ttl -= dt;
+          if (s.ttl <= 0) { s.mesh.visible = false; continue; }
+          s.vel.y -= 9 * dt;
+          s.mesh.position.addScaledVector(s.vel, dt);
+        }
+        for (const d of decalPool) {
+          if (d.ttl <= 0) continue;
+          d.ttl -= dt;
+          if (d.ttl <= 0) { d.mesh.visible = false; continue; }
+          if (d.ttl < 2) d.mesh.material.opacity = 0.8 * (d.ttl / 2); // 淡出
+        }
+        for (let i = rings.length - 1; i >= 0; i--) {
+          const s = rings[i];
           s.userData.ttl -= dt;
-          if (s.userData.vel) {
-            s.userData.vel.y -= 9 * dt;
-            s.position.addScaledVector(s.userData.vel, dt);
-          }
-          if (s.userData.grow) {
-            s.scale.multiplyScalar(1 + s.userData.grow * dt * 0.25);
-            s.material.opacity = Math.max(0, s.userData.ttl * 1.4);
-          }
+          s.scale.multiplyScalar(1 + s.userData.grow * dt * 0.25);
+          s.material.opacity = Math.max(0, s.userData.ttl * 1.4);
           if (s.userData.ttl <= 0) {
             scene.remove(s);
-            if (s.userData.grow) s.geometry.dispose();
-            sparks.splice(i, 1);
+            s.geometry.dispose(); s.material.dispose();
+            rings.splice(i, 1);
           }
         }
         for (let i = lights.length - 1; i >= 0; i--) {
@@ -178,6 +263,11 @@ CS.boot = function (THREE) {
   function applyDamage(victim, dmg, attacker, weaponDef, headshot) {
     if (!victim.alive) return;
     victim.hp -= dmg;
+    if (attacker && attacker !== victim && attacker.team !== victim.team) {
+      // 助攻记录（击杀时结算）
+      if (!victim._dmgLog) victim._dmgLog = new Map();
+      victim._dmgLog.set(attacker, performance.now() / 1000);
+    }
     if (victim === player) {
       CS.hud.updateHealth(player);
       CS.hud.damageFlash();
@@ -191,7 +281,14 @@ CS.boot = function (THREE) {
         CS.audio.death();
         CS.hud.spectate(true);
         CS.hud.progress(null, null);
+        CS.hud.pickupHint(null);
         if (weaponSys.scoped) { weaponSys.scoped = false; }
+        // 掉落主武器
+        const prim = weaponSys.slots[1];
+        if (prim && CS.groundItems) {
+          CS.groundItems.drop(prim.def.id, prim.magAmmo, prim.reserveAmmo, player.pos);
+          weaponSys.slots[1] = null;
+        }
       } else {
         victim.die();
       }
@@ -221,8 +318,14 @@ CS.boot = function (THREE) {
     getListenerPos: () => ({ x: player.pos.x, y: player.pos.y + player.eyeHeight, z: player.pos.z }),
   });
 
+  // ============ 地面武器（掉落 / 拾取） ============
+  CS.groundItems = CS.createGroundItems(THREE, { scene, map });
+
+  // ============ 迷你雷达 ============
+  CS.hud.initRadar(map);
+
   // ============ 输入 ============
-  const state = { started: false, locked: false, useHeld: false, mouseDown: false };
+  const state = { started: false, locked: false, useHeld: false, useTap: false, mouseDown: false };
 
   function requestLock() {
     if (!canvas.requestPointerLock) return;
@@ -264,6 +367,14 @@ CS.boot = function (THREE) {
     if (!state.started) return;
     player.keys[e.code] = true;
 
+    if (e.code === "Tab") {
+      e.preventDefault();
+      if (!CS.hud.scoreboardOpen) {
+        CS.hud.renderScoreboard(round.characters, round.score);
+        CS.hud.showScoreboard(true);
+      }
+      return;
+    }
     if (e.code === "KeyB") {
       e.preventDefault();
       if (round.phase === "buy") {
@@ -289,7 +400,10 @@ CS.boot = function (THREE) {
       case "Digit4": weaponSys.select(4); break;
       case "KeyQ": weaponSys.cycle(1); break;
       case "KeyR": weaponSys.startReload(); break;
-      case "KeyE": state.useHeld = true; break;
+      case "KeyE":
+        if (!state.useHeld) state.useTap = true; // 边沿触发：拾取用
+        state.useHeld = true;
+        break;
       case "KeyG":
         if (round.phase === "live") weaponSys.quickThrow(performance.now() / 1000);
         break;
@@ -298,6 +412,7 @@ CS.boot = function (THREE) {
   document.addEventListener("keyup", (e) => {
     player.keys[e.code] = false;
     if (e.code === "KeyE") state.useHeld = false;
+    if (e.code === "Tab") { e.preventDefault(); CS.hud.showScoreboard(false); }
   });
 
   // ============ 开始 / 重开 ============
@@ -315,12 +430,81 @@ CS.boot = function (THREE) {
   document.getElementById("btn-join-ct").addEventListener("click", () => startGame("CT"));
   document.getElementById("btn-restart").addEventListener("click", () => location.reload());
 
-  CS.debug = { round, player, bots, map, weaponSys, state, grenades: CS.grenades };
+  // ============ 武器拾取（E 键 / 无主武器时走过去自动捡） ============
+  function usingBombAction() {
+    // 安放 / 拆除上下文中 E 键优先给 C4 逻辑
+    if (player.hasBomb && !round.bombPlanted) {
+      for (const key of ["A", "B"]) {
+        const s = map.sites[key];
+        if (Math.hypot(player.pos.x - s.x, player.pos.z - s.z) < s.r) return true;
+      }
+    }
+    if (player.team === "CT" && round.bombPlanted) {
+      const bp = round.bombPos;
+      if (Math.hypot(player.pos.x - bp.x, player.pos.z - bp.z) < 3.2) return true;
+    }
+    return false;
+  }
+
+  function pickupItem(item) {
+    CS.groundItems.take(item);
+    const cur = weaponSys.slots[1];
+    if (cur) CS.groundItems.drop(cur.def.id, cur.magAmmo, cur.reserveAmmo, player.pos);
+    weaponSys.give(item.id);
+    const w = weaponSys.slots[1];
+    w.magAmmo = Math.min(item.magAmmo, w.def.mag);
+    w.reserveAmmo = item.reserveAmmo;
+    CS.hud.updateAmmo(weaponSys.cur());
+    CS.audio.weaponSwitch();
+  }
+
+  function updatePickup() {
+    if (!player.alive || round.phase === "over" || usingBombAction()) {
+      CS.hud.pickupHint(null);
+      return;
+    }
+    const item = CS.groundItems.nearest(player.pos, 1.7);
+    if (!item) { CS.hud.pickupHint(null); return; }
+    if (!weaponSys.slots[1]) {
+      pickupItem(item); // 无主武器：走过去直接捡
+      CS.hud.pickupHint(null);
+      return;
+    }
+    if (item.id === weaponSys.slots[1].def.id) { CS.hud.pickupHint(null); return; }
+    CS.hud.pickupHint("按 E 换成 " + CS.WEAPONS[item.id].name);
+    if (state.useTap) pickupItem(item);
+  }
+
+  // ============ 雷达：敌人暴露判定（队友视野 / 最近开枪） ============
+  function updateSpotted(now) {
+    for (const ch of round.characters) {
+      if (ch === player || !ch.alive || ch.team === player.team) { ch._spotted = false; continue; }
+      let sp = now - (ch.lastFired || -99) < 2; // 开枪 2 秒内暴露
+      if (!sp) {
+        for (const mate of round.characters) {
+          if (mate.team !== player.team || !mate.alive) continue;
+          const dx = ch.pos.x - mate.pos.x, dz = ch.pos.z - mate.pos.z;
+          if (dx * dx + dz * dz > 55 * 55) continue;
+          const a = { x: mate.pos.x, y: mate.pos.y + 1.6, z: mate.pos.z };
+          const b = { x: ch.pos.x, y: ch.pos.y + 1.4, z: ch.pos.z };
+          if (CS.lineBlocked(a, b, map.colliders)) continue;
+          if (CS.grenades.lineInSmoke(a, b)) continue;
+          sp = true;
+          break;
+        }
+      }
+      if (sp) ch._spottedUntil = now + 1.5;
+      ch._spotted = sp || (ch._spottedUntil || 0) > now;
+    }
+  }
+
+  CS.debug = { round, player, bots, map, weaponSys, state, grenades: CS.grenades, groundItems: CS.groundItems };
 
   // ============ 主循环 ============
   let lastT = performance.now() / 1000;
   let fpsAcc = 0, fpsN = 0, fpsT = 0;
   let scopedPrev = false;
+  let radarT = 99, sbT = 0;
 
   function frame() {
     requestAnimationFrame(frame);
@@ -364,6 +548,31 @@ CS.boot = function (THREE) {
 
         // 回合
         round.update(dt, { useHeld: state.useHeld });
+
+        // 武器拾取
+        updatePickup();
+        state.useTap = false;
+
+        // 雷达（约 12Hz：含队友视野暴露判定）
+        radarT += dt;
+        if (radarT >= 0.08) {
+          radarT = 0;
+          updateSpotted(now);
+          CS.hud.drawRadar(player, round.characters, {
+            planted: round.bombPlanted,
+            x: round.bombPos.x, z: round.bombPos.z,
+            carrier: round.bombCarrier,
+          });
+        }
+
+        // 计分板打开时定期刷新
+        if (CS.hud.scoreboardOpen) {
+          sbT += dt;
+          if (sbT >= 0.5) {
+            sbT = 0;
+            CS.hud.renderScoreboard(round.characters, round.score);
+          }
+        }
 
         // 开镜 FOV
         if (weaponSys.scoped !== scopedPrev) {

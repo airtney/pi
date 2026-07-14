@@ -5,9 +5,10 @@ window.CS = window.CS || {};
 CS.createGrenades = function (THREE, ctx) {
   // ctx: {scene, map, effects, applyDamage, getCharacters, getListenerPos}
   const { scene, map, effects } = ctx;
-  const GRAV = 14, HE_FUSE = 1.7, SMOKE_FUSE = 1.5;
+  const GRAV = 14, HE_FUSE = 1.7, SMOKE_FUSE = 1.5, FLASH_FUSE = 1.4;
   const HE_RADIUS = 10, HE_DMG = 105;
   const SMOKE_LIFE = 15, SMOKE_R = 3.6;
+  const FLASH_RADIUS = 26;
 
   const projs = [];   // {type, pos, vel, thrower, born, mesh, rested}
   const smokes = [];  // {x,y,z,r,born,group,puffs:[{mesh,phase,base}]}
@@ -15,6 +16,7 @@ CS.createGrenades = function (THREE, ctx) {
 
   const heMat = new THREE.MeshLambertMaterial({ color: 0x3d4a30 });
   const smokeShellMat = new THREE.MeshLambertMaterial({ color: 0x8a8f94 });
+  const flashShellMat = new THREE.MeshLambertMaterial({ color: 0xb8bec4 });
   const projGeo = new THREE.SphereGeometry(0.09, 8, 8);
   const puffGeo = new THREE.SphereGeometry(1, 10, 10);
 
@@ -22,7 +24,7 @@ CS.createGrenades = function (THREE, ctx) {
 
   // ============ 投掷 ============
   gren.throw = function (type, origin, vel, thrower) {
-    const mesh = new THREE.Mesh(projGeo, type === "he" ? heMat : smokeShellMat);
+    const mesh = new THREE.Mesh(projGeo, type === "he" ? heMat : type === "flash" ? flashShellMat : smokeShellMat);
     mesh.position.copy(origin);
     mesh.castShadow = true;
     scene.add(mesh);
@@ -120,6 +122,38 @@ CS.createGrenades = function (THREE, ctx) {
     }
   }
 
+  // 闪光弹：视线可达 + 距离 + 朝向决定致盲强度
+  function detonateFlash(p) {
+    const now = performance.now() / 1000;
+    const fpos = { x: p.pos.x, y: p.pos.y + 0.3, z: p.pos.z };
+    effects.flashPop(new THREE.Vector3(fpos.x, fpos.y, fpos.z));
+    CS.audio.flashBangAt(p.pos, ctx.getListenerPos());
+    for (const ch of ctx.getCharacters()) {
+      if (!ch.alive) continue;
+      const eye = { x: ch.pos.x, y: ch.pos.y + ch.height * 0.9, z: ch.pos.z };
+      const d = Math.hypot(eye.x - fpos.x, eye.y - fpos.y, eye.z - fpos.z);
+      if (d >= FLASH_RADIUS) continue;
+      if (CS.lineBlocked(fpos, eye, map.colliders)) continue; // 墙后不炸盲
+      if (gren.lineInSmoke(fpos, eye)) continue;              // 烟雾挡闪
+      // 朝向系数：面向闪光全致盲，背对只有轻微
+      let facing = 1;
+      const fx = -Math.sin(ch.yaw !== undefined ? ch.yaw : 0), fz = -Math.cos(ch.yaw !== undefined ? ch.yaw : 0);
+      const tx = (fpos.x - eye.x) / (d || 1), tz = (fpos.z - eye.z) / (d || 1);
+      const dot = fx * tx + fz * tz;
+      facing = dot > 0.2 ? 1 : dot > -0.3 ? 0.55 : 0.22;
+      const strength = Math.min(1, (1 - d / FLASH_RADIUS) * 1.4) * facing;
+      if (strength < 0.08) continue;
+      if (ch.isHuman) {
+        CS.hud.flashBlind(strength);
+        if (strength > 0.55) CS.audio.flashRing(strength);
+      } else {
+        const dur = 0.5 + strength * 3.2;
+        ch.blindUntil = Math.max(ch.blindUntil || 0, now + dur);
+        ch.target = null; // 丢失目标
+      }
+    }
+  }
+
   function deploySmoke(p) {
     const gy = map.groundHeight(p.pos.x, p.pos.z, p.pos.y + 0.5);
     const group = new THREE.Group();
@@ -181,11 +215,12 @@ CS.createGrenades = function (THREE, ctx) {
     for (let i = projs.length - 1; i >= 0; i--) {
       const p = projs[i];
       stepProjectile(p, dt);
-      const fuse = p.type === "he" ? HE_FUSE : SMOKE_FUSE;
+      const fuse = p.type === "he" ? HE_FUSE : p.type === "flash" ? FLASH_FUSE : SMOKE_FUSE;
       if (now - p.born >= fuse) {
         scene.remove(p.mesh);
         projs.splice(i, 1);
         if (p.type === "he") detonateHE(p);
+        else if (p.type === "flash") detonateFlash(p);
         else deploySmoke(p);
       }
     }

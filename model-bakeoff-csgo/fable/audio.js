@@ -132,6 +132,16 @@ CS.audio = (function () {
       bang(0.28 * a, 1.6, 700, 0.4, 1.5); // 持续嘶嘶声
       tone(500, 0.1 * a, 0.25, "sine", 250);
     },
+    flashBangAt(pos, listener) {
+      const a = attenuate(pos, listener, 16);
+      if (a < 0.05) return;
+      bang(0.7 * a, 0.25, 5200, 0.8);
+      tone(3200, 0.3 * a, 0.2, "sine", 2600);
+    },
+    flashRing(strength) {
+      // 被闪后的耳鸣
+      tone(3800, 0.16 * strength, 1.2 + strength, "sine", 3700);
+    },
 
     bombBeep(urgent) { tone(urgent ? 2200 : 1900, urgent ? 0.3 : 0.2, 0.07, "square"); },
     bombPlanted() { tone(1500, 0.25, 0.12, "square"); tone(1000, 0.2, 0.2, "square"); },

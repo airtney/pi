@@ -94,7 +94,8 @@ CS.createRound = function (THREE, ctx) {
     bombGroup.visible = false;
     CS.hud.bombIndicator(false);
     CS.hud.progress(null, null);
-    if (CS.grenades) CS.grenades.clear(); // 清掉上回合的投掷物与烟雾
+    if (CS.grenades) CS.grenades.clear();     // 清掉上回合的投掷物与烟雾
+    if (CS.groundItems) CS.groundItems.clear(); // 清掉上回合掉落的武器
 
     // 复活 & 出生点
     const spawnIdx = { T: 0, CT: 0 };
@@ -102,6 +103,7 @@ CS.createRound = function (THREE, ctx) {
       const list = map.spawns[ch.team];
       const sp = list[spawnIdx[ch.team]++ % list.length];
       ch.armor = ch._survived ? ch.armor : 0;
+      ch._dmgLog = null; // 助攻记录
       ch.spawnAt(sp);
     }
 
@@ -123,6 +125,7 @@ CS.createRound = function (THREE, ctx) {
         b.armor = 0;
         b.grenades.he = 0;
         b.grenades.smoke = 0;
+        b.grenades.flash = 0;
       }
       b.buyPhase();
     }
@@ -175,6 +178,14 @@ CS.createRound = function (THREE, ctx) {
       const reward = weaponDef && weaponDef.melee ? 1500 : weaponDef && weaponDef.sniper ? 100 : 300;
       attacker.money = Math.min(MAX_MONEY, attacker.money + reward);
       if (attacker === player) CS.hud.updateMoney(player);
+    }
+    // 助攻：6 秒内对死者造成过伤害的其他敌人
+    if (victim._dmgLog) {
+      const nowS = performance.now() / 1000;
+      for (const [helper, t] of victim._dmgLog) {
+        if (helper !== attacker && helper.team !== victim.team && nowS - t < 6) helper.assists++;
+      }
+      victim._dmgLog = null;
     }
     CS.hud.killfeed(
       attacker ? attacker.name : "C4", attacker ? attacker.team : "T",
@@ -326,6 +337,14 @@ CS.createRound = function (THREE, ctx) {
           if (!spend(650)) return;
           player.armor = 100;
           CS.hud.updateHealth(player);
+          done();
+        },
+      },
+      {
+        label: "闪光弹（4 切换 / G 投掷）", price: 200, owned: ctx.weaponSys.grenades.flash >= 1,
+        buy: () => {
+          if (!spend(200)) return;
+          ctx.weaponSys.addGrenade("flash");
           done();
         },
       },

@@ -175,6 +175,50 @@ body {
   padding: 3px 12px; border-radius: 3px;
 }
 
+/* ---- 迷你雷达 ---- */
+#radar-wrap {
+  position: absolute; left: 18px; bottom: 118px;
+  width: 176px; height: 176px;
+  opacity: 0.92;
+}
+#radar { display: block; border-radius: 50%; }
+
+/* ---- 拾取提示 ---- */
+#pickup-hint {
+  position: absolute; left: 50%; top: 56%; transform: translateX(-50%);
+  font-size: 14px; color: #e8dfc0; background: rgba(10, 10, 8, 0.7);
+  padding: 4px 14px; border-radius: 3px; border: 1px solid rgba(150, 140, 110, 0.4);
+}
+
+/* ---- 计分板 ---- */
+#scoreboard {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: 560px; max-height: 80vh; overflow: hidden;
+  background: rgba(12, 12, 9, 0.94);
+  border: 1px solid #4a4638; border-radius: 4px;
+  padding: 14px 18px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.8);
+}
+.sb-title {
+  font-size: 17px; font-weight: 700; letter-spacing: 2px; color: #d9cfa8;
+  border-bottom: 1px solid #3a382e; padding-bottom: 8px; margin-bottom: 8px;
+  display: flex; justify-content: space-between;
+}
+.sb-team { font-size: 14px; font-weight: 700; margin: 10px 0 4px; letter-spacing: 1px; }
+.sb-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.sb-table th {
+  text-align: center; color: #8b8878; font-weight: 600; font-size: 11px;
+  padding: 2px 6px; border-bottom: 1px solid #2c2a22;
+}
+.sb-table td { text-align: center; padding: 3px 6px; color: #d5d1c4; }
+.sb-table .sb-name { text-align: left; width: 45%; }
+.sb-dead td { color: #6b6858; }
+.sb-me td { background: rgba(120, 110, 70, 0.14); }
+.sb-c4 {
+  font-size: 10px; color: #ff5a3c; border: 1px solid #ff5a3c;
+  padding: 0 3px; border-radius: 2px; margin-left: 4px;
+}
+
 /* ---- 左下 ---- */
 #bottom-left { position: absolute; left: 18px; bottom: 16px; }
 #money { font-size: 22px; font-weight: 700; color: #9ad06c; text-shadow: 0 1px 3px #000; margin-bottom: 6px; }

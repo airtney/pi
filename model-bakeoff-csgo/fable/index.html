@@ -30,7 +30,8 @@
     <div class="controls-help">
       <div>WASD 移动 · 鼠标 视角 · 空格 跳 · Shift/Ctrl 蹲</div>
       <div>左键 开火 · 右键 AWP 开镜 · R 换弹 · 1/2/3/Q/滚轮 切枪</div>
-      <div>4 投掷物 · G 快速投雷 · B 购买菜单 · E 长按 安放 / 拆除 C4</div>
+      <div>4 投掷物 · G 快速投雷 · B 购买菜单 · Tab 计分板</div>
+      <div>E 长按 安放 / 拆除 C4 · E 拾取地上的枪</div>
     </div>
     <div class="start-hint">选择阵营即开始（首回合 $800，先赢 8 回合者获胜）</div>
   </div>
@@ -97,13 +98,23 @@
   <div id="bomb-indicator" class="hidden">C4</div>
   <div id="carry-indicator" class="hidden">携带 C4 — 前往 A/B 点长按 E 安放</div>
 
-  <!-- 左下：血量 护甲 金钱 -->
+  <!-- 左下：雷达 + 血量 护甲 金钱 -->
+  <div id="radar-wrap"><canvas id="radar" width="176" height="176"></canvas></div>
   <div id="bottom-left">
     <div id="money">$ 800</div>
     <div class="stat-row">
       <div class="stat"><span class="stat-icon hp-icon">+</span><span id="health-val">100</span></div>
       <div class="stat"><span class="stat-icon armor-icon">⛨</span><span id="armor-val">0</span></div>
     </div>
+  </div>
+
+  <!-- 拾取提示 -->
+  <div id="pickup-hint" class="hidden"></div>
+
+  <!-- 计分板（按住 Tab） -->
+  <div id="scoreboard" class="hidden">
+    <div class="sb-title">计分板 <span id="sb-score"></span></div>
+    <div id="sb-body"></div>
   </div>
 
   <!-- 右下：武器 弹药 -->

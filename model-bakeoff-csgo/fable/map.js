@@ -69,6 +69,24 @@ CS.createMap = function (THREE) {
     g.fillStyle = "#6e6657"; g.fillRect(0, 0, s, s);
     speckle(g, s, 400, "rgba(20,20,20,@)", "rgba(200,190,170,@)");
   });
+  // 区域地面变体：中路石板 / 隧道暗土 / A 大道红沙（帮助玩家辨认在哪条路）
+  const midFloorTex = makeTex((g, s) => {
+    g.fillStyle = "#b3a88f"; g.fillRect(0, 0, s, s);
+    speckle(g, s, 500, "rgba(60,55,45,@)", "rgba(245,240,225,@)");
+    g.strokeStyle = "rgba(50,45,35,0.3)"; g.lineWidth = 2;
+    for (let k = 0; k <= s; k += 42) {
+      g.beginPath(); g.moveTo(0, k); g.lineTo(s, k); g.stroke();
+      g.beginPath(); g.moveTo(k, 0); g.lineTo(k, s); g.stroke();
+    }
+  });
+  const tunnelFloorTex = makeTex((g, s) => {
+    g.fillStyle = "#8d7c5c"; g.fillRect(0, 0, s, s);
+    speckle(g, s, 700, "rgba(30,25,15,@)", "rgba(190,175,140,@)");
+  });
+  const longFloorTex = makeTex((g, s) => {
+    g.fillStyle = "#c9a578"; g.fillRect(0, 0, s, s);
+    speckle(g, s, 800, "rgba(130,80,40,@)", "rgba(255,235,200,@)");
+  });
 
   function mat(tex) {
     return new THREE.MeshLambertMaterial({ map: tex });
@@ -159,6 +177,51 @@ CS.createMap = function (THREE) {
     m.receiveShadow = true;
     group.add(m);
   }
+  // 区域地面覆盖层（辨识中路/隧道/大道）
+  function floorPatch(x1, z1, x2, z2, tex, repX, repZ) {
+    const t = tex.clone(); t.needsUpdate = true; t.repeat.set(repX, repZ);
+    const m = new THREE.Mesh(
+      new THREE.PlaneGeometry(x2 - x1, z2 - z1),
+      new THREE.MeshLambertMaterial({ map: t })
+    );
+    m.rotation.x = -Math.PI / 2;
+    m.position.set((x1 + x2) / 2, 0.02, (z1 + z2) / 2);
+    m.receiveShadow = true;
+    group.add(m);
+  }
+  floorPatch(-6, -34, 6, 44, midFloorTex, 3, 18);      // 中路石板
+  floorPatch(-50, -30, -40, 48, tunnelFloorTex, 3, 20); // 隧道暗土
+  floorPatch(40, -28, 50, 48, longFloorTex, 3, 20);     // A 大道红沙
+  floorPatch(-58, -56, -28, -26, concreteTex, 8, 8);    // B 点水泥
+
+  // ============ 天空穹顶（渐变，程序化） ============
+  {
+    const cv = document.createElement("canvas");
+    cv.width = 4; cv.height = 128;
+    const g = cv.getContext("2d");
+    const grad = g.createLinearGradient(0, 0, 0, 128);
+    grad.addColorStop(0, "#5f93c9");
+    grad.addColorStop(0.55, "#a7c4de");
+    grad.addColorStop(0.8, "#e2d5b2");
+    grad.addColorStop(1, "#e8d9b0");
+    g.fillStyle = grad;
+    g.fillRect(0, 0, 4, 128);
+    const tex = new THREE.CanvasTexture(cv);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    const sky = new THREE.Mesh(
+      new THREE.SphereGeometry(300, 24, 12),
+      new THREE.MeshBasicMaterial({ map: tex, side: THREE.BackSide, fog: false, depthWrite: false })
+    );
+    group.add(sky);
+    // 太阳圆盘
+    const sunDisc = new THREE.Mesh(
+      new THREE.CircleGeometry(14, 20),
+      new THREE.MeshBasicMaterial({ color: 0xfff3cc, fog: false })
+    );
+    sunDisc.position.set(160, 190, -120);
+    sunDisc.lookAt(0, 0, 0);
+    group.add(sunDisc);
+  }
 
   // ============ A 点高台 + 台阶 ============
   // 高台（分三块，留出西侧台阶凹口）
@@ -189,12 +252,18 @@ CS.createMap = function (THREE) {
   }
   crate(-14, 44, 1.8, 0); crate(16, 46, 1.8, 0);            // T 出生点
   crate(-4.2, 6, 2.4, 0); crate(-4.2, 8.5, 2.4, 0); crate(-4.2, 7.2, 2.4, 2.4); // 中路
+  crate(4.4, -12, 2.2, 0);                                   // 中路北段掩体
+  crate(4.2, 26, 1.8, 0);                                    // 中路南段掩体
   crate(47.8, 12, 2.4, 0); crate(47.8, 14.5, 2.4, 0);        // A 大道
+  crate(42, -18, 2.2, 0); crate(42, -15.7, 2.2, 0);          // A 大道拐角双箱
   crate(-48.5, -8, 1.8, 0);                                  // 隧道
+  crate(-42, 24, 1.8, 0);                                    // 隧道南段
   crate(-52.6, -34, 2.4, 0); crate(-50.2, -34, 2.4, 0); crate(-51.4, -34, 2.4, 2.4); // B 点
   crate(-34, -52, 1.8, 0); crate(-31.5, -29.5, 2.4, 0);      // B 点
+  crate(-44, -49, 2.2, 0); crate(-44, -46.7, 2.2, 0);        // B 点后场双箱
   crate(50.5, -50.5, 2.4, 2); crate(48, -50.5, 2.4, 2); crate(49.2, -50.5, 2.4, 4.4); // A 点
   crate(33, -36, 1.8, 2);                                    // A 点
+  crate(20, -27.3, 2.2, 0);                                  // A 小道口（贴墙，不挡路线）
   crate(14, -55, 1.8, 0);                                    // CT 出生点
 
   // ============ 炸弹点标记 ============
@@ -226,11 +295,31 @@ CS.createMap = function (THREE) {
   siteDecal(sites.A, "A");
   siteDecal(sites.B, "B");
 
-  // ============ 光照 ============
-  const hemi = new THREE.HemisphereLight(0xcfe0f0, 0x8a7a58, 0.85);
+  // 空中漂浮的点位字母（远处也能辨认 A/B）
+  function siteBeacon(site, letter) {
+    const cv = document.createElement("canvas");
+    cv.width = cv.height = 128;
+    const g = cv.getContext("2d");
+    g.font = "bold 96px Arial"; g.textAlign = "center"; g.textBaseline = "middle";
+    g.strokeStyle = "rgba(0,0,0,0.7)"; g.lineWidth = 10;
+    g.strokeText(letter, 64, 70);
+    g.fillStyle = "rgba(240,200,70,0.95)";
+    g.fillText(letter, 64, 70);
+    const t = new THREE.CanvasTexture(cv);
+    t.colorSpace = THREE.SRGBColorSpace;
+    const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: t, transparent: true, opacity: 0.85 }));
+    sp.scale.set(2.4, 2.4, 1);
+    sp.position.set(site.x, site.y + 6.5, site.z);
+    group.add(sp);
+  }
+  siteBeacon(sites.A, "A");
+  siteBeacon(sites.B, "B");
+
+  // ============ 光照（沙漠午后：暖阳 + 沙色环境光） ============
+  const hemi = new THREE.HemisphereLight(0xbdd2e8, 0x9a8055, 0.95);
   group.add(hemi);
-  const sun = new THREE.DirectionalLight(0xfff2d8, 1.6);
-  sun.position.set(45, 70, 25);
+  const sun = new THREE.DirectionalLight(0xffe3b0, 1.75);
+  sun.position.set(55, 58, -18);
   sun.castShadow = true;
   sun.shadow.mapSize.set(2048, 2048);
   sun.shadow.camera.left = -75; sun.shadow.camera.right = 75;

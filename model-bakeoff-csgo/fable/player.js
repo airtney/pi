@@ -94,8 +94,9 @@ CS.createPlayer = function (THREE, map, camera) {
     team: "T",
     hp: 100, armor: 0, money: 800,
     alive: true,
-    kills: 0, deaths: 0,
+    kills: 0, deaths: 0, assists: 0,
     hasBomb: false,
+    lastFired: -99,
     name: "你",
     isHuman: true,
     speedFactor: 1, // 当前水平速度占满速比例（用于扩散）

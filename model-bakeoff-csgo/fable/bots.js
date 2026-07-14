@@ -19,10 +19,12 @@ CS.createBot = function (THREE, map, name, team) {
     yaw: 0,
     alive: true,
     hp: 100, armor: 0, money: 800,
-    kills: 0, deaths: 0,
+    kills: 0, deaths: 0, assists: 0,
     hasBomb: false,
     crouching: false,
     speedFactor: 0,
+    blindUntil: 0,   // 被闪光弹致盲
+    lastFired: -99,  // 最近开枪时间（雷达暴露）
 
     // AI 状态
     state: "idle",       // idle | seek | combat | plant | defuse | guard
@@ -35,7 +37,7 @@ CS.createBot = function (THREE, map, name, team) {
     strafeDir: 1, strafeT: 0,
     repathT: 0,
     weapon: null,        // {def, magAmmo, reloading, reloadEnd}
-    grenades: { he: 0, smoke: 0 },
+    grenades: { he: 0, smoke: 0, flash: 0 },
     actionT: 0,          // 安放/拆除进度
     guardT: 0,
   };
@@ -84,6 +86,11 @@ CS.createBot = function (THREE, map, name, team) {
     bot.yaw = sp.yaw;
     bot.hp = 100; bot.alive = true;
     bot.state = "idle"; bot.path = []; bot.target = null; bot.actionT = 0;
+    bot.blindUntil = 0;
+    // 每回合随机分配进攻/防守路线，避免所有 BOT 挤同一条路
+    bot._lane = bot.team === "T"
+      ? pick([["long_n", "a_site"], ["mid_n", "cross", "a_site"], ["b_door_e", "b_site"], ["mid_n", "b_site"]])
+      : pick([["a_site", "long_n"], ["cross", "mid_n", "ct_mid"], ["b_site", "b_door_e"], ["a_site", "cross"]]);
     g.visible = true;
     g.rotation.z = 0;
     syncMesh();
@@ -97,6 +104,11 @@ CS.createBot = function (THREE, map, name, team) {
     bot.alive = false;
     bot.deaths++;
     bot.state = "dead";
+    // 掉落主武器
+    if (CS.groundItems && bot.weapon && bot.weapon.def.slot === 1) {
+      CS.groundItems.drop(bot.weapon.def.id, bot.weapon.magAmmo, bot.weapon.def.reserve, bot.pos);
+      bot.setWeapon(bot.team === "T" ? "glock" : "usp");
+    }
     // 倒地"尸体"
     g.rotation.z = (Math.random() < 0.5 ? 1 : -1) * Math.PI / 2;
     g.position.y = bot.pos.y + 0.35;
@@ -138,6 +150,7 @@ CS.createBot = function (THREE, map, name, team) {
   // ============ 视野 ============
   function canSee(ch) {
     if (!ch.alive) return false;
+    if (performance.now() / 1000 < bot.blindUntil) return false; // 被闪
     const dx = ch.pos.x - bot.pos.x, dz = ch.pos.z - bot.pos.z;
     const d = Math.hypot(dx, dz);
     if (d > 60) return false;
@@ -205,15 +218,18 @@ CS.createBot = function (THREE, map, name, team) {
       ? 60 / def.rpm + (Math.random() < 0.3 ? 0.25 : 0) // 偶尔点射停顿
       : Math.max(60 / def.rpm, 0.5 + Math.random() * 0.4);
     bot.nextShot = now + interval;
+    bot.lastFired = now;
+    // 全局枪声事件：附近队友会被"枪声"吸引过来补枪/补位
+    CS.lastCombat = { x: bot.pos.x, z: bot.pos.z, t: now };
 
     const shot = CS.computeShot(THREE, eye, aim, def, bot.team, ctx.characters, map.colliders);
     CS.audio.gunshotAt(def.id, bot.pos, ctx.listenerPos);
     ctx.effects.tracer(eye, shot.endPoint, def.sniper);
-    if (shot.hitWall) ctx.effects.impact(shot.endPoint);
+    if (shot.hitWall) ctx.effects.impact(shot.endPoint, aim);
     if (shot.hit) {
       const realDmg = CS.applyArmor(shot.hit, shot.dmg);
       ctx.onDamage(shot.hit, realDmg, bot, def, shot.headshot);
-      ctx.effects.blood(shot.endPoint);
+      ctx.effects.blood(shot.endPoint, aim);
     }
   }
 
@@ -246,6 +262,16 @@ CS.createBot = function (THREE, map, name, team) {
       decideObjective(round, now);
     }
 
+    // 手上只有手枪时顺路捡地上的主武器
+    if (CS.groundItems && bot.weapon.def.slot !== 1 && bot.state !== "plant" && bot.state !== "defuse") {
+      const item = CS.groundItems.nearest(bot.pos, 1.7);
+      if (item) {
+        CS.groundItems.take(item);
+        bot.setWeapon(item.id);
+        bot.weapon.magAmmo = item.magAmmo > 0 ? item.magAmmo : bot.weapon.def.mag;
+      }
+    }
+
     // ---- 状态执行 ----
     switch (bot.state) {
       case "seek": {
@@ -257,8 +283,17 @@ CS.createBot = function (THREE, map, name, team) {
       case "guard": {
         bot.vel.x *= 0.8; bot.vel.z *= 0.8;
         bot.guardT -= dt;
-        bot.yaw += dt * 0.5 * bot.strafeDir; // 缓慢扫视
-        if (bot.guardT <= 0) { bot.state = "idle"; bot.strafeDir *= -1; }
+        if (bot._guardYaw !== undefined) {
+          // 架点：面向选定入口方向 + 小幅扫视
+          const want = bot._guardYaw + Math.sin(now * 0.8) * 0.35;
+          let diff = want - bot.yaw;
+          while (diff > Math.PI) diff -= Math.PI * 2;
+          while (diff < -Math.PI) diff += Math.PI * 2;
+          bot.yaw += diff * Math.min(1, dt * 4);
+        } else {
+          bot.yaw += dt * 0.5 * bot.strafeDir; // 缓慢扫视
+        }
+        if (bot.guardT <= 0) { bot.state = "idle"; bot.strafeDir *= -1; bot._guardYaw = undefined; }
         checkSiteActions(round, dt, ctx);
         break;
       }
@@ -337,25 +372,46 @@ CS.createBot = function (THREE, map, name, team) {
     syncMesh();
   };
 
+  // 架点：进入 guard 时面向最近路点的某个相邻路点（可能的敌人来向）
+  function pickGuardYaw() {
+    const wp = map.nearestWaypoint(bot.pos);
+    if (wp && wp.adj && wp.adj.length) {
+      const nb = map.waypoints[pick(wp.adj)];
+      if (nb) {
+        bot._guardYaw = Math.atan2(-(nb.x - bot.pos.x), -(nb.z - bot.pos.z));
+        return;
+      }
+    }
+    bot._guardYaw = undefined;
+  }
+
   // ---- 目标决策 ----
   function decideObjective(round, now) {
+    // 补枪/补位：最近有枪声且自己空闲 → 向枪声方向转移
+    const ev = CS.lastCombat;
+    const heardFight = ev && now - ev.t < 7 &&
+      Math.hypot(ev.x - bot.pos.x, ev.z - bot.pos.z) > 10;
+
     if (bot.team === "T") {
       if (round.bombPlanted) {
         // 守包
         const site = round.bombSite;
         const near = Math.hypot(bot.pos.x - site.x, bot.pos.z - site.z) < site.r + 4;
-        if (near) { bot.state = "guard"; bot.guardT = 3 + Math.random() * 3; }
+        if (near) { bot.state = "guard"; bot.guardT = 3 + Math.random() * 3; pickGuardYaw(); }
         else { setGoal(site === map.sites.A ? "a_site" : "b_site"); bot.state = "seek"; }
       } else if (bot.hasBomb) {
-        setGoal(bot._siteChoice || (bot._siteChoice = Math.random() < 0.5 ? "a_site" : "b_site"));
+        setGoal(bot._siteChoice || (bot._siteChoice = bot._lane[bot._lane.length - 1] === "b_site" ? "b_site" : "a_site"));
         bot.state = "seek";
       } else {
-        // 陪包/推进
+        // 陪包 / 支援枪声 / 沿本回合路线推进
         const carrier = round.bombCarrier;
-        if (carrier && carrier.alive && carrier !== bot && Math.random() < 0.6) {
+        if (carrier && carrier.alive && carrier !== bot && Math.random() < 0.55) {
           setGoal(map.nearestWaypoint(carrier.pos).name);
+        } else if (heardFight && Math.random() < 0.45) {
+          setGoal(map.nearestWaypoint(ev).name);
         } else {
-          setGoal(pick(["a_site", "b_site", "mid_n", "long_n", "cross"]));
+          bot._laneI = ((bot._laneI === undefined ? -1 : bot._laneI) + 1) % bot._lane.length;
+          setGoal(bot._lane[bot._laneI]);
         }
         bot.state = "seek";
       }
@@ -376,9 +432,21 @@ CS.createBot = function (THREE, map, name, team) {
           bot.state = "seek";
         }
       } else {
-        if (Math.random() < 0.35) { bot.state = "guard"; bot.guardT = 2 + Math.random() * 4; }
-        else {
-          setGoal(pick(["a_site", "b_site", "cross", "mid_n", "ct_mid", "long_n", "b_door_e"]));
+        // 靠近点位时更倾向架点守枪；听到枪声则回防
+        const nearSite = ["A", "B"].some((k) => {
+          const s = map.sites[k];
+          return Math.hypot(bot.pos.x - s.x, bot.pos.z - s.z) < s.r + 8;
+        });
+        if (heardFight && Math.random() < 0.4) {
+          setGoal(map.nearestWaypoint(ev).name);
+          bot.state = "seek";
+        } else if (Math.random() < (nearSite ? 0.6 : 0.25)) {
+          bot.state = "guard";
+          bot.guardT = (nearSite ? 4 : 2) + Math.random() * 4;
+          pickGuardYaw();
+        } else {
+          bot._laneI = ((bot._laneI === undefined ? -1 : bot._laneI) + 1) % bot._lane.length;
+          setGoal(bot._lane[bot._laneI]);
           bot.state = "seek";
         }
       }
@@ -410,7 +478,13 @@ CS.createBot = function (THREE, map, name, team) {
   // 战斗中偶尔投掷（换走位方向时判定一次）
   function maybeThrowGrenade(target, dist, now) {
     if (!CS.grenades || !bot.onGround || now < (bot._nadeCd || 0)) return;
-    if (bot.grenades.he > 0 && dist > 9 && dist < 28 && Math.random() < 0.3) {
+    if (bot.grenades.flash > 0 && dist > 6 && dist < 24 && Math.random() < 0.25) {
+      // 朝敌人脚下前方丢闪
+      bot.grenades.flash--;
+      bot._nadeCd = now + 8;
+      CS.grenades.throwAt("flash", bot.eyePos(),
+        { x: target.pos.x, y: target.pos.y + 1, z: target.pos.z }, bot);
+    } else if (bot.grenades.he > 0 && dist > 9 && dist < 28 && Math.random() < 0.3) {
       bot.grenades.he--;
       bot._nadeCd = now + 9;
       CS.grenades.throwAt("he", bot.eyePos(),
@@ -428,7 +502,8 @@ CS.createBot = function (THREE, map, name, team) {
   bot.buyPhase = function () {
     if (bot.weapon.def.slot === 1) {
       bot.weapon.magAmmo = bot.weapon.def.mag; // 已有主武器：补弹
-    } else if (bot.money >= CS.WEAPONS.awp.price && Math.random() < 0.2) {
+    } else if (bot.money >= 6000 && Math.random() < 0.25) {
+      // 只有经济宽裕才买 AWP（留出护甲/雷钱）
       bot.money -= CS.WEAPONS.awp.price;
       bot.setWeapon("awp");
     } else {
@@ -443,12 +518,16 @@ CS.createBot = function (THREE, map, name, team) {
       bot.money -= 650;
       bot.armor = 100;
     }
-    // 偶尔补投掷物
-    if (bot.money >= 300 && bot.grenades.he < 1 && Math.random() < 0.5) {
+    // 道具购买：有余钱才买，闪光 > HE > 烟雾
+    if (bot.money >= 900 && bot.grenades.flash < 1 && Math.random() < 0.55) {
+      bot.money -= 200;
+      bot.grenades.flash = 1;
+    }
+    if (bot.money >= 1000 && bot.grenades.he < 1 && Math.random() < 0.5) {
       bot.money -= 300;
       bot.grenades.he = 1;
     }
-    if (bot.money >= 300 && bot.grenades.smoke < 1 && Math.random() < 0.35) {
+    if (bot.money >= 1100 && bot.grenades.smoke < 1 && Math.random() < 0.35) {
       bot.money -= 300;
       bot.grenades.smoke = 1;
     }
