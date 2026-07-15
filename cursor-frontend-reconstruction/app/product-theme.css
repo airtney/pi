@@ -285,3 +285,66 @@
 [data-theme="dark"] .cursor-preview-link:hover {
 	color: #edecec;
 }
+
+/* Shimmer text for in-flight tool messages (ported from the artifact's
+   .shimmer rules; gradient sweeps across the label while a tool runs) */
+.shimmer {
+	--shimmer-base-color: var(--shimmer-color, var(--color-theme-text-sec));
+	--shimmer-highlight-color: #26251e;
+}
+@supports (color: color-mix(in lab, red, red)) {
+	.shimmer {
+		--shimmer-highlight-color: color-mix(
+			in srgb,
+			var(--color-theme-text) var(--shimmer-intensity, 70%),
+			var(--shimmer-base-color)
+		);
+	}
+}
+.shimmer {
+	background-image: linear-gradient(
+		90deg,
+		var(--shimmer-base-color) 0%,
+		var(--shimmer-base-color) 30%,
+		var(--shimmer-highlight-color) 55%,
+		var(--shimmer-base-color) 70%,
+		var(--shimmer-base-color) 100%
+	);
+	-webkit-text-fill-color: transparent;
+	animation: shimmer var(--shimmer-duration, 2.5s) linear infinite;
+	background-size: 200% 100%;
+	-webkit-background-clip: text;
+	background-clip: text;
+}
+@keyframes shimmer {
+	0% {
+		background-position: 200% 0;
+	}
+	to {
+		background-position: -200% 0;
+	}
+}
+
+/* Message entrance used by the demo chat transcript (CSS replacement for the
+   chunk's framer-motion initial={opacity:0, y:4} -> animate={opacity:1, y:0}) */
+.demo-msg-enter {
+	animation: demo-msg-enter 0.25s ease-out both;
+}
+@keyframes demo-msg-enter {
+	0% {
+		opacity: 0;
+		transform: translateY(4px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.shimmer {
+		animation: none;
+	}
+	.demo-msg-enter {
+		animation: none;
+	}
+}
