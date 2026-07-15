@@ -1,9 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
+import { FadeInImage } from "@/components/FadeInImage";
 
 /**
  * "Cursor is an applied research team..." — mission statement over the team
- * photo, followed by a "Recent highlights" row of recent blog posts.
+ * photo (with the site-wide fade-in-on-load treatment, modules
+ * 618689/121585), followed by a "Recent highlights" row of recent blog posts.
  */
 const HIGHLIGHTS = [
   { date: "Mar 27, 2026", category: "Research", title: "A technical report on Composer 2", byline: "Sasha Rush · 3 min read", href: "/blog/composer-2-technical-report" },
@@ -17,7 +18,7 @@ export function Research() {
     <section className="section bg-theme-bg text-theme-text">
       <div className="container">
         <div className="relative overflow-hidden rounded-2xl border border-theme-border-01">
-          <Image
+          <FadeInImage
             src="/misc/homepage-team-photo.jpg"
             alt="Cursor team"
             width={1920}

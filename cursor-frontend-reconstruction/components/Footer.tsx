@@ -1,9 +1,12 @@
 import Link from "next/link";
 import { CursorLogo } from "@/components/CursorLogo";
+import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 
 /**
  * Footer, reconstructed from the SSR footer markup (link groups Product /
  * Resources / Company / Legal / Connect, plus the Anysphere + SOC 2 line).
+ * The bottom row hosts the theme switcher (module 275252), which the live
+ * site mounts client-side next to the locale selector.
  */
 
 interface FooterLink {
@@ -105,17 +108,20 @@ export function Footer() {
           ))}
         </div>
         <div className="mt-12 flex flex-col gap-2 border-t border-theme-border pt-6 type-xs text-theme-text-tertiary md:flex-row md:items-center md:justify-between">
-          <a
-            href="https://anysphere.inc"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link-arrow"
-          >
-            &copy; {new Date().getFullYear()} Anysphere, Inc.
-          </a>
-          <Link href="/security" className="link-arrow">
-            SOC 2 Certified
-          </Link>
+          <div className="flex items-center gap-g1.5">
+            <a
+              href="https://anysphere.inc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-arrow"
+            >
+              &copy; {new Date().getFullYear()} Anysphere, Inc.
+            </a>
+            <Link href="/security" className="link-arrow">
+              SOC 2 Certified
+            </Link>
+          </div>
+          <ThemeSwitcher />
         </div>
       </div>
     </footer>

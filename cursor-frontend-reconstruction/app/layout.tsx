@@ -4,6 +4,7 @@ import "./marketing-spacing.css";
 import "./product-theme.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { ThemeProvider } from "@/lib/theme";
 
 export const metadata: Metadata = {
   title: "Cursor: AI coding agent",
@@ -23,19 +24,24 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // cursor.com sets `data-theme` on <html> via next-themes (attribute
-  // "data-theme", defaultTheme "system", storageKey "theme") and mirrors the
-  // resolved theme to `style.colorScheme`. This static replica has no theme
-  // switcher, so the dark theme is pinned at render time.
+  // cursor.com sets `data-theme` on <html> via next-themes, reconstructed in
+  // lib/theme.tsx (module 956347). The live bootstrap script runs with
+  // attribute "data-theme", storageKey "marketing-theme", defaultTheme
+  // "system", themes ["light","dark"], enableSystem and enableColorScheme —
+  // the provider defaults except for the storage key. The blocking inline
+  // script it injects sets the attribute before first paint, so <html> needs
+  // suppressHydrationWarning.
   return (
-    <html lang="en-US" data-os="mac" data-theme="dark" style={{ colorScheme: "dark" }}>
+    <html lang="en-US" data-os="mac" suppressHydrationWarning>
       <body className="bg-theme-bg text-theme-text min-h-screen pt-[var(--site-header-height)]">
-        <a href="#main" className="sr-only focus:not-sr-only">
-          Skip to content
-        </a>
-        <Header />
-        {children}
-        <Footer />
+        <ThemeProvider attribute="data-theme" defaultTheme="system" storageKey="marketing-theme">
+          <a href="#main" className="sr-only focus:not-sr-only">
+            Skip to content
+          </a>
+          <Header />
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

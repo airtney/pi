@@ -14,6 +14,7 @@ const config: Config = {
         theme: {
           bg: "var(--color-theme-bg)",
           fg: "var(--color-theme-fg)",
+          "fg-10": "var(--color-theme-fg-10)",
           text: "var(--color-theme-text)",
           "text-sec": "var(--color-theme-text-sec)",
           "text-mid": "var(--color-theme-text-mid)",

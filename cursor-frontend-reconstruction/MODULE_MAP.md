@@ -36,9 +36,9 @@ wrapper used by every glyph module).
 
 | Status | App modules |
 |--------|-------------|
-| DONE | 13 |
+| DONE | 18 |
 | PARTIAL | 39 |
-| MISSING | 63 |
+| MISSING | 58 |
 | VENDOR / runtime / out-of-scope | 551 (of 666 total registered ids) |
 
 Out-of-scope: `0z_dby3r97nyg.js` is blog/research **post** content (interactive
@@ -52,14 +52,15 @@ blog demos), not rendered on the homepage.
 2. `417038` `DemoPlaybackProvider`/`useDemoPlayback` + `152831`
    `getDelayForRole`/`isToolRole` — the playback engine that sequences every
    section demo (typing, tool calls, timed reveals).
-3. `956347` `ThemeProvider`/`useTheme` + `275252` theme switcher + `594221`
-   select control — light/dark/system theming; repo currently has no theme
-   toggle (footer on the live site has one).
+3. ~~`956347` `ThemeProvider`/`useTheme` + `275252` theme switcher + `594221`
+   select control~~ — now DONE: `lib/theme.tsx`,
+   `components/ThemeSwitcher.tsx`, `components/PillToggle.tsx` (switcher wired
+   into the footer, provider into `app/layout.tsx`).
 4. `359689` `ChangelogProvider`/`useChangelog` — data source for the
    "Changelog" section; repo `Changelog.tsx` hardcodes entries.
-5. `618689`/`121585` `getFadeClassName` + `FadeInImage` — the fade-in-on-load
-   image treatment used by every image on the page (avatars, team photo,
-   testimonial art).
+5. ~~`618689`/`121585` `getFadeClassName` + `FadeInImage`~~ — now DONE:
+   `lib/fade.ts` + `components/FadeInImage.tsx`, wired into the team photo
+   and logo-garden images.
 6. `387944` `FigmaLogo`/`GitHubLogo`/`JiraLogo`/`LinearLogo`/`NotionLogo`/
    `PagerDutyLogo`/`SlackLogo` — integration glyphs used by the "Automate
    repetitive work" automation demo.
@@ -181,10 +182,10 @@ Ids: `96053`, `146682`, `148742`, `152490`, `167803`, `193771`, `229207`,
 | `942982` | `usePlatformDetection` | Download CTA | DONE — `lib/platform.ts` |
 | `229207` | `getDownloadUrl` | Download CTA | DONE — `lib/platform.ts` |
 | `346140`/`411318` | gt-next client (`useGT`, `useMessages`, `T`, `Var`, …) | i18n | DONE (by design) — `lib/gt-shim.ts` implements the two hooks the homepage needs |
-| `906967` | `CheckmarkIcon`, `ChevronDownIcon`, `ChevronUpIcon`, `DownwardsArrowIcon`, `DownwardsArrowToBarIcon`, `MonitorIcon`, `MoonIcon`, `NorthEastArrowIcon`, `RightwardsArrowIcon`, `SunIcon`, `UpwardsArrowIcon` | Shared icons | PARTIAL — `components/Icons.tsx` has 5 (arrow/up/down/ne/download); `SunIcon` in primitives; Moon/Monitor/Chevron/Checkmark missing |
-| `956347` | `ThemeProvider`, `useTheme` | Theming | MISSING |
-| `275252` | `default` (theme switcher: Sun/Moon/Monitor select) | Footer | MISSING |
-| `594221` | `default` (select/dropdown control) | Footer | MISSING |
+| `906967` | `CheckmarkIcon`, `ChevronDownIcon`, `ChevronUpIcon`, `DownwardsArrowIcon`, `DownwardsArrowToBarIcon`, `MonitorIcon`, `MoonIcon`, `NorthEastArrowIcon`, `RightwardsArrowIcon`, `SunIcon`, `UpwardsArrowIcon` | Shared icons | PARTIAL — `components/Icons.tsx` has 8 (arrow/up/down/ne/download + Sun/Moon/Monitor); Chevron/Checkmark missing |
+| `956347` | `ThemeProvider`, `useTheme` | Theming | DONE — `lib/theme.tsx` |
+| `275252` | `default` (theme switcher: Sun/Moon/Monitor select) | Footer | DONE — `components/ThemeSwitcher.tsx` |
+| `594221` | `default` (select/dropdown control) | Footer | DONE — `components/PillToggle.tsx` |
 | `338280` | `default` (locale selector) | Footer | MISSING |
 | `707328` | `default` ("Cursor logo animation", "Get brand assets" context menu) | Header | PARTIAL — static `CursorLogo.tsx` |
 | `548116` | `useMediaQuery` | Utility | MISSING |
@@ -387,8 +388,8 @@ Next.js internals (`HeadManagerContext`, `handleISRError`,
 
 | Module id | Exports | Section | Status |
 |-----------|---------|---------|--------|
-| `618689` | `getFadeClassName` | Site-wide image fade-in | MISSING |
-| `121585` | `FadeInImage` | Site-wide image fade-in | MISSING |
+| `618689` | `getFadeClassName` | Site-wide image fade-in | DONE — `lib/fade.ts` |
+| `121585` | `FadeInImage` | Site-wide image fade-in | DONE — `components/FadeInImage.tsx` |
 | `427772` | `resolveElements` (motion util) | — | VENDOR |
 | `938243`, `712202`, `657547`, `731784` | async chunk loader stubs (`t.v(...)`) | — | runtime glue |
 
@@ -494,7 +495,7 @@ All rows from the REPLICA_CONCEPT.md §3 table were located and confirmed:
 | `560817` | `getButtonVariant` | `0s-~o46x2o3-k.js` | `lib/button.ts` | DONE |
 | `861352` | `getButtonAlignment`, `getTextAlignment` (+ `getFlexAlignment`, `getMarginAlignment` not in concept table) | `0s-~o46x2o3-k.js` | `lib/button.ts` | PARTIAL — 2 of 4 exports |
 | `750624` | `getIcon` | `0s-~o46x2o3-k.js` | `components/Icons.tsx` | DONE |
-| `906967` | arrow/download icon glyphs (11 named icons) | `081pyjdj6y60t.js` | `components/Icons.tsx` | PARTIAL — 5 of 11 glyphs |
+| `906967` | arrow/download icon glyphs (11 named icons) | `081pyjdj6y60t.js` | `components/Icons.tsx` | PARTIAL — 8 of 11 glyphs |
 | `264458` | clsx-style class join | `0ihovnw0k95w5.js` | `lib/cn.ts` | DONE |
 | (gt-next) | `useGT`, `useMessages` | `081pyjdj6y60t.js` (`346140`/`411318`), `14s_myja48akq.js` (`545880`) | `lib/gt-shim.ts` | DONE (shim by design) |
 

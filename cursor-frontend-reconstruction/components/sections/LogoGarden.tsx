@@ -1,10 +1,11 @@
-import Image from "next/image";
+import { FadeInImage } from "@/components/FadeInImage";
 
 /**
  * Monochrome (currentColor) logo files render black when loaded via <img>, so
  * they get the artifact's `logo-dark-invert` filter in dark mode. Ramp ships
  * pre-colored light/dark variants toggled with `media-light` / `media-dark`,
- * exactly like the artifact's paired logo SVGs.
+ * exactly like the artifact's paired logo SVGs. All logos fade in on load
+ * (modules 618689/121585).
  */
 const LOGOS = [
 	{ name: "Stripe", src: "/logos/stripe.svg" },
@@ -31,14 +32,14 @@ export function LogoGarden() {
 						<div key={logo.name} className="flex items-center justify-center text-theme-text-mid">
 							{"darkSrc" in logo ? (
 								<>
-									<Image
+									<FadeInImage
 										src={logo.src}
 										alt={logo.name}
 										width={130}
 										height={40}
 										className={`${LOGO_SIZE_CLASSES} media-light`}
 									/>
-									<Image
+									<FadeInImage
 										src={logo.darkSrc}
 										alt={logo.name}
 										width={130}
@@ -47,7 +48,7 @@ export function LogoGarden() {
 									/>
 								</>
 							) : (
-								<Image
+								<FadeInImage
 									src={logo.src}
 									alt={logo.name}
 									width={130}

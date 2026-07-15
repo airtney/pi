@@ -137,12 +137,18 @@
 
   --site-header-height: 52px;
 
+  /* motion tokens (from the artifact :root), used by the pill toggle
+     indicator and the FadeInImage fade-in */
+  --duration: 0.14s;
+  --ease-out-spring: cubic-bezier(0.25, 1, 0.5, 1);
+
   /* light theme (default), values from _artifacts/css/0uhy.6mfxh118.css :root */
   --color-theme-bg: #f7f7f4;
   --color-theme-fg: #26251e;
   --color-theme-fg-02: #3b3a33;
   --color-theme-fg-02-5: color-mix(in oklab, var(--color-theme-fg) 2.5%, transparent);
   --color-theme-fg-05: color-mix(in oklab, var(--color-theme-fg) 5%, transparent);
+  --color-theme-fg-10: color-mix(in oklab, var(--color-theme-fg) 10%, transparent);
   --color-theme-text: var(--color-theme-fg);
   --color-theme-text-sec: color-mix(in oklab, var(--color-theme-fg) 60%, transparent);
   --color-theme-text-mid: color-mix(in oklab, var(--color-theme-fg) 50%, transparent);
@@ -170,6 +176,7 @@
   --color-theme-button-text: var(--color-theme-bg);
   --color-theme-button-hover-bg: var(--color-theme-fg-02);
   --button-padding-default: 0.78em 1.35em 0.8em;
+  --button-padding-md-sm: 0.64em 1.2em 0.66em;
 
   --window-shadow-inner: 0 0 #0000;
 
@@ -383,5 +390,21 @@
   }
   .link-arrow:hover {
     color: var(--color-theme-text);
+  }
+
+  /* Pill toggle option padding (from the artifact's .pill-padding-* rules),
+     used by the module 594221 segment control. */
+  .pill-padding-sm {
+    padding: var(--button-padding-sm);
+  }
+  .pill-padding-md-sm {
+    padding: var(--button-padding-md-sm);
+  }
+  .pill-padding-md,
+  .pill-padding-lg {
+    padding: var(--button-padding-default);
+  }
+  .font-size-inherit {
+    font-size: inherit;
   }
 }
