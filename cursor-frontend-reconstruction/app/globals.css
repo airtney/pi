@@ -137,9 +137,12 @@
 
   --site-header-height: 52px;
 
-  /* light theme (default) */
+  /* light theme (default), values from _artifacts/css/0uhy.6mfxh118.css :root */
   --color-theme-bg: #f7f7f4;
   --color-theme-fg: #26251e;
+  --color-theme-fg-02: #3b3a33;
+  --color-theme-fg-02-5: color-mix(in oklab, var(--color-theme-fg) 2.5%, transparent);
+  --color-theme-fg-05: color-mix(in oklab, var(--color-theme-fg) 5%, transparent);
   --color-theme-text: var(--color-theme-fg);
   --color-theme-text-sec: color-mix(in oklab, var(--color-theme-fg) 60%, transparent);
   --color-theme-text-mid: color-mix(in oklab, var(--color-theme-fg) 50%, transparent);
@@ -156,26 +159,45 @@
   --color-theme-card-02-hex: #ebeae5;
   --color-theme-card-03-hex: #e6e5e0;
   --color-theme-card-04-hex: #e1e0db;
+  --color-theme-card-warm-hex: #f3ede6;
+  --color-theme-card: linear-gradient(var(--color-theme-card-hex) 0% 100%);
+  --color-theme-card-02: linear-gradient(var(--color-theme-fg-02-5) 0% 100%),
+    linear-gradient(var(--color-theme-card-hex) 0% 100%);
+  --color-theme-card-03: linear-gradient(var(--color-theme-fg-05) 0% 100%),
+    linear-gradient(var(--color-theme-card-hex) 0% 100%);
 
   --color-theme-button-bg: var(--color-theme-fg);
   --color-theme-button-text: var(--color-theme-bg);
-  --color-theme-button-hover-bg: color-mix(in oklab, var(--color-theme-fg) 85%, transparent);
+  --color-theme-button-hover-bg: var(--color-theme-fg-02);
   --button-padding-default: 0.78em 1.35em 0.8em;
+
+  --window-shadow-inner: 0 0 #0000;
 
   --color-theme-product-syntax-string: #3a8a3a;
   --color-theme-product-syntax-keyword: #b5651d;
   --color-theme-product-syntax-function: #2c6fb5;
 }
 
+/*
+ * Dark theme, ported verbatim from the artifact's `[data-theme=dark]` block
+ * (cursor.com toggles `data-theme` on <html> via next-themes; default is the
+ * system preference). All color-mix-derived tokens (text-sec, borders, ...)
+ * re-resolve automatically from the dark --color-theme-fg.
+ */
 [data-theme="dark"],
 :root.dark {
+  color-scheme: dark;
   --color-theme-bg: #14120b;
   --color-theme-fg: #edecec;
+  --color-theme-fg-02: #d7d6d5;
   --color-theme-card-hex: #1b1913;
+  --color-theme-card-rgb: 27 29 39;
   --color-theme-card-01-hex: #1d1b15;
   --color-theme-card-02-hex: #201e18;
   --color-theme-card-03-hex: #26241e;
   --color-theme-card-04-hex: #2b2923;
+  --color-theme-card-warm-hex: #1c1713;
+  --window-shadow-inner: 0 -1px 0 0 var(--color-theme-border-02) inset;
   --color-theme-product-syntax-string: #7fd07f;
   --color-theme-product-syntax-keyword: #e0a060;
   --color-theme-product-syntax-function: #6fb5e0;

@@ -6,9 +6,13 @@ import type { CSSProperties, ReactNode } from "react";
  * names match the artifact markup so the extracted theme CSS applies as-is.
  */
 
-/** Standard floating-window drop shadow used by every demo window. */
+/**
+ * Standard floating-window drop shadow used by every demo window.
+ * `--window-shadow-inner` resolves to a bottom inset hairline in dark mode
+ * (see globals.css) and to a no-op shadow in light mode, per the artifact.
+ */
 export const WINDOW_SHADOW =
-	"0 28px 70px rgba(0, 0, 0, 0.14), 0 14px 32px rgba(0, 0, 0, 0.1), 0 0 0 1px var(--color-theme-border-02)";
+	"0 28px 70px rgba(0, 0, 0, 0.14), 0 14px 32px rgba(0, 0, 0, 0.1), 0 0 0 1px var(--color-theme-border-02), var(--window-shadow-inner)";
 
 export function WindowChrome({
 	title,

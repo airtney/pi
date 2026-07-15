@@ -94,7 +94,11 @@
 	border-radius: var(--radius-xs);
 }
 
+/* Artifact dims wallpapers only when the dark theme is active */
 .wallpaper-brightness-dark {
+	filter: brightness(1);
+}
+[data-theme="dark"] .wallpaper-brightness-dark {
 	filter: brightness(0.9);
 }
 

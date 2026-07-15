@@ -47,10 +47,16 @@
 	--color-theme-product-ansi-bright-blue: #0043f0;
 }
 
+/* Dark overrides from the artifact's `[data-theme=dark]` block. */
 [data-theme="dark"],
 :root.dark {
 	--color-theme-card-hover-hex: #201e18;
 	--color-theme-card-hover-light-hex: #1d1b15;
+	--color-theme-product-chrome: var(--color-theme-bg);
+	--color-theme-product-editor: var(--color-theme-card-hex);
+	--color-theme-product-text: color-mix(in oklab, var(--color-theme-fg) 92%, transparent);
+	--color-theme-product-text-sec: color-mix(in oklab, var(--color-theme-fg) 60%, transparent);
+	--color-theme-product-text-tertiary: color-mix(in oklab, var(--color-theme-fg) 40%, transparent);
 }
 
 .type-product-sm {
@@ -206,6 +212,21 @@
 }
 [data-theme="dark"] .media-dark {
 	display: block !important;
+}
+
+/* Logo filters for <img>-based logos (from the artifact's logo helpers) */
+.logo-dark-invert {
+	transition: filter 0.15s;
+}
+[data-theme="dark"] .logo-dark-invert {
+	filter: invert(1);
+}
+.logo-light-invert {
+	filter: invert(1);
+	transition: filter 0.15s;
+}
+[data-theme="dark"] .logo-light-invert {
+	filter: invert(0);
 }
 
 /* Alpha-modifier utilities the demos rely on (var-based colors cannot use
