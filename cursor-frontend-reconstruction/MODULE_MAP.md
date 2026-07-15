@@ -56,8 +56,9 @@ blog demos), not rendered on the homepage.
    select control~~ — now DONE: `lib/theme.tsx`,
    `components/ThemeSwitcher.tsx`, `components/PillToggle.tsx` (switcher wired
    into the footer, provider into `app/layout.tsx`).
-4. `359689` `ChangelogProvider`/`useChangelog` — data source for the
-   "Changelog" section; repo `Changelog.tsx` hardcodes entries.
+4. ~~`359689` `ChangelogProvider`/`useChangelog`~~ — now DONE:
+   `components/ChangelogProvider.tsx` + `lib/changelog-data.ts` (Flight
+   payload entries), consumed by the rebuilt `Changelog.tsx`.
 5. ~~`618689`/`121585` `getFadeClassName` + `FadeInImage`~~ — now DONE:
    `lib/fade.ts` + `components/FadeInImage.tsx`, wired into the team photo
    and logo-garden images.
@@ -70,13 +71,14 @@ blog demos), not rendered on the homepage.
    `VideoWalkthroughCardAsset`, `MiniDesktopRecording`, `useWalkthroughAnimation`)
    + `698926` `Play` / `Pause` — the "Works autonomously, runs in parallel"
    video/walkthrough media.
-9. `740719` `DEFAULT_MODELS` + `932341` `LATEST_1P_MODEL` — model list data
-   rendered in the demo model pickers (GPT-5.6, Gemini 3.1 Pro, Composer …);
-   repo hardcodes a single "Composer 2.5" string.
-10. `506565` `getFooterSpacing`/`hasFooterContent`/`hasItemContent` + `941710`
-    `getTextSize` + `54518`/`620487` heading-level helpers — section layout
-    plumbing (spacing, semantic heading levels, text scale) that keeps the
-    feature sections visually exact.
+9. ~~`740719` `DEFAULT_MODELS` + `932341` `LATEST_1P_MODEL`~~ — now DONE:
+   `components/ModelMenu.tsx` + `lib/models.ts`, rendered by the frontier
+   `PromptCard` (316688).
+10. `506565` `getFooterSpacing`/`hasFooterContent`/`hasItemContent` — section
+    layout plumbing that keeps the feature sections visually exact. (The
+    companion helpers `941710` `getTextSize` and `54518`/`620487`
+    heading-level helpers are now DONE: `lib/typography.ts`,
+    `components/SemanticHeading.tsx`.)
 
 ---
 
@@ -127,23 +129,23 @@ changelog card, Slack demo). Strings match every homepage headline.
 | Module id | Exports | Section | Status |
 |-----------|---------|---------|--------|
 | `677869` | `HomeHeroSection`, `HomeFeaturesSection` | Hero + all four feature sections | PARTIAL — `Hero.tsx`, `FeatureSections.tsx` (static) |
-| `329329` | `default` (two-column feature layout: banner/eyebrow/title/body/cta) | Feature sections | PARTIAL — layout inlined in `FeatureSections.tsx` |
+| `329329` | `default` (section headline: banner/eyebrow/title/body/cta) | Section headlines | DONE — `components/SectionHeadline.tsx` (used by Testimonials + Frontier; `FeatureSections.tsx` still inlines its copy) |
 | `270837` | `default` (agent chat with model picker: "GPT-5.6", "Gemini 3.1 Pro", "Add a follow-up") | Agents demo | PARTIAL — approximated by `ComposerBox`/`AgentPlanWindow` |
-| `316688` | `default` ("Ask Cursor to plan or build anything" prompt card) | Hero demo | PARTIAL — `HeroProductDemo.tsx` |
+| `316688` | `default` ("Ask Cursor to plan or build anything" prompt card) | Frontier model card | DONE — `components/demo/PromptCard.tsx` |
 | `616662` | `default` (Slack conversation demo, "Open in Cursor", "Launched an agent…") | "In every tool" | PARTIAL — `SlackWindow` in `SlackCliWindows.tsx` |
-| `760872` | `default` (agent CLI progress demo, `msg()`-driven: "Grepped", "Searched") | "Automate repetitive work" | PARTIAL — `AgentCliWindow` |
-| `693744` | `StaggeredShuffleTestimonials` | Testimonials | PARTIAL — static grid in `Testimonials.tsx`, no shuffle animation |
-| `625857` + `503342` | `default` (customer story cards, "Read Story →") | Testimonials | PARTIAL — `Testimonials.tsx` |
-| `924561` | `default` ("See what's new in Cursor" card) | Changelog | PARTIAL — `Changelog.tsx` |
-| `359689` | `ChangelogProvider`, `useChangelog` | Changelog | MISSING |
+| `760872` | `default` (agent tool-call progress demo, `msg()`-driven: "Grepped", "Searched") | Frontier codebase card | DONE — `components/demo/ToolCallsDemo.tsx` (framer-motion entrances replaced with CSS) |
+| `693744` | `StaggeredShuffleTestimonials` | Testimonials | DONE — `components/StaggeredShuffleTestimonials.tsx` (Flight-payload testimonials in `Testimonials.tsx`) |
+| `625857` + `503342` | `default` (feature/customer story card, "Read Story →") | Research mission card | DONE — `components/FeatureStoryCard.tsx`, used by `Research.tsx` |
+| `924561` | `default` ("See what's new in Cursor" card) | Changelog | DONE — rebuilt `Changelog.tsx` + `components/CardScroller.tsx` |
+| `359689` | `ChangelogProvider`, `useChangelog` | Changelog | DONE — `components/ChangelogProvider.tsx` + `lib/changelog-data.ts` |
 | `506565` | `getFooterSpacing`, `hasFooterContent`, `hasItemContent` | Section layout helpers | MISSING |
 | `300815` | `CursorIcon`, `CursorIconStyle` | Brand | DONE — `components/CursorLogo.tsx` |
 | `387944` | `FigmaLogo`, `GitHubLogo`, `JiraLogo`, `LinearLogo`, `NotionLogo`, `PagerDutyLogo`, `SlackLogo` | Automation demo logos | MISSING |
 | `434070` | `default` (platform label, "Linux / WSL") | Download CTA | PARTIAL — labels in `ContextualDownloadButton.tsx` |
-| `54518` | `default` (heading step-down helper h1→h2…) | Layout | MISSING |
-| `620487` | `default` (semantic heading component) | Layout | MISSING |
-| `756464` | `default` (date formatter, timeZone) | Changelog | MISSING |
-| `941710` | `getTextSize` | Layout | MISSING |
+| `54518` | `default` (heading step-down helper h1→h2…) | Layout | DONE — `stepDownHeadingLevel` in `lib/typography.ts` |
+| `620487` | `default` (semantic heading component) | Layout | DONE — `components/SemanticHeading.tsx` |
+| `756464` | `default` (date formatter, timeZone) | Changelog | DONE — `components/FormattedDate.tsx` |
+| `941710` | `getTextSize` | Layout | DONE — `lib/typography.ts` |
 | `264445` | `default` (unnamed 16×16 SVG glyph) | Icon | MISSING |
 | `444229` | `Check` | Icon | PARTIAL — `CheckCircleIcon` in `demo/primitives.tsx` |
 | `939843` | `X`, `XIcon` | Icon | PARTIAL — `CloseIcon` in `demo/primitives.tsx` |
@@ -216,8 +218,8 @@ Demo playback engine + feature media blocks.
 |-----------|---------|---------|--------|
 | `417038` | `DemoPlaybackProvider`, `useDemoPlayback` | All section demos | MISSING |
 | `152831` | `getDelayForRole`, `isToolRole` | Demo timing | MISSING |
-| `388537` | `hasValidLink`, `isExternalLink` | Link helpers | MISSING |
-| `446295` | `default` (feature media container, play-on-hover, `media-border-container`) | Feature sections | PARTIAL — media styling in `FeatureSections.tsx` |
+| `388537` | `hasValidLink`, `isExternalLink` | Link helpers | DONE — `lib/links.ts` |
+| `446295` | `default` (feature media container, play-on-hover, `media-border-container`) | Feature sections | DONE — `components/FeatureMediaContainer.tsx` (video branch omitted; `FeatureSections.tsx` still inlines its copy) |
 | `919473` | `default` (agent plan demo: "Planning next moves", "Plan updated. Ready to build!") | Agents demo | PARTIAL — `components/demo/AgentPlanWindow.tsx` |
 | `644745` | `default` (SVG glyph) | Icon | MISSING |
 | `680976` | `CaretLeft` | Icon | MISSING |
@@ -446,11 +448,11 @@ Chat composer + model data + glyphs.
 | Module id | Exports | Section | Status |
 |-----------|---------|---------|--------|
 | `651466` | `default` (composer input, "Plan, search, build anything...") | Demos | PARTIAL — `ComposerBox` in `demo/primitives.tsx` |
-| `740719` | `DEFAULT_MODELS`, `default` | Demo model pickers | MISSING |
-| `932341` | `LATEST_1P_MODEL` | Demo model pickers | MISSING |
+| `740719` | `DEFAULT_MODELS`, `default` | Demo model pickers | DONE — `components/ModelMenu.tsx` |
+| `932341` | `LATEST_1P_MODEL` | Demo model pickers | DONE — `lib/models.ts` |
 | `13600` | `ArrowUp`, `ArrowUpIcon` | Icon | PARTIAL — `SendArrowUp` in primitives |
 | `170743` | `AtIcon` | Icon | MISSING |
-| `22672` | `buildAspectClasses` | Layout | MISSING |
+| `22672` | `buildAspectClasses` | Layout | DONE — `lib/aspect.ts` |
 | `267878`, `514372`, `538411`, `936848`, `942956` | `default` (SVG glyphs/logos) | Icons | MISSING |
 | `94884` | icon base wrapper (`weight="regular"`) | — | VENDOR |
 

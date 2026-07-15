@@ -1,7 +1,8 @@
 /**
  * Button variant + alignment helpers, reconstructed from modules
  *   560817  getButtonVariant
- *   861352  getButtonAlignment / getTextAlignment / getMarginAlignment
+ *   861352  getButtonAlignment / getFlexAlignment / getMarginAlignment /
+ *           getTextAlignment
  */
 
 export type ButtonVariant =
@@ -21,16 +22,16 @@ export function getButtonVariant(variant?: ButtonVariant, size?: ButtonSize): st
       cls = "btn btn--secondary";
       break;
     case "tertiary":
-      cls = "btn btn--tertiary";
+      cls = "btn-tertiary";
       break;
     case "quaternary":
-      cls = "btn btn--quaternary";
+      cls = "btn--quaternary";
       break;
     case "ghost":
-      cls = "btn btn--ghost";
+      cls = "btn--ghost";
       break;
     case "quinary":
-      cls = "btn btn--quinary";
+      cls = "btn--quinary";
       break;
     case "primary":
     default:
@@ -50,6 +51,28 @@ export function getButtonAlignment(alignment?: Alignment): string {
     case "left":
     default:
       return "justify-start";
+  }
+}
+
+export function getFlexAlignment(alignment?: Alignment): string {
+  switch (alignment) {
+    case "right":
+      return "justify-end";
+    case "center":
+      return "justify-center";
+    case "left":
+    default:
+      return "justify-start";
+  }
+}
+
+export function getMarginAlignment(alignment?: Alignment): string {
+  switch (alignment) {
+    case "center":
+      return "mx-auto";
+    case "left":
+    default:
+      return "";
   }
 }
 

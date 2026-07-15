@@ -1,41 +1,91 @@
-import Link from "next/link";
+"use client";
+
+import type { ReactNode } from "react";
+import { cn } from "@/lib/cn";
+import { useGT, useMessages } from "@/lib/gt-shim";
+import type { HeadingLevel } from "@/lib/typography";
+import { CardScroller, CardScrollerItem } from "@/components/CardScroller";
+import { useChangelog, type ChangelogEntry } from "@/components/ChangelogProvider";
+import { FormattedDate } from "@/components/FormattedDate";
+import { Link } from "@/components/Link";
+import { SemanticHeading } from "@/components/SemanticHeading";
 
 /**
- * "Changelog" — the four most recent release cards, read from the SSR markup.
+ * "Changelog" section card row, reconstructed from module 924561 (default
+ * export). Entries come from `useChangelog()` (module 359689); dates render
+ * through `FormattedDate` (module 756464). React Compiler `useMemoCache`
+ * scaffolding has been removed.
  */
-const ENTRIES = [
-  { version: "3.11", date: "Jul 10, 2026", title: "Side Chats and Conversation Search", href: "/changelog/side-chat" },
-  { version: "3.10", date: "Jun 30, 2026", title: "MCPs and Organizations in Team Marketplaces", href: "/changelog/team-marketplace-updates" },
-  { version: "3.9", date: "Jun 29, 2026", title: "Cursor Mobile App for iOS", href: "/changelog/ios-mobile-app" },
-  { version: "3.9", date: "Jun 22, 2026", title: "Customize Cursor", href: "/changelog/customize" },
-];
 
-export function Changelog() {
+function ChangelogEntryCard({ entry }: { entry: ChangelogEntry }) {
+  const { title, slug, date, version } = entry;
+  const versionLabel = (() => {
+    if (!version) return null;
+    const trimmed = version.trim();
+    return trimmed && /^\d/.test(trimmed) ? trimmed : null;
+  })();
+  const href = `/changelog/${slug}`;
   return (
-    <section className="section bg-theme-bg text-theme-text">
+    <article className="flex h-full flex-col">
+      <Link href={href} className="card flex h-full grow-1 flex-col pb-g2">
+        <div className="text-theme-text-mid relative left-[-1px] flex items-center gap-x-(--grid-gap)">
+          {versionLabel && <span className="label">{versionLabel}</span>}
+          <FormattedDate className="type-base" dateString={date} />
+        </div>
+        {title && <p className="type-base text-theme-text">{title}</p>}
+      </Link>
+    </article>
+  );
+}
+
+export interface ChangelogProps {
+  title?: ReactNode;
+  titleClassName?: string;
+  titleSpacingClassName?: string;
+  sectionId?: string;
+  useSectionPadding?: boolean;
+  semanticLevel?: HeadingLevel;
+}
+
+export function Changelog({
+  title,
+  titleClassName,
+  titleSpacingClassName,
+  sectionId,
+  useSectionPadding,
+  semanticLevel = "h2",
+}: ChangelogProps) {
+  const messages = useMessages();
+  const t = useGT();
+  const { changelogData } = useChangelog();
+  if (!changelogData || changelogData.length === 0) return null;
+
+  const headingClass = titleClassName || "type-md-lg";
+  const headingSpacing =
+    titleSpacingClassName || (/\btype-md(?:-lg)?\b/.test(headingClass) ? "mb-v1" : "mb-v9/12");
+  const paddingClass = useSectionPadding === undefined || useSectionPadding ? "section" : "my-v4.5";
+
+  return (
+    <section className={cn("bg-theme-bg text-theme-text", paddingClass)} id={sectionId}>
       <div className="container">
-        <div className="flex items-end justify-between">
-          <h2 className="type-lg">Changelog</h2>
-          <Link href="/changelog" className="link-arrow type-base">
-            See what&apos;s new in Cursor <span aria-hidden="true">&#8594;</span>
-          </Link>
-        </div>
-        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {ENTRIES.map((e) => (
-            <Link
-              key={`${e.version}-${e.title}`}
-              href={e.href}
-              className="rounded-xl border border-theme-border-01 bg-theme-card p-5 transition-colors hover:border-theme-border-02"
-            >
-              <div className="flex items-center gap-2 type-xs text-theme-text-tertiary">
-                <span className="font-mono">{e.version}</span>
-                <span>&middot;</span>
-                <span>{e.date}</span>
-              </div>
-              <p className="mt-3 type-base text-theme-text">{e.title}</p>
-            </Link>
+        {title && (
+          <SemanticHeading
+            className={cn("text-theme-text", headingSpacing, headingClass)}
+            semanticLevel={semanticLevel}
+          >
+            {typeof title === "string" ? messages(title) : title}
+          </SemanticHeading>
+        )}
+        <CardScroller>
+          {changelogData.map((entry, index) => (
+            <CardScrollerItem key={entry.id} index={index}>
+              <ChangelogEntryCard entry={entry} />
+            </CardScrollerItem>
           ))}
-        </div>
+        </CardScroller>
+        <Link href="/changelog" className="btn-text mt-v9/12 inline-flex">
+          {t("See what's new in Cursor")} →
+        </Link>
       </div>
     </section>
   );

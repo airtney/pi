@@ -1,70 +1,87 @@
-import Link from "next/link";
+import type { ReactNode } from "react";
+import { isExternalLink, type SiteLink } from "@/lib/links";
+import { FeatureMediaContainer } from "@/components/FeatureMediaContainer";
+import { Link } from "@/components/Link";
+import { SectionHeadline } from "@/components/SectionHeadline";
+import { PromptCard } from "@/components/demo/PromptCard";
+import { ToolCallsDemo } from "@/components/demo/ToolCallsDemo";
 
 /**
- * "Stay on the frontier" — three stacked sub-features: model choice, codebase
- * understanding, and enterprise scale. Copy is taken from the SSR markup.
+ * "Stay on the frontier" — three demo cards on an xl 3-column grid, rebuilt
+ * from the section's RSC Flight payload in _artifacts/index.html:
+ *
+ * 1. model choice   — PromptCard (module 316688) over a card-03 background;
+ * 2. codebase       — ToolCallsDemo (module 760872) over the light/dark
+ *                     frontier-codebase screenshots;
+ * 3. enterprise     — the homepage-team-photo-1 image card.
+ *
+ * Copy, links, and card markup mirror the payload verbatim, including the
+ * upstream `className="undefined h-full"` card wrapper (the original
+ * interpolates an undefined `className` prop into the template literal).
  */
-interface SubFeature {
+
+interface FrontierCard {
   title: string;
   description: string;
-  linkLabel: string;
-  linkHref: string;
-  external?: boolean;
-  demo: React.ReactNode;
+  link: SiteLink;
+  media: ReactNode;
 }
 
-const MODELS = ["Composer 2.5", "GPT-5.6 Sol", "Opus 4.8", "Gemini 3.1 Pro", "Grok 4.5"];
-
-const SUBFEATURES: SubFeature[] = [
+const CARDS: FrontierCard[] = [
   {
     title: "Use the best model for every task",
     description:
-      "Choose between every cutting-edge model from OpenAI, Anthropic, Gemini, xAI, and Cursor.",
-    linkLabel: "Explore models",
-    linkHref: "/docs/models",
-    external: true,
-    demo: (
-      <ul className="stack gap-y-2">
-        {MODELS.map((m, i) => (
-          <li
-            key={m}
-            className={`flex items-center justify-between rounded-md border border-theme-border-01 px-3 py-2 type-sm ${
-              i === 0 ? "bg-theme-card-03 text-theme-text" : "text-theme-text-sec"
-            }`}
-          >
-            <span>{m}</span>
-            {i === 0 && <span aria-hidden="true">&#10003;</span>}
-          </li>
-        ))}
-      </ul>
+      "Choose between every cutting-edge model from OpenAI, Anthropic, Gemini, SpaceXAI, and Cursor.",
+    link: {
+      href: "/docs/models",
+      label: "Explore models",
+      linkType: "href",
+      openInNewTab: true,
+    },
+    media: (
+      <FeatureMediaContainer
+        mediaBgColor="card-03-hex"
+        mediaType="reactComponent"
+        allowOverflow
+        maxHeightMobile="420px"
+      >
+        <PromptCard />
+      </FeatureMediaContainer>
     ),
   },
   {
     title: "Complete codebase understanding",
     description: "Cursor learns how your codebase works, no matter the scale or complexity.",
-    linkLabel: "Learn about codebase indexing",
-    linkHref: "/docs/context/semantic-search",
-    external: true,
-    demo: (
-      <div className="rounded-md border border-theme-border-01 bg-theme-card-02 p-4 font-mono type-sm">
-        <p className="text-theme-text-sec">Where are these menu label colors defined?</p>
-        <p className="mt-2 text-theme-product-syntax-function">
-          src/components/MenuBar.tsx:42
-        </p>
-      </div>
+    link: {
+      href: "/docs/context/semantic-search",
+      label: "Learn about codebase indexing",
+      linkType: "href",
+      openInNewTab: true,
+    },
+    media: (
+      <FeatureMediaContainer
+        mediaType="reactComponent"
+        mediaBg={{
+          src: "/misc/frontier-codebase-light.png",
+          darkSrc: "/misc/frontier-codebase-dark.png",
+        }}
+        maxHeightMobile="420px"
+      >
+        <ToolCallsDemo aspectRatio={{ base: "4/3", md: "1/1" }} />
+      </FeatureMediaContainer>
     ),
   },
   {
     title: "Develop enduring software",
     description:
       "Trusted by over half of the Fortune 500 to accelerate development, securely and at scale.",
-    linkLabel: "Explore enterprise",
-    linkHref: "/enterprise",
-    demo: (
-      <div className="rounded-md border border-theme-border-01 bg-theme-card-02 p-6 text-center">
-        <p className="type-2xl text-theme-text">50%+</p>
-        <p className="type-sm text-theme-text-tertiary">of the Fortune 500</p>
-      </div>
+    link: { linkType: "page", slug: "enterprise", label: "Explore enterprise" },
+    media: (
+      <FeatureMediaContainer
+        mediaType="image"
+        media={{ src: "/misc/homepage-team-photo-1.jpg" }}
+        maxHeightMobile="420px"
+      />
     ),
   },
 ];
@@ -73,32 +90,35 @@ export function Frontier() {
   return (
     <section className="section bg-theme-bg text-theme-text">
       <div className="container">
-        <h2 className="type-lg text-balance">Stay on the frontier</h2>
-        <div className="mt-10 stack gap-y-10">
-          {SUBFEATURES.map((f) => (
-            <div
-              key={f.title}
-              className="grid items-center gap-8 rounded-xl border border-theme-border-01 bg-theme-card p-6 md:grid-cols-2"
-            >
-              <div>
-                <h3 className="type-md-lg text-theme-text">{f.title}</h3>
-                <p className="mt-3 type-base text-theme-text-sec">{f.description}</p>
-                {f.external ? (
-                  <a
-                    href={f.linkHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link-arrow mt-4 inline-flex type-base"
-                  >
-                    {f.linkLabel} <span aria-hidden="true">&nbsp;&#8599;</span>
-                  </a>
-                ) : (
-                  <Link href={f.linkHref} className="link-arrow mt-4 inline-flex type-base">
-                    {f.linkLabel} <span aria-hidden="true">&nbsp;&#8594;</span>
-                  </Link>
-                )}
+        <SectionHeadline
+          title="Stay on the frontier"
+          titleClassName="type-md"
+          textSize="md"
+          alignment="left"
+          semanticLevel="h2"
+        />
+        <div className="grid gap-g1 grid-cols-1 xl:grid-cols-3 items-stretch">
+          {CARDS.map((card, index) => (
+            <div key={`card-${index}`} className="undefined h-full">
+              <div className="card flex h-full grow-1 flex-col">
+                <div className="type-base max-w-prose flex grow flex-col">
+                  <div>
+                    <h3>{card.title}</h3>
+                    <div className="text-theme-text-sec text-pretty">{card.description}</div>
+                  </div>
+                  <div className="mt-auto pt-v8/12">
+                    <Link
+                      href={card.link.href ?? (card.link.slug ? `/${card.link.slug}` : "#")}
+                      openInNewTab={card.link.openInNewTab}
+                      className="btn-tertiary"
+                    >
+                      {card.link.label}
+                      {isExternalLink(card.link) ? " ↗" : " →"}
+                    </Link>
+                  </div>
+                </div>
+                <figure className="pt-g1.75">{card.media}</figure>
               </div>
-              <div>{f.demo}</div>
             </div>
           ))}
         </div>

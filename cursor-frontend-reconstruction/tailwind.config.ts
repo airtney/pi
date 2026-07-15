@@ -47,6 +47,8 @@ const config: Config = {
           "product-syntax-string": "var(--color-theme-product-syntax-string)",
           "product-syntax-keyword": "var(--color-theme-product-syntax-keyword)",
           "product-syntax-function": "var(--color-theme-product-syntax-function)",
+          "button-bg": "var(--color-theme-button-bg)",
+          "button-text": "var(--color-theme-button-text)",
         },
       },
       fontFamily: {
@@ -79,6 +81,28 @@ const config: Config = {
         v2: "var(--spacing-v2)",
         v3: "var(--spacing-v3)",
         v4: "var(--spacing-v4)",
+        // 12ths of the vertical rhythm unit (--spacing-v*/12 in the artifact)
+        "v1/12": "calc(var(--v) * 1 / 12)",
+        "v2/12": "calc(var(--v) * 2 / 12)",
+        "v3/12": "calc(var(--v) * 3 / 12)",
+        "v4/12": "calc(var(--v) * 4 / 12)",
+        "v6/12": "calc(var(--v) * 6 / 12)",
+        "v8/12": "calc(var(--v) * 8 / 12)",
+        "v9/12": "calc(var(--v) * 9 / 12)",
+      },
+      flexGrow: {
+        "1": "1",
+      },
+      gridColumnStart: {
+        "13": "13",
+        "16": "16",
+        "17": "17",
+      },
+      gridColumnEnd: {
+        "13": "13",
+        "16": "16",
+        "17": "17",
+        "25": "25",
       },
       zIndex: {
         "1": "1",
