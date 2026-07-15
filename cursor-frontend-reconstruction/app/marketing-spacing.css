@@ -132,3 +132,82 @@
 	display: flex;
 	flex-direction: column;
 }
+
+/* --- Feature card layout (from _artifacts/css/0uhy.6mfxh118.css) --- */
+
+.section--flush-y {
+	padding-block: 0;
+}
+
+.grid-cursor {
+	gap: var(--spacing-g1);
+	grid-template-columns: repeat(24, 1fr);
+	display: grid;
+}
+
+.card--large {
+	padding-inline: var(--spacing-g1-5);
+	padding-top: calc(var(--spacing-g1-5) - 0.1rem);
+	padding-bottom: var(--spacing-g1-5);
+}
+@media (min-width: 420px) {
+	.card--large {
+		padding: var(--spacing-g1-75);
+	}
+}
+
+.card--feature:is(a) {
+	text-decoration: none;
+	color: inherit;
+}
+.card--feature:is(a):hover {
+	background-color: var(--color-theme-card-hover-light-hex);
+}
+
+.btn-tertiary {
+	padding: unset;
+	color: var(--color-theme-accent);
+	background-color: #0000;
+	border: 0;
+	justify-content: center;
+	align-items: center;
+	text-decoration: none;
+	display: inline-flex;
+}
+.btn-tertiary:hover {
+	color: color-mix(in oklab, var(--color-theme-accent) 75%, transparent);
+}
+
+.max-h-mobile {
+	max-height: var(--max-h-mobile);
+	overflow: hidden;
+}
+@media (min-width: 1140px) {
+	.max-h-mobile {
+		max-height: none;
+		overflow: visible;
+	}
+}
+
+/* v-grid fractions used by the feature card action row */
+.mt-v8\/12 {
+	margin-top: calc(var(--v) * 8 / 12);
+}
+
+:root {
+	--button-padding-sm: 0.45em 0.8em 0.46em;
+	--spacing-prose-medium-wide: 80ch;
+}
+.btn--sm {
+	font-size: var(--text-sm);
+	padding: var(--button-padding-sm);
+}
+
+.section--headline {
+	padding-block-start: var(--spacing-v3);
+	padding-block-end: var(--spacing-v3);
+}
+
+.max-w-prose-medium-wide {
+	max-width: var(--spacing-prose-medium-wide);
+}

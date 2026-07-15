@@ -6,11 +6,11 @@ import { Actions } from "@/components/Button";
  */
 export function CtaSection() {
   return (
-    <section className="section bg-theme-bg text-theme-text">
+    <section className="section bg-theme-bg text-theme-text section--headline">
       <div className="container">
-        <div className="rounded-2xl border border-theme-border-01 bg-theme-card px-8 py-16 text-center">
-          <h2 className="type-xl text-balance">Try Cursor now.</h2>
-          <div className="mt-6 flex justify-center">
+        <div className="text-center mx-auto max-w-prose-medium-wide">
+          <h2 className="type-xl sm:type-2xl text-balance mx-auto mb-v1">Try Cursor now.</h2>
+          <div className="flex justify-center gap-x-g1 items-center">
             <Actions
               alignment="center"
               mobileFullWidth

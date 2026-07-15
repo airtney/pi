@@ -6,10 +6,15 @@
 :root {
 	--font-system: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial,
 		sans-serif;
+	--font-berkeley-mono: "BerkeleyMono";
 
 	--text-product-sm: 0.6875rem;
 	--text-product-base: 0.75rem;
 	--text-product-lg: 0.8125rem;
+
+	--text-slack-sm: 0.75rem;
+	--text-slack-base: 0.875rem;
+	--text-slack-lg: 1rem;
 
 	--leading-product-sm: 1.35;
 	--leading-product-base: 1.4;
@@ -17,7 +22,17 @@
 
 	--tracking-product-sm: 0.01em;
 
+	--font-weight-semibold: 600;
+
 	--color-theme-card-hover-hex: #ebeae5;
+	--color-theme-card-hover-light-hex: #f0efeb;
+	--color-theme-fg-20: color-mix(in oklab, var(--color-theme-fg) 20%, transparent);
+	--color-theme-bg-hover: color-mix(in oklab, var(--color-theme-fg) 5%, transparent);
+	--color-theme-bg-muted: color-mix(in oklab, var(--color-theme-fg) 2%, var(--color-theme-bg));
+	--color-theme-bg-01: var(--color-theme-bg);
+	--color-theme-text-pri: var(--color-theme-text);
+	--color-theme-primary: #3b82f6;
+	--shadow-outline-theme: 0 0 0 1px var(--color-theme-border-02);
 	--color-theme-product-chrome: var(--color-theme-card-hex);
 	--color-theme-product-editor: var(--color-theme-bg);
 	--color-theme-product-text: #26251eeb;
@@ -30,6 +45,12 @@
 	--color-theme-product-ansi-bright-black: #91918d;
 	--color-theme-product-ansi-bright-white: #26251e;
 	--color-theme-product-ansi-bright-blue: #0043f0;
+}
+
+[data-theme="dark"],
+:root.dark {
+	--color-theme-card-hover-hex: #201e18;
+	--color-theme-card-hover-light-hex: #1d1b15;
 }
 
 .type-product-sm {
@@ -87,4 +108,159 @@
 
 .text-theme-product-text-tertiary {
 	color: var(--color-theme-product-text-tertiary);
+}
+
+.type-product-base-mono {
+	font-family: var(--font-berkeley-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+		"Liberation Mono", "Courier New", monospace;
+	font-size: var(--text-product-base);
+	line-height: var(--leading-product-base-mono);
+	font-weight: var(--font-weight-normal);
+}
+
+.font-berkeley-mono {
+	font-family: var(--font-berkeley-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+		"Liberation Mono", "Courier New", monospace;
+}
+
+.font-feature-case {
+	font-feature-settings: "case" 1;
+}
+
+/* Slack demo type scale (Lato-based, from _artifacts/css/0uhy.6mfxh118.css) */
+.slack-ui-demo {
+	font-family: "Lato", var(--font-system);
+}
+.type-slack-sm {
+	font-family: inherit;
+	font-size: var(--text-slack-sm);
+	line-height: var(--leading-product-sm);
+	font-weight: var(--font-weight-normal);
+	letter-spacing: var(--tracking-product-sm);
+}
+.type-slack-sm-semibold {
+	font-family: inherit;
+	font-size: var(--text-slack-sm);
+	line-height: var(--leading-product-sm);
+	font-weight: var(--font-weight-semibold);
+	letter-spacing: var(--tracking-product-sm);
+}
+.type-slack-base {
+	font-family: inherit;
+	font-size: var(--text-slack-base);
+	line-height: var(--leading-product-base);
+	font-weight: var(--font-weight-normal);
+}
+.type-slack-base-semibold {
+	font-family: inherit;
+	font-size: var(--text-slack-base);
+	line-height: var(--leading-product-base);
+	font-weight: var(--font-weight-semibold);
+}
+.type-slack-lg-semibold {
+	font-family: inherit;
+	font-size: var(--text-slack-lg);
+	line-height: var(--leading-product-base);
+	font-weight: var(--font-weight-semibold);
+}
+
+/* Scrollbar helpers used by the demo windows */
+.thin-scrollbar {
+	scrollbar-width: thin;
+	scrollbar-color: var(--color-theme-fg-20) transparent;
+}
+.thin-scrollbar::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+.thin-scrollbar::-webkit-scrollbar-track {
+	background: 0 0;
+}
+.thin-scrollbar::-webkit-scrollbar-thumb {
+	background-color: var(--color-theme-fg-20);
+	background-clip: padding-box;
+	border: 2px solid #0000;
+	border-radius: 50%;
+}
+.no-scrollbar {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+	display: none;
+}
+
+.no-drag-img img {
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+/* Theme-scoped media toggles (solid demo backgrounds per color scheme) */
+[data-theme="dark"] .media-light {
+	display: none !important;
+}
+.media-dark,
+[data-theme="light"] .media-dark {
+	display: none !important;
+}
+[data-theme="dark"] .media-dark {
+	display: block !important;
+}
+
+/* Alpha-modifier utilities the demos rely on (var-based colors cannot use
+   Tailwind's <alpha-value> slash syntax) */
+.text-theme-text\/50 {
+	color: color-mix(in oklab, var(--color-theme-text) 50%, transparent);
+}
+.border-theme-text\/20 {
+	border-color: color-mix(in oklab, var(--color-theme-text) 20%, transparent);
+}
+
+/* Acme Labs page rendered in the hero's in-editor browser preview
+   (inlined <style> in the artifact HTML, hoisted here) */
+.cursor-preview {
+	background-color: #f7f7f4;
+	color: rgba(38, 37, 30, 0.55);
+}
+.cursor-preview-brand {
+	color: #26251e;
+}
+.cursor-preview a {
+	color: rgba(38, 37, 30, 0.55);
+	text-decoration-color: rgba(38, 37, 30, 0.4);
+}
+.cursor-preview-cta {
+	background-color: rgba(38, 37, 30, 0.06);
+	color: rgba(38, 37, 30, 0.55);
+}
+.cursor-preview-table-row td {
+	border-bottom: 1px solid rgba(38, 37, 30, 0.08);
+}
+.cursor-preview-link {
+	transition: color 0.15s ease;
+}
+.cursor-preview-link:hover {
+	color: #26251e;
+}
+[data-theme="dark"] .cursor-preview {
+	background-color: #14120b;
+	color: rgba(237, 236, 236, 0.55);
+}
+[data-theme="dark"] .cursor-preview-brand {
+	color: #edecec;
+}
+[data-theme="dark"] .cursor-preview a {
+	color: rgba(237, 236, 236, 0.55);
+	text-decoration-color: rgba(237, 236, 236, 0.4);
+}
+[data-theme="dark"] .cursor-preview-cta {
+	background-color: rgba(237, 236, 236, 0.08);
+	color: rgba(237, 236, 236, 0.55);
+}
+[data-theme="dark"] .cursor-preview-table-row td {
+	border-bottom: 1px solid rgba(237, 236, 236, 0.08);
+}
+[data-theme="dark"] .cursor-preview-link:hover {
+	color: #edecec;
 }
