@@ -1,0 +1,359 @@
+/**
+ * Spacing utilities extracted from cursor.com CSS (_artifacts/css/0uhy.6mfxh118.css).
+ * Required for faithful layout; Tailwind defaults do not define mb-v1 / gap-x-g1 etc.
+ */
+
+:root {
+	--spacing-g0-5: calc(var(--g) * 0.5);
+	--spacing-g0-75: calc(var(--g) * 0.75);
+	--spacing-g1-5: calc(var(--g) * 1.5);
+	--spacing-g1-75: calc(var(--g) * 1.75);
+	--spacing-v1-5: calc(var(--v) * 1.5);
+	--spacing-v2-5: calc(var(--v) * 2.5);
+	--spacing-v4-5: calc(var(--v) * 4.5);
+	--spacing-v5: calc(var(--v) * 5);
+	--spacing-v6: calc(var(--v) * 6);
+	--spacing-v8: calc(var(--v) * 8);
+	--site-header-height: 52px;
+}
+
+.px-g1 {
+	padding-inline: var(--spacing-g1);
+}
+.px-g1\.5 {
+	padding-inline: var(--spacing-g1-5);
+}
+.px-g2 {
+	padding-inline: var(--spacing-g2);
+}
+.py-v1 {
+	padding-block: var(--spacing-v1);
+}
+.py-v2 {
+	padding-block: var(--spacing-v2);
+}
+.py-v3 {
+	padding-block: var(--spacing-v3);
+}
+.pt-v2 {
+	padding-top: var(--spacing-v2);
+}
+.pt-v3 {
+	padding-top: var(--spacing-v3);
+}
+.mb-v1 {
+	margin-bottom: var(--spacing-v1);
+}
+.mb-v1\.5 {
+	margin-bottom: var(--spacing-v1-5);
+}
+.mb-v2\.5 {
+	margin-bottom: var(--spacing-v2-5);
+}
+.mt-v1 {
+	margin-top: var(--spacing-v1);
+}
+.gap-x-g1 {
+	column-gap: var(--spacing-g1);
+}
+.gap-x-g1\.5 {
+	column-gap: var(--spacing-g1-5);
+}
+.gap-g1 {
+	gap: var(--spacing-g1);
+}
+.gap-g2 {
+	gap: var(--spacing-g2);
+}
+.gap-y-g1 {
+	row-gap: var(--spacing-g1);
+}
+
+.text-balance {
+	text-wrap: balance;
+}
+
+.max-w-prose {
+	max-width: 65ch;
+}
+
+.media-border-container {
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	border-radius: var(--radius-xs);
+}
+
+.media-border-container::after {
+	content: "";
+	pointer-events: none;
+	position: absolute;
+	inset: 0;
+	z-index: 30;
+	border: 1px solid var(--color-theme-border-01);
+	border-radius: var(--radius-xs);
+}
+
+/* Artifact dims wallpapers only when the dark theme is active */
+.wallpaper-brightness-dark {
+	filter: brightness(1);
+}
+[data-theme="dark"] .wallpaper-brightness-dark {
+	filter: brightness(0.9);
+}
+
+.media-border-container .hero-wallpaper {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.logo-garden-responsive-8 {
+	display: grid;
+	grid-template-rows: repeat(2, 1fr);
+	grid-template-columns: repeat(4, 1fr);
+	gap: var(--spacing-g0-75);
+}
+.logo-garden-responsive-8 > * {
+	width: 100%;
+	min-width: 0;
+}
+@media (min-width: 660px) {
+	.logo-garden-responsive-8 {
+		gap: var(--spacing-g1);
+	}
+}
+@media (min-width: 1140px) {
+	.logo-garden-responsive-8 {
+		grid-template-rows: 1fr;
+		grid-template-columns: repeat(8, 1fr);
+	}
+}
+
+.stack {
+	display: flex;
+	flex-direction: column;
+}
+
+/* --- Feature card layout (from _artifacts/css/0uhy.6mfxh118.css) --- */
+
+.section--flush-y {
+	padding-block: 0;
+}
+
+.grid-cursor {
+	gap: var(--spacing-g1);
+	grid-template-columns: repeat(24, 1fr);
+	display: grid;
+}
+
+.card--large {
+	padding-inline: var(--spacing-g1-5);
+	padding-top: calc(var(--spacing-g1-5) - 0.1rem);
+	padding-bottom: var(--spacing-g1-5);
+}
+@media (min-width: 420px) {
+	.card--large {
+		padding: var(--spacing-g1-75);
+	}
+}
+
+.card--feature:is(a) {
+	text-decoration: none;
+	color: inherit;
+}
+.card--feature:is(a):hover {
+	background-color: var(--color-theme-card-hover-light-hex);
+}
+
+.btn-tertiary {
+	padding: unset;
+	color: var(--color-theme-accent);
+	background-color: #0000;
+	border: 0;
+	justify-content: center;
+	align-items: center;
+	text-decoration: none;
+	display: inline-flex;
+}
+.btn-tertiary:hover {
+	color: color-mix(in oklab, var(--color-theme-accent) 75%, transparent);
+}
+
+.max-h-mobile {
+	max-height: var(--max-h-mobile);
+	overflow: hidden;
+}
+@media (min-width: 1140px) {
+	.max-h-mobile {
+		max-height: none;
+		overflow: visible;
+	}
+}
+
+/* v-grid fractions used by the feature card action row */
+.mt-v8\/12 {
+	margin-top: calc(var(--v) * 8 / 12);
+}
+
+:root {
+	--button-padding-sm: 0.45em 0.8em 0.46em;
+	--spacing-prose-medium-wide: 80ch;
+}
+.btn--sm {
+	font-size: var(--text-sm);
+	padding: var(--button-padding-sm);
+}
+
+.section--headline {
+	padding-block-start: var(--spacing-v3);
+	padding-block-end: var(--spacing-v3);
+}
+
+.max-w-prose-medium-wide {
+	max-width: var(--spacing-prose-medium-wide);
+}
+
+/* --- Card rows, blog cards, demo utilities (from _artifacts/css/0uhy.6mfxh118.css) --- */
+
+:root {
+	--grid-gap: calc(12rem / 15);
+	--spacing-prose-narrow: 48ch;
+}
+
+.max-w-prose-narrow {
+	max-width: var(--spacing-prose-narrow);
+}
+
+.grow-1 {
+	flex-grow: 1;
+}
+
+/* Tailwind v4 CSS-variable shorthand utilities used verbatim in the markup */
+.gap-x-\(--grid-gap\) {
+	column-gap: var(--grid-gap);
+}
+.space-x-\(--grid-gap\) > :not(:last-child) {
+	margin-inline-end: var(--grid-gap);
+}
+
+/* Changelog version chip */
+.label {
+	font-family: var(--font-sans);
+	font-size: var(--text-sm);
+	letter-spacing: var(--tracking-sm);
+	font-weight: var(--font-weight-normal);
+	border: 1px solid;
+	border-color: inherit;
+	color: inherit;
+	font-feature-settings: "tnum";
+	border-radius: 999px;
+	padding: 0.28em 0.65em 0.29em;
+	line-height: 1;
+	display: inline-flex;
+	position: relative;
+	top: 0.03125rem;
+}
+
+/* Accent text link ("See what's new in Cursor", "View all blog posts") */
+.btn-text {
+	font-size: var(--text-base);
+	line-height: var(--leading-normal);
+	font-weight: var(--font-weight-normal);
+	letter-spacing: var(--tracking-base);
+	color: var(--color-theme-accent);
+	text-decoration: none;
+}
+.btn-text:hover {
+	color: color-mix(in oklab, var(--color-theme-accent) 75%, transparent);
+}
+.btn-text:focus-visible {
+	outline: 2px solid var(--color-theme-fg);
+	outline-offset: 0.3ch;
+}
+
+/* Blog-post card padding + its 12-column inner grid */
+.card--text {
+	padding-inline: var(--spacing-g1-5);
+	padding-top: calc(var(--spacing-g1-5) - 0.1rem);
+	padding-bottom: var(--spacing-g1-5);
+}
+.grid-cursor-v1 {
+	--gap: var(--grid-gap);
+	--grid-cols: 12;
+	grid-template-columns: repeat(var(--grid-cols), 1fr);
+	gap: var(--gap);
+	display: grid;
+}
+
+/* Container-query utilities used by the blog-post cards (Tailwind v4 output;
+   the repo's Tailwind 3.4 has no container-query core plugin) */
+.\@container {
+	container-type: inline-size;
+}
+@container (min-width: 24rem) {
+	.\@sm\:col-start-1 {
+		grid-column-start: 1;
+	}
+	.\@sm\:col-end-2 {
+		grid-column-end: 2;
+	}
+}
+
+/* Aspect-ratio boxes used by the frontier demos (`buildAspectClasses`,
+   module 22672). Responsive variant pinned to the artifact's md breakpoint
+   (660px), matching the other manual breakpoints in this file. */
+.aspect-1\/1-box,
+.aspect-4\/3-box {
+	grid-template-rows: repeat(1, minmax(0, 1fr));
+	grid-template-columns: repeat(1, minmax(0, 1fr));
+	display: grid;
+}
+.aspect-1\/1-box::after,
+.aspect-4\/3-box::after {
+	content: "";
+	pointer-events: none;
+	grid-area: 1 / 1 / -1 / -1;
+}
+.aspect-1\/1-box::after {
+	padding-top: 100%;
+}
+.aspect-4\/3-box::after {
+	padding-top: 75%;
+}
+@media (min-width: 660px) {
+	.md\:aspect-1\/1-box {
+		grid-template-rows: repeat(1, minmax(0, 1fr));
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+		display: grid;
+	}
+	.md\:aspect-1\/1-box::after {
+		content: "";
+		pointer-events: none;
+		grid-area: 1 / 1 / -1 / -1;
+		padding-top: 100%;
+	}
+}
+
+/* Tool-call entrance (CSS replacement for the chunk's framer-motion
+   initial={opacity:0, y:6} -> animate={opacity:1, y:0}, 0.18s ease-out) */
+.tool-call-enter {
+	animation: tool-call-enter 0.18s ease-out both;
+}
+@keyframes tool-call-enter {
+	0% {
+		opacity: 0;
+		transform: translateY(6px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.tool-call-enter {
+		animation: none;
+	}
+}

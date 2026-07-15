@@ -1,0 +1,6596 @@
+(globalThis.TURBOPACK || (globalThis.TURBOPACK = [])).push([
+  "object" == typeof document ? document.currentScript : void 0,
+  679699,
+  (e) => {
+    e.v({ className: "lato_74dc277d-module__bw4eJa__className" });
+  },
+  616662,
+  (e) => {
+    "use strict";
+    var t = e.i(505278),
+      a = e.i(207849),
+      r = e.i(264458),
+      l = e.i(411318),
+      n = e.i(229138);
+    function s(e) {
+      let s,
+        i,
+        o,
+        c,
+        m,
+        d,
+        u,
+        h,
+        p,
+        x,
+        f,
+        g,
+        b,
+        y,
+        v,
+        w = (0, a.c)(43),
+        {
+          channel: j,
+          className: N,
+          isConnected: k,
+          onChannelInfoClick: C,
+          compact: S,
+          showMemberCount: A,
+          cardTextScale: _,
+        } = e,
+        T = void 0 !== S && S,
+        M = void 0 !== A && A,
+        E = void 0 !== _ && _,
+        L = (0, l.useGT)();
+      w[0] !== j.memberCount || w[1] !== j.type || w[2] !== L
+        ? ((s = () =>
+            j.memberCount
+              ? "dm" === j.type
+                ? L("Active now")
+                : L("{memberCount} members", { memberCount: j.memberCount })
+              : null),
+          (w[0] = j.memberCount),
+          (w[1] = j.type),
+          (w[2] = L),
+          (w[3] = s))
+        : (s = w[3]);
+      let I = s,
+        H = T ? "px-3 py-2" : "px-4 py-2";
+      w[4] !== N || w[5] !== H
+        ? ((i = (0, r.default)(
+            "border-theme-border-02 bg-theme-card-hex type-slack-base flex items-center justify-between border-b",
+            H,
+            N,
+          )),
+          (w[4] = N),
+          (w[5] = H),
+          (w[6] = i))
+        : (i = w[6]),
+        w[7] === Symbol.for("react.memo_cache_sentinel")
+          ? ((o = (0, r.default)(
+              "flex min-w-0 flex-1 items-center gap-2 rounded transition-colors",
+              "hover:bg-theme-bg-hover px-0 py-1",
+            )),
+            (w[7] = o))
+          : (o = w[7]);
+      let P = `Channel info for ${j.name}`;
+      w[8] === Symbol.for("react.memo_cache_sentinel")
+        ? ((c = (0, r.default)("text-theme-text-pri type-slack-lg-semibold truncate")), (w[8] = c))
+        : (c = w[8]),
+        w[9] !== E
+          ? ((m = E ? { fontSize: "13px", fontWeight: 600, lineHeight: 1.2 } : void 0),
+            (w[9] = E),
+            (w[10] = m))
+          : (m = w[10]);
+      let Z = "dm" === j.type ? j.name : `#${j.name}`;
+      w[11] !== m || w[12] !== Z
+        ? ((d = (0, t.jsx)("div", {
+            className: "flex items-center gap-2",
+            children: (0, t.jsx)("h2", { className: c, style: m, children: Z }),
+          })),
+          (w[11] = m),
+          (w[12] = Z),
+          (w[13] = d))
+        : (d = w[13]),
+        w[14] !== j.topic || w[15] !== T || w[16] !== I
+          ? ((u =
+              !T &&
+              (j.topic || I()) &&
+              (0, t.jsxs)("div", {
+                className: "text-theme-text-sec type-slack-sm flex items-center gap-2",
+                children: [
+                  j.topic && (0, t.jsx)("span", { className: "truncate", children: j.topic }),
+                  j.topic &&
+                    I() &&
+                    (0, t.jsx)("span", { className: "text-theme-text-ter", children: "•" }),
+                  I() && (0, t.jsx)("span", { className: "flex-shrink-0", children: I() }),
+                ],
+              })),
+            (w[14] = j.topic),
+            (w[15] = T),
+            (w[16] = I),
+            (w[17] = u))
+          : (u = w[17]),
+        w[18] !== E || w[19] !== T || w[20] !== I || w[21] !== M
+          ? ((h =
+              T &&
+              M &&
+              I() &&
+              (0, t.jsx)("div", {
+                className: "text-theme-text-sec type-slack-sm",
+                style: E ? { fontSize: "11px", lineHeight: 1.25 } : void 0,
+                children: (0, t.jsx)("span", { className: "flex-shrink-0", children: I() }),
+              })),
+            (w[18] = E),
+            (w[19] = T),
+            (w[20] = I),
+            (w[21] = M),
+            (w[22] = h))
+          : (h = w[22]),
+        w[23] !== d || w[24] !== u || w[25] !== h
+          ? ((p = (0, t.jsxs)("div", {
+              className: "min-w-0 flex-1 gap-1 text-left",
+              children: [d, u, h],
+            })),
+            (w[23] = d),
+            (w[24] = u),
+            (w[25] = h),
+            (w[26] = p))
+          : (p = w[26]),
+        w[27] !== C || w[28] !== p || w[29] !== P
+          ? ((x = (0, t.jsx)("div", {
+              className: "flex min-w-0 flex-1 items-center gap-3",
+              children: (0, t.jsx)("button", {
+                type: "button",
+                onClick: C,
+                className: o,
+                "aria-label": P,
+                children: p,
+              }),
+            })),
+            (w[27] = C),
+            (w[28] = p),
+            (w[29] = P),
+            (w[30] = x))
+          : (x = w[30]);
+      let F = T ? "-gap-1" : "-gap-0.5";
+      return (
+        w[31] !== F
+          ? ((f = (0, r.default)(
+              "border-theme-border-02 type-product-base flex items-center rounded-md border px-1 py-1",
+              F,
+            )),
+            (w[31] = F),
+            (w[32] = f))
+          : (f = w[32]),
+        w[33] === Symbol.for("react.memo_cache_sentinel")
+          ? ((g = [
+              "/marketing-static/users/swhitmore.png",
+              "/marketing-static/users/eric.jpeg",
+              "/marketing-static/users/rikki.jpg",
+              "/marketing-static/users/ryo.png",
+            ]),
+            (w[33] = g))
+          : (g = w[33]),
+        w[34] !== T
+          ? ((b = g.map((e, a) =>
+              (0, t.jsx)(
+                n.default,
+                {
+                  src: e,
+                  alt: `member-${a + 1}`,
+                  width: T ? 20 : 24,
+                  height: T ? 20 : 24,
+                  className: (0, r.default)(
+                    "border-theme-card-hex -ml-2 rounded-full border object-cover first:ml-0",
+                    T ? "h-5 w-5" : "h-6 w-6",
+                  ),
+                },
+                e,
+              ),
+            )),
+            (w[34] = T),
+            (w[35] = b))
+          : (b = w[35]),
+        w[36] !== f || w[37] !== b
+          ? ((y = (0, t.jsx)("div", {
+              className: "flex items-center",
+              children: (0, t.jsx)("div", { className: f, children: b }),
+            })),
+            (w[36] = f),
+            (w[37] = b),
+            (w[38] = y))
+          : (y = w[38]),
+        w[39] !== x || w[40] !== y || w[41] !== i
+          ? ((v = (0, t.jsxs)("div", { className: i, children: [x, y] })),
+            (w[39] = x),
+            (w[40] = y),
+            (w[41] = i),
+            (w[42] = v))
+          : (v = w[42]),
+        v
+      );
+    }
+    var i = e.i(612793),
+      o = e.i(94884);
+    let c = new Map([
+        [
+          "bold",
+          i.createElement(
+            i.Fragment,
+            null,
+            i.createElement("path", {
+              d: "M128,20A108,108,0,0,0,31.85,177.23L21,209.66A20,20,0,0,0,46.34,235l32.43-10.81A108,108,0,1,0,128,20Zm0,192a84,84,0,0,1-42.06-11.27,12,12,0,0,0-6-1.62,12.1,12.1,0,0,0-3.8.62l-29.79,9.93,9.93-29.79a12,12,0,0,0-1-9.81A84,84,0,1,1,128,212Z",
+            }),
+          ),
+        ],
+        [
+          "duotone",
+          i.createElement(
+            i.Fragment,
+            null,
+            i.createElement("path", {
+              d: "M224,128A96,96,0,0,1,79.93,211.11h0L42.54,223.58a8,8,0,0,1-10.12-10.12l12.47-37.39h0A96,96,0,1,1,224,128Z",
+              opacity: "0.2",
+            }),
+            i.createElement("path", {
+              d: "M128,24A104,104,0,0,0,36.18,176.88L24.83,210.93a16,16,0,0,0,20.24,20.24l34.05-11.35A104,104,0,1,0,128,24Zm0,192a87.87,87.87,0,0,1-44.06-11.81,8,8,0,0,0-6.54-.67L40,216,52.47,178.6a8,8,0,0,0-.66-6.54A88,88,0,1,1,128,216Z",
+            }),
+          ),
+        ],
+        [
+          "fill",
+          i.createElement(
+            i.Fragment,
+            null,
+            i.createElement("path", {
+              d: "M232,128A104,104,0,0,1,79.12,219.82L45.07,231.17a16,16,0,0,1-20.24-20.24l11.35-34.05A104,104,0,1,1,232,128Z",
+            }),
+          ),
+        ],
+        [
+          "light",
+          i.createElement(
+            i.Fragment,
+            null,
+            i.createElement("path", {
+              d: "M128,26A102,102,0,0,0,38.35,176.69L26.73,211.56a14,14,0,0,0,17.71,17.71l34.87-11.62A102,102,0,1,0,128,26Zm0,192a90,90,0,0,1-45.06-12.08,6.09,6.09,0,0,0-3-.81,6.2,6.2,0,0,0-1.9.31L40.65,217.88a2,2,0,0,1-2.53-2.53L50.58,178a6,6,0,0,0-.5-4.91A90,90,0,1,1,128,218Z",
+            }),
+          ),
+        ],
+        [
+          "regular",
+          i.createElement(
+            i.Fragment,
+            null,
+            i.createElement("path", {
+              d: "M128,24A104,104,0,0,0,36.18,176.88L24.83,210.93a16,16,0,0,0,20.24,20.24l34.05-11.35A104,104,0,1,0,128,24Zm0,192a87.87,87.87,0,0,1-44.06-11.81,8,8,0,0,0-6.54-.67L40,216,52.47,178.6a8,8,0,0,0-.66-6.54A88,88,0,1,1,128,216Z",
+            }),
+          ),
+        ],
+        [
+          "thin",
+          i.createElement(
+            i.Fragment,
+            null,
+            i.createElement("path", {
+              d: "M128,28A100,100,0,0,0,40.53,176.5l-11.9,35.69a12,12,0,0,0,15.18,15.18l35.69-11.9A100,100,0,1,0,128,28Zm0,192a92,92,0,0,1-46.07-12.35,4.05,4.05,0,0,0-2-.54,3.93,3.93,0,0,0-1.27.21L41.28,219.78a4,4,0,0,1-5.06-5.06l12.46-37.38a4,4,0,0,0-.33-3.27A92,92,0,1,1,128,220Z",
+            }),
+          ),
+        ],
+      ]),
+      m = i.forwardRef((e, t) => i.createElement(o.default, { ref: t, ...e, weights: c }));
+    m.displayName = "ChatCircleIcon";
+    var d = e.i(346140);
+    e.i(992741);
+    var u = e.i(798791),
+      h = e.i(919473);
+    function p(e) {
+      let l,
+        n,
+        s,
+        o,
+        c,
+        m = (0, a.c)(14),
+        { emoji: d, initialCount: h, disabled: p } = e,
+        f = void 0 !== p && p,
+        [g, b] = (0, i.useState)(h);
+      m[0] !== f
+        ? ((l = () => {
+            f || b(x);
+          }),
+          (m[0] = f),
+          (m[1] = l))
+        : (l = m[1]);
+      let y = l,
+        v =
+          !f &&
+          "hover:bg-theme-bg-hover hover:border-theme-text-ter/30 active:scale-95 cursor-pointer";
+      return (
+        m[2] !== v
+          ? ((n = (0, r.default)(
+              "bg-theme-card-02-hex border-theme-border-02 inline-flex items-center gap-1 rounded-full border px-2 py-0.5 type-slack-sm transition-all",
+              v,
+            )),
+            (m[2] = v),
+            (m[3] = n))
+          : (n = m[3]),
+        m[4] !== d
+          ? ((s = (0, t.jsx)("span", { children: d })), (m[4] = d), (m[5] = s))
+          : (s = m[5]),
+        m[6] !== g
+          ? ((o = (0, t.jsx)("span", {
+              className: "text-theme-text-sec tabular-nums",
+              children: (0, t.jsx)(u.default, { value: g }),
+            })),
+            (m[6] = g),
+            (m[7] = o))
+          : (o = m[7]),
+        m[8] !== f || m[9] !== y || m[10] !== n || m[11] !== s || m[12] !== o
+          ? ((c = (0, t.jsxs)("button", {
+              type: "button",
+              onClick: y,
+              disabled: f,
+              className: n,
+              children: [s, o],
+            })),
+            (m[8] = f),
+            (m[9] = y),
+            (m[10] = n),
+            (m[11] = s),
+            (m[12] = o),
+            (m[13] = c))
+          : (c = m[13]),
+        c
+      );
+    }
+    function x(e) {
+      return e + 1;
+    }
+    function f(e) {
+      let t = new Date().getTime() - e.getTime(),
+        a = Math.floor(t / 6e4),
+        r = Math.floor(t / 36e5),
+        l = Math.floor(t / 864e5);
+      return a < 1
+        ? "now"
+        : a < 60
+          ? `${a}m`
+          : r < 24
+            ? `${r}h`
+            : l < 7
+              ? `${l}d`
+              : e.toLocaleDateString();
+    }
+    function g(e) {
+      let r,
+        l,
+        n,
+        s = (0, a.c)(56),
+        { message: i, textSizePx: o } = e,
+        c = void 0 === o ? 14 : o;
+      if ("system" === i.type) {
+        let e;
+        return (
+          s[0] !== i.content
+            ? ((e = (0, t.jsx)("div", {
+                className: "text-theme-text-ter type-slack-sm italic",
+                children: i.content,
+              })),
+              (s[0] = i.content),
+              (s[1] = e))
+            : (e = s[1]),
+          e
+        );
+      }
+      if ("replies-divider" === i.type) {
+        let e, a, r, l, n, o, c, m, u, h, p;
+        s[2] !== i.content
+          ? ((e = Number(i.content.replace(/[^0-9]/g, "")) || 0), (s[2] = i.content), (s[3] = e))
+          : (e = s[3]);
+        let x = e;
+        return (
+          s[4] === Symbol.for("react.memo_cache_sentinel")
+            ? ((a = (0, t.jsx)("div", {
+                className: "border-theme-border-02 h-px flex-1 border-t",
+              })),
+              (s[4] = a))
+            : (a = s[4]),
+          s[5] !== x
+            ? ((r = (0, t.jsx)("span", {
+                className: "font-medium",
+                children: (0, t.jsx)(d.Num, { children: x }),
+              })),
+              (s[5] = x),
+              (s[6] = r))
+            : (r = s[6]),
+          s[7] === Symbol.for("react.memo_cache_sentinel")
+            ? ((l = (0, t.jsx)("span", { children: "reply" })), (s[7] = l))
+            : (l = s[7]),
+          s[8] !== r
+            ? ((n = (0, t.jsxs)(t.Fragment, { children: [r, l] })), (s[8] = r), (s[9] = n))
+            : (n = s[9]),
+          s[10] !== x
+            ? ((o = (0, t.jsx)("span", {
+                className: "font-medium",
+                children: (0, t.jsx)(d.Num, { children: x }),
+              })),
+              (s[10] = x),
+              (s[11] = o))
+            : (o = s[11]),
+          s[12] === Symbol.for("react.memo_cache_sentinel")
+            ? ((c = (0, t.jsx)("span", { children: "replies" })), (s[12] = c))
+            : (c = s[12]),
+          s[13] !== o
+            ? ((m = (0, t.jsxs)(t.Fragment, { children: [o, c] })), (s[13] = o), (s[14] = m))
+            : (m = s[14]),
+          s[15] !== x || s[16] !== n || s[17] !== m
+            ? ((u = (0, t.jsx)("div", {
+                className: "text-theme-text-sec type-slack-sm flex items-center gap-1",
+                children: (0, t.jsx)(d.T, {
+                  context: "Reply count in a Slack conversation",
+                  children: (0, t.jsx)(d.Plural, { n: x, singular: n, plural: m }),
+                }),
+              })),
+              (s[15] = x),
+              (s[16] = n),
+              (s[17] = m),
+              (s[18] = u))
+            : (u = s[18]),
+          s[19] === Symbol.for("react.memo_cache_sentinel")
+            ? ((h = (0, t.jsx)("div", {
+                className: "border-theme-border-02 h-px flex-1 border-t",
+              })),
+              (s[19] = h))
+            : (h = s[19]),
+          s[20] !== u
+            ? ((p = (0, t.jsxs)("div", {
+                className: "mt-2 mb-1 flex items-center gap-3",
+                children: [a, u, h],
+              })),
+              (s[20] = u),
+              (s[21] = p))
+            : (p = s[21]),
+          p
+        );
+      }
+      if ("code" === i.type && i.codeLanguage) {
+        let e, a, r;
+        return (
+          s[22] !== i.codeLanguage
+            ? ((e = (0, t.jsx)("div", {
+                className:
+                  "border-theme-border-02 flex items-center justify-between border-b px-3 py-2",
+                children: (0, t.jsx)("span", {
+                  className: "text-theme-text-ter font-berkeley-mono text-xs tracking-tight",
+                  children: i.codeLanguage,
+                }),
+              })),
+              (s[22] = i.codeLanguage),
+              (s[23] = e))
+            : (e = s[23]),
+          s[24] !== i.content
+            ? ((a = (0, t.jsx)("pre", {
+                className: "overflow-x-auto p-3",
+                children: (0, t.jsx)("code", {
+                  className: "text-theme-text-pri font-berkeley-mono text-sm tracking-tight",
+                  children: i.content,
+                }),
+              })),
+              (s[24] = i.content),
+              (s[25] = a))
+            : (a = s[25]),
+          s[26] !== e || s[27] !== a
+            ? ((r = (0, t.jsx)("div", {
+                className: "my-1",
+                children: (0, t.jsxs)("div", {
+                  className: "border-theme-border-02 bg-theme-bg-01 rounded-lg border",
+                  children: [e, a],
+                }),
+              })),
+              (s[26] = e),
+              (s[27] = a),
+              (s[28] = r))
+            : (r = s[28]),
+          r
+        );
+      }
+      if ("image" === i.type && i.imageUrl) {
+        let e, a, r;
+        return (
+          s[29] !== i.imageUrl
+            ? ((e = (0, t.jsx)("div", {
+                className: "max-w-sm",
+                children: (0, t.jsx)("img", {
+                  src: i.imageUrl,
+                  alt: "Shared image",
+                  className: "border-theme-border-02 rounded-lg border",
+                }),
+              })),
+              (s[29] = i.imageUrl),
+              (s[30] = e))
+            : (e = s[30]),
+          s[31] !== i.content
+            ? ((a =
+                i.content &&
+                (0, t.jsx)("p", {
+                  className: "text-theme-text-pri type-slack-base mt-2",
+                  children: i.content,
+                })),
+              (s[31] = i.content),
+              (s[32] = a))
+            : (a = s[32]),
+          s[33] !== e || s[34] !== a
+            ? ((r = (0, t.jsxs)("div", { className: "my-1", children: [e, a] })),
+              (s[33] = e),
+              (s[34] = a),
+              (s[35] = r))
+            : (r = s[35]),
+          r
+        );
+      }
+      if ("file" === i.type && i.fileName) {
+        let e, a, r, l, n, o;
+        return (
+          s[36] === Symbol.for("react.memo_cache_sentinel")
+            ? ((e = (0, t.jsx)("div", {
+                className:
+                  "bg-theme-accent flex h-10 w-10 items-center justify-center rounded text-white",
+                children: "📎",
+              })),
+              (s[36] = e))
+            : (e = s[36]),
+          s[37] !== i.fileName
+            ? ((a = (0, t.jsx)("div", {
+                className: "text-theme-text-pri type-slack-base font-medium",
+                children: i.fileName,
+              })),
+              (s[37] = i.fileName),
+              (s[38] = a))
+            : (a = s[38]),
+          s[39] === Symbol.for("react.memo_cache_sentinel")
+            ? ((r = (0, t.jsx)(d.T, {
+                children: (0, t.jsx)("div", {
+                  className: "text-theme-text-ter type-slack-sm",
+                  children: "Click to download",
+                }),
+              })),
+              (s[39] = r))
+            : (r = s[39]),
+          s[40] !== a
+            ? ((l = (0, t.jsxs)("div", {
+                className:
+                  "border-theme-border-02 bg-theme-bg-01 flex items-center gap-3 rounded-lg border p-3",
+                children: [
+                  e,
+                  (0, t.jsxs)("div", { className: "min-w-0 flex-1", children: [a, r] }),
+                ],
+              })),
+              (s[40] = a),
+              (s[41] = l))
+            : (l = s[41]),
+          s[42] !== i.content
+            ? ((n =
+                i.content &&
+                (0, t.jsx)("p", {
+                  className: "text-theme-text-pri type-slack-base mt-2",
+                  children: i.content,
+                })),
+              (s[42] = i.content),
+              (s[43] = n))
+            : (n = s[43]),
+          s[44] !== l || s[45] !== n
+            ? ((o = (0, t.jsxs)("div", { className: "my-1", children: [l, n] })),
+              (s[44] = l),
+              (s[45] = n),
+              (s[46] = o))
+            : (o = s[46]),
+          o
+        );
+      }
+      if (s[47] !== i.content) {
+        let e;
+        s[49] === Symbol.for("react.memo_cache_sentinel")
+          ? ((e = /(@[a-zA-Z0-9._-]+)/g), (s[49] = e))
+          : (e = s[49]),
+          (r = i.content.replace(e, "**$1**")),
+          (s[47] = i.content),
+          (s[48] = r);
+      } else r = s[48];
+      let m = r,
+        u = `slack-message-${i.id}`;
+      return (
+        s[50] !== m || s[51] !== u
+          ? ((l = [{ id: u, role: "assistant", text: m }]), (s[50] = m), (s[51] = u), (s[52] = l))
+          : (l = s[52]),
+        s[53] !== l || s[54] !== c
+          ? ((n = (0, t.jsx)(h.default, {
+              messages: l,
+              onSend: b,
+              streamInitialMessages: !1,
+              textOnly: !0,
+              title: "",
+              textSizePx: c,
+              typographyClassName: "type-slack-base",
+            })),
+            (s[53] = l),
+            (s[54] = c),
+            (s[55] = n))
+          : (n = s[55]),
+        n
+      );
+    }
+    function b() {}
+    function y(e) {
+      let l,
+        s,
+        i,
+        o,
+        c,
+        u,
+        h,
+        x,
+        b,
+        y,
+        j,
+        N,
+        k,
+        C,
+        S = (0, a.c)(54),
+        {
+          message: A,
+          user: _,
+          className: T,
+          showAvatar: M,
+          compact: E,
+          messageTextSizePx: L,
+          cardTextScale: I,
+          isHovered: H,
+          disableInteractions: P,
+          onThreadClick: Z,
+        } = e,
+        F = void 0 === M || M,
+        V = void 0 === L ? 14 : L,
+        z = void 0 !== I && I,
+        B = void 0 !== P && P,
+        R = (0, d.useMessages)(),
+        D = (0, d.useGT)(),
+        $ = void 0 !== E && E ? "px-3 py-1" : "px-4",
+        O = F ? "pt-2 pb-1" : "pt-0.5 pb-1";
+      S[0] !== T || S[1] !== $ || S[2] !== O
+        ? ((l = (0, r.default)(
+            "group type-slack-base hover:bg-theme-bg-hover relative transition-colors",
+            $,
+            O,
+            T,
+          )),
+          (S[0] = T),
+          (S[1] = $),
+          (S[2] = O),
+          (S[3] = l))
+        : (l = S[3]);
+      let W = z ? "gap-2.5" : "gap-3";
+      S[4] !== W
+        ? ((s = (0, r.default)("flex items-start", W)), (S[4] = W), (S[5] = s))
+        : (s = S[5]);
+      let G = z ? "w-7" : "w-8",
+        q = F ? "mt-1" : "mt-0";
+      return (
+        S[6] !== G || S[7] !== q
+          ? ((i = (0, r.default)("relative flex-shrink-0", G, q)),
+            (S[6] = G),
+            (S[7] = q),
+            (S[8] = i))
+          : (i = S[8]),
+        S[9] !== z || S[10] !== F || S[11] !== _
+          ? ((o =
+              F &&
+              (0, t.jsx)(t.Fragment, {
+                children:
+                  _.avatar && (_.avatar.startsWith("/") || _.avatar.startsWith("http"))
+                    ? (0, t.jsx)(n.default, {
+                        src: `${_.avatar}`,
+                        alt: `${_.name} avatar`,
+                        width: z ? 28 : 32,
+                        height: z ? 28 : 32,
+                        className: (0, r.default)(
+                          z ? "h-7 w-7" : "h-8 w-8",
+                          "rounded object-cover",
+                        ),
+                      })
+                    : (0, t.jsx)("div", {
+                        className: (0, r.default)(
+                          "bg-theme-bg-02 text-theme-text-pri type-slack-sm flex items-center justify-center rounded",
+                          z ? "h-7 w-7" : "h-8 w-8",
+                        ),
+                        children: _.avatar || _.name.charAt(0).toUpperCase(),
+                      }),
+              })),
+            (S[9] = z),
+            (S[10] = F),
+            (S[11] = _),
+            (S[12] = o))
+          : (o = S[12]),
+        S[13] !== i || S[14] !== o
+          ? ((c = (0, t.jsx)("div", { className: i, children: o })),
+            (S[13] = i),
+            (S[14] = o),
+            (S[15] = c))
+          : (c = S[15]),
+        S[16] !== z || S[17] !== A.edited || S[18] !== A.timestamp || S[19] !== F || S[20] !== _
+          ? ((u =
+              F &&
+              (0, t.jsxs)("div", {
+                className: "text-theme-text type-slack-base flex items-center gap-1.5",
+                style: z ? { fontSize: "12.5px", lineHeight: 1.25 } : void 0,
+                children: [
+                  (0, t.jsx)("span", {
+                    className: (0, r.default)("text-theme-text type-slack-base-semibold"),
+                    children: _.name,
+                  }),
+                  _.title &&
+                    (0, t.jsx)("span", {
+                      className:
+                        "text-theme-text-sec bg-theme-border-02 rounded-sm px-1 py-0.5 font-semibold leading-tight",
+                      style: { fontSize: z ? "10.5px" : "10px" },
+                      children: _.title,
+                    }),
+                  (0, t.jsx)("span", {
+                    className: "text-theme-text-tertiary type-slack-sm",
+                    style: z ? { fontSize: "11px", lineHeight: 1.25 } : void 0,
+                    children: f(A.timestamp),
+                  }),
+                  A.edited &&
+                    (0, t.jsx)("span", {
+                      className: "text-theme-text-sec type-slack-sm",
+                      children: "(edited)",
+                    }),
+                ],
+              })),
+            (S[16] = z),
+            (S[17] = A.edited),
+            (S[18] = A.timestamp),
+            (S[19] = F),
+            (S[20] = _),
+            (S[21] = u))
+          : (u = S[21]),
+        S[22] !== A || S[23] !== V
+          ? ((h = (0, t.jsx)(g, { message: A, textSizePx: V })),
+            (S[22] = A),
+            (S[23] = V),
+            (S[24] = h))
+          : (h = S[24]),
+        S[25] !== B || S[26] !== R || S[27] !== A.buttons
+          ? ((x =
+              A.buttons &&
+              A.buttons.length > 0 &&
+              (0, t.jsx)("div", {
+                className: "mt-3 flex flex-wrap gap-2",
+                children: A.buttons.map((e) => {
+                  let a =
+                      "primary" === e.style
+                        ? "bg-theme-accent border-theme-accent text-white hover:bg-theme-accent/90"
+                        : "danger" === e.style
+                          ? "bg-red-600 border-red-600 text-white hover:bg-red-600/90"
+                          : "bg-theme-bg-01 border-theme-border-02 text-theme-text-pri hover:bg-theme-bg-hover",
+                    l = `type-slack-sm-semibold rounded px-2.5 py-1.5 transition-colors border ${a}`;
+                  return e.url
+                    ? (0, t.jsx)(
+                        "a",
+                        {
+                          href: B ? void 0 : e.url,
+                          target: B ? void 0 : "_blank",
+                          rel: B ? void 0 : "noopener noreferrer",
+                          className: (0, r.default)(l, B && "pointer-events-none"),
+                          onClick: B ? w : void 0,
+                          children: R(e.text),
+                        },
+                        e.id,
+                      )
+                    : (0, t.jsx)(
+                        "button",
+                        {
+                          type: "button",
+                          className: (0, r.default)(l, B && "pointer-events-none"),
+                          onClick: B ? void 0 : v,
+                          disabled: B,
+                          children: R(e.text),
+                        },
+                        e.id,
+                      );
+                }),
+              })),
+            (S[25] = B),
+            (S[26] = R),
+            (S[27] = A.buttons),
+            (S[28] = x))
+          : (x = S[28]),
+        S[29] !== B || S[30] !== A.id || S[31] !== A.reactions
+          ? ((b =
+              A.reactions &&
+              A.reactions.length > 0 &&
+              (0, t.jsx)("div", {
+                className: "mt-2 flex flex-wrap gap-1",
+                children: A.reactions.map((e, a) =>
+                  (0, t.jsx)(
+                    p,
+                    { emoji: e.emoji, initialCount: e.count, disabled: B },
+                    `${A.id}-${e.emoji}-${a}`,
+                  ),
+                ),
+              })),
+            (S[29] = B),
+            (S[30] = A.id),
+            (S[31] = A.reactions),
+            (S[32] = b))
+          : (b = S[32]),
+        S[33] !== B || S[34] !== D || S[35] !== A.id || S[36] !== A.thread || S[37] !== Z
+          ? ((y =
+              A.thread &&
+              (0, t.jsxs)("button", {
+                type: "button",
+                onClick: B ? void 0 : () => Z?.(A.id),
+                className: (0, r.default)(
+                  "text-theme-text-sec type-slack-sm hover:bg-theme-bg-hover mt-2 flex items-center gap-2 rounded px-2 py-1 transition-colors",
+                  B && "pointer-events-none",
+                ),
+                disabled: B,
+                children: [
+                  (0, t.jsx)(m, { size: 14 }),
+                  (0, t.jsx)(d.T, {
+                    children: (0, t.jsx)("span", {
+                      children: (0, t.jsx)(d.Plural, {
+                        n: A.thread.count,
+                        one: (0, t.jsxs)(t.Fragment, {
+                          children: [(0, t.jsx)(d.Num, { children: A.thread.count }), " reply"],
+                        }),
+                        other: (0, t.jsxs)(t.Fragment, {
+                          children: [(0, t.jsx)(d.Num, { children: A.thread.count }), " replies"],
+                        }),
+                      }),
+                    }),
+                  }),
+                  A.thread.lastReply &&
+                    (0, t.jsx)("span", {
+                      children: D("Last reply {time}", { time: f(A.thread.lastReply) }),
+                    }),
+                ],
+              })),
+            (S[33] = B),
+            (S[34] = D),
+            (S[35] = A.id),
+            (S[36] = A.thread),
+            (S[37] = Z),
+            (S[38] = y))
+          : (y = S[38]),
+        S[39] !== h || S[40] !== x || S[41] !== b || S[42] !== y
+          ? ((j = (0, t.jsxs)("div", { children: [h, x, b, y] })),
+            (S[39] = h),
+            (S[40] = x),
+            (S[41] = b),
+            (S[42] = y),
+            (S[43] = j))
+          : (j = S[43]),
+        S[44] !== u || S[45] !== j
+          ? ((N = (0, t.jsxs)("div", { className: "min-w-0 flex-1", children: [u, j] })),
+            (S[44] = u),
+            (S[45] = j),
+            (S[46] = N))
+          : (N = S[46]),
+        S[47] !== s || S[48] !== c || S[49] !== N
+          ? ((k = (0, t.jsxs)("div", { className: s, children: [c, N] })),
+            (S[47] = s),
+            (S[48] = c),
+            (S[49] = N),
+            (S[50] = k))
+          : (k = S[50]),
+        S[51] !== k || S[52] !== l
+          ? ((C = (0, t.jsx)("div", { className: l, children: k })),
+            (S[51] = k),
+            (S[52] = l),
+            (S[53] = C))
+          : (C = S[53]),
+        C
+      );
+    }
+    function v() {}
+    function w(e) {
+      return e.preventDefault();
+    }
+    let j = [
+        {
+          id: "swhitmore",
+          name: "swhitmore",
+          avatar: "/marketing-static/users/swhitmore.png",
+          status: "online",
+        },
+        { id: "eric", name: "eric", avatar: "/marketing-static/users/eric.jpeg", status: "online" },
+        {
+          id: "cursor-app",
+          name: "Cursor",
+          avatar: "/marketing-static/icon-192x192.png",
+          status: "online",
+          title: "APP",
+        },
+        {
+          id: "rikki",
+          name: "rikki",
+          avatar: "/marketing-static/users/rikki.jpg",
+          status: "online",
+        },
+      ],
+      N = [
+        {
+          id: "project-mission-control",
+          name: "project-mission-control",
+          type: "channel",
+          memberCount: 8,
+          isActive: !0,
+        },
+        { id: "general", name: "general", type: "channel", memberCount: 24, isActive: !1 },
+        {
+          id: "feature-realtime-sync",
+          name: "feature-realtime-sync",
+          type: "channel",
+          memberCount: 8,
+          isActive: !1,
+        },
+        {
+          id: "cloud-agents-thread",
+          name: "team-eng",
+          type: "channel",
+          memberCount: 12,
+          isActive: !1,
+        },
+      ],
+      k = [
+        {
+          userId: "swhitmore",
+          content: (0, l.msg)(
+            "i wanna be able to go to cursor.com/changelog#1.0 to see 1.0 changelog",
+          ),
+          type: "text",
+        },
+        { userId: "eric", content: (0, l.msg)("checks out"), type: "text" },
+        { userId: "eric", content: (0, l.msg)("@cursor can you take a stab?"), type: "text" },
+        {
+          userId: "cursor-app",
+          content: (0, l.msg)(
+            "I added direct linking for changelog entries and updated the Node.js version constraints across the project for better maintainability.",
+          ),
+          type: "text",
+          buttons: [
+            { id: "view-pr", text: (0, l.msg)("View PR"), style: "primary", url: "#" },
+            {
+              id: "open-in-cursor",
+              text: (0, l.msg)("Open in Cursor"),
+              style: "secondary",
+              url: "#",
+            },
+            { id: "open-in-web", text: (0, l.msg)("Open in Web"), style: "secondary", url: "#" },
+          ],
+        },
+      ],
+      C = [
+        {
+          userId: "rikki",
+          content: (0, l.msg)("@Cursor add unit tests to check for Git URL utility functions"),
+          type: "text",
+        },
+        {
+          userId: "cursor-app",
+          content: (0, l.msg)("Launched an agent, I'll notify here when it's finished."),
+          type: "text",
+          buttons: [
+            {
+              id: "open-in-cursor",
+              text: (0, l.msg)("Open in Cursor"),
+              style: "secondary",
+              url: "#",
+            },
+            { id: "open-in-web", text: (0, l.msg)("Open in Web"), style: "secondary", url: "#" },
+          ],
+        },
+      ],
+      S = [
+        {
+          userId: "swhitmore",
+          content: (0, l.msg)(
+            "dashboard is slow, 4s+ on first load. @cursor can you look into this?",
+          ),
+          type: "text",
+        },
+        {
+          userId: "cursor-app",
+          content: (0, l.msg)(
+            "Found it — 3 sequential DB queries and no caching. Moved to parallel, added Redis, lazy-loaded the charts. Down to 380ms.",
+          ),
+          type: "text",
+          buttons: [
+            { id: "view-pr", text: (0, l.msg)("View PR"), style: "primary", url: "#" },
+            {
+              id: "open-in-cursor",
+              text: (0, l.msg)("Open in Cursor"),
+              style: "secondary",
+              url: "#",
+            },
+          ],
+        },
+        { userId: "swhitmore", content: (0, l.msg)("nice @eric can you review?"), type: "text" },
+        { userId: "eric", content: (0, l.msg)("lgtm @cursor merge it"), type: "text" },
+        {
+          userId: "cursor-app",
+          content: (0, l.msg)("Merged to main."),
+          type: "text",
+          buttons: [
+            { id: "view-merge", text: (0, l.msg)("View Commit"), style: "primary", url: "#" },
+          ],
+        },
+      ],
+      A = [
+        {
+          userId: "swhitmore",
+          content: (0, l.msg)(
+            "kicking off the new analytics dashboard. goal is sub-500ms load times, real-time updates, mobile responsive.",
+          ),
+          type: "text",
+        },
+        {
+          userId: "eric",
+          content: (0, l.msg)("sounds good. what stack are we thinking?"),
+          type: "text",
+        },
+        {
+          userId: "swhitmore",
+          content: (0, l.msg)(
+            "next.js, postgres, maybe redis for caching. @cursor can you scaffold the project?",
+          ),
+          type: "text",
+        },
+        {
+          userId: "cursor-app",
+          content: (0, l.msg)(
+            "Done — set up Next.js 14 with App Router, Postgres via Prisma, and basic Redis config. Added Tailwind + shadcn/ui for components.",
+          ),
+          type: "text",
+          buttons: [{ id: "view-pr-1", text: (0, l.msg)("View PR"), style: "primary", url: "#" }],
+        },
+        {
+          userId: "eric",
+          content: (0, l.msg)(
+            "nice, merged. @cursor can you add the charts? need line, bar, and pie for the main metrics",
+          ),
+          type: "text",
+        },
+        {
+          userId: "cursor-app",
+          content: (0, l.msg)(
+            "Added Recharts with responsive wrappers. Created LineChart, BarChart, and PieChart components with dark mode support.",
+          ),
+          type: "text",
+          buttons: [{ id: "view-pr-2", text: (0, l.msg)("View PR"), style: "primary", url: "#" }],
+        },
+        {
+          userId: "swhitmore",
+          content: (0, l.msg)(
+            "charts look great. now we need the data layer — aggregate daily/weekly/monthly metrics",
+          ),
+          type: "text",
+        },
+        {
+          userId: "cursor-app",
+          content: (0, l.msg)(
+            "Built the aggregation pipeline with materialized views for performance. API endpoints at /api/metrics/[period].",
+          ),
+          type: "text",
+          buttons: [{ id: "view-pr-3", text: (0, l.msg)("View PR"), style: "primary", url: "#" }],
+        },
+        {
+          userId: "swhitmore",
+          content: (0, l.msg)(
+            "dashboard is slow, 4s+ on first load. @cursor can you look into this?",
+          ),
+          type: "text",
+        },
+        {
+          userId: "cursor-app",
+          content: (0, l.msg)(
+            "Found it — 3 sequential DB queries and no caching. Moved to parallel, added Redis, lazy-loaded the charts. Down to 380ms.",
+          ),
+          type: "text",
+          buttons: [
+            { id: "view-pr", text: (0, l.msg)("View PR"), style: "primary", url: "#" },
+            { id: "view-preview", text: (0, l.msg)("View Preview"), style: "secondary", url: "#" },
+          ],
+        },
+        { userId: "swhitmore", content: (0, l.msg)("nice @eric can you review?"), type: "text" },
+        { userId: "eric", content: (0, l.msg)("lgtm @cursor merge it"), type: "text" },
+        {
+          userId: "cursor-app",
+          content: (0, l.msg)("Merged to main."),
+          type: "text",
+          buttons: [
+            { id: "view-merge", text: (0, l.msg)("View Commit"), style: "primary", url: "#" },
+            {
+              id: "view-preview-2",
+              text: (0, l.msg)("View Preview"),
+              style: "secondary",
+              url: "#",
+            },
+          ],
+        },
+      ];
+    function _(e) {
+      let t, a, r, l, n;
+      return {
+        currentChannel: N.find((t) => t.id === e) || N[0],
+        messages:
+          ((t = new Date()),
+          (a =
+            "project-mission-control" === e
+              ? A
+              : "feature-realtime-sync" === e
+                ? k
+                : "cloud-agents-thread" === e
+                  ? C
+                  : S),
+          (r = "project-mission-control" === e),
+          (l = "feature-realtime-sync" === e),
+          (n = a.length),
+          a.map((a, s) => {
+            let i, o;
+            if (r) {
+              let e = n - 1 - s;
+              e >= 8
+                ? ((i = new Date(t.getTime() - (120 + (8 - (e - 8)) * 5) * 6e4)),
+                  a.content.toString().includes("@cursor") &&
+                    (o = [{ emoji: "👀", count: 1, users: ["cursor-app"] }]))
+                : e >= 5
+                  ? ((i = new Date(t.getTime() - (60 + (5 - (e - 5)) * 10) * 6e4)),
+                    "cursor-app" === a.userId &&
+                      (o = [{ emoji: "✅", count: 1, users: ["swhitmore"] }]))
+                  : 4 === e
+                    ? ((i = new Date(t.getTime() - 3e5)),
+                      (o = [{ emoji: "👀", count: 1, users: ["cursor-app"] }]))
+                    : 3 === e
+                      ? ((i = new Date(t.getTime() - 18e4)),
+                        (o = [{ emoji: "🔥", count: 2, users: ["swhitmore", "eric"] }]))
+                      : 2 === e
+                        ? (i = new Date(t.getTime() - 12e4))
+                        : 1 === e
+                          ? ((i = new Date(t.getTime() - 6e4)),
+                            (o = [{ emoji: "👀", count: 1, users: ["cursor-app"] }]))
+                          : ((i = new Date(t.getTime() - 15e3)),
+                            (o = [
+                              { emoji: "❤️", count: 3, users: ["swhitmore", "eric", "rikki"] },
+                            ]));
+            } else
+              "cloud-agents-thread" === e
+                ? 0 === s
+                  ? ((i = new Date(t.getTime() - 18e4)),
+                    (o = [{ emoji: "⏳", count: 1, users: ["cursor-app"] }]))
+                  : (i = new Date(t.getTime() - 12e4))
+                : l
+                  ? (i = new Date(
+                      0 === s
+                        ? t.getTime() - 3e5
+                        : 1 === s
+                          ? t.getTime() - 24e4
+                          : 2 === s
+                            ? t.getTime() - 24e4
+                            : t.getTime() - 12e4,
+                    ))
+                  : 0 === s
+                    ? ((i = new Date(t.getTime() - 3e5)),
+                      (o = [{ emoji: "👀", count: 1, users: ["cursor-app"] }]))
+                    : 1 === s
+                      ? ((i = new Date(t.getTime() - 18e4)),
+                        (o = [{ emoji: "🔥", count: 2, users: ["swhitmore", "eric"] }]))
+                      : 2 === s
+                        ? (i = new Date(t.getTime() - 12e4))
+                        : 3 === s
+                          ? ((i = new Date(t.getTime() - 6e4)),
+                            (o = [{ emoji: "👀", count: 1, users: ["cursor-app"] }]))
+                          : ((i = new Date(t.getTime() - 15e3)),
+                            (o = [
+                              { emoji: "❤️", count: 3, users: ["swhitmore", "eric", "rikki"] },
+                            ]));
+            return { id: `msg-${s + 1}`, ...a, timestamp: i, reactions: o };
+          })),
+        users: j,
+        isTyping: [],
+        isConnected: !0,
+      };
+    }
+    function T(e) {
+      return { ...e, isTyping: e.isTyping.filter(M) };
+    }
+    function M(e) {
+      return "swhitmore" !== e.userId;
+    }
+    function E(e) {
+      return "swhitmore" !== e.userId;
+    }
+    function L(e) {
+      return "swhitmore" !== e.userId;
+    }
+    function I(e) {
+      return "swhitmore" !== e.userId;
+    }
+    let H = { opacity: 0, y: 20 },
+      P = { opacity: 1, y: 0 },
+      Z = { opacity: 0, y: -20 };
+    var F = e.i(341807),
+      V = e.i(972643),
+      z = e.i(679699);
+    let B = { className: z.default.className, style: { fontFamily: "'Lato', 'Lato Fallback'" } };
+    function R(e) {
+      let r,
+        l,
+        n,
+        s,
+        i,
+        o,
+        c = (0, a.c)(8),
+        { users: m } = e;
+      if (0 === m.length) return null;
+      if (
+        (c[0] === Symbol.for("react.memo_cache_sentinel")
+          ? ((r = { opacity: 0, y: 10 }),
+            (l = { opacity: 1, y: 0 }),
+            (n = { opacity: 0, y: 10 }),
+            (c[0] = r),
+            (c[1] = l),
+            (c[2] = n))
+          : ((r = c[0]), (l = c[1]), (n = c[2])),
+        c[3] === Symbol.for("react.memo_cache_sentinel")
+          ? ((s = (0, t.jsx)("div", { className: "flex space-x-1", children: [0, 1, 2].map(D) })),
+            (c[3] = s))
+          : (s = c[3]),
+        c[4] !== m)
+      )
+        (i =
+          0 === m.length
+            ? ""
+            : 1 === m.length
+              ? `Someone is ${m[0].text}`
+              : `${m.length} people are typing`),
+          (c[4] = m),
+          (c[5] = i);
+      else i = c[5];
+      return (
+        c[6] !== i
+          ? ((o = (0, t.jsx)(F.motion.div, {
+              initial: r,
+              animate: l,
+              exit: n,
+              className: "px-4 py-2",
+              children: (0, t.jsxs)("div", {
+                className: "flex items-center gap-2",
+                children: [
+                  s,
+                  (0, t.jsx)("span", {
+                    className: "text-theme-text-ter type-slack-sm",
+                    children: i,
+                  }),
+                ],
+              }),
+            })),
+            (c[6] = i),
+            (c[7] = o))
+          : (o = c[7]),
+        o
+      );
+    }
+    function D(e) {
+      return (0, t.jsx)(
+        F.motion.div,
+        {
+          className: "bg-theme-text-ter h-2 w-2 rounded-full",
+          animate: { scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] },
+          transition: { duration: 1.5, repeat: 1 / 0, delay: 0.2 * e },
+        },
+        e,
+      );
+    }
+    function $(e) {
+      let r,
+        l,
+        n,
+        s = (0, a.c)(5),
+        { channelName: i } = e;
+      return (
+        s[0] !== i
+          ? ((r = (0, t.jsxs)("span", {
+              className: "flex-1 text-[15px] text-[#868686]",
+              children: ["Message #", i],
+            })),
+            (s[0] = i),
+            (s[1] = r))
+          : (r = s[1]),
+        s[2] === Symbol.for("react.memo_cache_sentinel")
+          ? ((l = (0, t.jsx)("button", {
+              type: "button",
+              className: "flex h-7 w-7 items-center justify-center rounded text-[#868686]",
+              children: (0, t.jsx)("svg", {
+                width: "18",
+                height: "18",
+                viewBox: "0 0 20 20",
+                fill: "currentColor",
+                style: { transform: "rotate(90deg)" },
+                children: (0, t.jsx)("path", {
+                  d: "M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z",
+                }),
+              }),
+            })),
+            (s[2] = l))
+          : (l = s[2]),
+        s[3] !== r
+          ? ((n = (0, t.jsx)("div", {
+              className: "shrink-0 bg-theme-card-hex px-4 pb-4 pt-2",
+              children: (0, t.jsxs)("div", {
+                className:
+                  "flex items-center gap-2 rounded-lg border border-theme-border-02 bg-theme-card-hex px-3 py-2.5",
+                children: [r, l],
+              }),
+            })),
+            (s[3] = r),
+            (s[4] = n))
+          : (n = s[4]),
+        n
+      );
+    }
+    null != z.default.variable && (B.variable = z.default.variable),
+      e.s(
+        [
+          "default",
+          0,
+          function (e) {
+            let l,
+              n,
+              o,
+              c,
+              m,
+              d,
+              u,
+              h,
+              p,
+              x,
+              f,
+              g,
+              b,
+              v,
+              w,
+              j,
+              k,
+              C,
+              S,
+              M,
+              z,
+              D = (0, a.c)(62),
+              {
+                className: O,
+                style: W,
+                height: G,
+                channelId: q,
+                compact: U,
+                animateEntrance: X,
+                disableInteractions: Y,
+                resetEventName: K,
+                showComposer: J,
+                hideScrollbar: Q,
+                flush: ee,
+                useProductFont: et,
+                showMemberCount: ea,
+                messageTextSizePx: er,
+                cardTextScale: el,
+              } = e,
+              en = void 0 === G ? "500px" : G,
+              es = void 0 !== U && U,
+              ei = void 0 !== X && X,
+              eo = void 0 === Y || Y,
+              ec = void 0 !== J && J,
+              em = void 0 !== Q && Q,
+              ed = void 0 !== ee && ee,
+              eu = void 0 !== et && et,
+              eh = void 0 !== ea && ea,
+              ep = void 0 !== el && el,
+              { state: ex, reset: ef } = (function (e) {
+                let t,
+                  r,
+                  l,
+                  n,
+                  s,
+                  o,
+                  c = (0, a.c)(10),
+                  m = void 0 === e ? "project-mission-control" : e;
+                c[0] !== m ? ((t = () => _(m)), (c[0] = m), (c[1] = t)) : (t = c[1]);
+                let [d, u] = (0, i.useState)(t),
+                  h = (0, i.useRef)(A.length + 1),
+                  p = (0, i.useRef)(null);
+                c[2] === Symbol.for("react.memo_cache_sentinel")
+                  ? ((r = (e, t) => {
+                      let a = void 0 === t ? "text" : t;
+                      h.current = h.current + 1;
+                      let r = {
+                        id: `msg-${h.current}`,
+                        userId: "swhitmore",
+                        content: e.trim(),
+                        timestamp: new Date(),
+                        type: a,
+                        ...("code" === a && { codeLanguage: "typescript" }),
+                      };
+                      u((e) => ({
+                        ...e,
+                        messages: [...e.messages, r],
+                        isTyping: e.isTyping.filter(I),
+                      }));
+                    }),
+                    (c[2] = r))
+                  : (r = c[2]);
+                let x = r;
+                c[3] === Symbol.for("react.memo_cache_sentinel")
+                  ? ((l = (e, t) => {
+                      let a = void 0 === t ? "typing..." : t;
+                      p.current && clearTimeout(p.current),
+                        u((t) => ({
+                          ...t,
+                          isTyping: e
+                            ? [...t.isTyping.filter(L), { userId: "swhitmore", text: a }]
+                            : t.isTyping.filter(E),
+                        })),
+                        e &&
+                          (p.current = setTimeout(() => {
+                            u(T);
+                          }, 3e3));
+                    }),
+                    (c[3] = l))
+                  : (l = c[3]);
+                let f = l;
+                c[4] === Symbol.for("react.memo_cache_sentinel")
+                  ? ((n = (e) => {
+                      let t = N.find((t) => t.id === e);
+                      t && u((e) => ({ ...e, currentChannel: { ...t, isActive: !0 } }));
+                    }),
+                    (c[4] = n))
+                  : (n = c[4]);
+                let g = n;
+                c[5] !== m
+                  ? ((s = () => {
+                      (h.current = A.length + 1), u(_(m));
+                    }),
+                    (c[5] = m),
+                    (c[6] = s))
+                  : (s = c[6]);
+                let b = s;
+                return (
+                  c[7] !== b || c[8] !== d
+                    ? ((o = { state: d, sendMessage: x, setTyping: f, switchChannel: g, reset: b }),
+                      (c[7] = b),
+                      (c[8] = d),
+                      (c[9] = o))
+                    : (o = c[9]),
+                  o
+                );
+              })(void 0 === q ? "general" : q),
+              eg = (0, i.useRef)(null),
+              eb = "number" == typeof en ? `${en}px` : (en ?? "500px");
+            D[0] !== eb
+              ? ((l = {
+                  height: eb,
+                  "--color-theme-accent": "#34785c",
+                  "--color-slack-link": "#2d629e",
+                }),
+                (D[0] = eb),
+                (D[1] = l))
+              : (l = D[1]);
+            let ey = l;
+            D[2] !== ef || D[3] !== K
+              ? ((n = () => {
+                  if (!K) return;
+                  let e = () => ef();
+                  return window.addEventListener(K, e), () => window.removeEventListener(K, e);
+                }),
+                (o = [K, ef]),
+                (D[2] = ef),
+                (D[3] = K),
+                (D[4] = n),
+                (D[5] = o))
+              : ((n = D[4]), (o = D[5])),
+              (0, i.useEffect)(n, o),
+              D[6] !== ef
+                ? ((c = () => {
+                    let e = () => ef();
+                    return (
+                      window.addEventListener("cursor-demo-reset", e),
+                      () => window.removeEventListener("cursor-demo-reset", e)
+                    );
+                  }),
+                  (m = [ef]),
+                  (D[6] = ef),
+                  (D[7] = c),
+                  (D[8] = m))
+                : ((c = D[7]), (m = D[8])),
+              (0, i.useEffect)(c, m),
+              D[9] === Symbol.for("react.memo_cache_sentinel")
+                ? ((d = () => {
+                    let e = eg.current;
+                    e && (e.scrollTop = e.scrollHeight);
+                  }),
+                  (D[9] = d))
+                : (d = D[9]),
+              D[10] !== ex.messages.length
+                ? ((u = [ex.messages.length]), (D[10] = ex.messages.length), (D[11] = u))
+                : (u = D[11]),
+              (0, i.useEffect)(d, u);
+            let ev = es ? "rounded-lg" : "rounded-xl",
+              ew = !eu && B.className;
+            D[12] !== O || D[13] !== ev || D[14] !== ew
+              ? ((h = (0, r.default)(
+                  "slack-ui-demo flex flex-col overflow-hidden bg-theme-card-hex",
+                  ev,
+                  ew,
+                  O,
+                )),
+                (D[12] = O),
+                (D[13] = ev),
+                (D[14] = ew),
+                (D[15] = h))
+              : (h = D[15]),
+              D[16] !== eu
+                ? ((p = eu ? { fontFamily: "var(--font-system)" } : {}), (D[16] = eu), (D[17] = p))
+                : (p = D[17]),
+              D[18] !== ey || D[19] !== W || D[20] !== p
+                ? ((x = { ...ey, ...W, ...p }), (D[18] = ey), (D[19] = W), (D[20] = p), (D[21] = x))
+                : (x = D[21]),
+              D[22] === Symbol.for("react.memo_cache_sentinel")
+                ? ((f = (0, t.jsx)("style", {
+                    children:
+                      "\n      .slack-ui-demo .slack-mention {\n        color: var(--color-slack-link);\n      }\n    ",
+                  })),
+                  (D[22] = f))
+                : (f = D[22]),
+              D[23] !== ep ||
+              D[24] !== es ||
+              D[25] !== eh ||
+              D[26] !== ex.currentChannel ||
+              D[27] !== ex.isConnected
+                ? ((g = (0, t.jsx)(s, {
+                    channel: ex.currentChannel,
+                    isConnected: ex.isConnected,
+                    compact: es,
+                    showMemberCount: eh,
+                    cardTextScale: ep,
+                  })),
+                  (D[23] = ep),
+                  (D[24] = es),
+                  (D[25] = eh),
+                  (D[26] = ex.currentChannel),
+                  (D[27] = ex.isConnected),
+                  (D[28] = g))
+                : (g = D[28]);
+            let ej = em ? "overflow-hidden flex flex-col" : "overflow-y-auto",
+              eN = em && !ed && "justify-center";
+            D[29] !== ej || D[30] !== eN
+              ? ((b = (0, r.default)("flex-1 bg-theme-card-hex", ej, eN)),
+                (D[29] = ej),
+                (D[30] = eN),
+                (D[31] = b))
+              : (b = D[31]);
+            let ek = ed ? "" : es ? "py-2" : "pb-2";
+            return (
+              D[32] !== ei ||
+              D[33] !== ep ||
+              D[34] !== es ||
+              D[35] !== eo ||
+              D[36] !== er ||
+              D[37] !== ex.messages ||
+              D[38] !== ex.users
+                ? ((v = ex.messages.map((e, a) => {
+                    let r = ex.users.find((t) => t.id === e.userId);
+                    if (!r) return null;
+                    let l = (function (e, t, a = 5) {
+                      return (
+                        "replies-divider" !== e.type &&
+                        "system" !== e.type &&
+                        (!t ||
+                          "replies-divider" === t.type ||
+                          "system" === t.type ||
+                          t.userId !== e.userId ||
+                          e.timestamp.getTime() - t.timestamp.getTime() > 60 * a * 1e3)
+                      );
+                    })(e, a > 0 ? ex.messages[a - 1] : null);
+                    return (0, t.jsx)(
+                      F.motion.div,
+                      {
+                        initial: !!ei && H,
+                        animate: P,
+                        exit: Z,
+                        transition: { duration: 0.2, ease: "easeOut" },
+                        children: (0, t.jsx)(y, {
+                          message: e,
+                          user: r,
+                          showAvatar: l,
+                          compact: es,
+                          messageTextSizePx: er,
+                          cardTextScale: ep,
+                          disableInteractions: eo,
+                        }),
+                      },
+                      e.id,
+                    );
+                  })),
+                  (D[32] = ei),
+                  (D[33] = ep),
+                  (D[34] = es),
+                  (D[35] = eo),
+                  (D[36] = er),
+                  (D[37] = ex.messages),
+                  (D[38] = ex.users),
+                  (D[39] = v))
+                : (v = D[39]),
+              D[40] !== v
+                ? ((w = (0, t.jsx)(V.AnimatePresence, { mode: "popLayout", children: v })),
+                  (D[40] = v),
+                  (D[41] = w))
+                : (w = D[41]),
+              D[42] !== ex.isTyping
+                ? ((j = ex.isTyping.length > 0 && (0, t.jsx)(R, { users: ex.isTyping })),
+                  (D[42] = ex.isTyping),
+                  (D[43] = j))
+                : (j = D[43]),
+              D[44] !== j
+                ? ((k = (0, t.jsx)(V.AnimatePresence, { children: j })), (D[44] = j), (D[45] = k))
+                : (k = D[45]),
+              D[46] !== ek || D[47] !== w || D[48] !== k
+                ? ((C = (0, t.jsxs)("div", { className: ek, children: [w, k] })),
+                  (D[46] = ek),
+                  (D[47] = w),
+                  (D[48] = k),
+                  (D[49] = C))
+                : (C = D[49]),
+              D[50] !== b || D[51] !== C
+                ? ((S = (0, t.jsx)("div", { ref: eg, className: b, children: C })),
+                  (D[50] = b),
+                  (D[51] = C),
+                  (D[52] = S))
+                : (S = D[52]),
+              D[53] !== ec || D[54] !== ex.currentChannel?.name
+                ? ((M = ec && (0, t.jsx)($, { channelName: ex.currentChannel?.name || "general" })),
+                  (D[53] = ec),
+                  (D[54] = ex.currentChannel?.name),
+                  (D[55] = M))
+                : (M = D[55]),
+              D[56] !== h || D[57] !== x || D[58] !== g || D[59] !== S || D[60] !== M
+                ? ((z = (0, t.jsxs)("div", { className: h, style: x, children: [f, g, S, M] })),
+                  (D[56] = h),
+                  (D[57] = x),
+                  (D[58] = g),
+                  (D[59] = S),
+                  (D[60] = M),
+                  (D[61] = z))
+                : (z = D[61]),
+              z
+            );
+          },
+        ],
+        616662,
+      );
+  },
+  264445,
+  (e) => {
+    "use strict";
+    var t = e.i(505278),
+      a = e.i(207849);
+    e.s([
+      "default",
+      0,
+      function (e) {
+        let r,
+          l,
+          n = (0, a.c)(3),
+          { className: s } = e;
+        return (
+          n[0] === Symbol.for("react.memo_cache_sentinel")
+            ? ((r = (0, t.jsx)("path", {
+                d: "M8 13.9766C4.70117 13.9766 2.02344 11.2988 2.02344 8C2.02344 4.70117 4.70117 2.02344 8 2.02344C11.2988 2.02344 13.9766 4.70117 13.9766 8C13.9766 11.2988 11.2988 13.9766 8 13.9766ZM8 12.9805C10.7539 12.9805 12.9805 10.7539 12.9805 8C12.9805 5.24609 10.7539 3.01953 8 3.01953C5.24609 3.01953 3.01953 5.24609 3.01953 8C3.01953 10.7539 5.24609 12.9805 8 12.9805ZM7.35547 10.7832C7.16211 10.7832 7.00391 10.7012 6.85742 10.5078L5.42773 8.75C5.3457 8.63867 5.29297 8.51562 5.29297 8.38672C5.29297 8.12891 5.49219 7.92383 5.74414 7.92383C5.9082 7.92383 6.03711 7.9707 6.17773 8.1582L7.33203 9.65234L9.76367 5.75C9.875 5.58008 10.0215 5.48633 10.168 5.48633C10.4141 5.48633 10.6484 5.65625 10.6484 5.91992C10.6484 6.04883 10.5723 6.17773 10.5078 6.29492L7.83008 10.5078C7.71289 10.6895 7.54883 10.7832 7.35547 10.7832Z",
+              })),
+              (n[0] = r))
+            : (r = n[0]),
+          n[1] !== s
+            ? ((l = (0, t.jsx)("svg", {
+                width: "16",
+                height: "16",
+                viewBox: "0 0 16 16",
+                fill: "currentColor",
+                xmlns: "http://www.w3.org/2000/svg",
+                className: s,
+                children: r,
+              })),
+              (n[1] = s),
+              (n[2] = l))
+            : (l = n[2]),
+          l
+        );
+      },
+    ]);
+  },
+  632045,
+  (e) => {
+    "use strict";
+    var t = e.i(612793),
+      a = e.i(94884);
+    let r = new Map([
+        [
+          "bold",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M232.49,215.51,185,168a92.12,92.12,0,1,0-17,17l47.53,47.54a12,12,0,0,0,17-17ZM44,112a68,68,0,1,1,68,68A68.07,68.07,0,0,1,44,112Z",
+            }),
+          ),
+        ],
+        [
+          "duotone",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M192,112a80,80,0,1,1-80-80A80,80,0,0,1,192,112Z",
+              opacity: "0.2",
+            }),
+            t.createElement("path", {
+              d: "M229.66,218.34,179.6,168.28a88.21,88.21,0,1,0-11.32,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z",
+            }),
+          ),
+        ],
+        [
+          "fill",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M168,112a56,56,0,1,1-56-56A56,56,0,0,1,168,112Zm61.66,117.66a8,8,0,0,1-11.32,0l-50.06-50.07a88,88,0,1,1,11.32-11.31l50.06,50.06A8,8,0,0,1,229.66,229.66ZM112,184a72,72,0,1,0-72-72A72.08,72.08,0,0,0,112,184Z",
+            }),
+          ),
+        ],
+        [
+          "light",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M228.24,219.76l-51.38-51.38a86.15,86.15,0,1,0-8.48,8.48l51.38,51.38a6,6,0,0,0,8.48-8.48ZM38,112a74,74,0,1,1,74,74A74.09,74.09,0,0,1,38,112Z",
+            }),
+          ),
+        ],
+        [
+          "regular",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z",
+            }),
+          ),
+        ],
+        [
+          "thin",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M226.83,221.17l-52.7-52.7a84.1,84.1,0,1,0-5.66,5.66l52.7,52.7a4,4,0,0,0,5.66-5.66ZM36,112a76,76,0,1,1,76,76A76.08,76.08,0,0,1,36,112Z",
+            }),
+          ),
+        ],
+      ]),
+      l = t.forwardRef((e, l) => t.createElement(a.default, { ref: l, ...e, weights: r }));
+    (l.displayName = "MagnifyingGlassIcon"), e.s(["MagnifyingGlass", 0, l], 632045);
+  },
+  939843,
+  (e) => {
+    "use strict";
+    var t = e.i(612793),
+      a = e.i(94884);
+    let r = new Map([
+        [
+          "bold",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z",
+            }),
+          ),
+        ],
+        [
+          "duotone",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M216,56V200a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40H200A16,16,0,0,1,216,56Z",
+              opacity: "0.2",
+            }),
+            t.createElement("path", {
+              d: "M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z",
+            }),
+          ),
+        ],
+        [
+          "fill",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM181.66,170.34a8,8,0,0,1-11.32,11.32L128,139.31,85.66,181.66a8,8,0,0,1-11.32-11.32L116.69,128,74.34,85.66A8,8,0,0,1,85.66,74.34L128,116.69l42.34-42.35a8,8,0,0,1,11.32,11.32L139.31,128Z",
+            }),
+          ),
+        ],
+        [
+          "light",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M204.24,195.76a6,6,0,1,1-8.48,8.48L128,136.49,60.24,204.24a6,6,0,0,1-8.48-8.48L119.51,128,51.76,60.24a6,6,0,0,1,8.48-8.48L128,119.51l67.76-67.75a6,6,0,0,1,8.48,8.48L136.49,128Z",
+            }),
+          ),
+        ],
+        [
+          "regular",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z",
+            }),
+          ),
+        ],
+        [
+          "thin",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M202.83,197.17a4,4,0,0,1-5.66,5.66L128,133.66,58.83,202.83a4,4,0,0,1-5.66-5.66L122.34,128,53.17,58.83a4,4,0,0,1,5.66-5.66L128,122.34l69.17-69.17a4,4,0,1,1,5.66,5.66L133.66,128Z",
+            }),
+          ),
+        ],
+      ]),
+      l = t.forwardRef((e, l) => t.createElement(a.default, { ref: l, ...e, weights: r }));
+    (l.displayName = "XIcon"), e.s(["X", 0, l, "XIcon", 0, l], 939843);
+  },
+  444229,
+  (e) => {
+    "use strict";
+    var t = e.i(612793),
+      a = e.i(94884);
+    let r = new Map([
+        [
+          "bold",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z",
+            }),
+          ),
+        ],
+        [
+          "duotone",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M232,56V200a16,16,0,0,1-16,16H40a16,16,0,0,1-16-16V56A16,16,0,0,1,40,40H216A16,16,0,0,1,232,56Z",
+              opacity: "0.2",
+            }),
+            t.createElement("path", {
+              d: "M205.66,85.66l-96,96a8,8,0,0,1-11.32,0l-40-40a8,8,0,0,1,11.32-11.32L104,164.69l90.34-90.35a8,8,0,0,1,11.32,11.32Z",
+            }),
+          ),
+        ],
+        [
+          "fill",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM205.66,85.66l-96,96a8,8,0,0,1-11.32,0l-40-40a8,8,0,0,1,11.32-11.32L104,164.69l90.34-90.35a8,8,0,0,1,11.32,11.32Z",
+            }),
+          ),
+        ],
+        [
+          "light",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M228.24,76.24l-128,128a6,6,0,0,1-8.48,0l-56-56a6,6,0,0,1,8.48-8.48L96,191.51,219.76,67.76a6,6,0,0,1,8.48,8.48Z",
+            }),
+          ),
+        ],
+        [
+          "regular",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z",
+            }),
+          ),
+        ],
+        [
+          "thin",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M226.83,74.83l-128,128a4,4,0,0,1-5.66,0l-56-56a4,4,0,0,1,5.66-5.66L96,194.34,221.17,69.17a4,4,0,1,1,5.66,5.66Z",
+            }),
+          ),
+        ],
+      ]),
+      l = t.forwardRef((e, l) => t.createElement(a.default, { ref: l, ...e, weights: r }));
+    (l.displayName = "CheckIcon"), e.s(["Check", 0, l], 444229);
+  },
+  983074,
+  914358,
+  (e) => {
+    "use strict";
+    var t = e.i(612793),
+      a = e.i(94884);
+    let r = new Map([
+        [
+          "bold",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M236,64a36,36,0,1,0-48,33.94V112a4,4,0,0,1-4,4H96a27.8,27.8,0,0,0-4,.29V97.94a36,36,0,1,0-24,0v60.12a36,36,0,1,0,24,0V144a4,4,0,0,1,4-4h88a28,28,0,0,0,28-28V97.94A36.07,36.07,0,0,0,236,64ZM80,52A12,12,0,1,1,68,64,12,12,0,0,1,80,52Zm0,152a12,12,0,1,1,12-12A12,12,0,0,1,80,204ZM200,76a12,12,0,1,1,12-12A12,12,0,0,1,200,76Z",
+            }),
+          ),
+        ],
+        [
+          "duotone",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M224,64a24,24,0,1,1-24-24A24,24,0,0,1,224,64Z",
+              opacity: "0.2",
+            }),
+            t.createElement("path", {
+              d: "M232,64a32,32,0,1,0-40,31v17a8,8,0,0,1-8,8H96a23.84,23.84,0,0,0-8,1.38V95a32,32,0,1,0-16,0v66a32,32,0,1,0,16,0V144a8,8,0,0,1,8-8h88a24,24,0,0,0,24-24V95A32.06,32.06,0,0,0,232,64ZM64,64A16,16,0,1,1,80,80,16,16,0,0,1,64,64ZM96,192a16,16,0,1,1-16-16A16,16,0,0,1,96,192ZM200,80a16,16,0,1,1,16-16A16,16,0,0,1,200,80Z",
+            }),
+          ),
+        ],
+        [
+          "fill",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M232,64a32,32,0,1,0-40,31v17a8,8,0,0,1-8,8H96a23.84,23.84,0,0,0-8,1.38V95a32,32,0,1,0-16,0v66a32,32,0,1,0,16,0V144a8,8,0,0,1,8-8h88a24,24,0,0,0,24-24V95A32.06,32.06,0,0,0,232,64ZM64,64A16,16,0,1,1,80,80,16,16,0,0,1,64,64ZM96,192a16,16,0,1,1-16-16A16,16,0,0,1,96,192Z",
+            }),
+          ),
+        ],
+        [
+          "light",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M230,64a30,30,0,1,0-36,29.4V112a10,10,0,0,1-10,10H96a21.84,21.84,0,0,0-10,2.42v-31a30,30,0,1,0-12,0v69.2a30,30,0,1,0,12,0V144a10,10,0,0,1,10-10h88a22,22,0,0,0,22-22V93.4A30.05,30.05,0,0,0,230,64ZM62,64A18,18,0,1,1,80,82,18,18,0,0,1,62,64ZM98,192a18,18,0,1,1-18-18A18,18,0,0,1,98,192ZM200,82a18,18,0,1,1,18-18A18,18,0,0,1,200,82Z",
+            }),
+          ),
+        ],
+        [
+          "regular",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M232,64a32,32,0,1,0-40,31v17a8,8,0,0,1-8,8H96a23.84,23.84,0,0,0-8,1.38V95a32,32,0,1,0-16,0v66a32,32,0,1,0,16,0V144a8,8,0,0,1,8-8h88a24,24,0,0,0,24-24V95A32.06,32.06,0,0,0,232,64ZM64,64A16,16,0,1,1,80,80,16,16,0,0,1,64,64ZM96,192a16,16,0,1,1-16-16A16,16,0,0,1,96,192ZM200,80a16,16,0,1,1,16-16A16,16,0,0,1,200,80Z",
+            }),
+          ),
+        ],
+        [
+          "thin",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M228,64a28,28,0,1,0-32,27.71V112a12,12,0,0,1-12,12H96a19.91,19.91,0,0,0-12,4V91.71a28,28,0,1,0-8,0v72.58a28,28,0,1,0,8,0V144a12,12,0,0,1,12-12h88a20,20,0,0,0,20-20V91.71A28,28,0,0,0,228,64ZM60,64A20,20,0,1,1,80,84,20,20,0,0,1,60,64Zm40,128a20,20,0,1,1-20-20A20,20,0,0,1,100,192ZM200,84a20,20,0,1,1,20-20A20,20,0,0,1,200,84Z",
+            }),
+          ),
+        ],
+      ]),
+      l = t.forwardRef((e, l) => t.createElement(a.default, { ref: l, ...e, weights: r }));
+    (l.displayName = "GitBranchIcon"), e.s(["GitBranch", 0, l], 983074);
+    let n = new Map([
+        [
+          "bold",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z",
+            }),
+          ),
+        ],
+        [
+          "duotone",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M216,56V200a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40H200A16,16,0,0,1,216,56Z",
+              opacity: "0.2",
+            }),
+            t.createElement("path", {
+              d: "M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z",
+            }),
+          ),
+        ],
+        [
+          "fill",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM184,136H136v48a8,8,0,0,1-16,0V136H72a8,8,0,0,1,0-16h48V72a8,8,0,0,1,16,0v48h48a8,8,0,0,1,0,16Z",
+            }),
+          ),
+        ],
+        [
+          "light",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M222,128a6,6,0,0,1-6,6H134v82a6,6,0,0,1-12,0V134H40a6,6,0,0,1,0-12h82V40a6,6,0,0,1,12,0v82h82A6,6,0,0,1,222,128Z",
+            }),
+          ),
+        ],
+        [
+          "regular",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z",
+            }),
+          ),
+        ],
+        [
+          "thin",
+          t.createElement(
+            t.Fragment,
+            null,
+            t.createElement("path", {
+              d: "M220,128a4,4,0,0,1-4,4H132v84a4,4,0,0,1-8,0V132H40a4,4,0,0,1,0-8h84V40a4,4,0,0,1,8,0v84h84A4,4,0,0,1,220,128Z",
+            }),
+          ),
+        ],
+      ]),
+      s = t.forwardRef((e, r) => t.createElement(a.default, { ref: r, ...e, weights: n }));
+    (s.displayName = "PlusIcon"), e.s(["Plus", 0, s], 914358);
+  },
+  434070,
+  (e) => {
+    "use strict";
+    var t = e.i(505278),
+      a = e.i(207849),
+      r = e.i(612793),
+      l = e.i(144384),
+      n = e.i(634408);
+    let s = () =>
+        "u" < typeof document
+          ? null
+          : (document.documentElement.dataset.os ??
+            (() => {
+              if ("u" < typeof navigator) return null;
+              let e = navigator.userAgent.toLowerCase();
+              return e.includes("windows")
+                ? "windows"
+                : e.includes("linux")
+                  ? "linux"
+                  : e.includes("mac")
+                    ? "mac"
+                    : null;
+            })()),
+      i = (e) => {
+        if ("u" < typeof document) return () => {};
+        let t = new MutationObserver(e);
+        return (
+          t.observe(document.documentElement, { attributes: !0, attributeFilter: ["data-os"] }),
+          () => t.disconnect()
+        );
+      };
+    function o(e) {
+      let r,
+        l = (0, a.c)(5),
+        { active: n, onClick: s, children: i } = e,
+        o = `cursor-pointer rounded-full px-2.5 py-1 text-xs leading-none transition-colors ${n ? "bg-theme-card-03-hex text-theme-text" : "text-theme-text-ter hover:text-theme-text-sec"}`;
+      return (
+        l[0] !== n || l[1] !== i || l[2] !== s || l[3] !== o
+          ? ((r = (0, t.jsx)("button", {
+              role: "tab",
+              "aria-selected": n,
+              onClick: s,
+              className: o,
+              children: i,
+            })),
+            (l[0] = n),
+            (l[1] = i),
+            (l[2] = s),
+            (l[3] = o),
+            (l[4] = r))
+          : (r = l[4]),
+        r
+      );
+    }
+    function c(e) {
+      let r,
+        s,
+        i = (0, a.c)(10),
+        { command: o, isCompact: c } = e,
+        m = c ? "full" : "auto",
+        d = c ? 10 : 16,
+        u = c ? 9 : 12,
+        h = c ? 6 : 12,
+        p = c ? 12 : 14;
+      return (
+        i[0] !== o
+          ? ((r = (0, t.jsx)(n.SyntaxHighlightedShellCommand, { command: o })),
+            (i[0] = o),
+            (i[1] = r))
+          : (r = i[1]),
+        i[2] !== o ||
+        i[3] !== m ||
+        i[4] !== d ||
+        i[5] !== u ||
+        i[6] !== h ||
+        i[7] !== p ||
+        i[8] !== r
+          ? ((s = (0, t.jsx)(l.default, {
+              command: o,
+              width: m,
+              paddingXPx: d,
+              paddingYPx: u,
+              gapPx: h,
+              iconSize: p,
+              children: r,
+            })),
+            (i[2] = o),
+            (i[3] = m),
+            (i[4] = d),
+            (i[5] = u),
+            (i[6] = h),
+            (i[7] = p),
+            (i[8] = r),
+            (i[9] = s))
+          : (s = i[9]),
+        s
+      );
+    }
+    function m() {
+      return null;
+    }
+    e.s([
+      "default",
+      0,
+      function (e) {
+        let l,
+          n = (0, a.c)(18),
+          { size: d } = e,
+          u = (0, r.useSyncExternalStore)(i, s, m),
+          [h, p] = (0, r.useState)("powershell"),
+          x = "compact" === (void 0 === d ? "default" : d),
+          f = "windows" === u || "win32" === u,
+          g =
+            f && "powershell" === h
+              ? "irm 'https://cursor.com/install?win32=true' | iex"
+              : "curl https://cursor.com/install -fsS | bash";
+        if (f) {
+          let e,
+            a,
+            r,
+            l,
+            s,
+            i,
+            m,
+            d = "powershell" === h;
+          n[0] === Symbol.for("react.memo_cache_sentinel")
+            ? ((e = () => p("powershell")), (n[0] = e))
+            : (e = n[0]),
+            n[1] !== d
+              ? ((a = (0, t.jsx)(o, { active: d, onClick: e, children: "PowerShell" })),
+                (n[1] = d),
+                (n[2] = a))
+              : (a = n[2]);
+          let u = "linux" === h;
+          return (
+            n[3] === Symbol.for("react.memo_cache_sentinel")
+              ? ((r = () => p("linux")), (n[3] = r))
+              : (r = n[3]),
+            n[4] !== u
+              ? ((l = (0, t.jsx)(o, { active: u, onClick: r, children: "Linux / WSL" })),
+                (n[4] = u),
+                (n[5] = l))
+              : (l = n[5]),
+            n[6] !== a || n[7] !== l
+              ? ((s = (0, t.jsxs)("div", {
+                  className: "flex gap-1",
+                  role: "tablist",
+                  "aria-label": "Install method",
+                  children: [a, l],
+                })),
+                (n[6] = a),
+                (n[7] = l),
+                (n[8] = s))
+              : (s = n[8]),
+            n[9] !== g || n[10] !== x
+              ? ((i = (0, t.jsx)(c, { command: g, isCompact: x })),
+                (n[9] = g),
+                (n[10] = x),
+                (n[11] = i))
+              : (i = n[11]),
+            n[12] !== s || n[13] !== i
+              ? ((m = (0, t.jsxs)("div", { className: "flex flex-col gap-1.5", children: [s, i] })),
+                (n[12] = s),
+                (n[13] = i),
+                (n[14] = m))
+              : (m = n[14]),
+            m
+          );
+        }
+        return (
+          n[15] !== g || n[16] !== x
+            ? ((l = (0, t.jsx)(c, { command: g, isCompact: x })),
+              (n[15] = g),
+              (n[16] = x),
+              (n[17] = l))
+            : (l = n[17]),
+          l
+        );
+      },
+    ]);
+  },
+  359689,
+  (e) => {
+    "use strict";
+    var t = e.i(505278),
+      a = e.i(207849),
+      r = e.i(612793);
+    let l = (0, r.createContext)(void 0);
+    e.s([
+      "ChangelogProvider",
+      0,
+      function (e) {
+        let r,
+          n,
+          s = (0, a.c)(5),
+          { children: i, changelogData: o } = e;
+        return (
+          s[0] !== o ? ((r = { changelogData: o }), (s[0] = o), (s[1] = r)) : (r = s[1]),
+          s[2] !== i || s[3] !== r
+            ? ((n = (0, t.jsx)(l.Provider, { value: r, children: i })),
+              (s[2] = i),
+              (s[3] = r),
+              (s[4] = n))
+            : (n = s[4]),
+          n
+        );
+      },
+      "useChangelog",
+      0,
+      function () {
+        let e = (0, r.useContext)(l);
+        if (void 0 === e) throw Error("useChangelog must be used within a ChangelogProvider");
+        return e;
+      },
+    ]);
+  },
+  620487,
+  (e) => {
+    "use strict";
+    var t = e.i(505278),
+      a = e.i(207849);
+    e.s([
+      "default",
+      0,
+      (e) => {
+        let r,
+          l,
+          n,
+          s,
+          i,
+          o = (0, a.c)(10);
+        o[0] !== e
+          ? (({ semanticLevel: s, children: r, className: l, ...n } = e),
+            (o[0] = e),
+            (o[1] = r),
+            (o[2] = l),
+            (o[3] = n),
+            (o[4] = s))
+          : ((r = o[1]), (l = o[2]), (n = o[3]), (s = o[4]));
+        let c = s || "h1";
+        return (
+          o[5] !== c || o[6] !== r || o[7] !== l || o[8] !== n
+            ? ((i = (0, t.jsx)(c, { className: l, ...n, children: r })),
+              (o[5] = c),
+              (o[6] = r),
+              (o[7] = l),
+              (o[8] = n),
+              (o[9] = i))
+            : (i = o[9]),
+          i
+        );
+      },
+    ]);
+  },
+  941710,
+  (e) => {
+    "use strict";
+    e.s([
+      "getTextSize",
+      0,
+      (e) => {
+        switch (e) {
+          case "md":
+            return "type-md-lg";
+          case "lg":
+          default:
+            return "type-lg";
+          case "xl":
+            return "type-xl";
+          case "2xl":
+            return "type-xl sm:type-2xl";
+        }
+      },
+    ]);
+  },
+  329329,
+  506565,
+  (e) => {
+    "use strict";
+    var t = e.i(505278),
+      a = e.i(207849),
+      r = e.i(413676),
+      l = e.i(634408),
+      n = e.i(620487),
+      s = e.i(264458),
+      i = e.i(861352),
+      o = e.i(941710),
+      c = e.i(388537);
+    function m(e) {
+      return "tertiary" === e.variant || "quaternary" === e.variant;
+    }
+    e.s(
+      [
+        "default",
+        0,
+        function (e) {
+          let d,
+            u,
+            h,
+            p,
+            x,
+            f,
+            g,
+            b,
+            y,
+            v = (0, a.c)(47),
+            {
+              banner: w,
+              eyebrow: j,
+              title: N,
+              titleClassName: k,
+              body: C,
+              textSize: S,
+              alignment: A,
+              cta: _,
+              semanticLevel: T,
+              isSolo: M,
+              containerClassName: E,
+              children: L,
+              mobileFullWidthCta: I,
+            } = e;
+          if (
+            v[0] !== A ||
+            v[1] !== w ||
+            v[2] !== C ||
+            v[3] !== L ||
+            v[4] !== E ||
+            v[5] !== _ ||
+            v[6] !== j ||
+            v[7] !== M ||
+            v[8] !== T ||
+            v[9] !== S ||
+            v[10] !== N ||
+            v[11] !== k
+          ) {
+            let e, a, l, b;
+            d = (function (e) {
+              if (!e) return;
+              let t = Array.isArray(e) ? e : [e];
+              if (0 === t.length) return;
+              let a = t[0];
+              return a && "link" in a
+                ? t
+                : t.map((e, t) =>
+                    e && "href" in e && "string" == typeof e.href && !("link" in e)
+                      ? {
+                          key: `cta-${t}`,
+                          link: {
+                            linkType: "href",
+                            href: e.href,
+                            label: e.label,
+                            openInNewTab: e.external,
+                          },
+                          variant: e.variant || "primary",
+                          icon: e.icon,
+                        }
+                      : e,
+                  );
+            })(_);
+            let y = S || "lg";
+            v[19] !== y ? ((e = (0, o.getTextSize)(y)), (v[19] = y), (v[20] = e)) : (e = v[20]);
+            let I = e,
+              H = A || "left";
+            v[21] !== H
+              ? ((a = (0, i.getTextAlignment)(H)), (v[21] = H), (v[22] = a))
+              : (a = v[22]);
+            let P = a,
+              Z = A || "left";
+            v[23] !== Z
+              ? ((l = (0, i.getMarginAlignment)(Z)), (v[23] = Z), (v[24] = l))
+              : (l = v[24]);
+            let F = l,
+              V = d?.some(m);
+            u = C || L;
+            let z = N && !u && (!d || 0 === d.length),
+              B = S || "lg",
+              R = "md" !== B;
+            v[25] !== z || v[26] !== R
+              ? ((b = z ? "max-w-prose-narrow" : R ? "max-w-prose-medium-wide" : "max-w-prose"),
+                (v[25] = z),
+                (v[26] = R),
+                (v[27] = b))
+              : (b = v[27]);
+            let D = (() => {
+              if (E) return E;
+              if (M)
+                if ("md" === B) return "max-w-prose";
+                else return "max-w-prose-medium-wide";
+              return {
+                "mb-v2.5 max-w-prose-medium-wide": "md" !== B,
+                "mb-v2": "md" === B && ((d && d.length > 0) || (N && u)),
+                "mb-v1": "md" === B && (!d || 0 === d.length) && N && !u,
+                "mb-v6/12": "md" === B && V && (!d || 0 === d.length),
+                [b]: "md" === B,
+              };
+            })();
+            (h = (0, s.default)(`${P} ${F}`, D)),
+              v[28] !== w
+                ? ((p =
+                    w &&
+                    (0, c.hasValidLink)(w) &&
+                    (0, t.jsxs)(r.default, {
+                      link: w,
+                      className: "btn btn--banner btn--sm mb-v8/12",
+                      children: [
+                        w.label && w.label,
+                        w.label && w.actionLabel && (0, t.jsx)("span", { children: " · " }),
+                        w.actionLabel &&
+                          (0, t.jsx)("span", {
+                            className: "text-theme-accent",
+                            children: w.actionLabel + " →",
+                          }),
+                      ],
+                    })),
+                  (v[28] = w),
+                  (v[29] = p))
+                : (p = v[29]),
+              v[30] !== j
+                ? ((x =
+                    j &&
+                    (0, t.jsx)("small", {
+                      className: "type-base text-theme-text-sec mb-v2/12 block",
+                      children: j,
+                    })),
+                  (v[30] = j),
+                  (v[31] = x))
+                : (x = v[31]),
+              (f =
+                N &&
+                (0, t.jsx)(n.default, {
+                  className: (0, s.default)(`${k || I} text-balance ${F}`, {
+                    "mb-v1": d && d.length > 0 && !C && !V,
+                    "mb-v8/12": V && !C,
+                  }),
+                  semanticLevel: T || "h2",
+                  children: N,
+                })),
+              (g =
+                (C || L) &&
+                (0, t.jsx)("div", {
+                  className: (0, s.default)(`flex ${(0, i.getFlexAlignment)(A)}`, {
+                    "mb-v1": d && d.length > 0 && !V,
+                    "mb-v8/12": V,
+                  }),
+                  children: (0, t.jsx)("div", {
+                    className: `${I} text-theme-text-sec stack text-balance`,
+                    children: L ?? ("string" == typeof C ? (0, t.jsx)("p", { children: C }) : C),
+                  }),
+                })),
+              (v[0] = A),
+              (v[1] = w),
+              (v[2] = C),
+              (v[3] = L),
+              (v[4] = E),
+              (v[5] = _),
+              (v[6] = j),
+              (v[7] = M),
+              (v[8] = T),
+              (v[9] = S),
+              (v[10] = N),
+              (v[11] = k),
+              (v[12] = d),
+              (v[13] = u),
+              (v[14] = h),
+              (v[15] = p),
+              (v[16] = x),
+              (v[17] = f),
+              (v[18] = g);
+          } else
+            (d = v[12]),
+              (u = v[13]),
+              (h = v[14]),
+              (p = v[15]),
+              (x = v[16]),
+              (f = v[17]),
+              (g = v[18]);
+          return (
+            v[32] !== A ||
+            v[33] !== w ||
+            v[34] !== d ||
+            v[35] !== j ||
+            v[36] !== u ||
+            v[37] !== I ||
+            v[38] !== N
+              ? ((b =
+                  d &&
+                  d.length > 0 &&
+                  (0, t.jsx)(l.Actions, {
+                    cta: d,
+                    alignment: A,
+                    mobileFullWidth: I,
+                    className: w || j || N || u ? void 0 : "mt-v2.5",
+                  })),
+                (v[32] = A),
+                (v[33] = w),
+                (v[34] = d),
+                (v[35] = j),
+                (v[36] = u),
+                (v[37] = I),
+                (v[38] = N),
+                (v[39] = b))
+              : (b = v[39]),
+            v[40] !== h || v[41] !== p || v[42] !== x || v[43] !== f || v[44] !== g || v[45] !== b
+              ? ((y = (0, t.jsxs)("div", { className: h, children: [p, x, f, g, b] })),
+                (v[40] = h),
+                (v[41] = p),
+                (v[42] = x),
+                (v[43] = f),
+                (v[44] = g),
+                (v[45] = b),
+                (v[46] = y))
+              : (y = v[46]),
+            y
+          );
+        },
+      ],
+      329329,
+    ),
+      e.s(
+        [
+          "getFooterSpacing",
+          0,
+          function (e, t = "mt-v4") {
+            if (!e) return t;
+            let a =
+                e.footerEyebrow ||
+                e.footerTitle ||
+                (e.footerBody && (!Array.isArray(e.footerBody) || e.footerBody.length > 0)),
+              r = e.footerBanner && (0, c.hasValidLink)(e.footerBanner);
+            return !a && !r && e.footerCta && Array.isArray(e.footerCta) && e.footerCta.length > 0
+              ? "mt-v2.5"
+              : t;
+          },
+          "hasFooterContent",
+          0,
+          function (e) {
+            return (
+              !!e &&
+              (!!(
+                e.footerEyebrow ||
+                e.footerTitle ||
+                (e.footerBody &&
+                  ((Array.isArray(e.footerBody) && e.footerBody.length > 0) ||
+                    !Array.isArray(e.footerBody)))
+              ) ||
+                !!(
+                  (e.footerCta && Array.isArray(e.footerCta) && e.footerCta.length > 0) ||
+                  (e.footerBanner && (0, c.hasValidLink)(e.footerBanner))
+                ))
+            );
+          },
+          "hasItemContent",
+          0,
+          function (e) {
+            return (
+              !!e &&
+              (!!(
+                e.eyebrow ||
+                e.title ||
+                (e.body &&
+                  ((Array.isArray(e.body) && e.body.length > 0) || !Array.isArray(e.body))) ||
+                (e.cta && ((Array.isArray(e.cta) && e.cta.length > 0) || !Array.isArray(e.cta)))
+              ) ||
+                !!(e.banner && (0, c.hasValidLink)(e.banner)))
+            );
+          },
+        ],
+        506565,
+      );
+  },
+  756464,
+  (e) => {
+    "use strict";
+    var t = e.i(505278),
+      a = e.i(207849),
+      r = e.i(411318);
+    e.s([
+      "default",
+      0,
+      function (e) {
+        let l,
+          n,
+          s,
+          i,
+          o = (0, a.c)(9),
+          { dateString: c, className: m } = e;
+        return c
+          ? (o[0] === Symbol.for("react.memo_cache_sentinel")
+              ? ((l = { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" }),
+                (o[0] = l))
+              : (l = o[0]),
+            o[1] !== c ? ((n = new Date(c)), (o[1] = c), (o[2] = n)) : (n = o[2]),
+            o[3] !== n
+              ? ((s = (0, t.jsx)(r.DateTime, { options: l, children: n })), (o[3] = n), (o[4] = s))
+              : (s = o[4]),
+            o[5] !== m || o[6] !== c || o[7] !== s
+              ? ((i = (0, t.jsx)("time", { dateTime: c, className: m, children: s })),
+                (o[5] = m),
+                (o[6] = c),
+                (o[7] = s),
+                (o[8] = i))
+              : (i = o[8]),
+            i)
+          : null;
+      },
+    ]);
+  },
+  924561,
+  (e) => {
+    "use strict";
+    var t = e.i(505278),
+      a = e.i(207849),
+      r = e.i(605226),
+      l = e.i(620487),
+      n = e.i(264458),
+      s = e.i(411318),
+      i = e.i(346140),
+      o = e.i(297166),
+      c = e.i(756464),
+      m = e.i(359689),
+      d = e.i(280542);
+    let u = (e) => {
+      let r,
+        l,
+        n,
+        s,
+        i,
+        m,
+        d,
+        u = (0, a.c)(18),
+        { entry: h } = e,
+        { id: p, title: x, slug: f, date: g, version: b } = h;
+      u[0] !== b
+        ? ((r = (function (e) {
+            if (!e) return null;
+            let t = e.trim();
+            return t && /^\d/.test(t) ? t : null;
+          })(b)),
+          (u[0] = b),
+          (u[1] = r))
+        : (r = u[1]);
+      let y = r,
+        v = `/changelog/${f}`;
+      return (
+        u[2] !== y
+          ? ((l = y && (0, t.jsx)("span", { className: "label", children: y })),
+            (u[2] = y),
+            (u[3] = l))
+          : (l = u[3]),
+        u[4] !== g
+          ? ((n = (0, t.jsx)(c.default, { className: "type-base", dateString: g })),
+            (u[4] = g),
+            (u[5] = n))
+          : (n = u[5]),
+        u[6] !== l || u[7] !== n
+          ? ((s = (0, t.jsxs)("div", {
+              className:
+                "text-theme-text-mid relative left-[-1px] flex items-center gap-x-(--grid-gap)",
+              children: [l, n],
+            })),
+            (u[6] = l),
+            (u[7] = n),
+            (u[8] = s))
+          : (s = u[8]),
+        u[9] !== x
+          ? ((i = x && (0, t.jsx)("p", { className: "type-base text-theme-text", children: x })),
+            (u[9] = x),
+            (u[10] = i))
+          : (i = u[10]),
+        u[11] !== v || u[12] !== s || u[13] !== i
+          ? ((m = (0, t.jsxs)(o.default, {
+              className: "card flex h-full grow-1 flex-col pb-g2",
+              href: v,
+              children: [s, i],
+            })),
+            (u[11] = v),
+            (u[12] = s),
+            (u[13] = i),
+            (u[14] = m))
+          : (m = u[14]),
+        u[15] !== p || u[16] !== m
+          ? ((d = (0, t.jsx)("article", { className: "flex h-full flex-col", children: m }, p)),
+            (u[15] = p),
+            (u[16] = m),
+            (u[17] = d))
+          : (d = u[17]),
+        d
+      );
+    };
+    e.s(
+      [
+        "default",
+        0,
+        function (e) {
+          let c,
+            h,
+            p,
+            x,
+            f,
+            g,
+            b,
+            y,
+            v,
+            w = (0, a.c)(30),
+            {
+              title: j,
+              titleClassName: N,
+              titleSpacingClassName: k,
+              sectionId: C,
+              useSectionPadding: S,
+              preload: A,
+              semanticLevel: _,
+              locale: T,
+            } = e,
+            M = void 0 === _ ? "h2" : _,
+            E = (0, i.useMessages)(),
+            L = (0, s.useGT)(),
+            { changelogData: I } = (0, m.useChangelog)();
+          if (!I || 0 === I.length) return null;
+          let H = N || "type-md-lg",
+            P = k || (/\btype-md(?:-lg)?\b/.test(H) ? "mb-v1" : "mb-v9/12"),
+            Z = void 0 === S || S ? "section" : "my-v4.5";
+          if (
+            (w[0] !== Z
+              ? ((c = (0, n.default)("bg-theme-bg text-theme-text", Z)), (w[0] = Z), (w[1] = c))
+              : (c = w[1]),
+            w[2] !== E || w[3] !== H || w[4] !== P || w[5] !== M || w[6] !== j
+              ? ((h =
+                  j &&
+                  (0, t.jsx)(l.default, {
+                    className: (0, n.default)("text-theme-text", P, H),
+                    semanticLevel: M,
+                    children: "string" == typeof j ? E(j) : j,
+                  })),
+                (w[2] = E),
+                (w[3] = H),
+                (w[4] = P),
+                (w[5] = M),
+                (w[6] = j),
+                (w[7] = h))
+              : (h = w[7]),
+            w[8] !== I || w[9] !== T)
+          ) {
+            let e;
+            w[11] !== T
+              ? ((e = (e, a) =>
+                  (0, t.jsx)(
+                    "div",
+                    {
+                      className: `w-[calc((((100vw-(2*var(--spacing-g2)))-(23*var(--spacing-g1)))/24)*18+(17*var(--spacing-g1)))] shrink-0 snap-start sm:w-[calc((((100vw-(2*var(--spacing-g2)))-(23*var(--spacing-g1)))/24)*16+(15*var(--spacing-g1)))] md:w-[calc((((100vw-(2*var(--spacing-g2)))-(23*var(--spacing-g1)))/24)*14+(13*var(--spacing-g1)))] lg:w-auto lg:shrink${a >= 3 ? " lg:hidden xl:block" : ""}`,
+                      children: (0, t.jsx)(u, { entry: e, currentLocale: T }),
+                    },
+                    e.id,
+                  )),
+                (w[11] = T),
+                (w[12] = e))
+              : (e = w[12]),
+              (p = I.map(e)),
+              (w[8] = I),
+              (w[9] = T),
+              (w[10] = p);
+          } else p = w[10];
+          w[13] !== p
+            ? ((x = (0, t.jsx)("div", {
+                className:
+                  "-mx-g2 no-scrollbar snap-x snap-mandatory scroll-px-g2 overflow-x-auto lg:mx-0 lg:snap-none lg:scroll-px-0 lg:overflow-visible",
+                children: (0, t.jsx)("div", {
+                  className:
+                    "flex w-max gap-g1 px-g2 lg:grid lg:w-full lg:grid-cols-3 lg:px-0 xl:grid-cols-4",
+                  children: p,
+                }),
+              })),
+              (w[13] = p),
+              (w[14] = x))
+            : (x = w[14]);
+          let F = T || r.defaultLanguage;
+          return (
+            w[15] !== F
+              ? ((f = (0, d.generateChangelogUrl)(F)), (w[15] = F), (w[16] = f))
+              : (f = w[16]),
+            w[17] !== L
+              ? ((g = L("See what's new in Cursor")), (w[17] = L), (w[18] = g))
+              : (g = w[18]),
+            w[19] !== f || w[20] !== g
+              ? ((b = (0, t.jsxs)(o.default, {
+                  href: f,
+                  className: "btn-text mt-v9/12 inline-flex",
+                  children: [g, " →"],
+                })),
+                (w[19] = f),
+                (w[20] = g),
+                (w[21] = b))
+              : (b = w[21]),
+            w[22] !== b || w[23] !== h || w[24] !== x
+              ? ((y = (0, t.jsxs)("div", { className: "container", children: [h, x, b] })),
+                (w[22] = b),
+                (w[23] = h),
+                (w[24] = x),
+                (w[25] = y))
+              : (y = w[25]),
+            w[26] !== C || w[27] !== y || w[28] !== c
+              ? ((v = (0, t.jsx)("section", { className: c, id: C, children: y })),
+                (w[26] = C),
+                (w[27] = y),
+                (w[28] = c),
+                (w[29] = v))
+              : (v = w[29]),
+            v
+          );
+        },
+      ],
+      924561,
+    );
+  },
+  54518,
+  (e) => {
+    "use strict";
+    e.s([
+      "default",
+      0,
+      (e) => {
+        let t = ["h1", "h2", "h3", "h4", "h5", "h6"],
+          a = t.indexOf(e);
+        return -1 === a || a >= 5 ? "h6" : t[a + 1];
+      },
+    ]);
+  },
+  503342,
+  625857,
+  (e) => {
+    "use strict";
+    var t = e.i(505278),
+      a = e.i(207849),
+      r = e.i(634408),
+      l = e.i(264458),
+      n = e.i(229138),
+      s = e.i(413676),
+      i = e.i(620487),
+      o = e.i(446295),
+      c = e.i(388537),
+      m = e.i(54518);
+    function d(e) {
+      let l,
+        s,
+        i,
+        o,
+        c,
+        m,
+        d,
+        u,
+        h = (0, a.c)(22),
+        { testimonial: p } = e,
+        { quote: x, name: f, jobTitle: g, company: b, avatar: y, post: v } = p;
+      h[0] !== x
+        ? ((l = (0, t.jsx)("blockquote", {
+            children: (0, t.jsx)("p", {
+              className: "type-base text-pretty whitespace-pre-wrap",
+              children: x,
+            }),
+          })),
+          (h[0] = x),
+          (h[1] = l))
+        : (l = h[1]),
+        h[2] !== y
+          ? ((s =
+              y?.src &&
+              (0, t.jsx)("div", {
+                className: "avatar-border-container h-[42px] w-[42px] shrink-0",
+                children: (0, t.jsx)(n.default, {
+                  src: y.src,
+                  alt: y.alt || "",
+                  width: 42,
+                  height: 42,
+                  className: "h-full w-full object-cover",
+                }),
+              })),
+            (h[2] = y),
+            (h[3] = s))
+          : (s = h[3]);
+      let w = g && g,
+        j = g && b && ", ",
+        N = b && b;
+      return (
+        h[4] !== w || h[5] !== j || h[6] !== N
+          ? ((i = (0, t.jsxs)("span", {
+              className: "type-sm text-theme-text-sec block",
+              children: [w, j, N],
+            })),
+            (h[4] = w),
+            (h[5] = j),
+            (h[6] = N),
+            (h[7] = i))
+          : (i = h[7]),
+        h[8] !== f || h[9] !== i
+          ? ((o = (0, t.jsxs)("div", { className: "type-sm", children: [f, " ", i] })),
+            (h[8] = f),
+            (h[9] = i),
+            (h[10] = o))
+          : (o = h[10]),
+        h[11] !== v
+          ? ((c =
+              v &&
+              (0, t.jsx)(r.Button, {
+                link: { label: "Read Story →", linkType: "post", post: v, openInNewTab: !1 },
+                className: "btn-tertiary mt-v1 justify-start",
+              })),
+            (h[11] = v),
+            (h[12] = c))
+          : (c = h[12]),
+        h[13] !== o || h[14] !== c
+          ? ((m = (0, t.jsxs)("figcaption", { children: [o, c] })),
+            (h[13] = o),
+            (h[14] = c),
+            (h[15] = m))
+          : (m = h[15]),
+        h[16] !== s || h[17] !== m
+          ? ((d = (0, t.jsxs)("div", {
+              className: "mt-v1 flex items-center space-x-(--grid-gap)",
+              children: [s, m],
+            })),
+            (h[16] = s),
+            (h[17] = m),
+            (h[18] = d))
+          : (d = h[18]),
+        h[19] !== l || h[20] !== d
+          ? ((u = (0, t.jsxs)("figure", {
+              className: "mt-v1 border-theme-border-02 pl-g1.5 border-l-2 pb-[2px]",
+              children: [l, d],
+            })),
+            (h[19] = l),
+            (h[20] = d),
+            (h[21] = u))
+          : (u = h[21]),
+        u
+      );
+    }
+    function u(e) {
+      let n,
+        s,
+        o,
+        u,
+        h,
+        p,
+        x,
+        f,
+        g,
+        b,
+        y = (0, a.c)(33),
+        {
+          title: v,
+          body: w,
+          testimonial: j,
+          link: N,
+          cta: k,
+          ctaSpacingClassName: C,
+          textColumns: S,
+          textAlignment: A,
+          mediaColumns: _,
+          preload: T,
+          semanticLevel: M,
+        } = e,
+        E = void 0 === C ? "mt-v1" : C,
+        L = k && k.length > 0,
+        I = `col-span-full row-start-1 row-end-2 grid lg:row-start-1 lg:row-end-3 lg:items-center ${S}`,
+        H = `w-full max-w-prose ${A}`;
+      y[0] !== M || y[1] !== v
+        ? ((n =
+            v &&
+            (0, t.jsx)(i.default, {
+              className: "type-base md:type-md text-pretty",
+              semanticLevel: (0, m.default)(M),
+              children: v,
+            })),
+          (y[0] = M),
+          (y[1] = v),
+          (y[2] = n))
+        : (n = y[2]),
+        y[3] !== w
+          ? ((s =
+              w &&
+              (0, t.jsx)("div", {
+                className: "type-base md:type-md text-theme-text-sec text-pretty",
+                children: "string" == typeof w ? (0, t.jsx)("p", { children: w }) : w,
+              })),
+            (y[3] = w),
+            (y[4] = s))
+          : (s = y[4]),
+        y[5] !== n || y[6] !== s
+          ? ((o = (0, t.jsxs)("div", { className: "type-base", children: [n, s] })),
+            (y[5] = n),
+            (y[6] = s),
+            (y[7] = o))
+          : (o = y[7]),
+        y[8] !== k || y[9] !== E || y[10] !== L
+          ? ((u =
+              L &&
+              (0, t.jsx)("div", { className: E, children: (0, t.jsx)(r.Actions, { cta: k }) })),
+            (y[8] = k),
+            (y[9] = E),
+            (y[10] = L),
+            (y[11] = u))
+          : (u = y[11]),
+        y[12] !== w || y[13] !== L || y[14] !== N
+          ? ((h =
+              !L &&
+              N &&
+              (0, c.hasValidLink)(N) &&
+              (0, t.jsx)("div", {
+                className: (0, l.default)({ "mt-v8/12": w }),
+                children: (0, t.jsxs)("span", {
+                  className: "btn-tertiary",
+                  children: [N.label, (0, c.isExternalLink)(N) ? " ↗" : " →"],
+                }),
+              })),
+            (y[12] = w),
+            (y[13] = L),
+            (y[14] = N),
+            (y[15] = h))
+          : (h = y[15]),
+        y[16] !== T || y[17] !== j
+          ? ((p = j && (0, t.jsx)(d, { testimonial: j, preload: T })),
+            (y[16] = T),
+            (y[17] = j),
+            (y[18] = p))
+          : (p = y[18]),
+        y[19] !== H || y[20] !== o || y[21] !== u || y[22] !== h || y[23] !== p
+          ? ((x = (0, t.jsxs)("div", { className: H, children: [o, u, h, p] })),
+            (y[19] = H),
+            (y[20] = o),
+            (y[21] = u),
+            (y[22] = h),
+            (y[23] = p),
+            (y[24] = x))
+          : (x = y[24]),
+        y[25] !== x || y[26] !== I
+          ? ((f = (0, t.jsx)("div", { className: I, children: x })),
+            (y[25] = x),
+            (y[26] = I),
+            (y[27] = f))
+          : (f = y[27]);
+      let P = `max-lg:mt-g1.75 col-span-full row-start-2 row-end-3 grid cursor-default items-end lg:row-start-1 lg:row-end-3 lg:items-center ${_}`;
+      return (
+        y[28] !== P
+          ? ((g = (0, t.jsx)("div", { className: P })), (y[28] = P), (y[29] = g))
+          : (g = y[29]),
+        y[30] !== f || y[31] !== g
+          ? ((b = (0, t.jsxs)(t.Fragment, { children: [f, g] })),
+            (y[30] = f),
+            (y[31] = g),
+            (y[32] = b))
+          : (b = y[32]),
+        b
+      );
+    }
+    function h(e) {
+      let r,
+        l,
+        n,
+        s,
+        i = (0, a.c)(23),
+        {
+          mediaBgColor: c,
+          mediaBgHex: m,
+          mediaBgHexDark: d,
+          mediaPosition: u,
+          mediaType: h,
+          mediaBg: p,
+          media: x,
+          mediaImageClassName: f,
+          video: g,
+          children: b,
+          mediaAllowOverflow: y,
+          textColumns: v,
+          mediaColumns: w,
+          preload: j,
+        } = e,
+        N = `col-span-full row-start-1 row-end-2 grid lg:row-start-1 lg:row-end-2 lg:items-center ${v}`;
+      i[0] !== N ? ((r = (0, t.jsx)("div", { className: N })), (i[0] = N), (i[1] = r)) : (r = i[1]);
+      let k = `max-lg:pt-v1 col-span-full row-start-2 row-end-3 grid cursor-default items-end lg:row-start-2 lg:row-end-3 lg:items-center ${w}`,
+        C = p?.isWallpaper ?? !1,
+        S = p?.isWallpaper ?? !1,
+        A = y ?? !1;
+      return (
+        i[2] !== b ||
+        i[3] !== x ||
+        i[4] !== p ||
+        i[5] !== c ||
+        i[6] !== m ||
+        i[7] !== d ||
+        i[8] !== f ||
+        i[9] !== j ||
+        i[10] !== u ||
+        i[11] !== h ||
+        i[12] !== C ||
+        i[13] !== S ||
+        i[14] !== A ||
+        i[15] !== g
+          ? ((l = (0, t.jsx)(o.default, {
+              mediaBgColor: c,
+              mediaBgHex: m,
+              mediaBgHexDark: d,
+              mediaPosition: u,
+              mediaType: h,
+              mediaBg: p,
+              media: x,
+              mediaImageClassName: f,
+              video: g,
+              preload: j,
+              enableWallpaperZoom: C,
+              enableWallpaperBrightness: S,
+              allowOverflow: A,
+              children: b,
+            })),
+            (i[2] = b),
+            (i[3] = x),
+            (i[4] = p),
+            (i[5] = c),
+            (i[6] = m),
+            (i[7] = d),
+            (i[8] = f),
+            (i[9] = j),
+            (i[10] = u),
+            (i[11] = h),
+            (i[12] = C),
+            (i[13] = S),
+            (i[14] = A),
+            (i[15] = g),
+            (i[16] = l))
+          : (l = i[16]),
+        i[17] !== k || i[18] !== l
+          ? ((n = (0, t.jsx)("div", { className: k, children: l })),
+            (i[17] = k),
+            (i[18] = l),
+            (i[19] = n))
+          : (n = i[19]),
+        i[20] !== n || i[21] !== r
+          ? ((s = (0, t.jsxs)(t.Fragment, { children: [r, n] })),
+            (i[20] = n),
+            (i[21] = r),
+            (i[22] = s))
+          : (s = i[22]),
+        s
+      );
+    }
+    e.s(
+      [
+        "default",
+        0,
+        function (e) {
+          let r,
+            n,
+            i,
+            o,
+            m,
+            d,
+            p,
+            x,
+            f,
+            g = (0, a.c)(48),
+            {
+              title: b,
+              body: y,
+              ctaSpacingClassName: v,
+              sectionId: w,
+              link: j,
+              cta: N,
+              testimonial: k,
+              mediaSide: C,
+              mediaPosition: S,
+              mediaType: A,
+              mediaBgColor: _,
+              mediaBgHex: T,
+              mediaBgHexDark: M,
+              mediaBg: E,
+              media: L,
+              mediaImageClassName: I,
+              video: H,
+              children: P,
+              mediaAllowOverflow: Z,
+              preload: F,
+              semanticLevel: V,
+              splitRatio: z,
+              flush: B,
+              spacing: R,
+            } = e,
+            D = void 0 === z ? "default" : z,
+            $ = void 0 === R ? "default" : R;
+          if (g[0] !== C || g[1] !== D) {
+            let e;
+            (r = {
+              textColumns: {
+                left: {
+                  default: "lg:col-start-17 lg:col-end-25 lg:pr-g0.25 lg:pl-g3",
+                  wide: "lg:col-start-16 lg:col-end-25 lg:pr-g0.25 lg:pl-g2",
+                  equal: "lg:col-start-13 lg:col-end-25 lg:pr-g0.25 lg:pl-g1.5",
+                },
+                right: {
+                  default: "lg:col-start-1 lg:col-end-9 lg:pl-g0.25 lg:pr-g3",
+                  wide: "lg:col-start-1 lg:col-end-10 lg:pl-g0.25 lg:pr-g2",
+                  equal: "lg:col-start-1 lg:col-end-13 lg:pl-g0.25 lg:pr-g1.5",
+                },
+              }[(e = "right" === C ? "right" : "left")][D ?? "default"],
+              textAlignment: "right" === e ? "lg:justify-self-start" : "lg:justify-self-end",
+            }),
+              (g[0] = C),
+              (g[1] = D),
+              (g[2] = r);
+          } else r = g[2];
+          let { textColumns: O, textAlignment: W } = r;
+          g[3] !== C || g[4] !== D
+            ? ((n = {
+                left: {
+                  default: "lg:col-start-1 lg:col-end-17",
+                  wide: "lg:col-start-1 lg:col-end-16",
+                  equal: "lg:col-start-1 lg:col-end-13",
+                },
+                right: {
+                  default: "lg:col-start-9 lg:col-end-25",
+                  wide: "lg:col-start-10 lg:col-end-25",
+                  equal: "lg:col-start-13 lg:col-end-25",
+                },
+              }["right" === C ? "right" : "left"][D ?? "default"]),
+              (g[3] = C),
+              (g[4] = D),
+              (g[5] = n))
+            : (n = g[5]);
+          let G = n;
+          g[6] !== B
+            ? ((i = (0, l.default)("section", "bg-theme-bg text-theme-text", {
+                "section--flush-y": B,
+              })),
+              (g[6] = B),
+              (g[7] = i))
+            : (i = g[7]);
+          let q = "default" === $,
+            U = "compact" === $;
+          g[8] !== q || g[9] !== U
+            ? ((o = (0, l.default)("container", { "mb-v4": q, "mb-g1": U })),
+              (g[8] = q),
+              (g[9] = U),
+              (g[10] = o))
+            : (o = g[10]),
+            g[11] !== y ||
+            g[12] !== N ||
+            g[13] !== v ||
+            g[14] !== j ||
+            g[15] !== G ||
+            g[16] !== F ||
+            g[17] !== V ||
+            g[18] !== k ||
+            g[19] !== W ||
+            g[20] !== O ||
+            g[21] !== b
+              ? ((m =
+                  j && (0, c.hasValidLink)(j) && !N
+                    ? (0, t.jsx)(s.default, {
+                        link: j,
+                        className:
+                          "card card--large card--feature grid-cursor col-span-full row-span-full gap-y-0 max-lg:grid-rows-subgrid",
+                        children: (0, t.jsx)(u, {
+                          title: b,
+                          body: y,
+                          testimonial: k,
+                          link: j,
+                          ctaSpacingClassName: v,
+                          textColumns: O,
+                          textAlignment: W,
+                          mediaColumns: G,
+                          preload: F ?? !1,
+                          semanticLevel: V ?? "h2",
+                        }),
+                      })
+                    : (0, t.jsx)("div", {
+                        className:
+                          "card card--large grid-cursor col-span-full row-span-full gap-y-0 max-lg:grid-rows-subgrid",
+                        children: (0, t.jsx)(u, {
+                          title: b,
+                          body: y,
+                          testimonial: k,
+                          link: j,
+                          cta: N,
+                          ctaSpacingClassName: v,
+                          textColumns: O,
+                          textAlignment: W,
+                          mediaColumns: G,
+                          preload: F ?? !1,
+                          semanticLevel: V ?? "h2",
+                        }),
+                      })),
+                (g[11] = y),
+                (g[12] = N),
+                (g[13] = v),
+                (g[14] = j),
+                (g[15] = G),
+                (g[16] = F),
+                (g[17] = V),
+                (g[18] = k),
+                (g[19] = W),
+                (g[20] = O),
+                (g[21] = b),
+                (g[22] = m))
+              : (m = g[22]);
+          let X = F ?? !1;
+          return (
+            g[23] !== P ||
+            g[24] !== L ||
+            g[25] !== Z ||
+            g[26] !== E ||
+            g[27] !== _ ||
+            g[28] !== T ||
+            g[29] !== M ||
+            g[30] !== G ||
+            g[31] !== I ||
+            g[32] !== S ||
+            g[33] !== A ||
+            g[34] !== X ||
+            g[35] !== O ||
+            g[36] !== H
+              ? ((d = (0, t.jsx)("div", {
+                  className:
+                    "grid-cursor p-g1.75 col-span-full row-span-full gap-y-0 max-lg:grid-rows-subgrid",
+                  children: (0, t.jsx)(h, {
+                    mediaBgColor: _,
+                    mediaBgHex: T,
+                    mediaBgHexDark: M,
+                    mediaPosition: S,
+                    mediaType: A,
+                    mediaBg: E,
+                    media: L,
+                    mediaImageClassName: I,
+                    video: H,
+                    mediaAllowOverflow: Z,
+                    textColumns: O,
+                    mediaColumns: G,
+                    preload: X,
+                    children: P,
+                  }),
+                })),
+                (g[23] = P),
+                (g[24] = L),
+                (g[25] = Z),
+                (g[26] = E),
+                (g[27] = _),
+                (g[28] = T),
+                (g[29] = M),
+                (g[30] = G),
+                (g[31] = I),
+                (g[32] = S),
+                (g[33] = A),
+                (g[34] = X),
+                (g[35] = O),
+                (g[36] = H),
+                (g[37] = d))
+              : (d = g[37]),
+            g[38] !== d || g[39] !== m
+              ? ((p = (0, t.jsxs)("div", {
+                  className: "grid grid-rows-[auto_1fr]",
+                  children: [m, d],
+                })),
+                (g[38] = d),
+                (g[39] = m),
+                (g[40] = p))
+              : (p = g[40]),
+            g[41] !== p || g[42] !== o
+              ? ((x = (0, t.jsx)("div", { className: o, children: p })),
+                (g[41] = p),
+                (g[42] = o),
+                (g[43] = x))
+              : (x = g[43]),
+            g[44] !== w || g[45] !== x || g[46] !== i
+              ? ((f = (0, t.jsx)("section", { className: i, id: w, children: x })),
+                (g[44] = w),
+                (g[45] = x),
+                (g[46] = i),
+                (g[47] = f))
+              : (f = g[47]),
+            f
+          );
+        },
+      ],
+      503342,
+    );
+    var p = e.i(329329);
+    e.s(
+      [
+        "default",
+        0,
+        function (e) {
+          let r,
+            n,
+            s,
+            i,
+            m,
+            d,
+            u,
+            h,
+            x = (0, a.c)(48),
+            {
+              title: f,
+              body: g,
+              eyebrow: b,
+              banner: y,
+              cta: v,
+              textSize: w,
+              alignment: j,
+              sectionId: N,
+              mediaBg: k,
+              media: C,
+              video: S,
+              mediaType: A,
+              mediaPosition: _,
+              mediaBgColor: T,
+              mediaBgHex: M,
+              mediaBgHexDark: E,
+              children: L,
+              flushBottom: I,
+              preload: H,
+              semanticLevel: P,
+              mobileFullWidthCta: Z,
+            } = e;
+          x[0] !== L || x[1] !== C || x[2] !== k || x[3] !== A || x[4] !== S
+            ? ((r = () =>
+                (k && k.src) ||
+                L ||
+                ("image" === A && C && C.src) ||
+                ("video" === A && S && S.src)),
+              (x[0] = L),
+              (x[1] = C),
+              (x[2] = k),
+              (x[3] = A),
+              (x[4] = S),
+              (x[5] = r))
+            : (r = x[5]);
+          let F = r;
+          x[6] !== v
+            ? ((n = () => {
+                if (v && Array.isArray(v) && v.length > 0) {
+                  let e = v[0];
+                  if (e && "link" in e && e.link && (0, c.hasValidLink)(e.link)) return e.link;
+                }
+                return null;
+              }),
+              (x[6] = v),
+              (x[7] = n))
+            : (n = x[7]);
+          let V = n;
+          x[8] !== y || x[9] !== g || x[10] !== b || x[11] !== f
+            ? ((s = () => f || g || b || y),
+              (x[8] = y),
+              (x[9] = g),
+              (x[10] = b),
+              (x[11] = f),
+              (x[12] = s))
+            : (s = x[12]);
+          let z = s,
+            B = I && "section--flush-bottom";
+          if (
+            (x[13] !== B
+              ? ((i = (0, l.default)("section", "bg-theme-bg text-theme-text", B)),
+                (x[13] = B),
+                (x[14] = i))
+              : (i = x[14]),
+            x[15] !== j ||
+              x[16] !== y ||
+              x[17] !== g ||
+              x[18] !== v ||
+              x[19] !== b ||
+              x[20] !== I ||
+              x[21] !== z ||
+              x[22] !== F ||
+              x[23] !== Z ||
+              x[24] !== P ||
+              x[25] !== w ||
+              x[26] !== f)
+          ) {
+            let e, a, r;
+            (m =
+              z() &&
+              ((e = Array.isArray(v) && v.length > 0),
+              (a = !w || "md" !== w),
+              (r = I ? "" : F() ? (e ? "mb-v2.5" : "mb-v2") : "mb-v1"),
+              (0, t.jsx)(p.default, {
+                banner: y,
+                eyebrow: b,
+                title: f,
+                body: g,
+                cta: v,
+                textSize: w,
+                alignment: j,
+                semanticLevel: P,
+                containerClassName: `${r} ${a ? "max-w-prose-medium-wide" : "max-w-prose"}`.trim(),
+                mobileFullWidthCta: Z,
+              }))),
+              (x[15] = j),
+              (x[16] = y),
+              (x[17] = g),
+              (x[18] = v),
+              (x[19] = b),
+              (x[20] = I),
+              (x[21] = z),
+              (x[22] = F),
+              (x[23] = Z),
+              (x[24] = P),
+              (x[25] = w),
+              (x[26] = f),
+              (x[27] = m);
+          } else m = x[27];
+          return (
+            x[28] !== L ||
+            x[29] !== V ||
+            x[30] !== F ||
+            x[31] !== C ||
+            x[32] !== k ||
+            x[33] !== T ||
+            x[34] !== M ||
+            x[35] !== E ||
+            x[36] !== _ ||
+            x[37] !== A ||
+            x[38] !== H ||
+            x[39] !== S
+              ? ((d =
+                  F() &&
+                  (0, t.jsx)(o.default, {
+                    mediaBgColor: T,
+                    mediaBgHex: M,
+                    mediaBgHexDark: E,
+                    mediaPosition: _,
+                    mediaType: A,
+                    mediaBg: k,
+                    media: C,
+                    video: S,
+                    preload: H,
+                    link: V(),
+                    enableWallpaperZoom: !1,
+                    enableWallpaperBrightness: k?.isWallpaper ?? !1,
+                    children: L,
+                  })),
+                (x[28] = L),
+                (x[29] = V),
+                (x[30] = F),
+                (x[31] = C),
+                (x[32] = k),
+                (x[33] = T),
+                (x[34] = M),
+                (x[35] = E),
+                (x[36] = _),
+                (x[37] = A),
+                (x[38] = H),
+                (x[39] = S),
+                (x[40] = d))
+              : (d = x[40]),
+            x[41] !== m || x[42] !== d
+              ? ((u = (0, t.jsxs)("div", { className: "container", children: [m, d] })),
+                (x[41] = m),
+                (x[42] = d),
+                (x[43] = u))
+              : (u = x[43]),
+            x[44] !== N || x[45] !== i || x[46] !== u
+              ? ((h = (0, t.jsx)("section", { className: i, id: N, children: u })),
+                (x[44] = N),
+                (x[45] = i),
+                (x[46] = u),
+                (x[47] = h))
+              : (h = x[47]),
+            h
+          );
+        },
+      ],
+      625857,
+    );
+  },
+  270837,
+  (e) => {
+    "use strict";
+    var t = e.i(505278),
+      a = e.i(207849),
+      r = e.i(346140),
+      l = e.i(612793),
+      n = e.i(152831),
+      s = e.i(932341),
+      i = e.i(928402);
+    function o(e) {
+      return e + 1;
+    }
+    e.s([
+      "default",
+      0,
+      function ({
+        scenario: e,
+        streamInitialMessages: c = !0,
+        title: m,
+        className: d,
+        embedded: u = !1,
+        fontSize: h = 13,
+        disableInteractions: p = !1,
+        showModelSelection: x = !1,
+        frameless: f = !1,
+        autoLoopModels: g = !1,
+        autoLoopInterval: b = 1200,
+        initialModelLabel: y = s.LATEST_1P_MODEL.label,
+      }) {
+        let v,
+          w,
+          j,
+          N = (0, r.useMessages)(),
+          k = (0, i.usePrefersReducedMotion)(),
+          C = (0, l.useRef)(null),
+          S = (0, l.useRef)(null),
+          A = (0, l.useRef)(null),
+          _ = (0, l.useRef)(null),
+          T = (0, l.useRef)(new Map()),
+          M = (0, l.useRef)(new Map()),
+          E = (0, l.useRef)(new Map()),
+          L = (0, r.useGT)(),
+          I = (0, l.useMemo)(() => e.messages.find((e) => "user" === e.role), [e.messages]),
+          H = (0, l.useMemo)(
+            () => (I ? e.messages.filter((e) => e.id !== I.id) : e.messages),
+            [I, e.messages],
+          ),
+          [P, Z] = (0, l.useState)(c ? [] : H),
+          [F, V] = (0, l.useState)(new Set()),
+          z = (function (e) {
+            let t,
+              r,
+              n = (0, a.c)(4),
+              [s, i] = (0, l.useState)(0);
+            return (
+              80 !== n[0] || n[1] !== e
+                ? ((t = () => {
+                    if (!e) return;
+                    let t = window.setInterval(() => i(o), 80);
+                    return () => window.clearInterval(t);
+                  }),
+                  (r = [e, 80]),
+                  (n[0] = 80),
+                  (n[1] = e),
+                  (n[2] = t),
+                  (n[3] = r))
+                : ((t = n[2]), (r = n[3])),
+              (0, l.useEffect)(t, r),
+              s
+            );
+          })(F.size > 0),
+          B = (0, l.useMemo)(
+            () => (F.size > 0 ? (Math.floor(z / 3) % 2 == 0 ? "⬢" : "⬡") : "⬢"),
+            [F.size, z],
+          ),
+          [R, D] = (0, l.useState)(!1),
+          [$, O] = (0, l.useState)(x ? "/model" : ""),
+          W = (0, l.useMemo)(
+            () => [
+              { name: "model", description: L("switch models") },
+              { name: "reset", description: L("replay demo") },
+            ],
+            [L],
+          ),
+          G = (0, l.useMemo)(
+            () => [
+              { key: "auto", label: "Auto" },
+              {
+                key: s.LATEST_1P_MODEL.id,
+                label: s.LATEST_1P_MODEL.label,
+                effort: s.LATEST_1P_MODEL.effort,
+              },
+              { key: "opus-4.8", label: "Opus 4.8" },
+              { key: "gpt-5.6-sol-high-fast", label: "GPT-5.6 Sol High Fast" },
+              { key: "gemini-3.1-pro", label: "Gemini 3.1 Pro" },
+              { key: "grok-4.5", label: "Grok 4.5" },
+            ],
+            [],
+          ),
+          [q, U] = (0, l.useState)(0),
+          [X, Y] = (0, l.useState)(x),
+          [K, J] = (0, l.useState)(0),
+          [Q, ee] = (0, l.useState)(y),
+          [et, ea] = (0, l.useState)(0);
+        (0, l.useEffect)(() => {
+          if (!g || !X || k) return;
+          let e = window.setInterval(() => {
+            J((e) => (e + 1) % G.length);
+          }, b);
+          return () => window.clearInterval(e);
+        }, [g, X, G.length, b, k]);
+        let [er, el] = (0, l.useState)(!0);
+        (0, l.useEffect)(() => {
+          let e = S.current,
+            t = _.current;
+          if (!e || !t || "u" < typeof IntersectionObserver) return;
+          let a = new IntersectionObserver(
+            (e) => {
+              let t = e[0];
+              el(!!(t && t.isIntersecting));
+            },
+            { root: e, threshold: [0, 0.99] },
+          );
+          return a.observe(t), () => a.disconnect();
+        }, []),
+          (0, l.useLayoutEffect)(() => {
+            if (R || !er) return;
+            let e = S.current;
+            if (!e) return;
+            let t = window.requestAnimationFrame(() => {
+              e.scrollTop = 0;
+            });
+            return () => window.cancelAnimationFrame(t);
+          }, [P.length, er, R]),
+          (0, l.useLayoutEffect)(() => {
+            if (R || !er || !($.startsWith("/") || X)) return;
+            let e = S.current;
+            if (!e) return;
+            let t = window.requestAnimationFrame(() => {
+              e.scrollTop = 0;
+            });
+            return () => window.cancelAnimationFrame(t);
+          }, [$, X, q, K, er, R]),
+          (0, l.useLayoutEffect)(() => {
+            if (!R) return;
+            let e = S.current;
+            if (!e) return;
+            let t = window.requestAnimationFrame(() => {
+              e.scrollTop = e.scrollHeight;
+            });
+            return () => window.cancelAnimationFrame(t);
+          }, [P.length, R]);
+        let [en, es] = (0, l.useState)(!1),
+          [ei, eo] = (0, l.useState)(!1);
+        return (
+          (0, l.useEffect)(() => {
+            let e = C.current;
+            if (!e || "u" < typeof IntersectionObserver) return;
+            let t = new IntersectionObserver(
+              (e) => {
+                let t = e[0];
+                eo(!!(t && (t.isIntersecting || t.intersectionRatio > 0)));
+              },
+              { root: null, threshold: [0.15, 0.35] },
+            );
+            return t.observe(e), () => t.disconnect();
+          }, []),
+          (0, l.useEffect)(() => {
+            ei && !en && es(!0);
+          }, [ei, en]),
+          (0, l.useEffect)(() => {
+            if (!c || k) {
+              Z(H), D(!1);
+              return;
+            }
+            if (!en) {
+              Z([]), V(new Set()), D(!1);
+              return;
+            }
+            let e = !1;
+            return (
+              Z([]),
+              V(new Set()),
+              D(!0),
+              (async () => {
+                for (let t = 0; t < H.length && !e; t++) {
+                  let e = H[t];
+                  Z((t) => [...t, e]);
+                  let a = (0, n.isToolRole)(e.role),
+                    r = (0, n.getDelayForRole)(e.role);
+                  if (
+                    a &&
+                    (V((t) => new Set(t).add(e.id)), T.current.set(e.id, 0), "thinking" === e.role)
+                  ) {
+                    let t = 200 + Math.floor(201 * Math.random());
+                    M.current.set(e.id, t), E.current.set(e.id, 1);
+                  }
+                  await new Promise((e) => setTimeout(e, r)),
+                    a &&
+                      (V((t) => {
+                        let a = new Set(t);
+                        return a.delete(e.id), a;
+                      }),
+                      T.current.delete(e.id),
+                      M.current.delete(e.id),
+                      E.current.delete(e.id));
+                }
+                e || D(!1);
+              })(),
+              () => {
+                e = !0;
+              }
+            );
+          }, [c, H, en, et, k]),
+          (0, l.useEffect)(() => {
+            0 !== F.size &&
+              F.forEach((e) => {
+                let t = T.current.get(e) ?? 0;
+                T.current.set(e, t + 1);
+              });
+          }, [z, F]),
+          (0, l.useEffect)(() => {
+            0 !== F.size &&
+              F.forEach((e) => {
+                let t = E.current.get(e),
+                  a = M.current.get(e);
+                if ("number" == typeof t && "number" == typeof a && t < a) {
+                  let r = a - t;
+                  E.current.set(e, t + (r > 50 ? 3 : r > 15 ? 2 : 1));
+                }
+              });
+          }, [z, F]),
+          (0, t.jsx)("div", {
+            ref: C,
+            className:
+              (f
+                ? "flex aspect-square w-full items-center justify-center p-5"
+                : u
+                  ? "h-full min-h-0 w-full overflow-hidden"
+                  : "bg-theme-card-hex text-theme-text border-theme-border-02 h-[70vh] min-h-[480px] w-full overflow-hidden border") +
+              (d ? " " + d : ""),
+            children: (0, t.jsx)("div", {
+              className: f
+                ? "text-theme-text flex w-full flex-col"
+                : "bg-theme-product-editor text-theme-text flex h-full min-h-0 w-full flex-col",
+              style: { fontSize: h },
+              children: (0, t.jsx)("div", {
+                ref: S,
+                className: `${f ? "" : "min-h-0 flex-1 px-4 pt-0 pb-2"} ${p ? "overflow-y-hidden" : "thin-scrollbar overflow-y-auto overscroll-auto"}`,
+                style: {
+                  scrollbarGutter: p ? "auto" : "stable",
+                  paddingTop: f ? "0" : "1em",
+                  pointerEvents: p ? "none" : "auto",
+                },
+                children: (0, t.jsxs)("div", {
+                  className: "type-product-base-mono flex min-h-full flex-col justify-end",
+                  children: [
+                    (0, t.jsx)("div", { ref: _ }),
+                    (0, t.jsx)("div", {
+                      className: "text-theme-text",
+                      children: (0, t.jsx)(r.T, { children: "Cursor Agent" }),
+                    }),
+                    (0, t.jsx)("div", {
+                      className: "text-theme-text-sec mb-2",
+                      children: "~/cursor/cursor-web",
+                    }),
+                    (0, t.jsx)("div", {
+                      className: "text-theme-text mb-2",
+                      children: N(e.chatTitle),
+                    }),
+                    I
+                      ? (0, t.jsx)("div", {
+                          className:
+                            "border-theme-border-02 bg-theme-bg-muted text-theme-text mb-4 border px-3 py-2",
+                          children: N(I.text),
+                        })
+                      : null,
+                    (0, t.jsx)("div", {
+                      className: "space-y-2",
+                      children: P.map((e) =>
+                        (0, t.jsx)(
+                          "div",
+                          {
+                            className: "leading-relaxed",
+                            children: ((e) => {
+                              if ("code" === e.role) {
+                                let a,
+                                  r,
+                                  l = e.text.split(" "),
+                                  n = l[0],
+                                  s = l.slice(1).join(" ");
+                                return (0, t.jsx)("div", {
+                                  className:
+                                    "border-theme-border-02 bg-theme-bg-muted border px-3 py-2",
+                                  children: (0, t.jsx)("div", {
+                                    className: "flex items-center",
+                                    children: (0, t.jsxs)("span", {
+                                      className: "type-product-base-mono",
+                                      children: [
+                                        (0, t.jsx)("span", {
+                                          className: "font-medium",
+                                          children: n,
+                                        }),
+                                        ((a = s.match(/\+(\d+)/)),
+                                        (r = s.match(/-(\d+)/)),
+                                        (0, t.jsxs)(t.Fragment, {
+                                          children: [
+                                            a
+                                              ? (0, t.jsxs)("span", {
+                                                  className: "ml-2 text-green-600",
+                                                  children: ["+", a[1]],
+                                                })
+                                              : null,
+                                            r
+                                              ? (0, t.jsxs)("span", {
+                                                  className: "ml-1 text-red-600",
+                                                  children: ["-", r[1]],
+                                                })
+                                              : null,
+                                          ],
+                                        })),
+                                      ],
+                                    }),
+                                  }),
+                                });
+                              }
+                              if (
+                                "thinking" === e.role ||
+                                "search" === e.role ||
+                                "read" === e.role
+                              ) {
+                                let a = F.has(e.id),
+                                  r = N(e.text).split(" "),
+                                  l = r[0] ?? "",
+                                  n = r.slice(1).join(" "),
+                                  s = l,
+                                  i = n ? ` ${n}` : "";
+                                a &&
+                                  ("read" === e.role
+                                    ? (s = L("Reading"))
+                                    : "search" === e.role
+                                      ? (s = L("Searching"))
+                                      : ((s = L("Thinking")),
+                                        (i = L(
+                                          "{count, plural, one { {count} token} other { {count} tokens}}",
+                                          { count: E.current.get(e.id) ?? 1 },
+                                        ))));
+                                let o = s + i,
+                                  c = s.length || 1,
+                                  m = T.current.get(e.id) ?? 0,
+                                  d = a ? m % c : -1,
+                                  u = a ? (d + 1) % c : -1,
+                                  h = s.length;
+                                return (0, t.jsxs)("div", {
+                                  className: "flex items-start gap-2",
+                                  children: [
+                                    (0, t.jsx)("span", {
+                                      className: a ? "text-green-500" : "text-theme-text",
+                                      children: a ? B : "⬢",
+                                    }),
+                                    (0, t.jsx)("div", {
+                                      className: "text-theme-text min-w-0 flex-1",
+                                      children: (0, t.jsx)("div", {
+                                        className: "truncate whitespace-nowrap",
+                                        children: Array.from(o).map((e, r) => {
+                                          let l = !(r >= h),
+                                            n = [
+                                              a
+                                                ? l
+                                                  ? "opacity-80"
+                                                  : "opacity-50"
+                                                : l
+                                                  ? "opacity-90"
+                                                  : "opacity-60",
+                                              (r === d || r === u) && a
+                                                ? "opacity-100 text-theme-text"
+                                                : "",
+                                            ]
+                                              .filter(Boolean)
+                                              .join(" ");
+                                          return (0, t.jsx)(
+                                            "span",
+                                            { className: n, children: e },
+                                            `c-${r}`,
+                                          );
+                                        }),
+                                      }),
+                                    }),
+                                  ],
+                                });
+                              }
+                              return "assistant" === e.role
+                                ? (0, t.jsx)("div", {
+                                    className: "text-theme-text whitespace-pre-wrap",
+                                    children: N(e.text)
+                                      .split(/(\*\*[^*]+\*\*)/g)
+                                      .map((e, a) =>
+                                        e.startsWith("**") && e.endsWith("**")
+                                          ? (0, t.jsx)(
+                                              "strong",
+                                              {
+                                                className: "text-theme-text",
+                                                children: e.slice(2, -2),
+                                              },
+                                              `b-${a}`,
+                                            )
+                                          : (0, t.jsx)(
+                                              l.default.Fragment,
+                                              { children: e },
+                                              `t-${a}`,
+                                            ),
+                                      ),
+                                  })
+                                : (0, t.jsx)("div", {
+                                    className: "text-theme-text",
+                                    children: N(e.text),
+                                  });
+                            })(e),
+                          },
+                          e.id,
+                        ),
+                      ),
+                    }),
+                    (0, t.jsx)("div", {
+                      className: "mt-3",
+                      children: (0, t.jsxs)("div", {
+                        className: "border-theme-text flex items-center gap-2 border px-3 py-2",
+                        children: [
+                          (0, t.jsx)("span", { className: "text-theme-text", children: "→" }),
+                          (0, t.jsx)("input", {
+                            type: "text",
+                            placeholder: L("Add a follow-up", {
+                              $context:
+                                "this is a placeholder in a input field where a user can add follow up instructions to their conversation with an AI model",
+                            }),
+                            name: "follow-up",
+                            autoComplete: "off",
+                            autoCorrect: "off",
+                            autoCapitalize: "none",
+                            spellCheck: !1,
+                            value: $,
+                            disabled: p,
+                            onChange: (e) => {
+                              !p &&
+                                (O(e.target.value),
+                                e.target.value.startsWith("/") || (Y(!1), U(0)));
+                            },
+                            className: `flex-1 bg-transparent outline-none text-theme-text ${p ? "placeholder:text-theme-text cursor-not-allowed" : "placeholder:text-theme-text-sec"}`,
+                            onKeyDown: (e) => {
+                              if (p) return;
+                              let t = $.startsWith("/"),
+                                a = $.slice(1).trim().toLowerCase(),
+                                r = W.filter((e) => e.name.toLowerCase().startsWith(a));
+                              if (X) {
+                                if ("ArrowDown" === e.key || "ArrowUp" === e.key) {
+                                  e.preventDefault(),
+                                    J((K + ("ArrowDown" === e.key ? 1 : -1) + G.length) % G.length);
+                                  return;
+                                }
+                                if ("Enter" === e.key) {
+                                  e.preventDefault();
+                                  let t = G[K];
+                                  t &&
+                                    (ee(t.label.replace(/ \(current\)$/i, "")), O(""), Y(!1), U(0));
+                                  return;
+                                }
+                                if ("Escape" === e.key) {
+                                  e.preventDefault(), Y(!1);
+                                  return;
+                                }
+                              }
+                              if (t) {
+                                if ("ArrowDown" === e.key || "ArrowUp" === e.key) {
+                                  e.preventDefault();
+                                  let t = r.length || W.length;
+                                  r.length, U((q + ("ArrowDown" === e.key ? 1 : -1) + t) % t);
+                                  return;
+                                }
+                                if ("Enter" === e.key) {
+                                  e.preventDefault();
+                                  let t = $.match(/^\/model\s+(.+)$/i);
+                                  if (t) {
+                                    let e = t[1].trim();
+                                    if (e) {
+                                      ee(e.replace(/\s*\(current\)\s*$/i, "")), O(""), Y(!1), U(0);
+                                      return;
+                                    }
+                                  }
+                                  let a = r.length ? r : W,
+                                    l = a[q] ?? a[0];
+                                  if (!l) return;
+                                  if ("model" === l.name) {
+                                    Y(!0), J(0), O("/model ");
+                                    return;
+                                  }
+                                  if ("reset" === l.name) {
+                                    O(""), Y(!1), U(0), ea((e) => e + 1);
+                                    return;
+                                  }
+                                }
+                                if ("Escape" === e.key) {
+                                  O(""), Y(!1), U(0);
+                                  return;
+                                }
+                              }
+                              "Enter" === e.key && e.preventDefault();
+                            },
+                          }),
+                          R
+                            ? (0, t.jsx)("span", {
+                                className: "text-theme-text-sec",
+                                children: (0, t.jsx)(r.T, { children: "ctrl+c to stop" }),
+                              })
+                            : null,
+                        ],
+                      }),
+                    }),
+                    $.startsWith("/") || X
+                      ? (0, t.jsx)("div", {
+                          className: "w-full",
+                          children: (0, t.jsx)("div", {
+                            className: "bg-theme-bg-muted text-theme-text min-h-[36px] px-1 pt-3",
+                            children: X
+                              ? (0, t.jsx)("div", {
+                                  children: G.map((e, a) =>
+                                    (0, t.jsxs)(
+                                      "div",
+                                      {
+                                        className:
+                                          a === K
+                                            ? "text-theme-text flex min-w-0 items-center gap-1 px-2"
+                                            : "text-theme-text-ter flex min-w-0 items-center gap-1 px-2 opacity-40",
+                                        children: [
+                                          (0, t.jsx)("span", {
+                                            className:
+                                              a === K
+                                                ? "text-theme-text w-4 flex-shrink-0"
+                                                : "w-4 flex-shrink-0",
+                                            children: a === K ? "→" : "",
+                                          }),
+                                          (0, t.jsxs)("span", {
+                                            className:
+                                              a === K
+                                                ? "text-theme-text min-w-0 truncate font-bold"
+                                                : "min-w-0 truncate",
+                                            children: [
+                                              "/model ",
+                                              e.label,
+                                              e.effort ? ` ${e.effort}` : "",
+                                            ],
+                                          }),
+                                        ],
+                                      },
+                                      e.key,
+                                    ),
+                                  ),
+                                })
+                              : ((v = $.slice(1).trim().toLowerCase()),
+                                (j = (w = W.filter((e) => e.name.toLowerCase().startsWith(v)))
+                                  .length
+                                  ? w
+                                  : W),
+                                (0, t.jsx)("div", {
+                                  children: j.map((e, a) =>
+                                    (0, t.jsxs)(
+                                      "div",
+                                      {
+                                        className:
+                                          a === q
+                                            ? "bg-theme-card-hover-hex/20 text-theme-text flex items-center gap-0 px-2"
+                                            : "text-theme-text-sec flex items-center gap-0 px-2",
+                                        children: [
+                                          (0, t.jsx)("span", {
+                                            className: "text-theme-text w-4",
+                                            children: a === q ? "→" : "",
+                                          }),
+                                          (0, t.jsxs)("span", {
+                                            className: "text-theme-text mr-3",
+                                            children: ["/", e.name],
+                                          }),
+                                          (0, t.jsx)("span", {
+                                            className: "opacity-60",
+                                            children: `  ${e.description}`,
+                                          }),
+                                        ],
+                                      },
+                                      e.name,
+                                    ),
+                                  ),
+                                })),
+                          }),
+                        })
+                      : null,
+                    $.startsWith("/") || X
+                      ? null
+                      : (0, t.jsxs)("div", {
+                          className: "text-theme-text-sec mt-3 min-h-[36px]",
+                          children: [
+                            Q,
+                            (0, t.jsx)("br", {}),
+                            (0, t.jsxs)(r.T, {
+                              children: [
+                                (0, t.jsx)(r.Var, { name: "slash", children: "/" }),
+                                " for commands ·",
+                                " ",
+                                (0, t.jsx)(r.Var, { name: "at", children: "@" }),
+                                " for files",
+                              ],
+                            }),
+                          ],
+                        }),
+                    (0, t.jsx)("div", { ref: A }),
+                  ],
+                }),
+              }),
+            }),
+          })
+        );
+      },
+    ]);
+  },
+  300815,
+  (e) => {
+    "use strict";
+    var t = e.i(505278),
+      a = e.i(207849);
+    let r = e.i(612793).default.memo(function (e) {
+      let r,
+        l,
+        n,
+        s = (0, a.c)(11),
+        { codepoint: i, size: o, className: c, style: m } = e,
+        d = void 0 === o ? 16 : o,
+        u = `${d}px`,
+        h = `${d}px`,
+        p = `${d}px`;
+      return (
+        s[0] !== m || s[1] !== u || s[2] !== h || s[3] !== p
+          ? ((r = {
+              fontFamily: "CursorIcons16",
+              fontSize: u,
+              lineHeight: 1,
+              display: "inline-block",
+              width: h,
+              height: p,
+              textAlign: "center",
+              ...m,
+            }),
+            (s[0] = m),
+            (s[1] = u),
+            (s[2] = h),
+            (s[3] = p),
+            (s[4] = r))
+          : (r = s[4]),
+        s[5] !== i
+          ? ((l = String.fromCodePoint(parseInt(i, 16))), (s[5] = i), (s[6] = l))
+          : (l = s[6]),
+        s[7] !== c || s[8] !== r || s[9] !== l
+          ? ((n = (0, t.jsx)("span", { className: c, style: r, children: l })),
+            (s[7] = c),
+            (s[8] = r),
+            (s[9] = l),
+            (s[10] = n))
+          : (n = s[10]),
+        n
+      );
+    });
+    e.s([
+      "CursorIcon",
+      0,
+      r,
+      "CursorIconStyle",
+      0,
+      function () {
+        let e,
+          r = (0, a.c)(1);
+        return (
+          r[0] === Symbol.for("react.memo_cache_sentinel")
+            ? ((e = (0, t.jsx)("style", {
+                children: `
+      @font-face {
+        font-family: 'CursorIcons16';
+        src: url('/marketing-static/fonts/cursor-icons-16.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+        font-display: block;
+      }
+      @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+      @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(2px) } to { opacity: 1; transform: translateY(0) } }
+      @keyframes fadeSlideRight { from { opacity: 0; transform: translateX(-2px) } to { opacity: 1; transform: translateX(0) } }
+      @keyframes barGrow { from { transform: scaleY(0) } to { transform: scaleY(1) } }
+      @keyframes tilePopIn { from { opacity: 0; transform: scale(0.7) translateY(3px) } to { opacity: 1; transform: scale(1) translateY(0) } }
+    `,
+              })),
+              (r[0] = e))
+            : (e = r[0]),
+          e
+        );
+      },
+    ]);
+  },
+  387944,
+  (e) => {
+    "use strict";
+    var t = e.i(505278),
+      a = e.i(207849);
+    e.s([
+      "FigmaLogo",
+      0,
+      function (e) {
+        let r,
+          l,
+          n,
+          s,
+          i,
+          o,
+          c = (0, a.c)(7),
+          { className: m } = e;
+        return (
+          c[0] === Symbol.for("react.memo_cache_sentinel")
+            ? ((r = (0, t.jsx)("path", {
+                fill: "#0acf83",
+                d: "M50 300c27.6 0 50-22.4 50-50v-50H50c-27.6 0-50 22.4-50 50s22.4 50 50 50z",
+              })),
+              (l = (0, t.jsx)("path", {
+                fill: "#a259ff",
+                d: "M0 150c0-27.6 22.4-50 50-50h50v100H50c-27.6 0-50-22.4-50-50z",
+              })),
+              (n = (0, t.jsx)("path", {
+                fill: "#f24e1e",
+                d: "M0 50C0 22.4 22.4 0 50 0h50v100H50C22.4 100 0 77.6 0 50z",
+              })),
+              (s = (0, t.jsx)("path", {
+                fill: "#ff7262",
+                d: "M100 0h50c27.6 0 50 22.4 50 50s-22.4 50-50 50h-50V0z",
+              })),
+              (i = (0, t.jsx)("path", {
+                fill: "#1abcfe",
+                d: "M200 150c0 27.6-22.4 50-50 50s-50-22.4-50-50 22.4-50 50-50 50 22.4 50 50z",
+              })),
+              (c[0] = r),
+              (c[1] = l),
+              (c[2] = n),
+              (c[3] = s),
+              (c[4] = i))
+            : ((r = c[0]), (l = c[1]), (n = c[2]), (s = c[3]), (i = c[4])),
+          c[5] !== m
+            ? ((o = (0, t.jsxs)("svg", {
+                viewBox: "0 0 200 300",
+                className: m,
+                xmlns: "http://www.w3.org/2000/svg",
+                children: [r, l, n, s, i],
+              })),
+              (c[5] = m),
+              (c[6] = o))
+            : (o = c[6]),
+          o
+        );
+      },
+      "GitHubLogo",
+      0,
+      function (e) {
+        let r,
+          l,
+          n = (0, a.c)(3),
+          { className: s } = e;
+        return (
+          n[0] === Symbol.for("react.memo_cache_sentinel")
+            ? ((r = (0, t.jsx)("path", {
+                fillRule: "evenodd",
+                clipRule: "evenodd",
+                d: "M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z",
+                fill: "currentColor",
+              })),
+              (n[0] = r))
+            : (r = n[0]),
+          n[1] !== s
+            ? ((l = (0, t.jsx)("svg", {
+                viewBox: "0 0 16 16",
+                fill: "none",
+                className: s,
+                xmlns: "http://www.w3.org/2000/svg",
+                children: r,
+              })),
+              (n[1] = s),
+              (n[2] = l))
+            : (l = n[2]),
+          l
+        );
+      },
+      "JiraLogo",
+      0,
+      function (e) {
+        let r,
+          l,
+          n = (0, a.c)(3),
+          { className: s } = e;
+        return (
+          n[0] === Symbol.for("react.memo_cache_sentinel")
+            ? ((r = (0, t.jsx)("path", {
+                d: "M11.571 11.513H0a5.218 5.218 0 0 0 5.232 5.215h2.13v2.057A5.215 5.215 0 0 0 12.575 24V12.518a1.005 1.005 0 0 0-1.005-1.005zm5.723-5.756H5.736a5.215 5.215 0 0 0 5.215 5.214h2.129v2.058a5.218 5.218 0 0 0 5.215 5.214V6.758a1.001 1.001 0 0 0-1-1.001zM23.013 0H11.455a5.215 5.215 0 0 0 5.215 5.215h2.129v2.057A5.215 5.215 0 0 0 24 12.483V1.005A1.001 1.001 0 0 0 23.013 0z",
+              })),
+              (n[0] = r))
+            : (r = n[0]),
+          n[1] !== s
+            ? ((l = (0, t.jsx)("svg", {
+                viewBox: "0 0 24 24",
+                fill: "#2684FF",
+                className: s,
+                xmlns: "http://www.w3.org/2000/svg",
+                children: r,
+              })),
+              (n[1] = s),
+              (n[2] = l))
+            : (l = n[2]),
+          l
+        );
+      },
+      "LinearLogo",
+      0,
+      function (e) {
+        let r,
+          l,
+          n = (0, a.c)(3),
+          { className: s } = e;
+        return (
+          n[0] === Symbol.for("react.memo_cache_sentinel")
+            ? ((r = (0, t.jsx)("path", {
+                fill: "currentColor",
+                d: "M1.22541 61.5228c-.2225-.9485.90748-1.5459 1.59638-.857L39.3342 97.1782c.6889.6889.0915 1.8189-.857 1.5964C20.0515 94.4522 5.54779 79.9485 1.22541 61.5228ZM.00189135 46.8891c-.01764375.2833.08887215.5599.28957165.7606L52.3503 99.7085c.2007.2007.4773.3075.7606.2896 2.3692-.1476 4.6938-.46 6.9624-.9259.7645-.157 1.0301-1.0963.4782-1.6481L2.57595 39.4485c-.55186-.5519-1.49117-.2863-1.648174.4782-.465915 2.2686-.77832 4.5932-.92588465 6.9624ZM4.21093 29.7054c-.16649.3738-.08169.8106.20765 1.1l64.77602 64.776c.2894.2894.7262.3742 1.1.2077 1.7861-.7956 3.5171-1.6927 5.1855-2.684.5521-.328.6373-1.0867.1832-1.5407L8.43566 24.3367c-.45409-.4541-1.21271-.3689-1.54074.1832-.99132 1.6684-1.88843 3.3994-2.68399 5.1855ZM12.6587 18.074c-.3701-.3701-.393-.9637-.0443-1.3541C21.7795 6.45931 35.1114 0 49.9519 0 77.5927 0 100 22.4073 100 50.0481c0 14.8405-6.4593 28.1724-16.7199 37.3375-.3903.3487-.984.3258-1.3542-.0443L12.6587 18.074Z",
+              })),
+              (n[0] = r))
+            : (r = n[0]),
+          n[1] !== s
+            ? ((l = (0, t.jsx)("svg", {
+                viewBox: "0 0 100 100",
+                fill: "none",
+                className: s,
+                xmlns: "http://www.w3.org/2000/svg",
+                children: r,
+              })),
+              (n[1] = s),
+              (n[2] = l))
+            : (l = n[2]),
+          l
+        );
+      },
+      "NotionLogo",
+      0,
+      function (e) {
+        let r,
+          l,
+          n,
+          s = (0, a.c)(4),
+          { className: i } = e;
+        return (
+          s[0] === Symbol.for("react.memo_cache_sentinel")
+            ? ((r = (0, t.jsx)("path", {
+                d: "M6.017 4.313l55.333 -4.087c6.797 -0.583 8.543 -0.19 12.817 2.917l17.663 12.443c2.913 2.14 3.883 2.723 3.883 5.053v68.243c0 4.277 -1.553 6.807 -6.99 7.193L24.467 99.967c-4.08 0.193 -6.023 -0.39 -8.16 -3.113L3.3 79.94c-2.333 -3.113 -3.3 -5.443 -3.3 -8.167V11.113c0 -3.497 1.553 -6.413 6.017 -6.8z",
+                fill: "#fff",
+              })),
+              (l = (0, t.jsx)("path", {
+                fillRule: "evenodd",
+                clipRule: "evenodd",
+                d: "M61.35 0.227l-55.333 4.087C1.553 4.7 0 7.617 0 11.113v60.66c0 2.723 0.967 5.053 3.3 8.167l13.007 16.913c2.137 2.723 4.08 3.307 8.16 3.113l64.257 -3.89c5.433 -0.387 6.99 -2.917 6.99 -7.193V20.64c0 -2.21 -0.873 -2.847 -3.443 -4.733L74.167 3.143c-4.273 -3.107 -6.02 -3.5 -12.817 -2.917zM25.92 19.523c-5.247 0.353 -6.437 0.433 -9.417 -1.99L8.927 11.507c-0.77 -0.78 -0.383 -1.753 1.557 -1.947l53.193 -3.887c4.467 -0.39 6.793 1.167 8.54 2.527l9.123 6.61c0.39 0.197 1.36 1.36 0.193 1.36l-54.933 3.307 -0.68 0.047zM19.803 88.3V30.367c0 -2.53 0.777 -3.697 3.103 -3.893L86 22.78c2.14 -0.193 3.107 1.167 3.107 3.693v57.547c0 2.53 -0.39 4.67 -3.883 4.863l-60.377 3.5c-3.493 0.193 -5.043 -0.97 -5.043 -4.083zm59.6 -54.827c0.387 1.75 0 3.5 -1.75 3.7l-2.91 0.577v42.773c-2.527 1.36 -4.853 2.137 -6.797 2.137 -3.107 0 -3.883 -0.973 -6.21 -3.887l-19.03 -29.94v28.967l6.02 1.363s0 3.5 -4.857 3.5l-13.39 0.777c-0.39 -0.78 0 -2.723 1.357 -3.11l3.497 -0.97v-38.3L30.48 40.667c-0.39 -1.75 0.58 -4.277 3.3 -4.473l14.367 -0.967 19.8 30.327v-26.83l-5.047 -0.58c-0.39 -2.143 1.163 -3.7 3.103 -3.89l13.4 -0.78z",
+                fill: "#000",
+              })),
+              (s[0] = r),
+              (s[1] = l))
+            : ((r = s[0]), (l = s[1])),
+          s[2] !== i
+            ? ((n = (0, t.jsxs)("svg", {
+                viewBox: "0 0 100 100",
+                fill: "none",
+                className: i,
+                xmlns: "http://www.w3.org/2000/svg",
+                children: [r, l],
+              })),
+              (s[2] = i),
+              (s[3] = n))
+            : (n = s[3]),
+          n
+        );
+      },
+      "PagerDutyLogo",
+      0,
+      function (e) {
+        let r,
+          l,
+          n,
+          s = (0, a.c)(4),
+          { className: i } = e;
+        return (
+          s[0] === Symbol.for("react.memo_cache_sentinel")
+            ? ((r = (0, t.jsx)("path", { d: "M32.6 103.2h15.2V128H32.6zm0 0", fill: "#06ac38" })),
+              (l = (0, t.jsx)("path", {
+                d: "M78.5 0H32.6v88.6h15.2V14.5h29.5c13.1 0 21.4 7.5 21.4 20.2 0 12.2-9 20.6-22.1 20.6H57.5v14h20.3c21.5 0 34.8-13.9 34.8-34.8C112.6 12.6 99.3 0 78.5 0zm0 0",
+                fill: "currentColor",
+              })),
+              (s[0] = r),
+              (s[1] = l))
+            : ((r = s[0]), (l = s[1])),
+          s[2] !== i
+            ? ((n = (0, t.jsxs)("svg", {
+                viewBox: "0 0 128 128",
+                className: i,
+                xmlns: "http://www.w3.org/2000/svg",
+                children: [r, l],
+              })),
+              (s[2] = i),
+              (s[3] = n))
+            : (n = s[3]),
+          n
+        );
+      },
+      "SlackLogo",
+      0,
+      function (e) {
+        let r,
+          l,
+          n = (0, a.c)(3),
+          { className: s } = e;
+        return (
+          n[0] === Symbol.for("react.memo_cache_sentinel")
+            ? ((r = (0, t.jsxs)("g", {
+                clipRule: "evenodd",
+                fillRule: "evenodd",
+                children: [
+                  (0, t.jsx)("path", {
+                    d: "m897.4 0c-135.3.1-244.8 109.9-244.7 245.2-.1 135.3 109.5 245.1 244.8 245.2h244.8v-245.1c.1-135.3-109.5-245.1-244.9-245.3.1 0 .1 0 0 0m0 654h-652.6c-135.3.1-244.9 109.9-244.8 245.2-.2 135.3 109.4 245.1 244.7 245.3h652.7c135.3-.1 244.9-109.9 244.8-245.2.1-135.4-109.5-245.2-244.8-245.3z",
+                    fill: "#36c5f0",
+                  }),
+                  (0, t.jsx)("path", {
+                    d: "m2447.6 899.2c.1-135.3-109.5-245.1-244.8-245.2-135.3.1-244.9 109.9-244.8 245.2v245.3h244.8c135.3-.1 244.9-109.9 244.8-245.3zm-652.7 0v-654c.1-135.2-109.4-245-244.7-245.2-135.3.1-244.9 109.9-244.8 245.2v654c-.2 135.3 109.4 245.1 244.7 245.3 135.3-.1 244.9-109.9 244.8-245.3z",
+                    fill: "#2eb67d",
+                  }),
+                  (0, t.jsx)("path", {
+                    d: "m1550.1 2452.5c135.3-.1 244.9-109.9 244.8-245.2.1-135.3-109.5-245.1-244.8-245.2h-244.8v245.2c-.1 135.2 109.5 245 244.8 245.2zm0-654.1h652.7c135.3-.1 244.9-109.9 244.8-245.2.2-135.3-109.4-245.1-244.7-245.3h-652.7c-135.3.1-244.9 109.9-244.8 245.2-.1 135.4 109.4 245.2 244.7 245.3z",
+                    fill: "#ecb22e",
+                  }),
+                  (0, t.jsx)("path", {
+                    d: "m0 1553.2c-.1 135.3 109.5 245.1 244.8 245.2 135.3-.1 244.9-109.9 244.8-245.2v-245.2h-244.8c-135.3.1-244.9 109.9-244.8 245.2zm652.7 0v654c-.2 135.3 109.4 245.1 244.7 245.3 135.3-.1 244.9-109.9 244.8-245.2v-653.9c.2-135.3-109.4-245.1-244.7-245.3-135.4 0-244.9 109.8-244.8 245.1 0 0 0 .1 0 0",
+                    fill: "#e01e5a",
+                  }),
+                ],
+              })),
+              (n[0] = r))
+            : (r = n[0]),
+          n[1] !== s
+            ? ((l = (0, t.jsx)("svg", {
+                viewBox: "-2.45 0 2452.5 2452.5",
+                className: s,
+                xmlns: "http://www.w3.org/2000/svg",
+                children: r,
+              })),
+              (n[1] = s),
+              (n[2] = l))
+            : (l = n[2]),
+          l
+        );
+      },
+    ]);
+  },
+  760872,
+  (e) => {
+    "use strict";
+    var t = e.i(505278),
+      a = e.i(972643),
+      r = e.i(341807),
+      l = e.i(411318),
+      n = e.i(612793),
+      s = e.i(417038),
+      i = e.i(22672);
+    e.s([
+      "default",
+      0,
+      function ({
+        className: e,
+        aspectRatio: o = "1/1",
+        foregroundMaxWidth: c = 360,
+        role: m = "region",
+        ariaLabel: d = "Tool calls",
+        children: u,
+        inputText: h = (0, l.msg)("Where are these menu label colors defined?"),
+        outputSteps: p,
+        width: x,
+        height: f,
+      }) {
+        let g = (0, l.useMessages)(),
+          { isPlaying: b } = (0, s.useDemoPlayback)();
+        function y(e) {
+          return "number" == typeof e ? `${e}px` : e;
+        }
+        let v = (0, i.buildAspectClasses)(o),
+          w = (0, n.useMemo)(() => {
+            let e = [
+              {
+                active: (0, l.msg)("Grepping", {
+                  $context: 'As in an ai agent autonomously executing the "grep" command',
+                }),
+                complete: (0, l.msg)("Grepped Choose a model", {
+                  $context: "As in a grep command",
+                }),
+              },
+              {
+                active: (0, l.msg)("Searching", {
+                  $context: 'As in an ai agent autonomously executing a "search" command',
+                }),
+                complete: (0, l.msg)("Searched Where is the model picker UI implemented?"),
+              },
+              {
+                active: (0, l.msg)("Searching", {
+                  $context: 'As in an ai agent autonomously executing a "search" command',
+                }),
+                complete: (0, l.msg)("Searched How are model labels colored in the UI?"),
+              },
+              {
+                active: (0, l.msg)("Reading", {
+                  $context: 'As in an ai agent autonomously executing a "read" command',
+                }),
+                complete: (0, l.msg)("Read ContextMenu.tsx"),
+              },
+            ];
+            return p || e;
+          }, [p]),
+          [j, N] = (0, n.useState)(() => w.map(() => "inactive")),
+          [k, C] = (0, n.useState)(0);
+        return (
+          (0, n.useEffect)(() => {
+            if (u) return;
+            if (!b) {
+              C(w.length), N(w.map(() => "complete"));
+              return;
+            }
+            let e = !1,
+              t = [];
+            return (
+              !(function a() {
+                if (e) return;
+                C(0),
+                  N(w.map(() => "inactive")),
+                  t.forEach((e) => window.clearTimeout(e)),
+                  (t = []);
+                for (let a = 0; a < w.length; a += 1) {
+                  let r = window.setTimeout(
+                    () => {
+                      if (e) return;
+                      C((e) => Math.min(w.length, Math.max(e, a + 1))),
+                        N((e) => e.map((e, t) => (t === a ? "active" : e)));
+                      let r = window.setTimeout(() => {
+                        e || N((e) => e.map((e, t) => (t === a ? "complete" : e)));
+                      }, 1400);
+                      t.push(r);
+                    },
+                    200 + 1500 * a,
+                  );
+                  t.push(r);
+                }
+                let r = 200 + (w.length - 1) * 1500 + 1400 + 2e3,
+                  l = window.setTimeout(() => {
+                    e || a();
+                  }, r);
+                t.push(l);
+              })(),
+              () => {
+                for (let a of ((e = !0), t)) window.clearTimeout(a);
+              }
+            );
+          }, [u, w.length, b]),
+          (0, t.jsx)("div", {
+            className: (e ? e + " " : "") + (v || ""),
+            style: {
+              position: "relative",
+              width: x ? y(x) : "100%",
+              height: f ? y(f) : void 0,
+              backgroundColor: "transparent",
+            },
+            children: (0, t.jsx)("div", {
+              className:
+                "absolute inset-x-0 top-0 flex h-full max-h-[var(--max-h-mobile)] items-center justify-center xl:inset-0 xl:max-h-none",
+              children: (0, t.jsx)("div", {
+                role: m,
+                "aria-label": d,
+                style: { minWidth: 180, maxWidth: `min(83.333333%, ${y(c)})`, width: "100%" },
+                children:
+                  u ??
+                  (0, t.jsx)("div", {
+                    children: (0, t.jsxs)(r.motion.div, {
+                      layout: !0,
+                      className: "space-y-v9/12",
+                      children: [
+                        (0, t.jsx)(r.motion.div, {
+                          layout: !0,
+                          initial: { opacity: 0, y: 6 },
+                          animate: { opacity: 1, y: 0 },
+                          transition: { duration: 0.18, ease: "easeOut" },
+                          className:
+                            "border-theme-border-02 bg-theme-card-04-hex text-theme-text type-product-lg px-g1 py-g0.75 w-full rounded-md border",
+                          children: g(h),
+                        }),
+                        (0, t.jsx)(r.motion.ul, {
+                          layout: !0,
+                          className: "space-y-v6/12 pl-g0.5",
+                          children: (0, t.jsx)(a.AnimatePresence, {
+                            initial: !1,
+                            children: w.slice(0, k).map((e, a) => {
+                              let l = "active" === j[a] ? g(e.active) : g(e.complete),
+                                n = l.match(/^(\S+)([\s\S]*)$/),
+                                s = n ? (n[1] ?? "") : l,
+                                i = n ? (n[2] ?? "") : "",
+                                o = "active" === j[a];
+                              return (0, t.jsx)(
+                                r.motion.li,
+                                {
+                                  layout: !0,
+                                  initial: { opacity: 0, y: 6 },
+                                  animate: { opacity: 1, y: 0 },
+                                  exit: { opacity: 0, y: -4 },
+                                  transition: {
+                                    duration: 0.18,
+                                    ease: "easeOut",
+                                    layout: { type: "spring", stiffness: 360, damping: 32 },
+                                  },
+                                  className: "type-product-lg text-theme-text-sec leading-snug",
+                                  children: (0, t.jsx)("div", {
+                                    className:
+                                      "text-theme-text-sec flex items-baseline gap-1 overflow-hidden",
+                                    children: o
+                                      ? (0, t.jsx)("span", {
+                                          className: "shimmer",
+                                          style: {
+                                            "--shimmer-color": "var(--color-theme-text-sec)",
+                                            "--shimmer-intensity": "80%",
+                                          },
+                                          children: l,
+                                        })
+                                      : (0, t.jsxs)(t.Fragment, {
+                                          children: [
+                                            (0, t.jsx)("span", {
+                                              className: "text-theme-text-sec flex-shrink-0",
+                                              children: s,
+                                            }),
+                                            i
+                                              ? (0, t.jsx)("span", {
+                                                  className:
+                                                    "text-theme-text-sec min-w-0 truncate opacity-60",
+                                                  children: i,
+                                                })
+                                              : null,
+                                          ],
+                                        }),
+                                  }),
+                                },
+                                a,
+                              );
+                            }),
+                          }),
+                        }),
+                      ],
+                    }),
+                  }),
+              }),
+            }),
+          })
+        );
+      },
+    ]);
+  },
+  677869,
+  (e) => {
+    "use strict";
+    var t = e.i(505278),
+      a = e.i(207849),
+      r = e.i(395394),
+      l = e.i(264458),
+      n = e.i(346140),
+      s = e.i(612793),
+      i = e.i(434070),
+      o = e.i(974593),
+      c = e.i(44620),
+      m = e.i(270837),
+      d = e.i(39014),
+      u = e.i(147841),
+      h = e.i(565182),
+      p = e.i(36135),
+      x = e.i(995201),
+      f = e.i(616662),
+      g = e.i(267878),
+      b = e.i(503342),
+      y = e.i(625857),
+      v = e.i(329329),
+      w = e.i(506565);
+    function j(e) {
+      let r,
+        n,
+        s,
+        i,
+        o,
+        c,
+        m = (0, a.c)(31),
+        {
+          title: d,
+          body: u,
+          eyebrow: h,
+          banner: p,
+          cta: x,
+          alignment: f,
+          textSize: g,
+          footerTitle: b,
+          footerBody: y,
+          footerEyebrow: j,
+          footerBanner: N,
+          footerCta: k,
+          footerAlignment: C,
+          footerTextSize: S,
+          sectionId: A,
+          children: _,
+          semanticLevel: T,
+          className: M,
+        } = e;
+      if (
+        m[0] !== f ||
+        m[1] !== p ||
+        m[2] !== u ||
+        m[3] !== _ ||
+        m[4] !== M ||
+        m[5] !== x ||
+        m[6] !== h ||
+        m[7] !== C ||
+        m[8] !== N ||
+        m[9] !== y ||
+        m[10] !== k ||
+        m[11] !== j ||
+        m[12] !== S ||
+        m[13] !== b ||
+        m[14] !== A ||
+        m[15] !== T ||
+        m[16] !== g ||
+        m[17] !== d
+      ) {
+        let e = { footerTitle: b, footerBody: y, footerEyebrow: j, footerBanner: N, footerCta: k };
+        m[23] !== M ? ((r = (0, l.default)("section", M)), (m[23] = M), (m[24] = r)) : (r = m[24]),
+          (n = A),
+          (s =
+            (0, w.hasItemContent)({ title: d, body: u, eyebrow: h, banner: p, cta: x }) &&
+            (0, t.jsx)("div", {
+              className: "container",
+              children: (0, t.jsx)(v.default, {
+                banner: p,
+                eyebrow: h,
+                title: d,
+                body: u,
+                cta: x,
+                textSize: g,
+                alignment: f,
+                semanticLevel: T,
+              }),
+            })),
+          (i = _),
+          (o =
+            (0, w.hasFooterContent)(e) &&
+            (0, t.jsx)("div", {
+              className: `${(0, w.getFooterSpacing)(e)} container`,
+              children: (0, t.jsx)(v.default, {
+                banner: N,
+                eyebrow: j,
+                title: b,
+                body: y,
+                cta: k,
+                textSize: S,
+                alignment: C,
+                semanticLevel: T,
+                isSolo: !0,
+              }),
+            })),
+          (m[0] = f),
+          (m[1] = p),
+          (m[2] = u),
+          (m[3] = _),
+          (m[4] = M),
+          (m[5] = x),
+          (m[6] = h),
+          (m[7] = C),
+          (m[8] = N),
+          (m[9] = y),
+          (m[10] = k),
+          (m[11] = j),
+          (m[12] = S),
+          (m[13] = b),
+          (m[14] = A),
+          (m[15] = T),
+          (m[16] = g),
+          (m[17] = d),
+          (m[18] = r),
+          (m[19] = n),
+          (m[20] = s),
+          (m[21] = i),
+          (m[22] = o);
+      } else (r = m[18]), (n = m[19]), (s = m[20]), (i = m[21]), (o = m[22]);
+      return (
+        m[25] !== r || m[26] !== n || m[27] !== s || m[28] !== i || m[29] !== o
+          ? ((c = (0, t.jsxs)("section", { className: r, id: n, children: [s, i, o] })),
+            (m[25] = r),
+            (m[26] = n),
+            (m[27] = s),
+            (m[28] = i),
+            (m[29] = o),
+            (m[30] = c))
+          : (c = m[30]),
+        c
+      );
+    }
+    var N = e.i(417038),
+      k = e.i(548116);
+    let C = ["site", "docs", "cursor"],
+      S = ["main", "staging", "develop"],
+      A = "var(--shadow-outline-theme), 0 18px 36px -18px rgba(0,0,0,0.28)";
+    function _() {
+      let e,
+        r,
+        n,
+        i,
+        o,
+        c,
+        m,
+        d,
+        u,
+        h,
+        p,
+        x,
+        f,
+        b,
+        y,
+        v,
+        w,
+        j,
+        N,
+        k,
+        _,
+        L,
+        I,
+        H,
+        P = (0, a.c)(50),
+        [Z, F] = (0, s.useState)(!1),
+        [V, z] = (0, s.useState)(C[0]),
+        [B, R] = (0, s.useState)(S[0]),
+        [D, $] = (0, s.useState)(null),
+        O = (0, s.useRef)(null),
+        W = (0, s.useRef)(null),
+        G = (0, s.useRef)(null),
+        q = (0, s.useRef)(null);
+      P[0] !== D
+        ? ((e = () => {
+            if (!D) return;
+            let e = function (e) {
+              let t = e.target,
+                a = "repository" === D ? O : G,
+                r = "repository" === D ? W : q;
+              a.current?.contains(t) || r.current?.contains(t) || $(null);
+            };
+            return (
+              document.addEventListener("pointerdown", e),
+              () => document.removeEventListener("pointerdown", e)
+            );
+          }),
+          (r = [D]),
+          (P[0] = D),
+          (P[1] = e),
+          (P[2] = r))
+        : ((e = P[1]), (r = P[2])),
+        (0, s.useEffect)(e, r),
+        P[3] === Symbol.for("react.memo_cache_sentinel")
+          ? ((n = (0, t.jsx)("p", {
+              className: "text-theme-text pl-2 text-[18px] leading-tight font-medium",
+              children: "Fix CI failures on main",
+            })),
+            (P[3] = n))
+          : (n = P[3]);
+      let U = Z ? "Active" : "Inactive";
+      P[4] === Symbol.for("react.memo_cache_sentinel")
+        ? ((i = () => F(E)), (P[4] = i))
+        : (i = P[4]);
+      let X = Z ? "bg-theme-product-ansi-green" : "bg-theme-border-02";
+      P[5] !== X
+        ? ((o = (0, l.default)(
+            "relative inline-flex h-4 w-7 shrink-0 items-center rounded-full transition-colors",
+            X,
+          )),
+          (P[5] = X),
+          (P[6] = o))
+        : (o = P[6]);
+      let Y = Z ? "translate-x-3.5" : "translate-x-0.5";
+      P[7] !== Y
+        ? ((c = (0, l.default)(
+            "inline-block size-3 rounded-full bg-white shadow-sm transition-transform",
+            Y,
+          )),
+          (P[7] = Y),
+          (P[8] = c))
+        : (c = P[8]),
+        P[9] !== c
+          ? ((m = (0, t.jsx)("span", { className: c })), (P[9] = c), (P[10] = m))
+          : (m = P[10]),
+        P[11] !== o || P[12] !== m
+          ? ((d = (0, t.jsx)("span", { className: o, children: m })),
+            (P[11] = o),
+            (P[12] = m),
+            (P[13] = d))
+          : (d = P[13]);
+      let K = Z ? "Active" : "Inactive";
+      return (
+        P[14] !== K
+          ? ((u = (0, t.jsx)("span", {
+              className: "type-product-base text-theme-text-sec",
+              children: K,
+            })),
+            (P[14] = K),
+            (P[15] = u))
+          : (u = P[15]),
+        P[16] !== Z || P[17] !== d || P[18] !== u || P[19] !== U
+          ? ((h = (0, t.jsxs)("button", {
+              type: "button",
+              role: "switch",
+              "aria-checked": Z,
+              "aria-label": U,
+              onClick: i,
+              className: "flex cursor-pointer items-center gap-2",
+              children: [d, u],
+            })),
+            (P[16] = Z),
+            (P[17] = d),
+            (P[18] = u),
+            (P[19] = U),
+            (P[20] = h))
+          : (h = P[20]),
+        P[21] === Symbol.for("react.memo_cache_sentinel")
+          ? ((p = (0, t.jsx)("span", {
+              "aria-hidden": !0,
+              className: "bg-theme-border-02 h-3.5 w-px shrink-0",
+            })),
+            (P[21] = p))
+          : (p = P[21]),
+        P[22] === Symbol.for("react.memo_cache_sentinel")
+          ? ((x = () => $(M)), (P[22] = x))
+          : (x = P[22]),
+        P[23] !== V
+          ? ((f = (0, t.jsx)("span", { className: "max-w-[140px] truncate", children: V })),
+            (P[23] = V),
+            (P[24] = f))
+          : (f = P[24]),
+        P[25] === Symbol.for("react.memo_cache_sentinel")
+          ? ((b = (0, t.jsx)(g.default, { className: "h-3 w-3 shrink-0 opacity-60" })), (P[25] = b))
+          : (b = P[25]),
+        P[26] !== f
+          ? ((y = (0, t.jsxs)("button", {
+              ref: O,
+              type: "button",
+              onClick: x,
+              className:
+                "type-product-base text-theme-text-sec hover:text-theme-text flex cursor-pointer items-center gap-1 transition-colors",
+              children: [f, b],
+            })),
+            (P[26] = f),
+            (P[27] = y))
+          : (y = P[27]),
+        P[28] !== D || P[29] !== V
+          ? ((v =
+              "repository" === D &&
+              (0, t.jsx)("div", {
+                ref: W,
+                className:
+                  "bg-theme-card-hex absolute top-full left-0 z-50 mt-1 min-w-[160px] overflow-hidden rounded-lg p-1",
+                style: { boxShadow: A },
+                children: C.map((e) =>
+                  (0, t.jsxs)(
+                    "button",
+                    {
+                      type: "button",
+                      onClick: () => {
+                        z(e), $(null);
+                      },
+                      className:
+                        "type-product-base text-theme-text-sec hover:bg-theme-card-hover-hex hover:text-theme-text flex w-full cursor-pointer items-center rounded-md px-2 py-1.5 text-left transition-colors",
+                      children: [
+                        (0, t.jsx)("span", { className: "min-w-0 flex-1 truncate", children: e }),
+                        V === e &&
+                          (0, t.jsx)("span", { className: "text-theme-text", children: "✓" }),
+                      ],
+                    },
+                    e,
+                  ),
+                ),
+              })),
+            (P[28] = D),
+            (P[29] = V),
+            (P[30] = v))
+          : (v = P[30]),
+        P[31] !== y || P[32] !== v
+          ? ((w = (0, t.jsxs)("div", { className: "relative", children: [y, v] })),
+            (P[31] = y),
+            (P[32] = v),
+            (P[33] = w))
+          : (w = P[33]),
+        P[34] === Symbol.for("react.memo_cache_sentinel")
+          ? ((j = () => $(T)), (P[34] = j))
+          : (j = P[34]),
+        P[35] !== B
+          ? ((N = (0, t.jsx)("span", { className: "max-w-[100px] truncate", children: B })),
+            (P[35] = B),
+            (P[36] = N))
+          : (N = P[36]),
+        P[37] === Symbol.for("react.memo_cache_sentinel")
+          ? ((k = (0, t.jsx)(g.default, { className: "h-3 w-3 shrink-0 opacity-60" })), (P[37] = k))
+          : (k = P[37]),
+        P[38] !== N
+          ? ((_ = (0, t.jsxs)("button", {
+              ref: G,
+              type: "button",
+              onClick: j,
+              className:
+                "type-product-base text-theme-text-sec hover:text-theme-text flex cursor-pointer items-center gap-1 transition-colors",
+              children: [N, k],
+            })),
+            (P[38] = N),
+            (P[39] = _))
+          : (_ = P[39]),
+        P[40] !== B || P[41] !== D
+          ? ((L =
+              "branch" === D &&
+              (0, t.jsx)("div", {
+                ref: q,
+                className:
+                  "bg-theme-card-hex absolute top-full left-0 z-50 mt-1 min-w-[120px] overflow-hidden rounded-lg p-1",
+                style: { boxShadow: A },
+                children: S.map((e) =>
+                  (0, t.jsxs)(
+                    "button",
+                    {
+                      type: "button",
+                      onClick: () => {
+                        R(e), $(null);
+                      },
+                      className:
+                        "type-product-base text-theme-text-sec hover:bg-theme-card-hover-hex hover:text-theme-text flex w-full cursor-pointer items-center rounded-md px-2 py-1.5 text-left transition-colors",
+                      children: [
+                        (0, t.jsx)("span", { className: "min-w-0 flex-1 truncate", children: e }),
+                        B === e &&
+                          (0, t.jsx)("span", { className: "text-theme-text", children: "✓" }),
+                      ],
+                    },
+                    e,
+                  ),
+                ),
+              })),
+            (P[40] = B),
+            (P[41] = D),
+            (P[42] = L))
+          : (L = P[42]),
+        P[43] !== _ || P[44] !== L
+          ? ((I = (0, t.jsxs)("div", { className: "relative", children: [_, L] })),
+            (P[43] = _),
+            (P[44] = L),
+            (P[45] = I))
+          : (I = P[45]),
+        P[46] !== h || P[47] !== w || P[48] !== I
+          ? ((H = (0, t.jsxs)("div", {
+              className: "w-full",
+              children: [
+                n,
+                (0, t.jsxs)("div", {
+                  className: "mt-2 flex flex-wrap items-center gap-x-2.5 gap-y-1.5 pl-2",
+                  children: [h, p, w, I],
+                }),
+              ],
+            })),
+            (P[46] = h),
+            (P[47] = w),
+            (P[48] = I),
+            (P[49] = H))
+          : (H = P[49]),
+        H
+      );
+    }
+    function T(e) {
+      return "branch" === e ? null : "branch";
+    }
+    function M(e) {
+      return "repository" === e ? null : "repository";
+    }
+    function E(e) {
+      return !e;
+    }
+    let L = (e) => ({ src: e }),
+      I = ["websiteBuilder", "productPlanning", "startupAnalytics"];
+    function H(e) {
+      let r,
+        l,
+        i,
+        o,
+        c,
+        u,
+        x,
+        f,
+        g,
+        b = (0, a.c)(18),
+        { initialHighlightHtml: y } = e,
+        [v, w] = (0, s.useState)(!1),
+        [j, N] = (0, s.useState)(0);
+      b[0] !== v
+        ? ((r = (e) => {
+            e.isTrusted && (v || w(!0));
+          }),
+          (b[0] = v),
+          (b[1] = r))
+        : (r = b[1]);
+      let k = r;
+      b[2] === Symbol.for("react.memo_cache_sentinel")
+        ? ((l = () => {
+            w(!1), N(P);
+          }),
+          (b[2] = l))
+        : (l = b[2]);
+      let C = l;
+      b[3] === Symbol.for("react.memo_cache_sentinel")
+        ? ((i = (0, t.jsx)(n.T, { children: "Get Cursor" })), (b[3] = i))
+        : (i = b[3]);
+      let S = !v;
+      return (
+        b[4] === Symbol.for("react.memo_cache_sentinel")
+          ? ((o = { type: "agent", streamInitialMessages: !0 }), (b[4] = o))
+          : (o = b[4]),
+        b[5] !== j || b[6] !== y || b[7] !== S
+          ? ((c = {
+              id: "cursor-ide",
+              title: "Cursor Desktop",
+              menuEventName: "demo-desktop-hero:settings",
+              x: 50,
+              y: 50,
+              zIndex: 10,
+              widthPx: 1080,
+              heightPx: 620,
+              ctaHref: "/download",
+              ctaLabel: i,
+              content: (0, t.jsx)(d.default, {
+                layoutPreset: "agent",
+                scenario: "websiteBuilder",
+                autoCycleScenarioKeys: I,
+                autoCycleIntervalMs: 4500,
+                autoCycleEnabled: S,
+                autoCycleResetKey: j,
+                settingsEventName: "demo-desktop-hero:settings",
+                showEditor: !0,
+                hideTabsForBrowser: !0,
+                showTabIcons: !1,
+                showAgentsSidebarHeader: !1,
+                mode: o,
+                initialHighlightHtml: y,
+                embedded: !0,
+              }),
+            }),
+            (b[5] = j),
+            (b[6] = y),
+            (b[7] = S),
+            (b[8] = c))
+          : (c = b[8]),
+        b[9] === Symbol.for("react.memo_cache_sentinel")
+          ? ((u = {
+              id: "cursor-agent-cli",
+              title: "Cursor CLI",
+              x: 100,
+              y: 100,
+              zIndex: 15,
+              widthPx: 480,
+              heightPx: 360,
+              mobileXOffset: 40,
+              ctaHref: "/download",
+              ctaLabel: (0, t.jsx)(n.T, { children: "Get CLI" }),
+              content: (0, t.jsx)(m.default, {
+                scenario: h.demoScenarios.startupAnalytics,
+                embedded: !0,
+                streamInitialMessages: !0,
+                title: "Cursor CLI",
+              }),
+            }),
+            (b[9] = u))
+          : (u = b[9]),
+        b[10] !== c ? ((x = [c, u]), (b[10] = c), (b[11] = x)) : (x = b[11]),
+        b[12] !== x || b[13] !== v
+          ? ((f = (0, t.jsx)(p.default, {
+              minHeight: 720,
+              innerPaddingPx: 32,
+              mobileInnerPaddingPx: 16,
+              allowMobileInteractions: !0,
+              externalLayoutAdjusted: v,
+              onReset: C,
+              windows: x,
+            })),
+            (b[12] = x),
+            (b[13] = v),
+            (b[14] = f))
+          : (f = b[14]),
+        b[15] !== k || b[16] !== f
+          ? ((g = (0, t.jsx)("div", {
+              className: "relative",
+              onPointerDownCapture: k,
+              onKeyDownCapture: k,
+              children: f,
+            })),
+            (b[15] = k),
+            (b[16] = f),
+            (b[17] = g))
+          : (g = b[17]),
+        g
+      );
+    }
+    function P(e) {
+      return e + 1;
+    }
+    function Z(e) {
+      let r,
+        l,
+        n,
+        s = (0, a.c)(5),
+        { initialHighlightHtml: i, mobileHeroImageTest: o } = e;
+      s[0] !== i
+        ? ((r = (0, t.jsx)(H, { initialHighlightHtml: i })), (s[0] = i), (s[1] = r))
+        : (r = s[1]);
+      let c = r;
+      return void 0 !== o && o
+        ? (s[2] === Symbol.for("react.memo_cache_sentinel")
+            ? ((l = (0, t.jsx)("div", {
+                className: "hidden max-md:block",
+                children: (0, t.jsx)(x.default, {
+                  fitContainer: !0,
+                  height: "min(378px, calc(100vw - 2 * var(--spacing-g2)))",
+                  children: (0, t.jsx)(x.MobileAgentDefaultContent, {}),
+                }),
+              })),
+              (s[2] = l))
+            : (l = s[2]),
+          s[3] !== c
+            ? ((n = (0, t.jsxs)(t.Fragment, {
+                children: [l, (0, t.jsx)("div", { className: "max-md:hidden", children: c })],
+              })),
+              (s[3] = c),
+              (s[4] = n))
+            : (n = s[4]),
+          n)
+        : c;
+    }
+    function F(e) {
+      return {
+        eventName: "homepage_hero_cta_clicked",
+        eventProperties: [{ key: "cta_variant", value: e, type: "string" }],
+      };
+    }
+    let V = { mobileLabel: "Get started", mobileHref: "/login", mobileTracking: F("get_started") };
+    function z(e) {
+      let a = "contact_sales" === e;
+      return {
+        downloadButton: !1,
+        copyButton: !1,
+        icon: "arrow",
+        link: {
+          linkType: "page",
+          slug: a
+            ? "contact-sales?source=hero_contact_sales"
+            : "talk_to_team" === e
+              ? "contact-sales?source=hero_contact_team"
+              : "contact-sales?source=hero_request_demo",
+          label: a
+            ? (0, t.jsx)(n.T, { children: "Contact sales" })
+            : "talk_to_team" === e
+              ? (0, t.jsx)(n.T, { children: "Talk to the team" })
+              : (0, t.jsx)(n.T, { children: "Request a demo" }),
+        },
+        variant: "secondary",
+        size: "regular",
+        tracking: F(e),
+      };
+    }
+    function B(e) {
+      let r,
+        l,
+        s,
+        i = (0, a.c)(4),
+        { initialHighlightHtml: o } = e;
+      return (
+        i[0] === Symbol.for("react.memo_cache_sentinel")
+          ? ((r = (0, t.jsx)(n.T, { children: "Get Cursor" })), (i[0] = r))
+          : (r = i[0]),
+        i[1] === Symbol.for("react.memo_cache_sentinel")
+          ? ((l = { type: "agent", streamInitialMessages: !0 }), (i[1] = l))
+          : (l = i[1]),
+        i[2] !== o
+          ? ((s = (0, t.jsx)(p.default, {
+              height: 680,
+              minHeight: 680,
+              backgroundColorToken: "transparent",
+              windows: [
+                {
+                  id: "agent-react-hooks",
+                  title: "Cursor",
+                  x: 50,
+                  y: 50,
+                  zIndex: 10,
+                  widthPx: 920,
+                  heightPx: 600,
+                  ctaHref: "/download",
+                  ctaLabel: r,
+                  content: (0, t.jsx)(d.default, {
+                    layoutPreset: "agent",
+                    scenario: "productPlanning",
+                    showEditor: !0,
+                    showAgents: !1,
+                    showTabIcons: !1,
+                    mode: l,
+                    defaultMode: "plan",
+                    initialHighlightHtml: o,
+                    embedded: !0,
+                  }),
+                },
+              ],
+            })),
+            (i[2] = o),
+            (i[3] = s))
+          : (s = i[3]),
+        s
+      );
+    }
+    function R() {
+      let e,
+        l,
+        i,
+        o,
+        c,
+        m,
+        d,
+        h,
+        x,
+        f,
+        g,
+        b,
+        y,
+        v,
+        w,
+        j,
+        C,
+        S,
+        A,
+        T,
+        M,
+        E = (0, a.c)(34),
+        L = (0, s.useRef)(null),
+        I = (0, s.useRef)(null),
+        H = (0, s.useRef)(null);
+      E[0] === Symbol.for("react.memo_cache_sentinel") ? ((e = []), (E[0] = e)) : (e = E[0]);
+      let P = (0, s.useRef)(e),
+        Z = (0, s.useRef)(null),
+        [F, V] = (0, s.useState)("idle"),
+        z = (0, k.useMediaQuery)("(max-width: 659px)");
+      E[1] === Symbol.for("react.memo_cache_sentinel")
+        ? ((l = () => {
+            for (let e of P.current) window.clearTimeout(e);
+            P.current = [];
+          }),
+          (E[1] = l))
+        : (l = E[1]);
+      let B = l;
+      E[2] !== z
+        ? ((i = () => {
+            if (z) return Promise.resolve();
+            let e = I.current;
+            if (!e) return Promise.resolve();
+            let t = Math.max(0, e.scrollHeight - e.clientHeight);
+            return (
+              e.scrollTo({ top: t, behavior: "smooth" }),
+              new Promise((a) => {
+                let r = 0,
+                  l = 0,
+                  n = !1,
+                  s = () => {
+                    n || ((n = !0), window.clearTimeout(l), window.cancelAnimationFrame(r), a());
+                  },
+                  i = () => {
+                    let a = Math.min(Math.max(0, t), Math.max(0, e.scrollHeight - e.clientHeight));
+                    2 >= Math.abs(e.scrollTop - a) ? s() : (r = window.requestAnimationFrame(i));
+                  };
+                (l = window.setTimeout(s, 900)), (r = window.requestAnimationFrame(i));
+              })
+            );
+          }),
+          (E[2] = z),
+          (E[3] = i))
+        : (i = E[3]);
+      let R = i;
+      E[4] === Symbol.for("react.memo_cache_sentinel")
+        ? ((o = () => {
+            let e = I.current;
+            e &&
+              (Z.current?.(),
+              (Z.current = (function (e) {
+                let t = e.scrollTop,
+                  a = 0 - t;
+                if (2 >= Math.abs(a)) return (e.scrollTop = 0), () => {};
+                let r = window.performance.now(),
+                  l = 0,
+                  n = !1,
+                  s = (i) => {
+                    if (n) return;
+                    let o = Math.min(1, (i - r) / 650);
+                    if (((e.scrollTop = t + a * (1 - (1 - o) ** 3)), o < 1)) {
+                      l = window.requestAnimationFrame(s);
+                      return;
+                    }
+                    e.scrollTop = 0;
+                  };
+                return (
+                  (l = window.requestAnimationFrame(s)),
+                  () => {
+                    (n = !0), window.cancelAnimationFrame(l);
+                  }
+                );
+              })(e)));
+          }),
+          (E[4] = o))
+        : (o = E[4]);
+      let D = o;
+      E[5] !== z
+        ? ((c = () => {
+            B(),
+              V("idle"),
+              (P.current = [
+                window.setTimeout(() => {
+                  let e = I.current,
+                    t = H.current;
+                  if (z) {
+                    e && (e.scrollTop = 0), V("instructions");
+                    return;
+                  }
+                  e && t
+                    ? e.scrollTo({
+                        top: Math.max(0, t.offsetTop - e.offsetTop - 8),
+                        behavior: "smooth",
+                      })
+                    : V("instructions");
+                }, 80),
+                window.setTimeout(() => V("instructions"), 420),
+              ]);
+          }),
+          (E[5] = z),
+          (E[6] = c))
+        : (c = E[6]);
+      let $ = c;
+      E[7] === Symbol.for("react.memo_cache_sentinel")
+        ? ((m = () => () => {
+            B(), Z.current?.();
+          }),
+          (d = [B]),
+          (E[7] = m),
+          (E[8] = d))
+        : ((m = E[7]), (d = E[8])),
+        (0, s.useEffect)(m, d),
+        E[9] !== z
+          ? ((h = () => {
+              if (!z) return;
+              let e = I.current;
+              if (!e) return;
+              e.scrollTop = 0;
+              let t = () => {
+                0 !== e.scrollTop && (e.scrollTop = 0);
+              };
+              return e.addEventListener("scroll", t), () => e.removeEventListener("scroll", t);
+            }),
+            (x = [z]),
+            (E[9] = z),
+            (E[10] = h),
+            (E[11] = x))
+          : ((h = E[10]), (x = E[11])),
+        (0, s.useEffect)(h, x),
+        E[12] === Symbol.for("react.memo_cache_sentinel")
+          ? ((g = () => {
+              let e = L.current;
+              if (!e) return;
+              if ("u" < typeof IntersectionObserver) return void V("triggers");
+              let t = new IntersectionObserver(
+                (e) => {
+                  let [a] = e;
+                  (a?.intersectionRatio ?? 0) >= 0.45 && (V("triggers"), t.disconnect());
+                },
+                { threshold: [0, 0.25, 0.45, 0.66, 1] },
+              );
+              return t.observe(e), () => t.disconnect();
+            }),
+            (f = []),
+            (E[12] = f),
+            (E[13] = g))
+          : ((f = E[12]), (g = E[13])),
+        (0, s.useEffect)(g, f),
+        E[14] === Symbol.for("react.memo_cache_sentinel")
+          ? ((b = {
+              src: "https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/internal-brand/internal-brand-023-3291bb4c.jpg",
+              alt: "Abstract waves background",
+            }),
+            (E[14] = b))
+          : (b = E[14]),
+        E[15] === Symbol.for("react.memo_cache_sentinel")
+          ? ((y = (0, t.jsx)(n.T, { children: "Build an automation" })), (E[15] = y))
+          : (y = E[15]),
+        E[16] === Symbol.for("react.memo_cache_sentinel")
+          ? ((v = (0, t.jsx)(_, {})), (E[16] = v))
+          : (v = E[16]);
+      let O = "triggers" === F;
+      E[17] !== O ? ((w = { isPlaying: O }), (E[17] = O), (E[18] = w)) : (w = E[18]),
+        E[19] !== $
+          ? ((j = (0, t.jsx)(u.default, { embedded: !0, loop: !1, onSequenceComplete: $ })),
+            (E[19] = $),
+            (E[20] = j))
+          : (j = E[20]),
+        E[21] !== w || E[22] !== j
+          ? ((C = (0, t.jsx)(N.DemoPlaybackProvider, { value: w, children: j })),
+            (E[21] = w),
+            (E[22] = j),
+            (E[23] = C))
+          : (C = E[23]);
+      let W = "instructions" === F;
+      return (
+        E[24] !== W ? ((S = { isPlaying: W }), (E[24] = W), (E[25] = S)) : (S = E[25]),
+        E[26] !== R
+          ? ((A = (0, t.jsx)(r.default, {
+              embedded: !0,
+              onToolsStepStart: R,
+              onTypingComplete: D,
+            })),
+            (E[26] = R),
+            (E[27] = A))
+          : (A = E[27]),
+        E[28] !== S || E[29] !== A
+          ? ((T = (0, t.jsx)("div", {
+              ref: H,
+              children: (0, t.jsx)(N.DemoPlaybackProvider, { value: S, children: A }),
+            })),
+            (E[28] = S),
+            (E[29] = A),
+            (E[30] = T))
+          : (T = E[30]),
+        E[31] !== C || E[32] !== T
+          ? ((M = (0, t.jsx)("div", {
+              ref: L,
+              children: (0, t.jsx)(p.default, {
+                minHeight: 650,
+                backgroundImage: b,
+                windows: [
+                  {
+                    id: "automation-config",
+                    title: "Cursor",
+                    x: 50,
+                    y: 50,
+                    widthPx: 540,
+                    heightPx: 420,
+                    zIndex: 10,
+                    ctaHref: "/automations",
+                    ctaLabel: y,
+                    windowBodyOverflow: "auto",
+                    content: (0, t.jsx)("div", {
+                      ref: I,
+                      className: "bg-theme-bg h-full w-full overflow-y-auto px-4 pt-4 pb-24",
+                      children: (0, t.jsxs)("div", {
+                        className: "flex w-full flex-col gap-4 [&>*]:shrink-0",
+                        children: [v, C, T],
+                      }),
+                    }),
+                  },
+                ],
+              }),
+            })),
+            (E[31] = C),
+            (E[32] = T),
+            (E[33] = M))
+          : (M = E[33]),
+        M
+      );
+    }
+    function D() {
+      let e,
+        r,
+        l,
+        s = (0, a.c)(3);
+      return (
+        s[0] === Symbol.for("react.memo_cache_sentinel")
+          ? ((e = {
+              src: "https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/misc/asset-85923e7fafe00c9c0d1f.jpg",
+            }),
+            (s[0] = e))
+          : (e = s[0]),
+        s[1] === Symbol.for("react.memo_cache_sentinel")
+          ? ((r = {
+              id: "slack",
+              title: "Slack",
+              x: 42,
+              y: 30,
+              widthPx: 540,
+              heightPx: 340,
+              zIndex: 10,
+              ctaHref: "/docs/integrations/slack",
+              ctaLabel: (0, t.jsx)(n.T, { children: "Get Cursor for Slack" }),
+              content: (0, t.jsx)(f.default, {
+                height: "100%",
+                channelId: "feature-realtime-sync",
+                disableInteractions: !0,
+                animateEntrance: !0,
+                resetEventName: "slack-demo-reset",
+                hideScrollbar: !0,
+              }),
+            }),
+            (s[1] = r))
+          : (r = s[1]),
+        s[2] === Symbol.for("react.memo_cache_sentinel")
+          ? ((l = (0, t.jsx)(p.default, {
+              disableResizing: !0,
+              minHeight: 650,
+              backgroundImage: e,
+              windows: [
+                r,
+                {
+                  id: "cursor-agent-cli",
+                  title: "cursor-agent",
+                  x: 60,
+                  y: 66,
+                  widthPx: 580,
+                  heightPx: 420,
+                  zIndex: 15,
+                  mobileXOffset: 40,
+                  ctaHref: "/download",
+                  ctaLabel: (0, t.jsx)(n.T, { children: "Get CLI" }),
+                  content: (0, t.jsx)(o.default, {
+                    templateId: "terminal-only",
+                    variant: "classic",
+                    loop: !0,
+                    hideSidebar: !0,
+                    frameless: !0,
+                  }),
+                },
+              ],
+            })),
+            (s[2] = l))
+          : (l = s[2]),
+        l
+      );
+    }
+    e.s(
+      [
+        "HomeFeaturesSection",
+        0,
+        function (e) {
+          let r,
+            l,
+            s,
+            o,
+            m,
+            d,
+            u,
+            h,
+            p,
+            x,
+            f,
+            g,
+            y,
+            v,
+            w,
+            N,
+            k,
+            C,
+            S,
+            A,
+            _ = (0, a.c)(23);
+          _[0] !== e ? ((r = void 0 === e ? {} : e), (_[0] = e), (_[1] = r)) : (r = _[1]);
+          let { agentHighlightHtml: T } = r;
+          return (
+            _[2] === Symbol.for("react.memo_cache_sentinel")
+              ? ((l = (0, t.jsx)(n.T, { children: "Agents turn ideas into code" })),
+                (s = (0, t.jsx)(n.T, {
+                  children:
+                    "Accelerate development by handing off tasks to Cursor, while you focus on making decisions.",
+                })),
+                (_[2] = l),
+                (_[3] = s))
+              : ((l = _[2]), (s = _[3])),
+            _[4] === Symbol.for("react.memo_cache_sentinel")
+              ? ((o = {
+                  href: "/product",
+                  label: (0, t.jsx)(n.T, { children: "Learn about agentic development" }),
+                  linkType: "href",
+                }),
+                (_[4] = o))
+              : (o = _[4]),
+            _[5] !== T
+              ? ((m = (0, t.jsx)(b.default, {
+                  title: l,
+                  body: s,
+                  link: o,
+                  mediaSide: "right",
+                  mediaType: "reactComponent",
+                  mediaBgHex: "#D9D5CF",
+                  mediaBgHexDark: "#4A443B",
+                  flush: !0,
+                  spacing: "default",
+                  children: (0, t.jsx)(B, { initialHighlightHtml: T }),
+                })),
+                (_[5] = T),
+                (_[6] = m))
+              : (m = _[6]),
+            _[7] === Symbol.for("react.memo_cache_sentinel")
+              ? ((d = (0, t.jsx)(n.T, { children: "Works autonomously, runs in parallel" })),
+                (u = (0, t.jsx)(n.T, {
+                  children:
+                    "Agents use their own computers to build, test, and demo features end to end for you to review.",
+                })),
+                (_[7] = d),
+                (_[8] = u))
+              : ((d = _[7]), (u = _[8])),
+            _[9] === Symbol.for("react.memo_cache_sentinel")
+              ? ((h = [
+                  {
+                    variant: "tertiary",
+                    size: "regular",
+                    link: {
+                      linkType: "href",
+                      href: "/docs/cloud-agent",
+                      label: (0, t.jsx)(n.T, { children: "Learn about cloud agents →" }),
+                      openInNewTab: !1,
+                    },
+                  },
+                ]),
+                (_[9] = h))
+              : (h = _[9]),
+            _[10] === Symbol.for("react.memo_cache_sentinel")
+              ? ((p = (0, t.jsx)(b.default, {
+                  title: d,
+                  body: u,
+                  cta: h,
+                  mediaSide: "left",
+                  mediaType: "reactComponent",
+                  mediaBgHex: "#B6B9BE",
+                  mediaBgHexDark: "#3C3935",
+                  flush: !0,
+                  spacing: "default",
+                  children: (0, t.jsx)(c.default, {}),
+                })),
+                (_[10] = p))
+              : (p = _[10]),
+            _[11] === Symbol.for("react.memo_cache_sentinel")
+              ? ((x = (0, t.jsx)(n.T, { children: "In every tool, at every step" })),
+                (f = (0, t.jsx)(n.T, {
+                  children:
+                    "Cursor runs in your terminal, collaborates in Slack, and reviews PRs in GitHub.",
+                })),
+                (g = [{ component: (0, t.jsx)(i.default, { size: "compact" }) }]),
+                (_[11] = x),
+                (_[12] = f),
+                (_[13] = g))
+              : ((x = _[11]), (f = _[12]), (g = _[13])),
+            _[14] === Symbol.for("react.memo_cache_sentinel")
+              ? ((y = {
+                  ...L(
+                    "https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/misc/asset-85923e7fafe00c9c0d1f.jpg",
+                  ),
+                  isWallpaper: !0,
+                }),
+                (_[14] = y))
+              : (y = _[14]),
+            _[15] === Symbol.for("react.memo_cache_sentinel")
+              ? ((v = (0, t.jsx)(b.default, {
+                  title: x,
+                  body: f,
+                  cta: g,
+                  mediaSide: "right",
+                  mediaType: "reactComponent",
+                  mediaBg: y,
+                  flush: !0,
+                  spacing: "default",
+                  children: (0, t.jsx)(D, {}),
+                })),
+                (_[15] = v))
+              : (v = _[15]),
+            _[16] === Symbol.for("react.memo_cache_sentinel")
+              ? ((w = (0, t.jsx)(n.T, { children: "Automate repetitive work" })),
+                (N = (0, t.jsx)(n.T, {
+                  children:
+                    "Set up always-on agents that run on schedules or triggers to build, maintain, and fix your software.",
+                })),
+                (_[16] = w),
+                (_[17] = N))
+              : ((w = _[16]), (N = _[17])),
+            _[18] === Symbol.for("react.memo_cache_sentinel")
+              ? ((k = [
+                  {
+                    variant: "tertiary",
+                    size: "regular",
+                    link: {
+                      linkType: "href",
+                      href: "/automations",
+                      label: (0, t.jsx)(n.T, { children: "Learn about Automations →" }),
+                      openInNewTab: !1,
+                    },
+                  },
+                ]),
+                (_[18] = k))
+              : (k = _[18]),
+            _[19] === Symbol.for("react.memo_cache_sentinel")
+              ? ((C = {
+                  src: "https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/internal-brand/internal-brand-023-3291bb4c.jpg",
+                  isWallpaper: !0,
+                }),
+                (_[19] = C))
+              : (C = _[19]),
+            _[20] === Symbol.for("react.memo_cache_sentinel")
+              ? ((S = (0, t.jsx)(b.default, {
+                  title: w,
+                  body: N,
+                  cta: k,
+                  mediaSide: "left",
+                  mediaType: "reactComponent",
+                  mediaBg: C,
+                  flush: !0,
+                  spacing: "none",
+                  children: (0, t.jsx)(R, {}),
+                })),
+                (_[20] = S))
+              : (S = _[20]),
+            _[21] !== m
+              ? ((A = (0, t.jsxs)(j, {
+                  alignment: "left",
+                  textSize: "md",
+                  semanticLevel: "h2",
+                  className: "section--flush-x",
+                  children: [m, p, v, S],
+                })),
+                (_[21] = m),
+                (_[22] = A))
+              : (A = _[22]),
+            A
+          );
+        },
+        "HomeHeroSection",
+        0,
+        function (e) {
+          let r,
+            l,
+            s,
+            i,
+            o,
+            c,
+            m,
+            d,
+            u = (0, a.c)(23);
+          u[0] !== e ? ((r = void 0 === e ? {} : e), (u[0] = e), (u[1] = r)) : (r = u[1]);
+          let {
+              initialHighlightHtml: h,
+              ctaVariant: p,
+              enterpriseCtaVariant: x,
+              mobileSecondaryCtaVariant: f,
+              mobileHeroImageTest: g,
+              mobileHeroCopyTest: b,
+              desktopHeroHeadingCopyTest: v,
+              desktopHeroHeadingSizeTest: w,
+              desktopHeroHeadingAlignmentTest: j,
+            } = r,
+            N = void 0 === p ? "control" : p,
+            k = void 0 === x ? null : x,
+            C = void 0 === f ? null : f,
+            S = void 0 !== g && g,
+            A = void 0 !== b && b,
+            _ = void 0 !== v && v;
+          u[2] === Symbol.for("react.memo_cache_sentinel")
+            ? ((l = (0, t.jsx)(n.T, {
+                children: "Cursor is your coding agent for building ambitious software.",
+              })),
+              (u[2] = l))
+            : (l = u[2]);
+          let T = l;
+          u[3] === Symbol.for("react.memo_cache_sentinel")
+            ? ((s = (0, t.jsx)(n.T, {
+                children: "The agent-native way to build ambitious software.",
+              })),
+              (u[3] = s))
+            : (s = u[3]);
+          let M = s,
+            E = A ? M : T,
+            I = _ ? M : T;
+          u[4] !== I || u[5] !== _ || u[6] !== E || u[7] !== A
+            ? ((i =
+                A === _
+                  ? E
+                  : (0, t.jsxs)(t.Fragment, {
+                      children: [
+                        (0, t.jsx)("span", { className: "hidden max-md:block", children: E }),
+                        (0, t.jsx)("span", { className: "max-md:hidden", children: I }),
+                      ],
+                    })),
+              (u[4] = I),
+              (u[5] = _),
+              (u[6] = E),
+              (u[7] = A),
+              (u[8] = i))
+            : (i = u[8]);
+          let H = i,
+            P = void 0 !== w && w ? "xl" : "md",
+            B = void 0 !== j && j ? "center" : "left";
+          return (
+            u[9] === Symbol.for("react.memo_cache_sentinel")
+              ? ((o = {
+                  ...L(
+                    "https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/misc/asset-cc24ca462279ca23250c.jpg",
+                  ),
+                  isWallpaper: !0,
+                }),
+                (u[9] = o))
+              : (o = u[9]),
+            u[10] !== N || u[11] !== k || u[12] !== C
+              ? ((c = (function (e, a, r) {
+                  let l = F(e),
+                    s = [];
+                  switch (e) {
+                    case "build":
+                      s.push({
+                        downloadButton: !1,
+                        copyButton: !1,
+                        icon: "arrow",
+                        link: {
+                          linkType: "href",
+                          href: "/login",
+                          label: (0, t.jsx)(n.T, { children: "Start building" }),
+                        },
+                        variant: "primary",
+                        size: "regular",
+                        tracking: l,
+                      });
+                      break;
+                    case "start":
+                      s.push({
+                        downloadButton: !1,
+                        copyButton: !1,
+                        icon: "arrow",
+                        link: {
+                          linkType: "href",
+                          href: "/login",
+                          label: (0, t.jsx)(n.T, { children: "Get started" }),
+                        },
+                        variant: "primary",
+                        size: "regular",
+                        tracking: l,
+                      });
+                      break;
+                    default:
+                      s.push({
+                        downloadButton: !0,
+                        copyButton: !1,
+                        icon: "download",
+                        link: {
+                          linkType: "href",
+                          href: "/download",
+                          label: (0, t.jsx)(n.T, { children: "Download Cursor" }),
+                        },
+                        ...V,
+                        variant: "primary",
+                        size: "regular",
+                        tracking: l,
+                      });
+                  }
+                  return (
+                    a && s.push({ ...z(a), hideOnMobile: !0 }),
+                    r && s.push({ ...z(r), hideOnDesktop: !0 }),
+                    s
+                  );
+                })(N, k, C)),
+                (u[10] = N),
+                (u[11] = k),
+                (u[12] = C),
+                (u[13] = c))
+              : (c = u[13]),
+            u[14] !== h || u[15] !== S
+              ? ((m = (0, t.jsx)(Z, { initialHighlightHtml: h, mobileHeroImageTest: S })),
+                (u[14] = h),
+                (u[15] = S),
+                (u[16] = m))
+              : (m = u[16]),
+            u[17] !== H || u[18] !== P || u[19] !== B || u[20] !== c || u[21] !== m
+              ? ((d = (0, t.jsx)(y.default, {
+                  title: H,
+                  textSize: P,
+                  alignment: B,
+                  mediaType: "reactComponent",
+                  mediaBg: o,
+                  cta: c,
+                  preload: !0,
+                  semanticLevel: "h1",
+                  children: m,
+                })),
+                (u[17] = H),
+                (u[18] = P),
+                (u[19] = B),
+                (u[20] = c),
+                (u[21] = m),
+                (u[22] = d))
+              : (d = u[22]),
+            d
+          );
+        },
+      ],
+      677869,
+    );
+  },
+  316688,
+  (e) => {
+    "use strict";
+    var t = e.i(505278),
+      a = e.i(207849),
+      r = e.i(13600),
+      l = e.i(411318),
+      n = e.i(612793),
+      s = e.i(932341),
+      i = e.i(538411),
+      o = e.i(267878),
+      c = e.i(22672),
+      m = e.i(740719);
+    let d = [
+      { label: "Auto", tag: (0, l.msg)("Suggested") },
+      { label: s.LATEST_1P_MODEL.label, tag: s.LATEST_1P_MODEL.effort },
+      { label: "GPT-5.6 Sol" },
+      { label: "Opus 4.8" },
+      { label: "Gemini 3.1 Pro" },
+      { label: "Grok 4.5" },
+    ];
+    function u(e) {
+      return new Promise((t) => {
+        window.setTimeout(() => t(), e);
+      });
+    }
+    e.s([
+      "default",
+      0,
+      function (e) {
+        let s,
+          h,
+          p,
+          x,
+          f,
+          g,
+          b,
+          y,
+          v,
+          w,
+          j,
+          N,
+          k,
+          C,
+          S,
+          A,
+          _,
+          T,
+          M,
+          E,
+          L,
+          I,
+          H,
+          P,
+          Z,
+          F,
+          V = (0, a.c)(51),
+          { aspectRatio: z, className: B, height: R } = e;
+        V[0] !== z
+          ? ((s = void 0 === z ? { base: "4/3", md: "1/1" } : z), (V[0] = z), (V[1] = s))
+          : (s = V[1]);
+        let D = s,
+          $ = (0, l.useMessages)(),
+          [O] = (0, n.useState)(!0),
+          [W, G] = (0, n.useState)(0),
+          [q, U] = (0, n.useState)(d[0]?.label ?? "Auto");
+        V[2] === Symbol.for("react.memo_cache_sentinel")
+          ? ((h = function (e) {
+              return "number" == typeof e ? `${e}px` : e;
+            }),
+            (V[2] = h))
+          : (h = V[2]);
+        let X = h;
+        V[3] === Symbol.for("react.memo_cache_sentinel")
+          ? ((p = () => {
+              let e = !1;
+              return (
+                (async function () {
+                  let t = d.length,
+                    a = 0;
+                  G(0);
+                  let r = d[0];
+                  for (r && U(r.label); !e; ) {
+                    if ((await u(2e3), e)) return;
+                    G((a = (a + 1) % t));
+                    let r = d[a];
+                    r && U(r.label);
+                  }
+                })(),
+                () => {
+                  e = !0;
+                }
+              );
+            }),
+            (x = [d]),
+            (V[3] = p),
+            (V[4] = x))
+          : ((p = V[3]), (x = V[4])),
+          (0, n.useEffect)(p, x),
+          V[5] !== D ? ((f = (0, c.buildAspectClasses)(D)), (V[5] = D), (V[6] = f)) : (f = V[6]);
+        let Y = (B ? B + " " : "") + (f || "");
+        V[7] !== R ? ((g = R && { height: X(R) }), (V[7] = R), (V[8] = g)) : (g = V[8]),
+          V[9] !== g
+            ? ((b = { position: "relative", width: "100%", backgroundColor: "transparent", ...g }),
+              (V[9] = g),
+              (V[10] = b))
+            : (b = V[10]),
+          V[11] === Symbol.for("react.memo_cache_sentinel")
+            ? ((y = { lineHeight: "1.8" }), (V[11] = y))
+            : (y = V[11]),
+          V[12] !== $
+            ? ((v = $((0, l.msg)("Ask Cursor to plan or build anything"))),
+              (V[12] = $),
+              (V[13] = v))
+            : (v = V[13]),
+          V[14] !== v
+            ? ((w = (0, t.jsx)("div", {
+                className:
+                  "text-theme-text-ter type-product-lg w-full bg-transparent px-3 pt-2.5 pb-2 opacity-60",
+                style: y,
+                children: v,
+              })),
+              (V[14] = v),
+              (V[15] = w))
+            : (w = V[15]),
+          V[16] === Symbol.for("react.memo_cache_sentinel")
+            ? ((j = (0, t.jsx)(i.default, { size: 12, className: "opacity-60" })), (V[16] = j))
+            : (j = V[16]),
+          V[17] !== $ ? ((N = $((0, l.msg)("Agent"))), (V[17] = $), (V[18] = N)) : (N = V[18]),
+          V[19] !== N
+            ? ((k = (0, t.jsx)("span", { children: N })), (V[19] = N), (V[20] = k))
+            : (k = V[20]),
+          V[21] === Symbol.for("react.memo_cache_sentinel")
+            ? ((C = (0, t.jsx)(o.default, { className: "h-3 w-3 opacity-60" })), (V[21] = C))
+            : (C = V[21]),
+          V[22] !== k
+            ? ((S = (0, t.jsxs)("button", {
+                type: "button",
+                className:
+                  "bg-theme-card-03-hex type-product-sm text-theme-text-sec flex items-center gap-1 rounded-full px-2 py-0.75",
+                children: [j, k, C],
+              })),
+              (V[22] = k),
+              (V[23] = S))
+            : (S = V[23]),
+          V[24] !== q
+            ? ((A = (0, t.jsx)("span", { children: q })), (V[24] = q), (V[25] = A))
+            : (A = V[25]),
+          V[26] === Symbol.for("react.memo_cache_sentinel")
+            ? ((_ = (0, t.jsx)(o.default, { className: "h-3 w-3 opacity-60" })), (V[26] = _))
+            : (_ = V[26]),
+          V[27] !== A
+            ? ((T = (0, t.jsxs)("button", {
+                type: "button",
+                className:
+                  "text-theme-text-sec type-product-sm flex items-center gap-0.5 rounded-md bg-transparent py-0.75",
+                children: [A, _],
+              })),
+              (V[27] = A),
+              (V[28] = T))
+            : (T = V[28]);
+        let K =
+          "absolute left-0 top-[calc(100%+8px)] transition-all duration-200 ease-out origin-top-left " +
+          (O
+            ? "opacity-100 scale-100 translate-y-0"
+            : "pointer-events-none opacity-0 scale-95 -translate-y-1");
+        return (
+          V[29] !== q || V[30] !== W
+            ? ((M = (0, t.jsx)(m.default, {
+                models: d,
+                currentModel: q,
+                highlightIndex: W,
+                onHighlightChange: G,
+                onSelect: U,
+                embedded: !1,
+              })),
+              (V[29] = q),
+              (V[30] = W),
+              (V[31] = M))
+            : (M = V[31]),
+          V[32] !== K || V[33] !== M
+            ? ((E = (0, t.jsx)("div", { className: K, children: M })),
+              (V[32] = K),
+              (V[33] = M),
+              (V[34] = E))
+            : (E = V[34]),
+          V[35] !== T || V[36] !== E
+            ? ((L = (0, t.jsxs)("div", { className: "relative", children: [T, E] })),
+              (V[35] = T),
+              (V[36] = E),
+              (V[37] = L))
+            : (L = V[37]),
+          V[38] !== S || V[39] !== L
+            ? ((I = (0, t.jsxs)("div", { className: "flex items-center gap-2", children: [S, L] })),
+              (V[38] = S),
+              (V[39] = L),
+              (V[40] = I))
+            : (I = V[40]),
+          V[41] === Symbol.for("react.memo_cache_sentinel")
+            ? ((H = (0, t.jsx)("button", {
+                type: "button",
+                "aria-label": "Send message",
+                className:
+                  "bg-theme-button-bg text-theme-button-text flex h-5 w-5 items-center justify-center rounded-full",
+                children: (0, t.jsx)(r.ArrowUp, { size: 12, weight: "bold" }),
+              })),
+              (V[41] = H))
+            : (H = V[41]),
+          V[42] !== I
+            ? ((P = (0, t.jsx)("div", {
+                className: "px-2 py-2 pt-1",
+                children: (0, t.jsxs)("div", {
+                  className: "flex items-center justify-between",
+                  children: [I, H],
+                }),
+              })),
+              (V[42] = I),
+              (V[43] = P))
+            : (P = V[43]),
+          V[44] !== w || V[45] !== P
+            ? ((Z = (0, t.jsx)("div", {
+                className: "absolute inset-0 flex items-start justify-center pt-[12%]",
+                children: (0, t.jsx)("div", {
+                  className: "relative w-[88%] max-w-[360px]",
+                  children: (0, t.jsxs)("div", {
+                    className:
+                      "border-theme-border-02 bg-theme-product-editor rounded-lg border shadow-lg",
+                    children: [w, P],
+                  }),
+                }),
+              })),
+              (V[44] = w),
+              (V[45] = P),
+              (V[46] = Z))
+            : (Z = V[46]),
+          V[47] !== Z || V[48] !== Y || V[49] !== b
+            ? ((F = (0, t.jsx)("div", { className: Y, style: b, children: Z })),
+              (V[47] = Z),
+              (V[48] = Y),
+              (V[49] = b),
+              (V[50] = F))
+            : (F = V[50]),
+          F
+        );
+      },
+    ]);
+  },
+  693744,
+  (e) => {
+    "use strict";
+    var t = e.i(505278),
+      a = e.i(207849),
+      r = e.i(264458),
+      l = e.i(411318),
+      n = e.i(229138);
+    function s(e) {
+      let s,
+        i,
+        o,
+        c,
+        m,
+        d,
+        u,
+        h,
+        p = (0, a.c)(26),
+        { testimonial: x, showAvatar: f, showAttribution: g } = e,
+        b = void 0 === f || f,
+        y = void 0 === g || g,
+        v = (0, l.useMessages)(),
+        { quote: w, name: j, jobTitle: N, company: k, avatar: C } = x;
+      p[0] !== v
+        ? ((s = (e) => ("string" == typeof e ? v(e) : e)), (p[0] = v), (p[1] = s))
+        : (s = p[1]);
+      let S = s;
+      return (
+        p[2] !== w || p[3] !== S ? ((i = S(w)), (p[2] = w), (p[3] = S), (p[4] = i)) : (i = p[4]),
+        p[5] !== i
+          ? ((o = (0, t.jsx)("blockquote", {
+              className: "grow overflow-hidden",
+              children: (0, t.jsxs)("p", {
+                className: "type-base line-clamp-4 whitespace-pre-wrap md:line-clamp-5",
+                children: ["“", i, "”"],
+              }),
+            })),
+            (p[5] = i),
+            (p[6] = o))
+          : (o = p[6]),
+        p[7] !== C || p[8] !== b
+          ? ((c =
+              b &&
+              C?.src &&
+              (0, t.jsx)("div", {
+                className: "avatar-border-container h-[2.5rem] w-[2.5rem] shrink-0",
+                children: (0, t.jsx)(n.default, {
+                  src: C.src,
+                  alt: C.alt || "",
+                  width: 42,
+                  height: 42,
+                  className: "h-full w-full object-cover",
+                }),
+              })),
+            (p[7] = C),
+            (p[8] = b),
+            (p[9] = c))
+          : (c = p[9]),
+        p[10] !== C ||
+        p[11] !== k ||
+        p[12] !== N ||
+        p[13] !== j ||
+        p[14] !== S ||
+        p[15] !== y ||
+        p[16] !== b
+          ? ((m =
+              y &&
+              (0, t.jsxs)("div", {
+                className: "type-sm",
+                children: [
+                  S(j),
+                  " ",
+                  (0, t.jsxs)("span", {
+                    className: (0, r.default)("type-sm text-theme-text-sec", { block: b && C }),
+                    children: [N && S(N), N && k && ", ", k && S(k)],
+                  }),
+                ],
+              })),
+            (p[10] = C),
+            (p[11] = k),
+            (p[12] = N),
+            (p[13] = j),
+            (p[14] = S),
+            (p[15] = y),
+            (p[16] = b),
+            (p[17] = m))
+          : (m = p[17]),
+        p[18] !== m
+          ? ((d = (0, t.jsx)("figcaption", { children: m })), (p[18] = m), (p[19] = d))
+          : (d = p[19]),
+        p[20] !== c || p[21] !== d
+          ? ((u = (0, t.jsxs)("div", {
+              className: "mt-v2 flex items-center space-x-(--grid-gap)",
+              children: [c, d],
+            })),
+            (p[20] = c),
+            (p[21] = d),
+            (p[22] = u))
+          : (u = p[22]),
+        p[23] !== o || p[24] !== u
+          ? ((h = (0, t.jsx)("div", {
+              className: "card relative flex h-full min-h-[180px] w-full shrink-0 flex-col",
+              children: (0, t.jsxs)("figure", {
+                className: "flex h-full flex-col",
+                children: [o, u],
+              }),
+            })),
+            (p[23] = o),
+            (p[24] = u),
+            (p[25] = h))
+          : (h = p[25]),
+        h
+      );
+    }
+    function i(e, t) {
+      return t;
+    }
+    e.s([
+      "StaggeredShuffleTestimonials",
+      0,
+      function (e) {
+        let l,
+          n,
+          o,
+          c,
+          m,
+          d = (0, a.c)(17),
+          { testimonials: u, showAvatar: h, showAttribution: p, initialIndices: x } = e,
+          f = void 0 === h || h,
+          g = void 0 === p || p;
+        if (d[0] !== x || d[1] !== g || d[2] !== f || d[3] !== u) {
+          let e,
+            a = x && x.length >= 6 ? x.slice(0, 6) : u.slice(0, 6).map(i);
+          (o = "container"),
+            (l = "grid grid-cols-1 gap-g1 md:grid-cols-2 lg:grid-cols-3 items-stretch"),
+            d[7] !== g || d[8] !== f || d[9] !== u
+              ? ((e = (e, a) =>
+                  (0, t.jsx)(
+                    "div",
+                    {
+                      className: (0, r.default)({ "hidden md:block": a >= 3 }),
+                      children: (0, t.jsx)(s, {
+                        testimonial: u[e],
+                        showAvatar: f,
+                        showAttribution: g,
+                      }),
+                    },
+                    e,
+                  )),
+                (d[7] = g),
+                (d[8] = f),
+                (d[9] = u),
+                (d[10] = e))
+              : (e = d[10]),
+            (n = a.map(e)),
+            (d[0] = x),
+            (d[1] = g),
+            (d[2] = f),
+            (d[3] = u),
+            (d[4] = l),
+            (d[5] = n),
+            (d[6] = o);
+        } else (l = d[4]), (n = d[5]), (o = d[6]);
+        return (
+          d[11] !== l || d[12] !== n
+            ? ((c = (0, t.jsx)("div", { className: l, children: n })),
+              (d[11] = l),
+              (d[12] = n),
+              (d[13] = c))
+            : (c = d[13]),
+          d[14] !== o || d[15] !== c
+            ? ((m = (0, t.jsx)("div", { className: o, children: c })),
+              (d[14] = o),
+              (d[15] = c),
+              (d[16] = m))
+            : (m = d[16]),
+          m
+        );
+      },
+    ]);
+  },
+]);

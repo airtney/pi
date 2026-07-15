@@ -1,0 +1,3212 @@
+(globalThis.TURBOPACK || (globalThis.TURBOPACK = [])).push([
+  "object" == typeof document ? document.currentScript : void 0,
+  906967,
+  (e) => {
+    "use strict";
+    var t = e.i(505278),
+      r = e.i(207849),
+      n = e.i(264458);
+    e.s([
+      "CheckmarkIcon",
+      0,
+      (e) => {
+        let i,
+          o,
+          a = (0, r.c)(4),
+          { className: l } = e;
+        return (
+          a[0] !== l ? ((i = (0, n.default)(l)), (a[0] = l), (a[1] = i)) : (i = a[1]),
+          a[2] !== i
+            ? ((o = (0, t.jsx)("span", { className: i, "aria-hidden": "true", children: "✓" })),
+              (a[2] = i),
+              (a[3] = o))
+            : (o = a[3]),
+          o
+        );
+      },
+      "ChevronDownIcon",
+      0,
+      (e) => {
+        let i,
+          o,
+          a = (0, r.c)(4),
+          { className: l } = e;
+        return (
+          a[0] !== l
+            ? ((i = (0, n.default)("icon-glyph-11", l)), (a[0] = l), (a[1] = i))
+            : (i = a[1]),
+          a[2] !== i
+            ? ((o = (0, t.jsx)("span", { className: i, "aria-hidden": "true", children: "↓" })),
+              (a[2] = i),
+              (a[3] = o))
+            : (o = a[3]),
+          o
+        );
+      },
+      "ChevronUpIcon",
+      0,
+      (e) => {
+        let i,
+          o,
+          a = (0, r.c)(4),
+          { className: l } = e;
+        return (
+          a[0] !== l
+            ? ((i = (0, n.default)("icon-glyph-11", l)), (a[0] = l), (a[1] = i))
+            : (i = a[1]),
+          a[2] !== i
+            ? ((o = (0, t.jsx)("span", { className: i, "aria-hidden": "true", children: "↑" })),
+              (a[2] = i),
+              (a[3] = o))
+            : (o = a[3]),
+          o
+        );
+      },
+      "DownwardsArrowIcon",
+      0,
+      (e) => {
+        let i,
+          o,
+          a = (0, r.c)(4),
+          { className: l } = e;
+        return (
+          a[0] !== l ? ((i = (0, n.default)(l)), (a[0] = l), (a[1] = i)) : (i = a[1]),
+          a[2] !== i
+            ? ((o = (0, t.jsx)("span", { className: i, "aria-hidden": "true", children: "↓" })),
+              (a[2] = i),
+              (a[3] = o))
+            : (o = a[3]),
+          o
+        );
+      },
+      "DownwardsArrowToBarIcon",
+      0,
+      (e) => {
+        let i,
+          o,
+          a = (0, r.c)(4),
+          { className: l } = e;
+        return (
+          a[0] !== l
+            ? ((i = (0, n.default)("icon-glyph-08", l)), (a[0] = l), (a[1] = i))
+            : (i = a[1]),
+          a[2] !== i
+            ? ((o = (0, t.jsx)("span", { className: i, "aria-hidden": "true", children: "⤓" })),
+              (a[2] = i),
+              (a[3] = o))
+            : (o = a[3]),
+          o
+        );
+      },
+      "MonitorIcon",
+      0,
+      (e) => {
+        let i,
+          o,
+          a = (0, r.c)(4),
+          { className: l } = e;
+        return (
+          a[0] !== l ? ((i = (0, n.default)(l)), (a[0] = l), (a[1] = i)) : (i = a[1]),
+          a[2] !== i
+            ? ((o = (0, t.jsx)("span", { className: i, "aria-hidden": "true", children: "🖥" })),
+              (a[2] = i),
+              (a[3] = o))
+            : (o = a[3]),
+          o
+        );
+      },
+      "MoonIcon",
+      0,
+      (e) => {
+        let i,
+          o,
+          a = (0, r.c)(4),
+          { className: l } = e;
+        return (
+          a[0] !== l ? ((i = (0, n.default)(l)), (a[0] = l), (a[1] = i)) : (i = a[1]),
+          a[2] !== i
+            ? ((o = (0, t.jsx)("span", { className: i, "aria-hidden": "true", children: "☾" })),
+              (a[2] = i),
+              (a[3] = o))
+            : (o = a[3]),
+          o
+        );
+      },
+      "NorthEastArrowIcon",
+      0,
+      (e) => {
+        let i,
+          o,
+          a = (0, r.c)(4),
+          { className: l } = e;
+        return (
+          a[0] !== l ? ((i = (0, n.default)(l)), (a[0] = l), (a[1] = i)) : (i = a[1]),
+          a[2] !== i
+            ? ((o = (0, t.jsx)("span", { className: i, "aria-hidden": "true", children: "↗" })),
+              (a[2] = i),
+              (a[3] = o))
+            : (o = a[3]),
+          o
+        );
+      },
+      "RightwardsArrowIcon",
+      0,
+      (e) => {
+        let i,
+          o,
+          a = (0, r.c)(4),
+          { className: l } = e;
+        return (
+          a[0] !== l ? ((i = (0, n.default)(l)), (a[0] = l), (a[1] = i)) : (i = a[1]),
+          a[2] !== i
+            ? ((o = (0, t.jsx)("span", { className: i, "aria-hidden": "true", children: "→" })),
+              (a[2] = i),
+              (a[3] = o))
+            : (o = a[3]),
+          o
+        );
+      },
+      "SunIcon",
+      0,
+      (e) => {
+        let i,
+          o,
+          a = (0, r.c)(4),
+          { className: l } = e;
+        return (
+          a[0] !== l ? ((i = (0, n.default)(l)), (a[0] = l), (a[1] = i)) : (i = a[1]),
+          a[2] !== i
+            ? ((o = (0, t.jsx)("span", { className: i, "aria-hidden": "true", children: "☉" })),
+              (a[2] = i),
+              (a[3] = o))
+            : (o = a[3]),
+          o
+        );
+      },
+      "UpwardsArrowIcon",
+      0,
+      (e) => {
+        let i,
+          o,
+          a = (0, r.c)(4),
+          { className: l } = e;
+        return (
+          a[0] !== l ? ((i = (0, n.default)(l)), (a[0] = l), (a[1] = i)) : (i = a[1]),
+          a[2] !== i
+            ? ((o = (0, t.jsx)("span", { className: i, "aria-hidden": "true", children: "↑" })),
+              (a[2] = i),
+              (a[3] = o))
+            : (o = a[3]),
+          o
+        );
+      },
+    ]);
+  },
+  336795,
+  (e, t, r) => {
+    "use strict";
+    Object.defineProperty(r, "__esModule", { value: !0 }),
+      (r.STABLE_TURBO_CONFIG_VERSION =
+        r.ROOT_PARAM_STABILITY =
+        r.SWC_PLUGIN_SUPPORT =
+        r.BABEL_PLUGIN_SUPPORT =
+          void 0),
+      (r.BABEL_PLUGIN_SUPPORT = "17.0.0"),
+      (r.SWC_PLUGIN_SUPPORT = "16.1.0"),
+      (r.ROOT_PARAM_STABILITY = {
+        unsupported: "0.0.0",
+        unstable: "15.2.0",
+        experimental: "15.5.0",
+      }),
+      (r.STABLE_TURBO_CONFIG_VERSION = "15.3.0");
+  },
+  193771,
+  (e, t, r) => {
+    "use strict";
+    Object.defineProperty(r, "__esModule", { value: !0 }),
+      (r.swcPluginCompatibilityChangeWarning =
+        r.createStringRenderWarning =
+        r.disablingCompileTimeHashWarning =
+        r.createGTCompilerUnavailableWarning =
+        r.createGTCompilerUnresolvedWarning =
+        r.deprecatedLocaleMappingWarning =
+        r.standardizedCanonicalLocalesWarning =
+        r.standardizedLocalesWarning =
+        r.dictionaryNotFoundWarning =
+        r.runtimeTranslationTimeoutWarning =
+        r.createTranslationLoadingWarning =
+        r.APIKeyMissingWarn =
+        r.noInitGTWarn =
+        r.projectIdMissingWarn =
+        r.createMismatchingHashWarning =
+        r.createUnsupportedLocalesWarning =
+        r.createInvalidDictionaryTranslationEntryWarning =
+        r.createInvalidDictionaryEntryWarning =
+        r.createNoEntryFoundWarning =
+        r.usingDefaultsWarning =
+        r.createBadFilepathWarning =
+        r.createInvalidIcuDictionaryEntryWarning =
+        r.createInvalidIcuDictionaryEntryError =
+        r.invalidCanonicalLocalesError =
+        r.invalidLocalesError =
+        r.createStringRenderError =
+        r.missingVariablesError =
+        r.txUseClientError =
+        r.gtProviderUseClientError =
+        r.typesFileError =
+        r.conflictingConfigurationBuildError =
+        r.unresolvedGetLocaleBuildError =
+        r.unresolvedLoadTranslationsBuildError =
+        r.unresolvedLoadDictionaryBuildError =
+        r.unresolvedCustomLoadTranslationsError =
+        r.unresolvedCustomLoadDictionaryError =
+        r.dictionaryDisabledError =
+        r.createDictionarySubsetError =
+        r.devApiKeyIncludedInProductionError =
+        r.createRequiredPrefixError =
+        r.createDictionaryTranslationError =
+        r.createStringTranslationError =
+        r.createUnresolvedReactVersionError =
+        r.createUnresolvedNextVersionError =
+        r.customLoadDictionaryWarning =
+        r.customLoadTranslationsError =
+        r.remoteTranslationsError =
+          void 0);
+    var n = e.r(387595),
+      i = e.r(336795);
+    (r.remoteTranslationsError = "gt-next Error: fetching remote translation."),
+      (r.customLoadTranslationsError = function (e) {
+        return (
+          void 0 === e && (e = ""),
+          'gt-next Error: Failed to fetch locally stored translations. If using a custom loadTranslations("'.concat(
+            e,
+            '"), make sure it is correctly implemented.',
+          )
+        );
+      }),
+      (r.customLoadDictionaryWarning = function (e) {
+        return (
+          void 0 === e && (e = ""),
+          'gt-next Warning: Failed to fetch locally stored translation dictionary. If using a custom loadDictionary("'.concat(
+            e,
+            '"), make sure it is correctly implemented.',
+          )
+        );
+      }),
+      (r.createUnresolvedNextVersionError = function (e) {
+        return "gt-next Error: Unable to resolve next version. ".concat(e.message);
+      }),
+      (r.createUnresolvedReactVersionError = function (e) {
+        return "gt-next Error: Unable to resolve react version. ".concat(e.message);
+      }),
+      (r.createStringTranslationError = function (e, t, r) {
+        return (
+          void 0 === r && (r = "tx"),
+          "gt-next string translation error. "
+            .concat(r, '("')
+            .concat(e, '")')
+            .concat(t ? ' with id "'.concat(t, '"') : "", " could not locate translation.")
+        );
+      }),
+      (r.createDictionaryTranslationError = function (e) {
+        return "gt-next Error: Dictionary translation entry with id: ".concat(
+          e,
+          " could not be found.",
+        );
+      }),
+      (r.createRequiredPrefixError = function (e, t) {
+        return 'gt-next Error: <GTProvider> has prefix id "'
+          .concat(t, '", but a child has id "')
+          .concat(e, '". Change the <GTProvider> id prop or your dictionary structure to proceed.');
+      }),
+      (r.devApiKeyIncludedInProductionError =
+        "gt-next Error: Production builds cannot use a development API key. Replace it with a production API key."),
+      (r.createDictionarySubsetError = function (e, t) {
+        return "gt-next Error: "
+          .concat(t, ' with id: "')
+          .concat(
+            e,
+            '". Invalid dictionary entry. Make sure the ID maps to the correct subroute of the dictionary.',
+          );
+      }),
+      (r.dictionaryDisabledError =
+        "gt-next Error: Dictionaries require the withGTConfig() plugin. Add withGTConfig() to your app. For more information, visit generaltranslation.com/docs"),
+      (r.unresolvedCustomLoadDictionaryError =
+        "gt-next Error: loadDictionary() was resolved by plug-in but could not be resolved at run time. This usually means that the file was found, but the loadDictionary() function itself could not be resolved."),
+      (r.unresolvedCustomLoadTranslationsError =
+        "gt-next Error: loadTranslations() was resolved by plug-in but could not be resolved at run time. This usually means that the file was found, but the loadTranslations() function itself could not be resolved."),
+      (r.unresolvedLoadDictionaryBuildError = function (e) {
+        return "gt-next Error: File defining loadDictionary() could not be resolved at ".concat(e);
+      }),
+      (r.unresolvedLoadTranslationsBuildError = function (e) {
+        return "gt-next Error: File defining loadTranslations() function could not be resolved at ".concat(
+          e,
+        );
+      }),
+      (r.unresolvedGetLocaleBuildError = function (e) {
+        return "gt-next Error: File defining custom getLocale() function could not be resolved at ".concat(
+          e,
+        );
+      }),
+      (r.conflictingConfigurationBuildError = function (e) {
+        return "gt-next Error: Conflicting configuration"
+          .concat(
+            e.length > 1 ? "s" : "",
+            " detected. Resolve the following conflicts before building your app:\n",
+          )
+          .concat(e.join("\n"));
+      }),
+      (r.typesFileError =
+        "gt-next Error: There is no scenario in which you should be seeing this error."),
+      (r.gtProviderUseClientError =
+        "You're attempting to import the Next.js <GTProvider> in a client component. Are you sure you want to do this? It's better to import <GTProvider> in a file not marked 'use client' so that it can fetch translations on the server. If you really need to put <GTProvider> on the client, import <GTClientProvider> from 'gt-next/client' instead (discouraged when using the Next.js App Router)."),
+      (r.txUseClientError =
+        "You're attempting to use the <Tx> runtime translation component in a client component. This is currently unsupported. Please use <T> with variables, or make sure <Tx> rendered on the server only. "),
+      (r.missingVariablesError = function (e, t) {
+        return 'gt-next Error: missing variables: "'
+          .concat(e.join('", "'), '" in message: "')
+          .concat(t, '"');
+      }),
+      (r.createStringRenderError = function (e, t) {
+        return "gt-next Error: error rendering string "
+          .concat(t ? 'for id: "'.concat(t, '"') : "", ' original message: "')
+          .concat(e, '"');
+      }),
+      (r.invalidLocalesError = function (e) {
+        return (
+          'gt-next Error: Invalid locale codes in your configuration. Specify a list of valid locales or use "customMapping" to ' +
+          "define aliases for the following invalid locales: ".concat(e.join(", "), ".")
+        );
+      }),
+      (r.invalidCanonicalLocalesError = function (e) {
+        return "gt-next Error: Invalid canonical locale codes in your configuration: ".concat(
+          e.join(", "),
+          ".",
+        );
+      }),
+      (r.createInvalidIcuDictionaryEntryError = function (e) {
+        return 'gt-next Error: Invalid ICU string dictionary entry found for id: "'.concat(e, '"');
+      }),
+      (r.createInvalidIcuDictionaryEntryWarning = function (e) {
+        return 'gt-next: Invalid ICU string dictionary entry found for id: "'.concat(e, '"');
+      }),
+      (r.createBadFilepathWarning = function (e, t) {
+        return "gt-next: Found "
+          .concat(e, " in ")
+          .concat(
+            t.join(" or "),
+            " directory. This is not supported. Move it to your root directory.",
+          );
+      }),
+      (r.usingDefaultsWarning = "gt-next: Unable to access gt-next configuration. Using defaults."),
+      (r.createNoEntryFoundWarning = function (e) {
+        return 'gt-next: No valid dictionary entry found for id: "'.concat(e, '"');
+      }),
+      (r.createInvalidDictionaryEntryWarning = function (e) {
+        return 'gt-next: Invalid dictionary entry found for id: "'.concat(e, '"');
+      }),
+      (r.createInvalidDictionaryTranslationEntryWarning = function (e) {
+        return 'gt-next: Invalid dictionary translation entry found for id: "'.concat(e, '"');
+      }),
+      (r.createUnsupportedLocalesWarning = function (e) {
+        return "gt-next: The following locales are currently unsupported by our service: ".concat(
+          e
+            .map(function (e) {
+              var t = (0, n.getLocaleProperties)(e).name;
+              return "".concat(e, " (").concat(t, ")");
+            })
+            .join(", "),
+        );
+      }),
+      (r.createMismatchingHashWarning = function (e, t) {
+        return "gt-next: Mismatching hashes! Expected hash: "
+          .concat(e, ", but got hash: ")
+          .concat(
+            t,
+            ". We will still render your translation, but make sure to update to the newest version: generaltranslation.com/docs",
+          );
+      }),
+      (r.projectIdMissingWarn =
+        "gt-next: Project ID missing! Set projectId as GT_PROJECT_ID in your environment or by passing the projectId parameter to withGTConfig(). Find your project ID: generaltranslation.com/dashboard."),
+      (r.noInitGTWarn =
+        "gt-next: You are running General Translation without the withGTConfig() plugin. This means that you are not translating your app. To activate translation, add the withGTConfig() plugin to your app, and set the projectId and apiKey in your environment. For more information, visit https://generaltranslation.com/docs/next/tutorials/quickstart"),
+      (r.APIKeyMissingWarn =
+        "gt-next (plugin): A Development API key is required for runtime translation!  Find your Development API key: generaltranslation.com/dashboard.  (Or, disable this warning message by setting runtimeUrl to an empty string which disables runtime translation.)"),
+      (r.createTranslationLoadingWarning = function (e) {
+        var t = e.source,
+          r = e.translation,
+          n = e.id;
+        return (
+          '[DEV ONLY] Warning: gt-next created translation "'.concat(t, '" -> "').concat(r, '"') +
+          (n ? ' for id "'.concat(n, '"') : "") +
+          ". In development, hot-reloaded translations may not be be displayed until the page is refreshed. In production, translations will be preloaded and there won't be a warning."
+        );
+      }),
+      (r.runtimeTranslationTimeoutWarning = "gt-next: Runtime translation timed out."),
+      (r.dictionaryNotFoundWarning =
+        "gt-next: Dictionary not found. Make sure you have added a dictionary to your project (either dictionary.js or [defaultLocale].json), and you have added the withGTConfig() plugin."),
+      (r.standardizedLocalesWarning = function (e) {
+        return "gt-next: You are using The following locales were standardized: ".concat(
+          e.join(", "),
+          ".",
+        );
+      }),
+      (r.standardizedCanonicalLocalesWarning = function (e) {
+        return "gt-next: You are using The following canonical locales were standardized: ".concat(
+          e.join(", "),
+          ".",
+        );
+      }),
+      (r.deprecatedLocaleMappingWarning =
+        'gt-next: You are using the deprecated localeMapping configuration. Please move "customMapping" to your gt.config.json file.'),
+      (r.createGTCompilerUnresolvedWarning = function (e) {
+        return "gt-next (plugin): The GT ".concat(
+          e,
+          " compiler could not be resolved. Skipping compiler optimizations.",
+        );
+      }),
+      (r.createGTCompilerUnavailableWarning = function (e) {
+        return "swc" === e
+          ? "gt-next (plugin): The GT swc compiler is compatible with < next@".concat(
+              i.SWC_PLUGIN_SUPPORT,
+              ". Skipping compiler optimizations.",
+            )
+          : "gt-next (plugin): The GT babel compiler is compatible with turbopack or < react@".concat(
+              i.BABEL_PLUGIN_SUPPORT,
+              ". Skipping compiler optimizations.",
+            );
+      }),
+      (r.disablingCompileTimeHashWarning =
+        "gt-next (plugin): Compile-time hash is disabled. Compiler optimizations are inactive."),
+      (r.createStringRenderWarning = function (e, t) {
+        return "gt-next: failed to render string "
+          .concat(t ? 'for id: "'.concat(t, '"') : "", ' original message: "')
+          .concat(e, '"');
+      }),
+      (r.swcPluginCompatibilityChangeWarning =
+        "gt-next (plugin): As of gt-next@6.12.4, SWC plugin support is disabled for Next.js versions prior to ".concat(
+          i.SWC_PLUGIN_SUPPORT,
+          ". Update to the latest version of Next.js.",
+        ));
+  },
+  411318,
+  (e, t, r) => {
+    "use strict";
+    Object.defineProperty(r, "__esModule", { value: !0 }),
+      (r.gtFallback =
+        r.mFallback =
+        r.decodeVars =
+        r.declareVar =
+        r.derive =
+        r.declareStatic =
+        r.decodeOptions =
+        r.decodeMsg =
+        r.msg =
+        r.useMessages =
+        r.useVersionId =
+        r.useLocaleDirection =
+        r.useLocaleProperties =
+        r.useGTClass =
+        r.useDefaultLocale =
+        r.useLocales =
+        r.useLocale =
+        r.useTranslations =
+        r.useGT =
+        r.RegionSelector =
+        r.LocaleSelector =
+        r.Plural =
+        r.Branch =
+        r.Derive =
+        r.Static =
+        r.DateTime =
+        r.Currency =
+        r.Num =
+        r.Var =
+        r.T =
+          void 0),
+      (r.GTProvider = function () {
+        throw Error(i.gtProviderUseClientError);
+      }),
+      (r.Tx = function () {
+        throw Error(i.txUseClientError);
+      });
+    var n = e.r(545880);
+    Object.defineProperty(r, "Var", {
+      enumerable: !0,
+      get: function () {
+        return n.Var;
+      },
+    }),
+      Object.defineProperty(r, "Num", {
+        enumerable: !0,
+        get: function () {
+          return n.Num;
+        },
+      }),
+      Object.defineProperty(r, "Currency", {
+        enumerable: !0,
+        get: function () {
+          return n.Currency;
+        },
+      }),
+      Object.defineProperty(r, "DateTime", {
+        enumerable: !0,
+        get: function () {
+          return n.DateTime;
+        },
+      }),
+      Object.defineProperty(r, "Static", {
+        enumerable: !0,
+        get: function () {
+          return n.Static;
+        },
+      }),
+      Object.defineProperty(r, "Derive", {
+        enumerable: !0,
+        get: function () {
+          return n.Derive;
+        },
+      }),
+      Object.defineProperty(r, "T", {
+        enumerable: !0,
+        get: function () {
+          return n.T;
+        },
+      }),
+      Object.defineProperty(r, "Branch", {
+        enumerable: !0,
+        get: function () {
+          return n.Branch;
+        },
+      }),
+      Object.defineProperty(r, "Plural", {
+        enumerable: !0,
+        get: function () {
+          return n.Plural;
+        },
+      }),
+      Object.defineProperty(r, "LocaleSelector", {
+        enumerable: !0,
+        get: function () {
+          return n.LocaleSelector;
+        },
+      }),
+      Object.defineProperty(r, "RegionSelector", {
+        enumerable: !0,
+        get: function () {
+          return n.RegionSelector;
+        },
+      }),
+      Object.defineProperty(r, "useGT", {
+        enumerable: !0,
+        get: function () {
+          return n.useGT;
+        },
+      }),
+      Object.defineProperty(r, "useTranslations", {
+        enumerable: !0,
+        get: function () {
+          return n.useTranslations;
+        },
+      }),
+      Object.defineProperty(r, "useLocale", {
+        enumerable: !0,
+        get: function () {
+          return n.useLocale;
+        },
+      }),
+      Object.defineProperty(r, "useLocales", {
+        enumerable: !0,
+        get: function () {
+          return n.useLocales;
+        },
+      }),
+      Object.defineProperty(r, "useDefaultLocale", {
+        enumerable: !0,
+        get: function () {
+          return n.useDefaultLocale;
+        },
+      }),
+      Object.defineProperty(r, "useGTClass", {
+        enumerable: !0,
+        get: function () {
+          return n.useGTClass;
+        },
+      }),
+      Object.defineProperty(r, "useLocaleProperties", {
+        enumerable: !0,
+        get: function () {
+          return n.useLocaleProperties;
+        },
+      }),
+      Object.defineProperty(r, "useLocaleDirection", {
+        enumerable: !0,
+        get: function () {
+          return n.useLocaleDirection;
+        },
+      }),
+      Object.defineProperty(r, "useVersionId", {
+        enumerable: !0,
+        get: function () {
+          return n.useVersionId;
+        },
+      }),
+      Object.defineProperty(r, "useMessages", {
+        enumerable: !0,
+        get: function () {
+          return n.useMessages;
+        },
+      }),
+      Object.defineProperty(r, "msg", {
+        enumerable: !0,
+        get: function () {
+          return n.msg;
+        },
+      }),
+      Object.defineProperty(r, "decodeMsg", {
+        enumerable: !0,
+        get: function () {
+          return n.decodeMsg;
+        },
+      }),
+      Object.defineProperty(r, "decodeOptions", {
+        enumerable: !0,
+        get: function () {
+          return n.decodeOptions;
+        },
+      }),
+      Object.defineProperty(r, "declareStatic", {
+        enumerable: !0,
+        get: function () {
+          return n.declareStatic;
+        },
+      }),
+      Object.defineProperty(r, "derive", {
+        enumerable: !0,
+        get: function () {
+          return n.derive;
+        },
+      }),
+      Object.defineProperty(r, "declareVar", {
+        enumerable: !0,
+        get: function () {
+          return n.declareVar;
+        },
+      }),
+      Object.defineProperty(r, "decodeVars", {
+        enumerable: !0,
+        get: function () {
+          return n.decodeVars;
+        },
+      }),
+      Object.defineProperty(r, "mFallback", {
+        enumerable: !0,
+        get: function () {
+          return n.mFallback;
+        },
+      }),
+      Object.defineProperty(r, "gtFallback", {
+        enumerable: !0,
+        get: function () {
+          return n.gtFallback;
+        },
+      });
+    var i = e.r(193771);
+  },
+  346140,
+  (e, t, r) => {
+    "use strict";
+    Object.defineProperty(r, "__esModule", { value: !0 }),
+      (r.RegionSelector =
+        r.LocaleSelector =
+        r.Branch =
+        r.Plural =
+        r.Num =
+        r.DateTime =
+        r.Currency =
+        r.Var =
+        r.T =
+        r.GTClientProvider =
+        r.useMessages =
+        r.decodeOptions =
+        r.decodeMsg =
+        r.msg =
+        r.useVersionId =
+        r.useLocaleDirection =
+        r.useLocaleProperties =
+        r.useGTClass =
+        r.useRegionSelector =
+        r.useRegion =
+        r.useLocaleSelector =
+        r.useDefaultLocale =
+        r.useSetLocale =
+        r.useLocales =
+        r.useLocale =
+        r.useTranslations =
+        r.useGT =
+          void 0);
+    var n = e.r(545880);
+    Object.defineProperty(r, "T", {
+      enumerable: !0,
+      get: function () {
+        return n.T;
+      },
+    }),
+      Object.defineProperty(r, "useGT", {
+        enumerable: !0,
+        get: function () {
+          return n.useGT;
+        },
+      }),
+      Object.defineProperty(r, "useLocale", {
+        enumerable: !0,
+        get: function () {
+          return n.useLocale;
+        },
+      }),
+      Object.defineProperty(r, "useDefaultLocale", {
+        enumerable: !0,
+        get: function () {
+          return n.useDefaultLocale;
+        },
+      }),
+      Object.defineProperty(r, "LocaleSelector", {
+        enumerable: !0,
+        get: function () {
+          return n.LocaleSelector;
+        },
+      }),
+      Object.defineProperty(r, "RegionSelector", {
+        enumerable: !0,
+        get: function () {
+          return n.RegionSelector;
+        },
+      }),
+      Object.defineProperty(r, "GTClientProvider", {
+        enumerable: !0,
+        get: function () {
+          return n.GTProvider;
+        },
+      }),
+      Object.defineProperty(r, "useLocales", {
+        enumerable: !0,
+        get: function () {
+          return n.useLocales;
+        },
+      }),
+      Object.defineProperty(r, "useSetLocale", {
+        enumerable: !0,
+        get: function () {
+          return n.useSetLocale;
+        },
+      }),
+      Object.defineProperty(r, "useLocaleSelector", {
+        enumerable: !0,
+        get: function () {
+          return n.useLocaleSelector;
+        },
+      }),
+      Object.defineProperty(r, "Var", {
+        enumerable: !0,
+        get: function () {
+          return n.Var;
+        },
+      }),
+      Object.defineProperty(r, "Currency", {
+        enumerable: !0,
+        get: function () {
+          return n.Currency;
+        },
+      }),
+      Object.defineProperty(r, "DateTime", {
+        enumerable: !0,
+        get: function () {
+          return n.DateTime;
+        },
+      }),
+      Object.defineProperty(r, "Num", {
+        enumerable: !0,
+        get: function () {
+          return n.Num;
+        },
+      }),
+      Object.defineProperty(r, "Plural", {
+        enumerable: !0,
+        get: function () {
+          return n.Plural;
+        },
+      }),
+      Object.defineProperty(r, "Branch", {
+        enumerable: !0,
+        get: function () {
+          return n.Branch;
+        },
+      }),
+      Object.defineProperty(r, "useLocaleProperties", {
+        enumerable: !0,
+        get: function () {
+          return n.useLocaleProperties;
+        },
+      }),
+      Object.defineProperty(r, "useGTClass", {
+        enumerable: !0,
+        get: function () {
+          return n.useGTClass;
+        },
+      }),
+      Object.defineProperty(r, "useTranslations", {
+        enumerable: !0,
+        get: function () {
+          return n.useTranslations;
+        },
+      }),
+      Object.defineProperty(r, "useRegion", {
+        enumerable: !0,
+        get: function () {
+          return n.useRegion;
+        },
+      }),
+      Object.defineProperty(r, "useRegionSelector", {
+        enumerable: !0,
+        get: function () {
+          return n.useRegionSelector;
+        },
+      }),
+      Object.defineProperty(r, "useLocaleDirection", {
+        enumerable: !0,
+        get: function () {
+          return n.useLocaleDirection;
+        },
+      }),
+      Object.defineProperty(r, "useVersionId", {
+        enumerable: !0,
+        get: function () {
+          return n.useVersionId;
+        },
+      }),
+      Object.defineProperty(r, "msg", {
+        enumerable: !0,
+        get: function () {
+          return n.msg;
+        },
+      }),
+      Object.defineProperty(r, "decodeMsg", {
+        enumerable: !0,
+        get: function () {
+          return n.decodeMsg;
+        },
+      }),
+      Object.defineProperty(r, "decodeOptions", {
+        enumerable: !0,
+        get: function () {
+          return n.decodeOptions;
+        },
+      }),
+      Object.defineProperty(r, "useMessages", {
+        enumerable: !0,
+        get: function () {
+          return n.useMessages;
+        },
+      });
+  },
+  152490,
+  367135,
+  733812,
+  942982,
+  229207,
+  (e) => {
+    "use strict";
+    var t = e.i(207849),
+      r = e.i(678439);
+    function n(e, t) {
+      try {
+        window.ca && window.ca("track", e, t);
+      } catch (t) {
+        console.error(`[ConceptualAnalytics] Failed to track event "${e}":`, t);
+      }
+    }
+    e.s(
+      [
+        "identifyConceptualUser",
+        0,
+        function (e, t) {
+          try {
+            window.ca && window.ca("identify", e, t);
+          } catch (e) {
+            console.error("[ConceptualAnalytics] Failed to identify user:", e);
+          }
+        },
+        "trackConceptualEvent",
+        0,
+        n,
+      ],
+      367135,
+    );
+    var i = e.i(139890);
+    e.s(
+      [
+        "useDownloadTracking",
+        0,
+        function (e) {
+          let o,
+            a,
+            l,
+            s = (0, t.c)(8);
+          s[0] !== e ? ((o = void 0 === e ? {} : e), (s[0] = e), (s[1] = o)) : (o = s[1]);
+          let { platform: c, architecture: u, version: d } = o;
+          s[2] !== u || s[3] !== c || s[4] !== d
+            ? ((a = async (e) => {
+                let { page: t } = (0, r.getPageContext)(),
+                  o = { source: t };
+                c && (o.platform = c),
+                  u && (o.architecture = u),
+                  d && (o.version = d),
+                  void 0 !== e && (o.is_mobile = e),
+                  (0, i.captureFromUrl)();
+                let a = (0, i.getAttributionForEventProperties)();
+                (0, r.trackEvent)("download_clicked", { ...o, ...a }),
+                  n("download_clicked", { ...o, ...a });
+              }),
+              (s[2] = u),
+              (s[3] = c),
+              (s[4] = d),
+              (s[5] = a))
+            : (a = s[5]);
+          let f = a;
+          return s[6] !== f ? ((l = { trackDownload: f }), (s[6] = f), (s[7] = l)) : (l = s[7]), l;
+        },
+      ],
+      152490,
+    );
+    var o = e.i(612793);
+    function a() {
+      let e = window.navigator.userAgent.toLowerCase(),
+        t = navigator.platform.toLowerCase(),
+        r = `${e} ${t}`;
+      if (-1 !== e.indexOf("mac")) return "darwin";
+      if (-1 !== e.indexOf("windows")) return "win32";
+      if (-1 !== e.indexOf("linux")) {
+        for (let e of [
+          /centos/i,
+          /redhat/i,
+          /rhel/i,
+          /fedora/i,
+          /scientific/i,
+          /rocky/i,
+          /alma/i,
+          /opensuse/i,
+          /suse/i,
+          /mageia/i,
+          /mandriva/i,
+          /mandrake/i,
+        ])
+          if (e.test(r)) return "linux-rpm";
+        for (let e of [
+          /ubuntu/i,
+          /debian/i,
+          /mint/i,
+          /elementary/i,
+          /pop!_os/i,
+          /zorin/i,
+          /kali/i,
+          /parrot/i,
+        ])
+          if (e.test(r)) return "linux-deb";
+        return "linux";
+      }
+      return null;
+    }
+    async function l() {
+      if (navigator.userAgentData)
+        try {
+          let e = await navigator.userAgentData.getHighEntropyValues([
+            "architecture",
+            "bitness",
+            "platform",
+          ]);
+          if ("Windows" === e.platform) {
+            if ("arm" === e.architecture) return "arm64";
+            else if ("x86" === e.architecture) return "x64";
+          } else if ("macOS" === e.platform) {
+            if ("arm" === e.architecture) return "arm64";
+            else if ("x86" === e.architecture) return "x64";
+          } else if ("Linux" === e.platform) {
+            if ("arm" === e.architecture) return "arm64";
+            else if ("x86" === e.architecture) return "x64";
+          }
+        } catch (e) {
+          console.warn("Failed to get high entropy values:", e);
+        }
+      let e = navigator.userAgent,
+        t = navigator.platform,
+        r = `${e} ${t}`;
+      return [/arm64/i, /aarch64/i, /armv8l/i, /armv8a/i, /armv8/i, /armv9/i].some((e) => e.test(r))
+        ? "arm64"
+        : "x64";
+    }
+    function s(e) {
+      if (!e) return null;
+      switch (e) {
+        case "darwin":
+          return "macOS";
+        case "win32":
+          return "Windows";
+        case "linux-rpm":
+        case "linux-deb":
+        case "linux":
+          return "Linux";
+        default:
+          return null;
+      }
+    }
+    function c(e, t, r) {
+      if (!e || 0 === e.length) return null;
+      let n = (e, t) => {
+        let r = e.toLowerCase();
+        return t.some((e) => r.includes(e));
+      };
+      if ("darwin" === r) {
+        if ("arm64" === t) {
+          let t = e.find((e) => n(e.label, ["arm64", "aarch64", "apple silicon", "arm"]));
+          if (t) return t;
+        }
+        let r = e.find((e) => n(e.label, ["universal"]));
+        if (r) return r;
+        if ("x64" === t) {
+          let t = e.find((e) => n(e.label, ["x64", "intel"]));
+          if (t) return t;
+        }
+      }
+      if ("win32" === r) {
+        let r = e.find((e) => {
+          let r = e.label.toLowerCase(),
+            n = r.includes("user"),
+            i = "arm64" === t ? r.includes("arm64") || r.includes("arm") : r.includes("x64");
+          return n && i;
+        });
+        if (r) return r;
+      }
+      if ("linux-rpm" === r) {
+        let r = e.find(
+          (e) =>
+            e.label.toLowerCase().includes("rpm") &&
+            (e.label.toLowerCase().includes(t) ||
+              e.label.toLowerCase().includes("arm64" === t ? "arm" : "x64")),
+        );
+        if (r) return r;
+      } else if ("linux-deb" === r) {
+        let r = e.find(
+          (e) =>
+            e.label.toLowerCase().includes("deb") &&
+            (e.label.toLowerCase().includes(t) ||
+              e.label.toLowerCase().includes("arm64" === t ? "arm" : "x64")),
+        );
+        if (r) return r;
+      } else if ("linux" === r) {
+        let r = e.find(
+          (e) =>
+            e.label.toLowerCase().includes("deb") &&
+            (e.label.toLowerCase().includes(t) ||
+              e.label.toLowerCase().includes("arm64" === t ? "arm" : "x64")),
+        );
+        if (r) return r;
+      }
+      let i = e.find((e) =>
+        n(e.label, [
+          t,
+          "arm64" === t ? "arm" : "x64",
+          ...("arm64" === t ? ["aarch64", "apple silicon"] : ["intel"]),
+        ]),
+      );
+      if (i) return i;
+      let o = e.find((e) => e.label.toLowerCase().includes("universal"));
+      return o || e[0] || null;
+    }
+    e.s(
+      [
+        "detectArchitecture",
+        0,
+        l,
+        "detectPlatform",
+        0,
+        a,
+        "findBestDownloadOption",
+        0,
+        c,
+        "getOSName",
+        0,
+        s,
+      ],
+      733812,
+    ),
+      e.s(
+        [
+          "usePlatformDetection",
+          0,
+          function () {
+            let e,
+              r,
+              n,
+              i,
+              c,
+              u,
+              d = (0, t.c)(13),
+              [f, m] = (0, o.useState)(null),
+              [g, p] = (0, o.useState)("x64"),
+              [h, b] = (0, o.useState)(!1),
+              [v, y] = (0, o.useState)(!1),
+              w = (0, o.useRef)(!1);
+            d[0] === Symbol.for("react.memo_cache_sentinel")
+              ? ((e = () => {
+                  b(!0), m(a());
+                }),
+                (r = []),
+                (d[0] = e),
+                (d[1] = r))
+              : ((e = d[0]), (r = d[1])),
+              (0, o.useEffect)(e, r),
+              d[2] !== h
+                ? ((n = () => {
+                    h &&
+                      !w.current &&
+                      ((w.current = !0),
+                      l()
+                        .then((e) => {
+                          p(e), y(!0);
+                        })
+                        .catch((e) => {
+                          console.warn("Architecture detection failed:", e), y(!0);
+                        }));
+                  }),
+                  (i = [h]),
+                  (d[2] = h),
+                  (d[3] = n),
+                  (d[4] = i))
+                : ((n = d[3]), (i = d[4])),
+              (0, o.useEffect)(n, i),
+              d[5] !== f ? ((c = s(f)), (d[5] = f), (d[6] = c)) : (c = d[6]);
+            let x = c;
+            return (
+              d[7] !== g || d[8] !== v || d[9] !== h || d[10] !== x || d[11] !== f
+                ? ((u = { platform: f, arch: g, os: x, isHydrated: h, isArchDetected: v }),
+                  (d[7] = g),
+                  (d[8] = v),
+                  (d[9] = h),
+                  (d[10] = x),
+                  (d[11] = f),
+                  (d[12] = u))
+                : (u = d[12]),
+              u
+            );
+          },
+        ],
+        942982,
+      ),
+      e.s(
+        [
+          "getDownloadUrl",
+          0,
+          function (e, t, r = "x64", n) {
+            if (!e || !t) return null;
+            let i = null;
+            switch (t) {
+              case "macOS":
+                i = c(e.macOS || [], r, n);
+                break;
+              case "Windows":
+                i = c(e.windows || [], r, n);
+                break;
+              case "Linux":
+                i = c(e.linux || [], r, n);
+                break;
+              default:
+                return null;
+            }
+            return i?.downloadUrl || null;
+          },
+        ],
+        229207,
+      );
+  },
+  594221,
+  (e) => {
+    "use strict";
+    var t = e.i(505278),
+      r = e.i(207849),
+      n = e.i(612793);
+    e.s([
+      "default",
+      0,
+      function (e) {
+        let i,
+          o,
+          a,
+          l,
+          s,
+          c,
+          u,
+          d,
+          f,
+          m,
+          g,
+          p = (0, r.c)(26),
+          {
+            options: h,
+            value: b,
+            onChange: v,
+            name: y,
+            className: w,
+            optionClassName: x,
+            size: E,
+            variant: T,
+          } = e,
+          P = void 0 === y ? "pill-toggle" : y,
+          L = void 0 === x ? "" : x,
+          S = void 0 === E ? "md" : E,
+          j = void 0 === T ? "default" : T;
+        p[0] === Symbol.for("react.memo_cache_sentinel")
+          ? ((i = { left: 0, width: 0 }), (p[0] = i))
+          : (i = p[0]);
+        let [_, C] = (0, n.useState)(i),
+          [k, I] = (0, n.useState)(!1),
+          O = (0, n.useRef)(null);
+        p[1] === Symbol.for("react.memo_cache_sentinel") ? ((o = []), (p[1] = o)) : (o = p[1]);
+        let A = (0, n.useRef)(o);
+        p[2] !== h || p[3] !== b
+          ? ((a = () => {
+              let e = () => {
+                let e = h.findIndex((e) => e.value === b);
+                if (e >= 0 && A.current[e] && O.current) {
+                  let t = A.current[e],
+                    r = O.current.getBoundingClientRect(),
+                    n = t.getBoundingClientRect();
+                  C({ left: n.left - r.left, width: n.width }), I(!0);
+                }
+              };
+              e();
+              let t = setTimeout(e, 10);
+              return (
+                window.addEventListener("resize", e),
+                () => {
+                  clearTimeout(t), window.removeEventListener("resize", e);
+                }
+              );
+            }),
+            (l = [b, h]),
+            (p[2] = h),
+            (p[3] = b),
+            (p[4] = a),
+            (p[5] = l))
+          : ((a = p[4]), (l = p[5])),
+          (0, n.useEffect)(a, l),
+          p[6] === Symbol.for("react.memo_cache_sentinel")
+            ? ((s = { sm: "p-0.5", "md-sm": "p-0.5", md: "p-0.5", lg: "p-1" }), (p[6] = s))
+            : (s = p[6]);
+        let R = s;
+        p[7] === Symbol.for("react.memo_cache_sentinel")
+          ? ((c = {
+              sm: "pill-padding-sm text-sm",
+              "md-sm": "pill-padding-md-sm text-base",
+              md: "pill-padding-md text-base",
+              lg: "pill-padding-lg text-lg",
+            }),
+            (p[7] = c))
+          : (c = p[7]);
+        let D = c;
+        p[8] === Symbol.for("react.memo_cache_sentinel")
+          ? ((u = { sm: "p-0.5", "md-sm": "p-0.5", md: "p-0.5", lg: "p-1" }), (p[8] = u))
+          : (u = p[8]);
+        let N = u;
+        p[9] === Symbol.for("react.memo_cache_sentinel")
+          ? ((d = {
+              sm: "pill-padding-sm font-size-inherit",
+              "md-sm": "pill-padding-md-sm font-size-inherit",
+              md: "pill-padding-md font-size-inherit",
+              lg: "pill-padding-lg font-size-inherit",
+            }),
+            (p[9] = d))
+          : (d = p[9]);
+        let M = d,
+          $ = "theme" === j ? "md:type-sm rounded-full bg-theme-card-03-hex" : "bg-theme-card-hex",
+          G = `${$} relative flex rounded-full text-center ${"theme" === j ? N[S] : R[S]} ${void 0 === w ? "" : w}`;
+        return (
+          p[10] !== k || p[11] !== _ || p[12] !== j
+            ? ((f =
+                k &&
+                (0, t.jsx)("div", {
+                  className: `absolute rounded-full transition-all ${"theme" === j ? "bg-theme-fg-10" : "bg-theme-card-03-hex"}`,
+                  style: {
+                    left: `${_.left}px`,
+                    width: `${_.width}px`,
+                    top: "2px",
+                    bottom: "2px",
+                    transitionDuration: "var(--duration)",
+                    transitionTimingFunction: "var(--ease-out-spring)",
+                  },
+                })),
+              (p[10] = k),
+              (p[11] = _),
+              (p[12] = j),
+              (p[13] = f))
+            : (f = p[13]),
+          p[14] !== P ||
+          p[15] !== v ||
+          p[16] !== L ||
+          p[17] !== h ||
+          p[18] !== S ||
+          p[19] !== b ||
+          p[20] !== j
+            ? ((m = h.map((e, r) => {
+                let n = b === e.value;
+                return "theme" === j
+                  ? (0, t.jsx)(
+                      "button",
+                      {
+                        ref: (e) => {
+                          A.current[r] = e;
+                        },
+                        onClick: () => v(e.value),
+                        className: `font-size-inherit relative inline-flex cursor-pointer items-center justify-center rounded-full leading-none outline-none focus:outline-none focus-visible:outline-none ${M[S]} ${n ? "text-theme-text" : "text-theme-text-sec hover:text-theme-text"}`,
+                        "aria-label": "string" == typeof e.label ? e.label : void 0,
+                        children: e.icon,
+                      },
+                      e.value,
+                    )
+                  : (0, t.jsxs)(
+                      "label",
+                      {
+                        ref: (e) => {
+                          A.current[r] = e;
+                        },
+                        className: `group relative cursor-pointer rounded-full border border-transparent ${D[S]} leading-[1] ${L}`,
+                        children: [
+                          (0, t.jsx)("input", {
+                            type: "radio",
+                            name: P,
+                            value: e.value,
+                            checked: n,
+                            onChange: (e) => v(e.target.value),
+                            className:
+                              "absolute inset-0 cursor-pointer appearance-none rounded-full outline-none focus:outline-none focus-visible:outline-none",
+                          }),
+                          (0, t.jsx)("span", {
+                            className: `${n ? "text-theme-text" : "text-theme-text-sec group-hover:text-theme-text"}`,
+                            children: e.label,
+                          }),
+                        ],
+                      },
+                      e.value,
+                    );
+              })),
+              (p[14] = P),
+              (p[15] = v),
+              (p[16] = L),
+              (p[17] = h),
+              (p[18] = S),
+              (p[19] = b),
+              (p[20] = j),
+              (p[21] = m))
+            : (m = p[21]),
+          p[22] !== G || p[23] !== f || p[24] !== m
+            ? ((g = (0, t.jsxs)("div", { ref: O, className: G, children: [f, m] })),
+              (p[22] = G),
+              (p[23] = f),
+              (p[24] = m),
+              (p[25] = g))
+            : (g = p[25]),
+          g
+        );
+      },
+    ]);
+  },
+  146682,
+  (e, t, r) => {
+    "use strict";
+    Object.defineProperty(r, "__esModule", { value: !0 });
+    var n = {
+      cancelIdleCallback: function () {
+        return a;
+      },
+      requestIdleCallback: function () {
+        return o;
+      },
+    };
+    for (var i in n) Object.defineProperty(r, i, { enumerable: !0, get: n[i] });
+    let o =
+        ("u" > typeof self && self.requestIdleCallback && self.requestIdleCallback.bind(window)) ||
+        function (e) {
+          let t = Date.now();
+          return self.setTimeout(function () {
+            e({
+              didTimeout: !1,
+              timeRemaining: function () {
+                return Math.max(0, 50 - (Date.now() - t));
+              },
+            });
+          }, 1);
+        },
+      a =
+        ("u" > typeof self && self.cancelIdleCallback && self.cancelIdleCallback.bind(window)) ||
+        function (e) {
+          return clearTimeout(e);
+        };
+    ("function" == typeof r.default || ("object" == typeof r.default && null !== r.default)) &&
+      void 0 === r.default.__esModule &&
+      (Object.defineProperty(r.default, "__esModule", { value: !0 }),
+      Object.assign(r.default, r),
+      (t.exports = r.default));
+  },
+  96053,
+  (e, t, r) => {
+    "use strict";
+    Object.defineProperty(r, "__esModule", { value: !0 });
+    var n = {
+      default: function () {
+        return y;
+      },
+      handleClientScriptLoad: function () {
+        return h;
+      },
+      initScriptLoader: function () {
+        return b;
+      },
+    };
+    for (var i in n) Object.defineProperty(r, i, { enumerable: !0, get: n[i] });
+    let o = e.r(481258),
+      a = e.r(744066),
+      l = e.r(505278),
+      s = o._(e.r(545868)),
+      c = a._(e.r(612793)),
+      u = e.r(101955),
+      d = e.r(628535),
+      f = e.r(146682),
+      m = new Map(),
+      g = new Set(),
+      p = (e) => {
+        let {
+            src: t,
+            id: r,
+            onLoad: n = () => {},
+            onReady: i = null,
+            dangerouslySetInnerHTML: o,
+            children: a = "",
+            strategy: l = "afterInteractive",
+            onError: c,
+            stylesheets: u,
+          } = e,
+          f = r || t;
+        if (f && g.has(f)) return;
+        if (m.has(t)) {
+          g.add(f), m.get(t).then(n, c);
+          return;
+        }
+        let p = () => {
+            i && i(), g.add(f);
+          },
+          h = document.createElement("script"),
+          b = new Promise((e, t) => {
+            h.addEventListener("load", function (t) {
+              e(), n && n.call(this, t), p();
+            }),
+              h.addEventListener("error", function (e) {
+                t(e);
+              });
+          }).catch(function (e) {
+            c && c(e);
+          });
+        o
+          ? ((h.innerHTML = o.__html || ""), p())
+          : a
+            ? ((h.textContent = "string" == typeof a ? a : Array.isArray(a) ? a.join("") : ""), p())
+            : t && ((h.src = t), m.set(t, b)),
+          (0, d.setAttributesFromProps)(h, e),
+          "worker" === l && h.setAttribute("type", "text/partytown"),
+          h.setAttribute("data-nscript", l),
+          u &&
+            ((e) => {
+              if (s.default.preinit)
+                return e.forEach((e) => {
+                  s.default.preinit(e, { as: "style" });
+                });
+              if ("u" > typeof window) {
+                let t = document.head;
+                e.forEach((e) => {
+                  let r = document.createElement("link");
+                  (r.type = "text/css"), (r.rel = "stylesheet"), (r.href = e), t.appendChild(r);
+                });
+              }
+            })(u),
+          document.body.appendChild(h);
+      };
+    function h(e) {
+      let { strategy: t = "afterInteractive" } = e;
+      "lazyOnload" === t
+        ? window.addEventListener("load", () => {
+            (0, f.requestIdleCallback)(() => p(e));
+          })
+        : p(e);
+    }
+    function b(e) {
+      e.forEach(h),
+        [
+          ...document.querySelectorAll('[data-nscript="beforeInteractive"]'),
+          ...document.querySelectorAll('[data-nscript="beforePageRender"]'),
+        ].forEach((e) => {
+          let t = e.id || e.getAttribute("src");
+          g.add(t);
+        });
+    }
+    function v(e) {
+      let {
+          id: t,
+          src: r = "",
+          onLoad: n = () => {},
+          onReady: i = null,
+          strategy: o = "afterInteractive",
+          onError: a,
+          stylesheets: d,
+          ...m
+        } = e,
+        {
+          updateScripts: h,
+          scripts: b,
+          getIsSsr: v,
+          appDir: y,
+          nonce: w,
+        } = (0, c.useContext)(u.HeadManagerContext);
+      w = m.nonce || w;
+      let x = (0, c.useRef)(!1);
+      (0, c.useEffect)(() => {
+        let e = t || r;
+        x.current || (i && e && g.has(e) && i(), (x.current = !0));
+      }, [i, t, r]);
+      let E = (0, c.useRef)(!1);
+      if (
+        ((0, c.useEffect)(() => {
+          if (!E.current) {
+            if ("afterInteractive" === o) p(e);
+            else
+              "lazyOnload" === o &&
+                ("complete" === document.readyState
+                  ? (0, f.requestIdleCallback)(() => p(e))
+                  : window.addEventListener("load", () => {
+                      (0, f.requestIdleCallback)(() => p(e));
+                    }));
+            E.current = !0;
+          }
+        }, [e, o]),
+        ("beforeInteractive" === o || "worker" === o) &&
+          (h
+            ? ((b[o] = (b[o] || []).concat([
+                { id: t, src: r, onLoad: n, onReady: i, onError: a, ...m, nonce: w },
+              ])),
+              h(b))
+            : v && v()
+              ? g.add(t || r)
+              : v && !v() && p({ ...e, nonce: w })),
+        y)
+      ) {
+        if (
+          (d &&
+            d.forEach((e) => {
+              s.default.preinit(e, { as: "style" });
+            }),
+          "beforeInteractive" === o)
+        )
+          if (!r)
+            return (
+              m.dangerouslySetInnerHTML &&
+                ((m.children = m.dangerouslySetInnerHTML.__html), delete m.dangerouslySetInnerHTML),
+              (0, l.jsx)("script", {
+                nonce: w,
+                dangerouslySetInnerHTML: {
+                  __html: `(self.__next_s=self.__next_s||[]).push(${JSON.stringify([0, { ...m, id: t }])})`,
+                },
+              })
+            );
+          else
+            return (
+              s.default.preload(
+                r,
+                m.integrity
+                  ? { as: "script", integrity: m.integrity, nonce: w, crossOrigin: m.crossOrigin }
+                  : { as: "script", nonce: w, crossOrigin: m.crossOrigin },
+              ),
+              (0, l.jsx)("script", {
+                nonce: w,
+                dangerouslySetInnerHTML: {
+                  __html: `(self.__next_s=self.__next_s||[]).push(${JSON.stringify([r, { ...m, id: t }])})`,
+                },
+              })
+            );
+        "afterInteractive" === o &&
+          r &&
+          s.default.preload(
+            r,
+            m.integrity
+              ? { as: "script", integrity: m.integrity, nonce: w, crossOrigin: m.crossOrigin }
+              : { as: "script", nonce: w, crossOrigin: m.crossOrigin },
+          );
+      }
+      return null;
+    }
+    Object.defineProperty(v, "__nextScript", { value: !0 });
+    let y = v;
+    ("function" == typeof r.default || ("object" == typeof r.default && null !== r.default)) &&
+      void 0 === r.default.__esModule &&
+      (Object.defineProperty(r.default, "__esModule", { value: !0 }),
+      Object.assign(r.default, r),
+      (t.exports = r.default));
+  },
+  548116,
+  (e) => {
+    "use strict";
+    var t = e.i(207849),
+      r = e.i(612793);
+    e.s([
+      "useMediaQuery",
+      0,
+      function (e, n) {
+        let i,
+          o,
+          a = (0, t.c)(3),
+          [l, s] = (0, r.useState)(void 0 !== n && n);
+        return (
+          a[0] !== e
+            ? ((i = () => {
+                let t = window.matchMedia(e);
+                s(t.matches);
+                let r = (e) => s(e.matches);
+                return t.addEventListener("change", r), () => t.removeEventListener("change", r);
+              }),
+              (o = [e]),
+              (a[0] = e),
+              (a[1] = i),
+              (a[2] = o))
+            : ((i = a[1]), (o = a[2])),
+          (0, r.useEffect)(i, o),
+          l
+        );
+      },
+    ]);
+  },
+  928402,
+  (e) => {
+    "use strict";
+    var t = e.i(548116);
+    e.s([
+      "usePrefersReducedMotion",
+      0,
+      function () {
+        return (0, t.useMediaQuery)("(prefers-reduced-motion: reduce)", !1);
+      },
+    ]);
+  },
+  280542,
+  (e) => {
+    "use strict";
+    var t = e.i(605226);
+    function r(e, n, i = "") {
+      let o = e === t.defaultLanguage ? n : `/${e}${n}`;
+      return i ? `${i}${o}` : o;
+    }
+    e.s([
+      "addLocalePrefix",
+      0,
+      r,
+      "generateBlogUrl",
+      0,
+      (e, t, n) => r(e, t ? `/blog/${t}` : "/blog", n),
+      "generateChangelogUrl",
+      0,
+      (e, t, n) => r(e, t ? `/changelog/${t}` : "/changelog", n),
+    ]);
+  },
+  956347,
+  (e) => {
+    "use strict";
+    var t = e.i(612793),
+      r = (e, t, r, n, i, o, a, l) => {
+        let s = document.documentElement,
+          c = ["light", "dark"];
+        function u(t) {
+          var r;
+          (Array.isArray(e) ? e : [e]).forEach((e) => {
+            let r = "class" === e,
+              n = r && o ? i.map((e) => o[e] || e) : i;
+            r
+              ? (s.classList.remove(...n), s.classList.add(o && o[t] ? o[t] : t))
+              : s.setAttribute(e, t);
+          }),
+            (r = t),
+            l && c.includes(r) && (s.style.colorScheme = r);
+        }
+        if (n) u(n);
+        else
+          try {
+            let e = localStorage.getItem(t) || r,
+              n =
+                a && "system" === e
+                  ? window.matchMedia("(prefers-color-scheme: dark)").matches
+                    ? "dark"
+                    : "light"
+                  : e;
+            u(n);
+          } catch (e) {}
+      },
+      n = ["light", "dark"],
+      i = "(prefers-color-scheme: dark)",
+      o = "u" < typeof window,
+      a = t.createContext(void 0),
+      l = { setTheme: (e) => {}, themes: [] },
+      s = ["light", "dark"],
+      c = ({
+        forcedTheme: e,
+        disableTransitionOnChange: r = !1,
+        enableSystem: o = !0,
+        enableColorScheme: l = !0,
+        storageKey: c = "theme",
+        themes: g = s,
+        defaultTheme: p = o ? "system" : "light",
+        attribute: h = "data-theme",
+        value: b,
+        children: v,
+        nonce: y,
+        scriptProps: w,
+      }) => {
+        let [x, E] = t.useState(() => d(c, p)),
+          [T, P] = t.useState(() => ("system" === x ? m() : x)),
+          L = b ? Object.values(b) : g,
+          S = t.useCallback(
+            (e) => {
+              let t = e;
+              if (!t) return;
+              "system" === e && o && (t = m());
+              let i = b ? b[t] : t,
+                a = r ? f(y) : null,
+                s = document.documentElement,
+                c = (e) => {
+                  "class" === e
+                    ? (s.classList.remove(...L), i && s.classList.add(i))
+                    : e.startsWith("data-") && (i ? s.setAttribute(e, i) : s.removeAttribute(e));
+                };
+              if ((Array.isArray(h) ? h.forEach(c) : c(h), l)) {
+                let e = n.includes(p) ? p : null,
+                  r = n.includes(t) ? t : e;
+                s.style.colorScheme = r;
+              }
+              null == a || a();
+            },
+            [y],
+          ),
+          j = t.useCallback(
+            (e) => {
+              let t = "function" == typeof e ? e(x) : e;
+              E(t);
+              try {
+                localStorage.setItem(c, t);
+              } catch (e) {}
+            },
+            [x],
+          ),
+          _ = t.useCallback(
+            (t) => {
+              P(m(t)), "system" === x && o && !e && S("system");
+            },
+            [x, e],
+          );
+        t.useEffect(() => {
+          let e = window.matchMedia(i);
+          return e.addListener(_), _(e), () => e.removeListener(_);
+        }, [_]),
+          t.useEffect(() => {
+            let e = (e) => {
+              e.key === c && (e.newValue ? E(e.newValue) : j(p));
+            };
+            return (
+              window.addEventListener("storage", e), () => window.removeEventListener("storage", e)
+            );
+          }, [j]),
+          t.useEffect(() => {
+            S(null != e ? e : x);
+          }, [e, x]);
+        let C = t.useMemo(
+          () => ({
+            theme: x,
+            setTheme: j,
+            forcedTheme: e,
+            resolvedTheme: "system" === x ? T : x,
+            themes: o ? [...g, "system"] : g,
+            systemTheme: o ? T : void 0,
+          }),
+          [x, j, e, T, o, g],
+        );
+        return t.createElement(
+          a.Provider,
+          { value: C },
+          t.createElement(u, {
+            forcedTheme: e,
+            storageKey: c,
+            attribute: h,
+            enableSystem: o,
+            enableColorScheme: l,
+            defaultTheme: p,
+            value: b,
+            themes: g,
+            nonce: y,
+            scriptProps: w,
+          }),
+          v,
+        );
+      },
+      u = t.memo(
+        ({
+          forcedTheme: e,
+          storageKey: n,
+          attribute: i,
+          enableSystem: o,
+          enableColorScheme: a,
+          defaultTheme: l,
+          value: s,
+          themes: c,
+          nonce: u,
+          scriptProps: d,
+        }) => {
+          if ("u" > typeof window) return null;
+          let f = JSON.stringify([i, n, l, e, c, s, o, a]).slice(1, -1);
+          return t.createElement("script", {
+            ...d,
+            suppressHydrationWarning: !0,
+            nonce: u,
+            dangerouslySetInnerHTML: { __html: `(${r.toString()})(${f})` },
+          });
+        },
+      ),
+      d = (e, t) => {
+        let r;
+        if (!o) {
+          try {
+            r = localStorage.getItem(e) || void 0;
+          } catch (e) {}
+          return r || t;
+        }
+      },
+      f = (e) => {
+        let t = document.createElement("style");
+        return (
+          e && t.setAttribute("nonce", e),
+          t.appendChild(
+            document.createTextNode(
+              "*,*::before,*::after{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}",
+            ),
+          ),
+          document.head.appendChild(t),
+          () => {
+            window.getComputedStyle(document.body),
+              setTimeout(() => {
+                document.head.removeChild(t);
+              }, 1);
+          }
+        );
+      },
+      m = (e) => (e || (e = window.matchMedia(i)), e.matches ? "dark" : "light");
+    e.s([
+      "ThemeProvider",
+      0,
+      (e) =>
+        t.useContext(a)
+          ? t.createElement(t.Fragment, null, e.children)
+          : t.createElement(c, { ...e }),
+      "useTheme",
+      0,
+      () => {
+        var e;
+        return null != (e = t.useContext(a)) ? e : l;
+      },
+    ]);
+  },
+  792661,
+  449153,
+  (e) => {
+    "use strict";
+    function t(e) {
+      if ("u" < typeof document) return;
+      let t = `${e}=`;
+      return document.cookie
+        .split(";")
+        .map((e) => e.trim())
+        .find((e) => e.startsWith(t));
+    }
+    function r(e) {
+      let r = t(e);
+      if (void 0 === r) return;
+      let n = `${e}=`,
+        i = r.slice(n.length);
+      if (0 !== i.length)
+        try {
+          return decodeURIComponent(i);
+        } catch {
+          return i;
+        }
+    }
+    e.s(
+      [
+        "hasCookie",
+        0,
+        function (e) {
+          return void 0 !== t(e);
+        },
+        "readCookie",
+        0,
+        r,
+      ],
+      449153,
+    ),
+      e.s(
+        [
+          "GA4_IDENTITY_FIELDS",
+          0,
+          ["user_id", "team_id"],
+          "ga4IdentityParams",
+          0,
+          function (e) {
+            let t = {};
+            return e.user_id && (t.user_id = e.user_id), e.team_id && (t.team_id = e.team_id), t;
+          },
+          "readGa4IdentityFromCookies",
+          0,
+          function () {
+            return { user_id: r("workos_id"), team_id: r("team_id") };
+          },
+        ],
+        792661,
+      );
+  },
+  311031,
+  (e) => {
+    "use strict";
+    e.s([
+      "whenGtagReady",
+      0,
+      function (e) {
+        let t = 0,
+          r = null,
+          n = () => {
+            "function" == typeof window.gtag
+              ? e(window.gtag)
+              : t >= 50 || ((t += 1), (r = window.setTimeout(n, 100)));
+          };
+        return (
+          n(),
+          () => {
+            null !== r && window.clearTimeout(r);
+          }
+        );
+      },
+    ]);
+  },
+  500120,
+  (e) => {
+    "use strict";
+    var t = e.i(311031),
+      r = e.i(792661);
+    e.s([
+      "sendGa4Event",
+      0,
+      function (e, r) {
+        return (0, t.whenGtagReady)((t) => {
+          t("event", e, r);
+        });
+      },
+      "setGa4Identity",
+      0,
+      function (e) {
+        let n = (0, r.ga4IdentityParams)(e),
+          i = 0 === Object.keys(n).length;
+        return (0, t.whenGtagReady)((e) => {
+          if (i) {
+            let t = {};
+            for (let e of r.GA4_IDENTITY_FIELDS) t[e] = null;
+            e("set", { user_id: null, user_properties: t });
+            return;
+          }
+          let t = {};
+          for (let e of r.GA4_IDENTITY_FIELDS) t[e] = n[e] ?? null;
+          e("set", { user_id: n.user_id ?? null, user_properties: t });
+        });
+      },
+    ]);
+  },
+  707328,
+  (e) => {
+    "use strict";
+    var t = e.i(505278),
+      r = e.i(207849),
+      n = e.i(264458),
+      i = e.i(411318),
+      o = e.i(956347),
+      a = e.i(297166),
+      l = e.i(612793),
+      s = e.i(605226),
+      c = e.i(545868),
+      u = e.i(548116),
+      d = e.i(928402);
+    let f = () => {
+        let e,
+          n = (0, r.c)(1);
+        return (
+          n[0] === Symbol.for("react.memo_cache_sentinel")
+            ? ((e = (0, t.jsx)("svg", {
+                fill: "none",
+                className: "w-[95.37px] lg:w-[95.75px]",
+                viewBox: "0 0 2193 545",
+                xmlns: "http://www.w3.org/2000/svg",
+                xmlnsXlink: "http://www.w3.org/1999/xlink",
+                overflow: "visible",
+                children: (0, t.jsxs)("g", {
+                  fill: "currentColor",
+                  children: [
+                    (0, t.jsx)("path", {
+                      d: "m466.383 137.073-206.469-119.2034c-6.63-3.8287-14.811-3.8287-21.441 0l-206.4586 119.2034c-5.5734 3.218-9.0144 9.169-9.0144 15.615v240.375c0 6.436 3.441 12.397 9.0144 15.615l206.4686 119.203c6.63 3.829 14.811 3.829 21.441 0l206.468-119.203c5.574-3.218 9.015-9.17 9.015-15.615v-240.375c0-6.436-3.441-12.397-9.015-15.615zm-12.969 25.25-199.316 345.223c-1.347 2.326-4.904 1.376-4.904-1.319v-226.048c0-4.517-2.414-8.695-6.33-10.963l-195.7577-113.019c-2.3263-1.347-1.3764-4.905 1.3182-4.905h398.6305c5.661 0 9.199 6.136 6.368 11.041h-.009z",
+                    }),
+                    (0, t.jsx)("path", {
+                      d: "m723.253 148.84h87.856v48.397h-84.881c-45.789 0-81.527 26.432-81.527 82.273s35.738 82.273 81.527 82.273h84.881v48.397h-91.578c-76.691 0-131.039-45.043-131.039-130.66 0-85.618 58.07-130.661 134.761-130.661z",
+                    }),
+                    (0, t.jsx)("path", {
+                      d: "m855.781 148.84h54.348v159.7c0 39.828 18.242 58.448 61.056 58.448 42.815 0 61.055-18.61 61.055-58.448v-159.7h54.35v170.866c0 58.071-36.85 94.933-115.405 94.933-78.551 0-115.404-37.231-115.404-95.301z",
+                    }),
+                    (0, t.jsx)("path", {
+                      d: "m1370.62 222.913c0 29.04-16.75 51.372-39.09 61.056v.746c23.45 3.354 35.37 20.103 35.73 42.814l1.12 82.641h-54.35l-1.11-73.705c-.37-16.381-10.06-26.432-29.41-26.432h-90.47v100.137h-54.34v-261.33h150.02c49.15 0 81.9 24.94 81.9 74.083zm-54.73 7.454c0-22.333-11.91-34.623-34.24-34.623h-88.61v69.236h89.34c20.47 0 33.51-12.281 33.51-34.623z",
+                    }),
+                    (0, t.jsx)("path", {
+                      d: "m1576.09 333.85c0-18.61-11.91-26.432-29.77-27.915l-60.31-5.583c-52.12-4.837-79.3-25.318-79.3-74.83 0-49.511 33.51-76.69 81.53-76.69h133.27v46.904h-129.55c-18.61 0-30.52 9.683-30.52 28.294 0 18.61 12.28 27.547 30.9 29.04l61.42 5.214c46.54 4.091 77.06 25.318 77.06 75.198s-32.38 76.69-78.17 76.69h-139.23v-46.904h134.01c17.5 0 28.66-11.912 28.66-29.408z",
+                    }),
+                    (0, t.jsx)("path", {
+                      d: "m1789.79 144.373c81.89 0 133.65 52.487 133.65 134.761 0 82.273-53.98 135.506-135.88 135.506s-133.65-53.233-133.65-135.506c0-82.274 53.98-134.761 135.88-134.761zm77.43 135.129c0-55.095-32.02-87.479-78.56-87.479-46.53 0-78.55 32.384-78.55 87.479 0 55.094 32.02 87.478 78.55 87.478 46.54 0 78.56-32.384 78.56-87.478z",
+                    }),
+                    (0, t.jsx)("path", {
+                      d: "m2192.95 222.913c0 29.04-16.75 51.372-39.1 61.056v.746c23.46 3.354 35.37 20.103 35.74 42.814l1.12 82.641h-54.35l-1.12-73.705c-.36-16.381-10.05-26.432-29.4-26.432h-90.47v100.137h-54.35v-261.33h150.03c49.14 0 81.9 24.94 81.9 74.083zm-54.73 7.454c0-22.333-11.91-34.623-34.25-34.623h-88.6v69.236h89.34c20.47 0 33.51-12.281 33.51-34.623z",
+                    }),
+                  ],
+                }),
+              })),
+              (n[0] = e))
+            : (e = n[0]),
+          e
+        );
+      },
+      m = (0, l.memo)(function ({ theme: e }) {
+        let n = (0, i.useGT)(),
+          [o, a] = (0, l.useState)(!1),
+          [s, c] = (0, l.useState)(!1),
+          [m, g] = (0, l.useState)(0),
+          p = (0, u.useMediaQuery)("(pointer: fine)", !1),
+          h = (0, u.useMediaQuery)("(hover: none)", !1),
+          b = (0, d.usePrefersReducedMotion)(),
+          v = (function () {
+            let e,
+              t,
+              n = (0, r.c)(3),
+              [i, o] = (0, l.useState)(!1);
+            return (
+              10 !== n[0]
+                ? ((e = () => {
+                    let e = () => {
+                      o(window.scrollY > 10);
+                    };
+                    return (
+                      e(),
+                      window.addEventListener("scroll", e, { passive: !0 }),
+                      () => window.removeEventListener("scroll", e)
+                    );
+                  }),
+                  (t = [10]),
+                  (n[0] = 10),
+                  (n[1] = e),
+                  (n[2] = t))
+                : ((e = n[1]), (t = n[2])),
+              (0, l.useEffect)(e, t),
+              i
+            );
+          })(),
+          y = (0, l.useRef)(null),
+          w = (() => {
+            let e,
+              t,
+              n = (0, r.c)(2),
+              [i, o] = (0, l.useState)(!1);
+            return (
+              n[0] === Symbol.for("react.memo_cache_sentinel")
+                ? ((e = () => {
+                    let e = navigator.userAgent.toLowerCase();
+                    o(e.includes("safari") && !e.includes("chrome"));
+                  }),
+                  (t = []),
+                  (n[0] = e),
+                  (n[1] = t))
+                : ((e = n[0]), (t = n[1])),
+              (0, l.useEffect)(e, t),
+              i
+            );
+          })(),
+          x = (0, l.useMemo)(() => (0, t.jsx)(f, {}), []),
+          E = (0, l.useMemo)(
+            () => ({
+              dark: {
+                mov: "/marketing-static/logo/logo-dark-theme.mov",
+                webm: "/marketing-static/logo/logo-dark-theme.webm",
+                mp4: "/marketing-static/logo/logo-dark-theme.mp4",
+              },
+              light: {
+                mov: "/marketing-static/logo/logo-light-theme.mov",
+                webm: "/marketing-static/logo/logo-light-theme.webm",
+                mp4: "/marketing-static/logo/logo-light-theme.mp4",
+              },
+            }),
+            [],
+          ),
+          T = (0, l.useMemo)(() => ("dark" === e ? E.dark : E.light), [e, E]),
+          P = (0, l.useCallback)(
+            (e = !1) => {
+              if ((h && !e) || b) return;
+              let t = () => {
+                let e = y.current;
+                if (e?.paused)
+                  try {
+                    g(1), (e.playbackRate = 1), (e.currentTime = 0);
+                    let t = e.play();
+                    t &&
+                      t.catch &&
+                      t.catch(() => {
+                        g(0);
+                      });
+                  } catch (e) {
+                    g(0);
+                  }
+              };
+              w
+                ? "requestIdleCallback" in window
+                  ? requestIdleCallback(t)
+                  : setTimeout(t, 0)
+                : t();
+            },
+            [h, w, b],
+          ),
+          L = (0, l.useCallback)(() => {
+            !h && p && (a(!0), P());
+          }, [h, p, P]),
+          S = (0, l.useCallback)(() => {
+            a(!1);
+          }, []),
+          j = (0, l.useCallback)(() => {
+            w && y.current && (y.current.pause(), a(!1));
+          }, [w]);
+        return (
+          (0, l.useEffect)(() => {
+            v && !s && (c(!0), P(h));
+          }, [v, s, P, h]),
+          (0, l.useEffect)(() => {
+            let e = y.current;
+            if (e) {
+              let t = () => {
+                o
+                  ? setTimeout(() => {
+                      o && e && ((e.currentTime = 0), e.play());
+                    }, 750)
+                  : (e.pause(), g(0));
+              };
+              return e.addEventListener("ended", t), () => e.removeEventListener("ended", t);
+            }
+          }, [o, h]),
+          (0, t.jsxs)("div", {
+            onMouseEnter: L,
+            onMouseLeave: S,
+            onClick: j,
+            children: [
+              (0, t.jsx)("div", {
+                className: "pointer-events-none absolute top-0 left-0 h-full",
+                children: (0, t.jsxs)("video", {
+                  ref: y,
+                  className: "video-smooth h-full w-auto transition-opacity duration-500",
+                  style: { opacity: m },
+                  muted: !0,
+                  playsInline: !0,
+                  preload: w ? "metadata" : "auto",
+                  "aria-label": n("Cursor logo animation"),
+                  src: T.mp4,
+                  children: [
+                    (0, t.jsx)("source", { type: "video/mov", src: T.mov }),
+                    (0, t.jsx)("source", { type: "video/webm", src: T.webm }),
+                    (0, t.jsx)("source", { type: "video/mp4", src: T.mp4 }),
+                  ],
+                }),
+              }),
+              x,
+            ],
+          })
+        );
+      });
+    e.s(
+      [
+        "default",
+        0,
+        function ({ title: e }) {
+          let { theme: u, resolvedTheme: d } = (0, o.useTheme)(),
+            g = "system" === u ? d : u,
+            p = (0, i.useLocale)(),
+            h = p === s.defaultLanguage ? "/home" : `/${p}/home`,
+            b = (function () {
+              let e,
+                t,
+                n = (0, r.c)(2),
+                [i, o] = (0, l.useState)(!1);
+              return (
+                n[0] === Symbol.for("react.memo_cache_sentinel")
+                  ? ((e = () => {
+                      o(!0);
+                    }),
+                    (t = []),
+                    (n[0] = e),
+                    (n[1] = t))
+                  : ((e = n[0]), (t = n[1])),
+                (0, l.useEffect)(e, t),
+                i
+              );
+            })(),
+            [v, y] = (0, l.useState)(!1),
+            [w, x] = (0, l.useState)(null),
+            E = (0, l.useRef)(null),
+            [T, P] = (0, l.useState)(!1),
+            L = (0, l.useRef)(null),
+            S = (0, l.useCallback)((e) => {
+              e.preventDefault(),
+                x({ x: e.clientX, y: e.clientY }),
+                y(!0),
+                P(!1),
+                L.current && (clearTimeout(L.current), (L.current = null));
+            }, []),
+            j = (0, l.useCallback)(() => {
+              P(!1),
+                L.current && clearTimeout(L.current),
+                (L.current = window.setTimeout(() => {
+                  y(!1), (L.current = null);
+                }, 110));
+            }, []);
+          return (
+            (0, l.useEffect)(() => {
+              if (v)
+                return (
+                  document.addEventListener("mousedown", e),
+                  document.addEventListener("keydown", t),
+                  () => {
+                    document.removeEventListener("mousedown", e),
+                      document.removeEventListener("keydown", t);
+                  }
+                );
+              function e(e) {
+                let t = e.target;
+                (E.current && t && E.current.contains(t)) || j();
+              }
+              function t(e) {
+                "Escape" === e.key && j();
+              }
+            }, [v, j]),
+            (0, l.useEffect)(() => {
+              if (!v) return;
+              let e = requestAnimationFrame(() => P(!0));
+              return () => cancelAnimationFrame(e);
+            }, [v]),
+            (0, t.jsxs)(t.Fragment, {
+              children: [
+                (0, t.jsxs)(a.default, {
+                  href: h,
+                  className: (0, n.default)(
+                    "focus-visible:focus-visible relative top-[0.2rem] left-[-2px] inline-flex",
+                  ),
+                  "aria-label": "Homepage",
+                  onContextMenu: S,
+                  children: [
+                    b && g ? (0, t.jsx)(m, { theme: g }) : (0, t.jsx)(f, {}),
+                    (0, t.jsx)("span", { className: "sr-only", children: e }),
+                  ],
+                }),
+                b && v && w
+                  ? (0, c.createPortal)(
+                      (0, t.jsx)("div", {
+                        className: (0, n.default)(
+                          "privacy-dropdown fixed z-[9999]",
+                          T && "is-open",
+                        ),
+                        style: {
+                          top: w.y,
+                          left: w.x,
+                          "--duration": "110ms",
+                          transform: T ? "translateY(0)" : "translateY(-0.25rem)",
+                        },
+                        children: (0, t.jsx)("div", {
+                          ref: E,
+                          className:
+                            "card card--flyout py-g0.5 type-sm bg-theme-card-01-hex min-w-[12rem] px-0 shadow-[var(--shadow-flyout)]",
+                          children: (0, t.jsx)("ul", {
+                            children: (0, t.jsx)("li", {
+                              children: (0, t.jsx)(a.default, {
+                                href: "/brand",
+                                className: "nav__sub-nav__link py-v2.5/12 px-g1.5",
+                                onClick: j,
+                                children: "Get brand assets",
+                              }),
+                            }),
+                          }),
+                        }),
+                      }),
+                      document.body,
+                    )
+                  : null,
+              ],
+            })
+          );
+        },
+      ],
+      707328,
+    );
+  },
+  716516,
+  (e) => {
+    "use strict";
+    var t = e.i(505278),
+      r = e.i(207849),
+      n = e.i(393600),
+      i = e.i(612793),
+      o = e.i(659929);
+    e.s([
+      "default",
+      0,
+      function (e) {
+        let a,
+          l,
+          s,
+          c = (0, r.c)(7),
+          { children: u } = e,
+          [d, f] = (0, i.useState)(null);
+        if (
+          (c[0] === Symbol.for("react.memo_cache_sentinel")
+            ? ((a = () => {
+                let e = (0, o.getAnonymousId)(),
+                  t = new n.StatsigClient(
+                    "client-Bm4HJ0aDjXHQVsoACMREyLNxm5p6zzuzhO50MgtoT5D",
+                    { customIDs: { stableID: e } },
+                    {
+                      environment: { tier: "production" },
+                      networkConfig: { api: "/statsig-proxy/v1" },
+                      logLevel: n.LogLevel.Info,
+                    },
+                  );
+                return (
+                  f(t),
+                  t.initializeAsync(),
+                  () => {
+                    t.shutdown();
+                  }
+                );
+              }),
+              (l = []),
+              (c[0] = a),
+              (c[1] = l))
+            : ((a = c[0]), (l = c[1])),
+          (0, i.useEffect)(a, l),
+          !d)
+        ) {
+          let e;
+          return (
+            c[2] !== u
+              ? ((e = (0, t.jsx)(t.Fragment, { children: u })), (c[2] = u), (c[3] = e))
+              : (e = c[3]),
+            e
+          );
+        }
+        return (
+          c[4] !== u || c[5] !== d
+            ? ((s = (0, t.jsx)(n.StatsigProvider, { client: d, children: u })),
+              (c[4] = u),
+              (c[5] = d),
+              (c[6] = s))
+            : (s = c[6]),
+          s
+        );
+      },
+    ]);
+  },
+  777685,
+  (e) => {
+    "use strict";
+    var t = e.i(925032),
+      r = e.i(612793),
+      n = e.i(225927);
+    function i() {
+      return "u" > typeof window;
+    }
+    function o() {
+      return "production";
+    }
+    function a() {
+      return "development" === ((i() ? window.vam : o()) || "production");
+    }
+    function l(e) {
+      return RegExp(`/${e.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?=[/?#]|$)`);
+    }
+    function s(e) {
+      return (
+        (0, r.useEffect)(() => {
+          var t;
+          e.beforeSend && (null == (t = window.va) || t.call(window, "beforeSend", e.beforeSend));
+        }, [e.beforeSend]),
+        (0, r.useEffect)(() => {
+          !(function (e = { debug: !0 }) {
+            var t;
+            if (!i()) return;
+            !(function (e = "auto") {
+              if ("auto" === e) {
+                window.vam = o();
+                return;
+              }
+              window.vam = e;
+            })(e.mode),
+              window.va ||
+                (window.va = function (...e) {
+                  (window.vaq = window.vaq || []).push(e);
+                }),
+              e.beforeSend &&
+                (null == (t = window.va) || t.call(window, "beforeSend", e.beforeSend));
+            let r = e.scriptSrc
+              ? e.scriptSrc
+              : a()
+                ? "https://va.vercel-scripts.com/v1/script.debug.js"
+                : e.basePath
+                  ? `${e.basePath}/insights/script.js`
+                  : "/_vercel/insights/script.js";
+            if (document.head.querySelector(`script[src*="${r}"]`)) return;
+            let n = document.createElement("script");
+            (n.src = r),
+              (n.defer = !0),
+              (n.dataset.sdkn = "@vercel/analytics" + (e.framework ? `/${e.framework}` : "")),
+              (n.dataset.sdkv = "1.6.1"),
+              e.disableAutoTrack && (n.dataset.disableAutoTrack = "1"),
+              e.endpoint
+                ? (n.dataset.endpoint = e.endpoint)
+                : e.basePath && (n.dataset.endpoint = `${e.basePath}/insights`),
+              e.dsn && (n.dataset.dsn = e.dsn),
+              (n.onerror = () => {
+                let e = a()
+                  ? "Please check if any ad blockers are enabled and try again."
+                  : "Be sure to enable Web Analytics for your project and deploy again. See https://vercel.com/docs/analytics/quickstart for more information.";
+                console.log(`[Vercel Web Analytics] Failed to load script from ${r}. ${e}`);
+              }),
+              a() && !1 === e.debug && (n.dataset.debug = "false"),
+              document.head.appendChild(n);
+          })({
+            framework: e.framework || "react",
+            basePath:
+              e.basePath ??
+              (function () {
+                if (void 0 !== t.default && void 0 !== t.default.env)
+                  return t.default.env.REACT_APP_VERCEL_OBSERVABILITY_BASEPATH;
+              })(),
+            ...(void 0 !== e.route && { disableAutoTrack: !0 }),
+            ...e,
+          });
+        }, []),
+        (0, r.useEffect)(() => {
+          e.route &&
+            e.path &&
+            (function ({ route: e, path: t }) {
+              var r;
+              null == (r = window.va) || r.call(window, "pageview", { route: e, path: t });
+            })({ route: e.route, path: e.path });
+        }, [e.route, e.path]),
+        null
+      );
+    }
+    function c(e) {
+      let i,
+        o,
+        a,
+        { route: c, path: u } =
+          ((i = (0, n.useParams)()),
+          (o = (0, n.useSearchParams)()),
+          (a = (0, n.usePathname)()),
+          i
+            ? {
+                route: (function (e, t) {
+                  if (!e || !t) return e;
+                  let r = e;
+                  try {
+                    let e = Object.entries(t);
+                    for (let [t, n] of e)
+                      if (!Array.isArray(n)) {
+                        let e = l(n);
+                        e.test(r) && (r = r.replace(e, `/[${t}]`));
+                      }
+                    for (let [t, n] of e)
+                      if (Array.isArray(n)) {
+                        let e = l(n.join("/"));
+                        e.test(r) && (r = r.replace(e, `/[...${t}]`));
+                      }
+                    return r;
+                  } catch (t) {
+                    return e;
+                  }
+                })(a, Object.keys(i).length ? i : Object.fromEntries(o.entries())),
+                path: a,
+              }
+            : { route: null, path: a });
+      return r.default.createElement(s, {
+        path: u,
+        route: c,
+        ...e,
+        basePath: (function () {
+          if (void 0 !== t.default && void 0 !== t.default.env)
+            return t.default.env.NEXT_PUBLIC_VERCEL_OBSERVABILITY_BASEPATH;
+        })(),
+        framework: "next",
+      });
+    }
+    e.s([
+      "Analytics",
+      0,
+      function (e) {
+        return r.default.createElement(
+          r.Suspense,
+          { fallback: null },
+          r.default.createElement(c, { ...e }),
+        );
+      },
+    ]);
+  },
+  773206,
+  (e) => {
+    "use strict";
+    var t = e.i(925032),
+      r = e.i(612793),
+      n = e.i(225927);
+    function i() {
+      return false;
+    }
+    function o(e) {
+      return RegExp(`/${e.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?=[/?#]|$)`);
+    }
+    function a(e) {
+      (0, r.useEffect)(() => {
+        var t;
+        e.beforeSend && (null == (t = window.si) || t.call(window, "beforeSend", e.beforeSend));
+      }, [e.beforeSend]);
+      let n = (0, r.useRef)(null);
+      return (
+        (0, r.useEffect)(() => {
+          if (n.current) e.route && n.current(e.route);
+          else {
+            let r = (function (e = {}) {
+              var t;
+              if (!("u" > typeof window) || null === e.route) return null;
+              window.si ||
+                (window.si = function (...e) {
+                  (window.siq = window.siq || []).push(e);
+                });
+              let r = e.scriptSrc
+                ? e.scriptSrc
+                : i()
+                  ? "https://va.vercel-scripts.com/v1/speed-insights/script.debug.js"
+                  : e.dsn
+                    ? "https://va.vercel-scripts.com/v1/speed-insights/script.js"
+                    : e.basePath
+                      ? `${e.basePath}/speed-insights/script.js`
+                      : "/_vercel/speed-insights/script.js";
+              if (document.head.querySelector(`script[src*="${r}"]`)) return null;
+              e.beforeSend &&
+                (null == (t = window.si) || t.call(window, "beforeSend", e.beforeSend));
+              let n = document.createElement("script");
+              return (
+                (n.src = r),
+                (n.defer = !0),
+                (n.dataset.sdkn =
+                  "@vercel/speed-insights" + (e.framework ? `/${e.framework}` : "")),
+                (n.dataset.sdkv = "1.3.1"),
+                e.sampleRate && (n.dataset.sampleRate = e.sampleRate.toString()),
+                e.route && (n.dataset.route = e.route),
+                e.endpoint
+                  ? (n.dataset.endpoint = e.endpoint)
+                  : e.basePath && (n.dataset.endpoint = `${e.basePath}/speed-insights/vitals`),
+                e.dsn && (n.dataset.dsn = e.dsn),
+                i() && !1 === e.debug && (n.dataset.debug = "false"),
+                (n.onerror = () => {
+                  console.log(
+                    `[Vercel Speed Insights] Failed to load script from ${r}. Please check if any content blockers are enabled and try again.`,
+                  );
+                }),
+                document.head.appendChild(n),
+                {
+                  setRoute: (e) => {
+                    n.dataset.route = e ?? void 0;
+                  },
+                }
+              );
+            })({
+              framework: e.framework ?? "react",
+              basePath:
+                e.basePath ??
+                (function () {
+                  if (void 0 !== t.default && void 0 !== t.default.env)
+                    return t.default.env.REACT_APP_VERCEL_OBSERVABILITY_BASEPATH;
+                })(),
+              ...e,
+            });
+            r && (n.current = r.setRoute);
+          }
+        }, [e.route]),
+        null
+      );
+    }
+    function l(e) {
+      let i = (() => {
+        let e = (0, n.useParams)(),
+          t = (0, n.useSearchParams)() || new URLSearchParams(),
+          r = (0, n.usePathname)();
+        if (!e) return null;
+        let i = Object.keys(e).length ? e : Object.fromEntries(t.entries());
+        if (!r || !i) return r;
+        let a = r;
+        try {
+          let e = Object.entries(i);
+          for (let [t, r] of e)
+            if (!Array.isArray(r)) {
+              let e = o(r);
+              e.test(a) && (a = a.replace(e, `/[${t}]`));
+            }
+          for (let [t, r] of e)
+            if (Array.isArray(r)) {
+              let e = o(r.join("/"));
+              e.test(a) && (a = a.replace(e, `/[...${t}]`));
+            }
+          return a;
+        } catch (e) {
+          return r;
+        }
+      })();
+      return r.default.createElement(a, {
+        route: i,
+        ...e,
+        framework: "next",
+        basePath: (function () {
+          if (void 0 !== t.default && void 0 !== t.default.env)
+            return t.default.env.NEXT_PUBLIC_VERCEL_OBSERVABILITY_BASEPATH;
+        })(),
+      });
+    }
+    e.s([
+      "SpeedInsights",
+      0,
+      function (e) {
+        return r.default.createElement(
+          r.Suspense,
+          { fallback: null },
+          r.default.createElement(l, { ...e }),
+        );
+      },
+    ]);
+  },
+  167803,
+  (e) => {
+    "use strict";
+    var t = e.i(505278),
+      r = e.i(207849),
+      n = e.i(612793),
+      i = e.i(360112);
+    e.s([
+      "ClientToaster",
+      0,
+      function () {
+        let e,
+          o,
+          a,
+          l = (0, r.c)(3),
+          [s, c] = (0, n.useState)(!1);
+        return (l[0] === Symbol.for("react.memo_cache_sentinel")
+          ? ((e = () => {
+              c(!0);
+            }),
+            (o = []),
+            (l[0] = e),
+            (l[1] = o))
+          : ((e = l[0]), (o = l[1])),
+        (0, n.useEffect)(e, o),
+        s)
+          ? (l[2] === Symbol.for("react.memo_cache_sentinel")
+              ? ((a = (0, t.jsx)(i.Toaster, {})), (l[2] = a))
+              : (a = l[2]),
+            a)
+          : null;
+      },
+    ]);
+  },
+  760850,
+  (e) => {
+    "use strict";
+    var t = e.i(207849),
+      r = e.i(449153),
+      n = e.i(792661);
+    let i = [/^\/[^/]+\/support-survey\/s\//];
+    var o = e.i(500120),
+      a = e.i(225927),
+      l = e.i(612793);
+    e.s(
+      [
+        "GA4PageView",
+        0,
+        function () {
+          let e,
+            s,
+            c,
+            u = (0, t.c)(6),
+            d = (0, a.usePathname)(),
+            f = (0, a.useSearchParams)();
+          u[0] !== f ? ((e = f.toString()), (u[0] = f), (u[1] = e)) : (e = u[1]);
+          let m = e;
+          return (
+            u[2] !== d || u[3] !== m
+              ? ((s = () => {
+                  let e = (function () {
+                    let e = "_ga_pv_evt";
+                    if (!(0, r.hasCookie)(e)) return;
+                    let t = (0, r.readCookie)(e);
+                    return (document.cookie = `${e}=; Max-Age=0; Path=/`), t;
+                  })();
+                  if (i.some((e) => e.test(d))) return;
+                  let t = (0, n.readGa4IdentityFromCookies)(),
+                    a = {
+                      page_location: window.location.href,
+                      page_path: d + (m ? `?${m}` : ""),
+                      page_title: document.title,
+                      ...(0, n.ga4IdentityParams)(t),
+                    };
+                  e && (a.event_id = e);
+                  let l = (0, o.setGa4Identity)(t),
+                    s = (0, o.sendGa4Event)("page_view", a);
+                  return () => {
+                    l(), s();
+                  };
+                }),
+                (c = [d, m]),
+                (u[2] = d),
+                (u[3] = m),
+                (u[4] = s),
+                (u[5] = c))
+              : ((s = u[4]), (c = u[5])),
+            (0, l.useEffect)(s, c),
+            null
+          );
+        },
+      ],
+      760850,
+    );
+  },
+  843695,
+  (e) => {
+    "use strict";
+    var t = e.i(207849),
+      r = e.i(225927),
+      n = e.i(612793),
+      i = e.i(139890);
+    function o() {
+      (0, i.captureFromUrl)();
+    }
+    e.s([
+      "MarketingAttributionCapture",
+      0,
+      function () {
+        let e,
+          i,
+          a = (0, t.c)(5),
+          l = (0, r.usePathname)(),
+          s = (0, r.useSearchParams)();
+        a[0] !== s ? ((e = s.toString()), (a[0] = s), (a[1] = e)) : (e = a[1]);
+        let c = e;
+        return (
+          a[2] !== l || a[3] !== c
+            ? ((i = [l, c]), (a[2] = l), (a[3] = c), (a[4] = i))
+            : (i = a[4]),
+          (0, n.useEffect)(o, i),
+          null
+        );
+      },
+    ]);
+  },
+  148742,
+  (e) => {
+    "use strict";
+    var t = e.i(207849),
+      r = e.i(225927),
+      n = e.i(612793);
+    function i() {
+      document.documentElement.classList.remove("page-transitioning");
+    }
+    function o() {
+      return (
+        "scrollRestoration" in history && (history.scrollRestoration = "auto"),
+        document.addEventListener("click", c),
+        window.addEventListener("popstate", a),
+        () => {
+          document.removeEventListener("click", c), window.removeEventListener("popstate", a);
+        }
+      );
+    }
+    function a(e) {
+      document.documentElement.classList.add("smooth-scroll-enabled"),
+        window.location.hash && setTimeout(s, 10),
+        setTimeout(l, 1e3);
+    }
+    function l() {
+      document.documentElement.classList.remove("smooth-scroll-enabled");
+    }
+    function s() {
+      try {
+        let e = document.querySelector(window.location.hash);
+        e && e.scrollIntoView({ behavior: "smooth", block: "start" });
+      } catch (e) {
+        console.warn("Invalid hash selector:", window.location.hash);
+      }
+    }
+    function c(e) {
+      let t = e.target,
+        r = null;
+      for (; t; ) {
+        if ("A" === t.tagName) {
+          r = t;
+          break;
+        }
+        t = t.parentElement;
+      }
+      r?.hash &&
+        r.hostname === window.location.hostname &&
+        (document.documentElement.classList.add("smooth-scroll-enabled"), setTimeout(u, 1e3));
+    }
+    function u() {
+      document.documentElement.classList.remove("smooth-scroll-enabled");
+    }
+    e.s([
+      "default",
+      0,
+      function () {
+        let e,
+          a,
+          l,
+          s = (0, t.c)(4),
+          c = (0, r.usePathname)(),
+          u = (0, n.useRef)(void 0);
+        return (
+          s[0] === Symbol.for("react.memo_cache_sentinel") ? ((e = []), (s[0] = e)) : (e = s[0]),
+          (0, n.useEffect)(o, e),
+          s[1] !== c
+            ? ((a = () => {
+                if (void 0 === u.current) {
+                  u.current = c;
+                  return;
+                }
+                if (u.current === c) return;
+                if (c.split("#")[0] === u.current?.split("#")[0]) {
+                  u.current = c;
+                  return;
+                }
+                document.documentElement.classList.remove("smooth-scroll-enabled"),
+                  document.documentElement.classList.add("page-transitioning"),
+                  window.scrollTo({ top: 0, left: 0, behavior: "auto" }),
+                  (u.current = c);
+                let e = setTimeout(i, 100);
+                return () => {
+                  clearTimeout(e), document.documentElement.classList.remove("page-transitioning");
+                };
+              }),
+              (l = [c]),
+              (s[1] = c),
+              (s[2] = a),
+              (s[3] = l))
+            : ((a = s[2]), (l = s[3])),
+          (0, n.useEffect)(a, l),
+          null
+        );
+      },
+    ]);
+  },
+  338280,
+  (e) => {
+    "use strict";
+    var t = e.i(505278),
+      r = e.i(605226),
+      n = e.i(346140),
+      i = e.i(612793),
+      o = e.i(264458);
+    e.s([
+      "default",
+      0,
+      function ({ currentLocale: e }) {
+        let [a, l] = (0, i.useState)(!1),
+          s = (0, n.useSetLocale)(),
+          c = (0, i.useRef)(null);
+        (0, i.useEffect)(() => {
+          let e = (e) => {
+            c.current && !c.current.contains(e.target) && l(!1);
+          };
+          return (
+            document.addEventListener("mousedown", e),
+            () => document.removeEventListener("mousedown", e)
+          );
+        }, []);
+        let u = r.supportedLanguages.map((e) => e.id),
+          d = u.includes(e) ? e : r.defaultLanguage,
+          f = () => {
+            let e = window.location.pathname.split("/").filter(Boolean),
+              t = u.includes(e[0]) ? e.slice(1) : e;
+            if (0 === t.length) return "";
+            let n = t.join("/");
+            return r.experimentBasePaths.find((e) => n === e || n.startsWith(`${e}/`)) ?? null;
+          };
+        return (0, t.jsx)("div", {
+          className: "flex items-center gap-2",
+          children: (0, t.jsxs)("div", {
+            className: "relative",
+            ref: c,
+            children: [
+              (0, t.jsxs)("button", {
+                className:
+                  "btn btn--secondary btn--sm gap-g0.5 cursor-pointer type-base md:type-sm !leading-none",
+                onClick: () => l(!a),
+                "aria-expanded": a,
+                "aria-controls": "language-dropdown",
+                "aria-haspopup": "listbox",
+                type: "button",
+                children: [
+                  (0, t.jsx)("span", { className: "icon-glyph-08", children: "🌐" }),
+                  (r.supportedLanguages.find((e) => e.id === d) || r.supportedLanguages[0]).title,
+                  (0, t.jsx)("span", {
+                    className: "icon-glyph-09 cursor-pointer",
+                    children: a ? "↑" : "↓",
+                  }),
+                ],
+              }),
+              (0, t.jsx)("div", {
+                id: "language-dropdown",
+                role: "listbox",
+                className: (0, o.default)(
+                  "nav__sub-nav pt-v3/12 absolute bottom-full left-0 md:left-auto md:right-0 z-50 mb-v6/12 privacy-dropdown-upward",
+                  a && "is-open",
+                ),
+                children: (0, t.jsx)("div", {
+                  className:
+                    "card card--flyout px-0 py-g0.75 type-base md:type-sm bg-theme-card-02-hex min-w-[10rem] shadow-[var(--shadow-flyout)]",
+                  children: (0, t.jsx)("ul", {
+                    children: r.supportedLanguages.map((e) =>
+                      (0, t.jsx)(
+                        "li",
+                        {
+                          children: (0, t.jsxs)("button", {
+                            role: "option",
+                            "aria-selected": d === e.id,
+                            className:
+                              "nav__sub-nav__link--responsive py-v2.5/12 px-g1.5 relative flex w-full cursor-pointer items-center justify-between",
+                            onClick: () => {
+                              var t;
+                              let n, i, o, a;
+                              return (
+                                (t = e.id),
+                                l(!1),
+                                (a =
+                                  null !== f()
+                                    ? ((n = f() ?? ""),
+                                      t === r.defaultLanguage
+                                        ? n
+                                          ? `/${n}`
+                                          : "/"
+                                        : n
+                                          ? `/${t}/${n}`
+                                          : `/${t}/`)
+                                    : ((i = window.location.pathname.split("/").filter(Boolean)),
+                                      (o = (u.includes(i[0]) ? i.slice(1) : i).join("/")),
+                                      t === r.defaultLanguage
+                                        ? o
+                                          ? `/${o}`
+                                          : "/"
+                                        : o
+                                          ? `/${t}/${o}`
+                                          : `/${t}`)),
+                                void ((document.cookie = `generaltranslation.locale=${t};path=/`),
+                                (document.cookie = "generaltranslation.locale-reset=true;path=/"),
+                                s(t),
+                                setTimeout(() => {
+                                  window.location.assign(
+                                    `${a}${window.location.search}${window.location.hash}`,
+                                  );
+                                }, 0))
+                              );
+                            },
+                            type: "button",
+                            children: [
+                              e.title,
+                              d === e.id &&
+                                (0, t.jsx)("span", {
+                                  className: "font-feature-case",
+                                  children: "✓",
+                                }),
+                            ],
+                          }),
+                        },
+                        e.id,
+                      ),
+                    ),
+                  }),
+                }),
+              }),
+            ],
+          }),
+        });
+      },
+    ]);
+  },
+  275252,
+  (e) => {
+    "use strict";
+    var t = e.i(505278),
+      r = e.i(207849),
+      n = e.i(594221),
+      i = e.i(411318),
+      o = e.i(956347),
+      a = e.i(612793),
+      l = e.i(906967);
+    e.s(
+      [
+        "default",
+        0,
+        () => {
+          let e,
+            s,
+            c,
+            u,
+            d,
+            f,
+            m,
+            g,
+            p,
+            h,
+            b,
+            v,
+            y,
+            w,
+            x,
+            E,
+            T = (0, r.c)(31),
+            [P, L] = (0, a.useState)(!1),
+            { theme: S, resolvedTheme: j, setTheme: _ } = (0, o.useTheme)();
+          T[0] === Symbol.for("react.memo_cache_sentinel") ? ((e = {}), (T[0] = e)) : (e = T[0]);
+          let C = (0, a.useRef)(e),
+            k = (0, i.useGT)();
+          if (
+            (T[1] === Symbol.for("react.memo_cache_sentinel")
+              ? ((s = () => {
+                  L(!0);
+                }),
+                (c = []),
+                (T[1] = s),
+                (T[2] = c))
+              : ((s = T[1]), (c = T[2])),
+            (0, a.useEffect)(s, c),
+            T[3] !== P || T[4] !== j || T[5] !== S
+              ? ((u = () => {
+                  if (!P) return;
+                  let e = "system" === S ? j : S;
+                  if ("light" !== e && "dark" !== e) return;
+                  let t =
+                      "light" === e
+                        ? "/marketing-static/favicon-light.svg"
+                        : "/marketing-static/favicon.svg",
+                    r =
+                      "light" === e
+                        ? "/marketing-static/favicon-light.ico"
+                        : "/marketing-static/favicon.ico",
+                    n = window.setTimeout(() => {
+                      if (C.current.ico)
+                        (C.current.ico.href = r), C.current.ico.removeAttribute("type");
+                      else {
+                        let e = document.createElement("link");
+                        (e.rel = "icon"),
+                          (e.href = r),
+                          e.setAttribute("sizes", "any"),
+                          document.head.appendChild(e),
+                          (C.current.ico = e);
+                      }
+                      if (C.current.svg) C.current.svg.href = t;
+                      else {
+                        let e = document.createElement("link");
+                        (e.rel = "icon"),
+                          (e.href = t),
+                          (e.type = "image/svg+xml"),
+                          document.head.appendChild(e),
+                          (C.current.svg = e);
+                      }
+                    }, 50);
+                  return () => window.clearTimeout(n);
+                }),
+                (d = [P, S, j]),
+                (T[3] = P),
+                (T[4] = j),
+                (T[5] = S),
+                (T[6] = u),
+                (T[7] = d))
+              : ((u = T[6]), (d = T[7])),
+            (0, a.useEffect)(u, d),
+            !P)
+          )
+            return null;
+          T[8] !== k ? ((f = k("System theme")), (T[8] = k), (T[9] = f)) : (f = T[9]),
+            T[10] === Symbol.for("react.memo_cache_sentinel")
+              ? ((m = (0, t.jsx)(l.MonitorIcon, {})), (T[10] = m))
+              : (m = T[10]),
+            T[11] !== f
+              ? ((g = { value: "system", label: f, icon: m }), (T[11] = f), (T[12] = g))
+              : (g = T[12]),
+            T[13] !== k ? ((p = k("Light theme")), (T[13] = k), (T[14] = p)) : (p = T[14]),
+            T[15] === Symbol.for("react.memo_cache_sentinel")
+              ? ((h = (0, t.jsx)(l.SunIcon, {})), (T[15] = h))
+              : (h = T[15]),
+            T[16] !== p
+              ? ((b = { value: "light", label: p, icon: h }), (T[16] = p), (T[17] = b))
+              : (b = T[17]),
+            T[18] !== k ? ((v = k("Dark theme")), (T[18] = k), (T[19] = v)) : (v = T[19]),
+            T[20] === Symbol.for("react.memo_cache_sentinel")
+              ? ((y = (0, t.jsx)(l.MoonIcon, {})), (T[20] = y))
+              : (y = T[20]),
+            T[21] !== v
+              ? ((w = { value: "dark", label: v, icon: y }), (T[21] = v), (T[22] = w))
+              : (w = T[22]),
+            T[23] !== b || T[24] !== w || T[25] !== g
+              ? ((x = [g, b, w]), (T[23] = b), (T[24] = w), (T[25] = g), (T[26] = x))
+              : (x = T[26]);
+          let I = S || "system";
+          return (
+            T[27] !== _ || T[28] !== x || T[29] !== I
+              ? ((E = (0, t.jsx)(n.default, {
+                  options: x,
+                  value: I,
+                  onChange: _,
+                  variant: "theme",
+                  size: "sm",
+                })),
+                (T[27] = _),
+                (T[28] = x),
+                (T[29] = I),
+                (T[30] = E))
+              : (E = T[30]),
+            E
+          );
+        },
+      ],
+      275252,
+    );
+  },
+]);
